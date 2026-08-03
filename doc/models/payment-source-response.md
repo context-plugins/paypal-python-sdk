@@ -1,0 +1,116 @@
+
+# Payment Source Response
+
+The payment source used to fund the payment.
+
+*This model accepts additional fields of type Any.*
+
+## Structure
+
+`PaymentSourceResponse`
+
+## Fields
+
+| Name | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `card` | [`CardResponse`](../../doc/models/card-response.md) | Optional | The payment card to use to fund a payment. Card can be a credit or debit card. |
+| `paypal` | [`PayPalWalletResponse`](../../doc/models/pay-pal-wallet-response.md) | Optional | The PayPal Wallet response. |
+| `bancontact` | [`BancontactPaymentObject`](../../doc/models/bancontact-payment-object.md) | Optional | Information used to pay Bancontact. |
+| `blik` | [`BlikPaymentObject`](../../doc/models/blik-payment-object.md) | Optional | Information used to pay using BLIK. |
+| `eps` | [`EpsPaymentObject`](../../doc/models/eps-payment-object.md) | Optional | Information used to pay using eps. |
+| `giropay` | [`GiropayPaymentObject`](../../doc/models/giropay-payment-object.md) | Optional | Information needed to pay using giropay. |
+| `ideal` | [`IdealPaymentObject`](../../doc/models/ideal-payment-object.md) | Optional | Information used to pay using iDEAL. |
+| `mybank` | [`MyBankPaymentObject`](../../doc/models/my-bank-payment-object.md) | Optional | Information used to pay using MyBank. |
+| `p_24` | [`P24PaymentObject`](../../doc/models/p24-payment-object.md) | Optional | Information used to pay using P24(Przelewy24). |
+| `sofort` | [`SofortPaymentObject`](../../doc/models/sofort-payment-object.md) | Optional | Information used to pay using Sofort. |
+| `trustly` | [`TrustlyPaymentObject`](../../doc/models/trustly-payment-object.md) | Optional | Information needed to pay using Trustly. |
+| `apple_pay` | [`ApplePayPaymentObject`](../../doc/models/apple-pay-payment-object.md) | Optional | Information needed to pay using ApplePay. |
+| `google_pay` | [`GooglePayWalletResponse`](../../doc/models/google-pay-wallet-response.md) | Optional | Google Pay Wallet payment data. |
+| `venmo` | [`VenmoWalletResponse`](../../doc/models/venmo-wallet-response.md) | Optional | Venmo wallet response. |
+| `additional_properties` | `Dict[str, Any]` | Optional | - |
+
+## Example
+
+```python
+import jsonpickle
+
+from paypal.models.bancontact_payment_object import BancontactPaymentObject
+from paypal.models.blik_one_click_payment_object import BlikOneClickPaymentObject
+from paypal.models.blik_payment_object import BlikPaymentObject
+from paypal.models.card_brand import CardBrand
+from paypal.models.card_response import CardResponse
+from paypal.models.card_type import CardType
+from paypal.models.eps_payment_object import EpsPaymentObject
+from paypal.models.name import Name
+from paypal.models.pay_pal_wallet_account_verification_status import PayPalWalletAccountVerificationStatus
+from paypal.models.pay_pal_wallet_response import PayPalWalletResponse
+from paypal.models.payment_source_response import PaymentSourceResponse
+from paypal.models.phone_type import PhoneType
+
+payment_source_response = PaymentSourceResponse(
+    card=CardResponse(
+        name='name6',
+        last_digits='last_digits0',
+        brand=CardBrand.CB_NATIONALE,
+        available_networks=[
+            CardBrand.DELTA
+        ],
+        mtype=CardType.UNKNOWN,
+        additional_properties={
+            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
+        }
+    ),
+    paypal=PayPalWalletResponse(
+        email_address='email_address0',
+        account_id='account_id4',
+        account_status=PayPalWalletAccountVerificationStatus.VERIFIED,
+        name=Name(
+            given_name='given_name2',
+            surname='surname8',
+            additional_properties={
+                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
+            }
+        ),
+        phone_type=PhoneType.FAX,
+        additional_properties={
+            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
+        }
+    ),
+    bancontact=BancontactPaymentObject(
+        name='name0',
+        country_code='country_code0',
+        bic='bic2',
+        iban_last_chars='iban_last_chars8',
+        card_last_digits='card_last_digits4',
+        additional_properties={
+            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
+        }
+    ),
+    blik=BlikPaymentObject(
+        name='name2',
+        country_code='country_code2',
+        email='email4',
+        one_click=BlikOneClickPaymentObject(
+            consumer_reference='consumer_reference2',
+            additional_properties={
+                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
+            }
+        ),
+        additional_properties={
+            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
+        }
+    ),
+    eps=EpsPaymentObject(
+        name='name6',
+        country_code='country_code6',
+        bic='bic8',
+        additional_properties={
+            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
+        }
+    ),
+    additional_properties={
+        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
+    }
+)
+```
+

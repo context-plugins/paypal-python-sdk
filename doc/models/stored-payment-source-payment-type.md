@@ -1,0 +1,27 @@
+
+# Stored Payment Source Payment Type
+
+Indicates the type of the stored payment_source payment.
+
+*This model accepts additional fields of type Any.*
+
+## Enumeration
+
+`StoredPaymentSourcePaymentType`
+
+## Fields
+
+| Name | Description |
+|  --- | --- |
+| `ONE_TIME` | One Time payment such as online purchase or donation. (e.g. Checkout with one-click). |
+| `RECURRING` | Payment which is part of a series of payments with fixed or variable amounts, following a fixed time interval. (e.g. Subscription payments). |
+| `UNSCHEDULED` | Payment which is part of a series of payments that occur on a non-fixed schedule and/or have variable amounts. (e.g. Account Topup payments). |
+
+## Example
+
+```python
+from paypal.models.stored_payment_source_payment_type import StoredPaymentSourcePaymentType
+
+stored_payment_source_payment_type = StoredPaymentSourcePaymentType.RECURRING
+```
+

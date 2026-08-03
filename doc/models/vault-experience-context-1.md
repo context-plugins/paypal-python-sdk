@@ -1,0 +1,47 @@
+
+# Vault Experience Context 1
+
+Customizes the Vault creation flow experience for your customers.
+
+*This model accepts additional fields of type Any.*
+
+## Structure
+
+`VaultExperienceContext1`
+
+## Fields
+
+| Name | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `brand_name` | `str` | Optional | The label that overrides the business name in the PayPal account on the PayPal site. The pattern is defined by an external party and supports Unicode.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `127`, *Pattern*: `^.*$` |
+| `locale` | `str` | Optional | The [language tag](https://tools.ietf.org/html/bcp47#section-2) for the language in which to localize the error-related strings, such as messages, issues, and suggested actions. The tag is made up of the [ISO 639-2 language code](https://www.loc.gov/standards/iso639-2/php/code_list.php), the optional [ISO-15924 script tag](https://www.unicode.org/iso15924/codelists.html), and the [ISO-3166 alpha-2 country code](https://developer.paypal.com/api/rest/reference/country-codes/) or [M49 region code](https://unstats.un.org/unsd/methodology/m49/).<br><br>**Constraints**: *Minimum Length*: `2`, *Maximum Length*: `10`, *Pattern*: `^[a-z]{2}(?:-[A-Z][a-z]{3})?(?:-(?:[A-Z]{2}\|[0-9]{3}))?$` |
+| `return_url` | `str` | Optional | The URL where the customer is redirected after customer approves leaves the flow. It is a required field for contingency flows like PayPal wallet, 3DS.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `4000` |
+| `cancel_url` | `str` | Optional | The URL where the customer is redirected after customer cancels or leaves the flow. It is a required field for contingency flows like PayPal wallet, 3DS.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `4000` |
+| `shipping_preference` | [`ApplicationContextShippingPreference`](../../doc/models/application-context-shipping-preference.md) | Optional | The shipping preference. This only applies to PayPal payment source.<br><br>**Default**: `"GET_FROM_FILE"`<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[0-9A-Z_]+$` |
+| `vault_instruction` | [`VaultInstructionAction`](../../doc/models/vault-instruction-action.md) | Optional | DEPRECATED. Vault Instruction on action to be performed after a successful payer approval.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[A-Z_]+$` |
+| `app_switch_context` | [`AppSwitchContext`](../../doc/models/app-switch-context.md) | Optional | Merchant provided details of the native app or mobile web browser to facilitate buyer's app switch to the PayPal consumer app. |
+| `user_action` | [`VaultUserAction`](../../doc/models/vault-user-action.md) | Optional | User Action on action to be performed after a successful payer approval.<br><br>**Default**: `"CONTINUE"`<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[A-Z_]+$` |
+| `additional_properties` | `Dict[str, Any]` | Optional | - |
+
+## Example
+
+```python
+import jsonpickle
+
+from paypal.models.application_context_shipping_preference import ApplicationContextShippingPreference
+from paypal.models.vault_experience_context_1 import VaultExperienceContext1
+from paypal.models.vault_user_action import VaultUserAction
+
+vault_experience_context_1 = VaultExperienceContext1(
+    brand_name='brand_name4',
+    locale='locale8',
+    return_url='return_url4',
+    cancel_url='cancel_url8',
+    shipping_preference=ApplicationContextShippingPreference.GET_FROM_FILE,
+    user_action=VaultUserAction.CONTINUE,
+    additional_properties={
+        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
+    }
+)
+```
+

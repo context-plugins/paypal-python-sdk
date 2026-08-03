@@ -1,0 +1,69 @@
+
+# Orders Capture
+
+A captured payment.
+
+*This model accepts additional fields of type Any.*
+
+## Structure
+
+`OrdersCapture`
+
+## Fields
+
+| Name | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `status` | [`CaptureStatus`](../../doc/models/capture-status.md) | Optional, Read-only | The status of the captured payment. |
+| `status_details` | [`CaptureStatusDetails`](../../doc/models/capture-status-details.md) | Optional | The details of the captured payment status. |
+| `id` | `str` | Optional, Read-only | The PayPal-generated ID for the captured payment. |
+| `amount` | [`Money`](../../doc/models/money.md) | Optional | The currency and amount for a financial transaction, such as a balance or payment due. |
+| `invoice_id` | `str` | Optional, Read-only | The API caller-provided external invoice number for this order. Appears in both the payer's transaction history and the emails that the payer receives. |
+| `custom_id` | `str` | Optional | The API caller-provided external ID. Used to reconcile API caller-initiated transactions with PayPal transactions. Appears in transaction and settlement reports.<br><br>**Constraints**: *Maximum Length*: `255` |
+| `network_transaction_reference` | [`NetworkTransaction`](../../doc/models/network-transaction.md) | Optional | Reference values used by the card network to identify a transaction. |
+| `seller_protection` | [`SellerProtection`](../../doc/models/seller-protection.md) | Optional | The level of protection offered as defined by [PayPal Seller Protection for Merchants](https://www.paypal.com/us/webapps/mpp/security/seller-protection). |
+| `final_capture` | `bool` | Optional, Read-only | Indicates whether you can make additional captures against the authorized payment. Set to `true` if you do not intend to capture additional payments against the authorization. Set to `false` if you intend to capture additional payments against the authorization.<br><br>**Default**: `False` |
+| `seller_receivable_breakdown` | [`SellerReceivableBreakdown`](../../doc/models/seller-receivable-breakdown.md) | Optional | The detailed breakdown of the capture activity. This is not available for transactions that are in pending state. |
+| `disbursement_mode` | [`DisbursementMode`](../../doc/models/disbursement-mode.md) | Optional | The funds that are held on behalf of the merchant.<br><br>**Default**: `"INSTANT"`<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `16`, *Pattern*: `^[A-Z_]+$` |
+| `links` | [`List[LinkDescription]`](../../doc/models/link-description.md) | Optional, Read-only | An array of related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links). |
+| `processor_response` | [`ProcessorResponse`](../../doc/models/processor-response.md) | Optional | The processor response information for payment requests, such as direct credit card transactions. |
+| `create_time` | `str` | Optional | The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while fractional seconds are optional. Note: The regular expression provides guidance but does not reject all invalid dates.<br><br>**Constraints**: *Minimum Length*: `20`, *Maximum Length*: `64`, *Pattern*: `^[0-9]{4}-(0[1-9]\|1[0-2])-(0[1-9]\|[1-2][0-9]\|3[0-1])[T,t]([0-1][0-9]\|2[0-3]):[0-5][0-9]:([0-5][0-9]\|60)([.][0-9]+)?([Zz]\|[+-][0-9]{2}:[0-9]{2})$` |
+| `update_time` | `str` | Optional | The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while fractional seconds are optional. Note: The regular expression provides guidance but does not reject all invalid dates.<br><br>**Constraints**: *Minimum Length*: `20`, *Maximum Length*: `64`, *Pattern*: `^[0-9]{4}-(0[1-9]\|1[0-2])-(0[1-9]\|[1-2][0-9]\|3[0-1])[T,t]([0-1][0-9]\|2[0-3]):[0-5][0-9]:([0-5][0-9]\|60)([.][0-9]+)?([Zz]\|[+-][0-9]{2}:[0-9]{2})$` |
+| `additional_properties` | `Dict[str, Any]` | Optional | - |
+
+## Example
+
+```python
+import jsonpickle
+
+from paypal.models.capture_incomplete_reason import CaptureIncompleteReason
+from paypal.models.capture_status import CaptureStatus
+from paypal.models.capture_status_details import CaptureStatusDetails
+from paypal.models.disbursement_mode import DisbursementMode
+from paypal.models.money import Money
+from paypal.models.orders_capture import OrdersCapture
+
+orders_capture = OrdersCapture(
+    status=CaptureStatus.PARTIALLY_REFUNDED,
+    status_details=CaptureStatusDetails(
+        reason=CaptureIncompleteReason.VERIFICATION_REQUIRED,
+        additional_properties={
+            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
+        }
+    ),
+    id='id6',
+    amount=Money(
+        currency_code='currency_code6',
+        value='value0',
+        additional_properties={
+            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
+        }
+    ),
+    invoice_id='invoice_id6',
+    final_capture=False,
+    disbursement_mode=DisbursementMode.INSTANT,
+    additional_properties={
+        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
+    }
+)
+```
+
