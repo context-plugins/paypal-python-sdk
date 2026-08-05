@@ -3,8 +3,6 @@
 
 The customer who approves and pays for the order. The customer is also known as the payer.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `Payer`
@@ -20,45 +18,30 @@ The customer who approves and pays for the order. The customer is also known as 
 | `birth_date` | `str` | Optional | The stand-alone date, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). To represent special legal values, such as a date of birth, you should use dates with no associated time or time-zone data. Whenever possible, use the standard `date_time` type. This regular expression does not validate all dates. For example, February 31 is valid and nothing is known about leap years.<br><br>**Constraints**: *Minimum Length*: `10`, *Maximum Length*: `10`, *Pattern*: `^[0-9]{4}-(0[1-9]\|1[0-2])-(0[1-9]\|[1-2][0-9]\|3[0-1])$` |
 | `tax_info` | [`TaxInfo`](../../doc/models/tax-info.md) | Optional | The tax ID of the customer. The customer is also known as the payer. Both `tax_id` and `tax_id_type` are required. |
 | `address` | [`Address`](../../doc/models/address.md) | Optional | The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute). |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.name import Name
-from paypal.models.payer import Payer
-from paypal.models.phone_number import PhoneNumber
-from paypal.models.phone_type import PhoneType
-from paypal.models.phone_with_type import PhoneWithType
+from paypalserversdk.models.name import Name
+from paypalserversdk.models.payer import Payer
+from paypalserversdk.models.phone_number import PhoneNumber
+from paypalserversdk.models.phone_type import PhoneType
+from paypalserversdk.models.phone_with_type import PhoneWithType
 
 payer = Payer(
     email_address='email_address6',
     payer_id='payer_id6',
     name=Name(
         given_name='given_name2',
-        surname='surname8',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+        surname='surname8'
     ),
     phone=PhoneWithType(
         phone_number=PhoneNumber(
-            national_number='national_number6',
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
+            national_number='national_number6'
         ),
-        phone_type=PhoneType.OTHER,
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+        phone_type=PhoneType.OTHER
     ),
-    birth_date='birth_date4',
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+    birth_date='birth_date4'
 )
 ```
 

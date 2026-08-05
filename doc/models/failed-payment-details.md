@@ -3,8 +3,6 @@
 
 The details for the failed payment of the subscription.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `FailedPaymentDetails`
@@ -17,31 +15,22 @@ The details for the failed payment of the subscription.
 | `time` | `str` | Required | The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while fractional seconds are optional. Note: The regular expression provides guidance but does not reject all invalid dates.<br><br>**Constraints**: *Minimum Length*: `20`, *Maximum Length*: `64`, *Pattern*: `^[0-9]{4}-(0[1-9]\|1[0-2])-(0[1-9]\|[1-2][0-9]\|3[0-1])[T,t]([0-1][0-9]\|2[0-3]):[0-5][0-9]:([0-5][0-9]\|60)([.][0-9]+)?([Zz]\|[+-][0-9]{2}:[0-9]{2})$` |
 | `reason_code` | [`ReasonCode`](../../doc/models/reason-code.md) | Optional, Read-only | The reason code for the payment failure.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `120`, *Pattern*: `^[A-Z_]+$` |
 | `next_payment_retry_time` | `str` | Optional | The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while fractional seconds are optional. Note: The regular expression provides guidance but does not reject all invalid dates.<br><br>**Constraints**: *Minimum Length*: `20`, *Maximum Length*: `64`, *Pattern*: `^[0-9]{4}-(0[1-9]\|1[0-2])-(0[1-9]\|[1-2][0-9]\|3[0-1])[T,t]([0-1][0-9]\|2[0-3]):[0-5][0-9]:([0-5][0-9]\|60)([.][0-9]+)?([Zz]\|[+-][0-9]{2}:[0-9]{2})$` |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.failed_payment_details import FailedPaymentDetails
-from paypal.models.money import Money
-from paypal.models.reason_code import ReasonCode
+from paypalserversdk.models.failed_payment_details import FailedPaymentDetails
+from paypalserversdk.models.money import Money
+from paypalserversdk.models.reason_code import ReasonCode
 
 failed_payment_details = FailedPaymentDetails(
     amount=Money(
         currency_code='currency_code6',
-        value='value0',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+        value='value0'
     ),
     time='time2',
     reason_code=ReasonCode.PAYEE_ACCOUNT_RESTRICTED,
-    next_payment_retry_time='next_payment_retry_time2',
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+    next_payment_retry_time='next_payment_retry_time2'
 )
 ```
 

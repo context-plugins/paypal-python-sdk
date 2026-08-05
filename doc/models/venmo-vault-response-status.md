@@ -3,8 +3,6 @@
 
 The vault status.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `VenmoVaultResponseStatus`
@@ -20,7 +18,7 @@ The vault status.
 ## Example
 
 ```python
-from paypal.models.venmo_vault_response_status import VenmoVaultResponseStatus
+from paypalserversdk.models.venmo_vault_response_status import VenmoVaultResponseStatus
 
 venmo_vault_response_status = VenmoVaultResponseStatus.VAULTED
 ```

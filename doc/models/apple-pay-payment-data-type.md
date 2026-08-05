@@ -3,8 +3,6 @@
 
 Indicates the type of payment data passed, in case of Non China the payment data is 3DSECURE and for China it is EMV.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `ApplePayPaymentDataType`
@@ -19,7 +17,7 @@ Indicates the type of payment data passed, in case of Non China the payment data
 ## Example
 
 ```python
-from paypal.models.apple_pay_payment_data_type import ApplePayPaymentDataType
+from paypalserversdk.models.apple_pay_payment_data_type import ApplePayPaymentDataType
 
 apple_pay_payment_data_type = ApplePayPaymentDataType.ENUM_3DSECURE
 ```

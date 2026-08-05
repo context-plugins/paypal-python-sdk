@@ -3,8 +3,6 @@
 
 Minimal representation of a cached setup token.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `SetupTokenResponse`
@@ -18,40 +16,34 @@ Minimal representation of a cached setup token.
 | `status` | [`PaymentTokenStatus`](../../doc/models/payment-token-status.md) | Optional | The status of the payment token.<br><br>**Default**: `"CREATED"`<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[0-9A-Z_]+$` |
 | `payment_source` | [`SetupTokenResponsePaymentSource`](../../doc/models/setup-token-response-payment-source.md) | Optional | The setup payment method details. |
 | `links` | [`List[LinkDescription]`](../../doc/models/link-description.md) | Optional, Read-only | An array of related [HATEOAS links](https://developer.paypal.com/api/rest/responses/#hateoas).<br><br>**Constraints**: *Minimum Items*: `1`, *Maximum Items*: `32` |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.address import Address
-from paypal.models.card_brand import CardBrand
-from paypal.models.card_response_address import CardResponseAddress
-from paypal.models.customer import Customer
-from paypal.models.fulfillment_type import FulfillmentType
-from paypal.models.link_description import LinkDescription
-from paypal.models.link_http_method import LinkHttpMethod
-from paypal.models.pay_pal_payment_token import PayPalPaymentToken
-from paypal.models.pay_pal_payment_token_usage_type import PayPalPaymentTokenUsageType
-from paypal.models.payment_token_status import PaymentTokenStatus
-from paypal.models.phone_number_with_country_code import PhoneNumberWithCountryCode
-from paypal.models.setup_token_response import SetupTokenResponse
-from paypal.models.setup_token_response_card import SetupTokenResponseCard
-from paypal.models.setup_token_response_payment_source import SetupTokenResponsePaymentSource
-from paypal.models.shipping_name import ShippingName
-from paypal.models.usage_pattern import UsagePattern
-from paypal.models.vaulted_digital_wallet_shipping_details import VaultedDigitalWalletShippingDetails
-from paypal.models.venmo_payment_token import VenmoPaymentToken
+from paypalserversdk.models.address import Address
+from paypalserversdk.models.card_brand import CardBrand
+from paypalserversdk.models.card_response_address import CardResponseAddress
+from paypalserversdk.models.customer import Customer
+from paypalserversdk.models.fulfillment_type import FulfillmentType
+from paypalserversdk.models.link_description import LinkDescription
+from paypalserversdk.models.link_http_method import LinkHttpMethod
+from paypalserversdk.models.payment_token_status import PaymentTokenStatus
+from paypalserversdk.models.paypal_payment_token import PaypalPaymentToken
+from paypalserversdk.models.paypal_payment_token_usage_type import PaypalPaymentTokenUsageType
+from paypalserversdk.models.phone_number_with_country_code import PhoneNumberWithCountryCode
+from paypalserversdk.models.setup_token_response import SetupTokenResponse
+from paypalserversdk.models.setup_token_response_card import SetupTokenResponseCard
+from paypalserversdk.models.setup_token_response_payment_source import SetupTokenResponsePaymentSource
+from paypalserversdk.models.shipping_name import ShippingName
+from paypalserversdk.models.usage_pattern import UsagePattern
+from paypalserversdk.models.vaulted_digital_wallet_shipping_details import VaultedDigitalWalletShippingDetails
+from paypalserversdk.models.venmo_payment_token import VenmoPaymentToken
 
 setup_token_response = SetupTokenResponse(
     id='id0',
     customer=Customer(
         id='id0',
-        merchant_customer_id='merchant_customer_id2',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+        merchant_customer_id='merchant_customer_id2'
     ),
     status=PaymentTokenStatus.CREATED,
     payment_source=SetupTokenResponsePaymentSource(
@@ -66,32 +58,20 @@ setup_token_response = SetupTokenResponse(
                 address_line_2='address_line_28',
                 admin_area_2='admin_area_28',
                 admin_area_1='admin_area_14',
-                postal_code='postal_code0',
-                additional_properties={
-                    'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                }
-            ),
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
+                postal_code='postal_code0'
+            )
         ),
-        paypal=PayPalPaymentToken(
+        paypal=PaypalPaymentToken(
             description='description2',
             usage_pattern=UsagePattern.THRESHOLD_PREPAID,
             shipping=VaultedDigitalWalletShippingDetails(
                 name=ShippingName(
-                    full_name='full_name6',
-                    additional_properties={
-                        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                    }
+                    full_name='full_name6'
                 ),
                 email_address='email_address2',
                 phone_number=PhoneNumberWithCountryCode(
                     country_code='country_code2',
-                    national_number='national_number6',
-                    additional_properties={
-                        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                    }
+                    national_number='national_number6'
                 ),
                 mtype=FulfillmentType.SHIPPING,
                 address=Address(
@@ -100,38 +80,23 @@ setup_token_response = SetupTokenResponse(
                     address_line_2='address_line_26',
                     admin_area_2='admin_area_20',
                     admin_area_1='admin_area_12',
-                    postal_code='postal_code8',
-                    additional_properties={
-                        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                    }
-                ),
-                additional_properties={
-                    'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                }
+                    postal_code='postal_code8'
+                )
             ),
             permit_multiple_payment_tokens=False,
-            usage_type=PayPalPaymentTokenUsageType.MERCHANT,
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
+            usage_type=PaypalPaymentTokenUsageType.MERCHANT
         ),
         venmo=VenmoPaymentToken(
             description='description6',
             usage_pattern=UsagePattern.UNSCHEDULED_PREPAID,
             shipping=VaultedDigitalWalletShippingDetails(
                 name=ShippingName(
-                    full_name='full_name6',
-                    additional_properties={
-                        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                    }
+                    full_name='full_name6'
                 ),
                 email_address='email_address2',
                 phone_number=PhoneNumberWithCountryCode(
                     country_code='country_code2',
-                    national_number='national_number6',
-                    additional_properties={
-                        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                    }
+                    national_number='national_number6'
                 ),
                 mtype=FulfillmentType.SHIPPING,
                 address=Address(
@@ -140,38 +105,20 @@ setup_token_response = SetupTokenResponse(
                     address_line_2='address_line_26',
                     admin_area_2='admin_area_20',
                     admin_area_1='admin_area_12',
-                    postal_code='postal_code8',
-                    additional_properties={
-                        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                    }
-                ),
-                additional_properties={
-                    'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                }
+                    postal_code='postal_code8'
+                )
             ),
             permit_multiple_payment_tokens=False,
-            usage_type=PayPalPaymentTokenUsageType.MERCHANT,
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
-        ),
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+            usage_type=PaypalPaymentTokenUsageType.MERCHANT
+        )
     ),
     links=[
         LinkDescription(
             href='href6',
             rel='rel0',
-            method=LinkHttpMethod.HEAD,
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
+            method=LinkHttpMethod.HEAD
         )
-    ],
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+    ]
 )
 ```
 

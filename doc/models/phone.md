@@ -3,8 +3,6 @@
 
 The phone number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en).
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `Phone`
@@ -16,22 +14,16 @@ The phone number, in its canonical international [E.164 numbering plan format](h
 | `country_code` | `str` | Required | The country calling code (CC), in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en). The combined length of the CC and the national number must not be greater than 15 digits. The national number consists of a national destination code (NDC) and subscriber number (SN).<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `3`, *Pattern*: `^[0-9]{1,3}?$` |
 | `national_number` | `str` | Required | The national number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en). The combined length of the country calling code (CC) and the national number must not be greater than 15 digits. The national number consists of a national destination code (NDC) and subscriber number (SN).<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `14`, *Pattern*: `^[0-9]{1,14}?$` |
 | `extension_number` | `str` | Optional | The extension number.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `15`, *Pattern*: `^[0-9]{1,15}?$` |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.phone import Phone
+from paypalserversdk.models.phone import Phone
 
 phone = Phone(
     country_code='country_code0',
     national_number='national_number4',
-    extension_number='extension_number0',
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+    extension_number='extension_number0'
 )
 ```
 

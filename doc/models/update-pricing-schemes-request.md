@@ -3,8 +3,6 @@
 
 The update pricing scheme request details.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `UpdatePricingSchemesRequest`
@@ -14,19 +12,16 @@ The update pricing scheme request details.
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `pricing_schemes` | [`List[UpdatePricingScheme]`](../../doc/models/update-pricing-scheme.md) | Required | An array of pricing schemes.<br><br>**Constraints**: *Minimum Items*: `1`, *Maximum Items*: `99` |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.money import Money
-from paypal.models.pricing_tier import PricingTier
-from paypal.models.subscription_pricing_model import SubscriptionPricingModel
-from paypal.models.subscription_pricing_scheme import SubscriptionPricingScheme
-from paypal.models.update_pricing_scheme import UpdatePricingScheme
-from paypal.models.update_pricing_schemes_request import UpdatePricingSchemesRequest
+from paypalserversdk.models.money import Money
+from paypalserversdk.models.pricing_tier import PricingTier
+from paypalserversdk.models.subscription_pricing_model import SubscriptionPricingModel
+from paypalserversdk.models.subscription_pricing_scheme import SubscriptionPricingScheme
+from paypalserversdk.models.update_pricing_scheme import UpdatePricingScheme
+from paypalserversdk.models.update_pricing_schemes_request import UpdatePricingSchemesRequest
 
 update_pricing_schemes_request = UpdatePricingSchemesRequest(
     pricing_schemes=[
@@ -36,10 +31,7 @@ update_pricing_schemes_request = UpdatePricingSchemesRequest(
                 version=10,
                 fixed_price=Money(
                     currency_code='currency_code4',
-                    value='value0',
-                    additional_properties={
-                        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                    }
+                    value='value0'
                 ),
                 pricing_model=SubscriptionPricingModel.VOLUME,
                 tiers=[
@@ -47,58 +39,31 @@ update_pricing_schemes_request = UpdatePricingSchemesRequest(
                         starting_quantity='starting_quantity8',
                         amount=Money(
                             currency_code='currency_code6',
-                            value='value0',
-                            additional_properties={
-                                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                            }
+                            value='value0'
                         ),
-                        ending_quantity='ending_quantity6',
-                        additional_properties={
-                            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                        }
+                        ending_quantity='ending_quantity6'
                     ),
                     PricingTier(
                         starting_quantity='starting_quantity8',
                         amount=Money(
                             currency_code='currency_code6',
-                            value='value0',
-                            additional_properties={
-                                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                            }
+                            value='value0'
                         ),
-                        ending_quantity='ending_quantity6',
-                        additional_properties={
-                            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                        }
+                        ending_quantity='ending_quantity6'
                     ),
                     PricingTier(
                         starting_quantity='starting_quantity8',
                         amount=Money(
                             currency_code='currency_code6',
-                            value='value0',
-                            additional_properties={
-                                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                            }
+                            value='value0'
                         ),
-                        ending_quantity='ending_quantity6',
-                        additional_properties={
-                            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                        }
+                        ending_quantity='ending_quantity6'
                     )
                 ],
-                create_time='create_time4',
-                additional_properties={
-                    'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                }
-            ),
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
+                create_time='create_time4'
+            )
         )
-    ],
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+    ]
 )
 ```
 

@@ -3,8 +3,6 @@
 
 The status of the payment token.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `PaymentTokenStatus`
@@ -22,7 +20,7 @@ The status of the payment token.
 ## Example
 
 ```python
-from paypal.models.payment_token_status import PaymentTokenStatus
+from paypalserversdk.models.payment_token_status import PaymentTokenStatus
 
 payment_token_status = PaymentTokenStatus.PAYER_ACTION_REQUIRED
 ```

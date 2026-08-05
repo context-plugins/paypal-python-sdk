@@ -3,8 +3,6 @@
 
 Information used to pay using iDEAL.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `IdealPaymentObject`
@@ -17,23 +15,17 @@ Information used to pay using iDEAL.
 | `country_code` | `str` | Optional | The [two-character ISO 3166-1 code](https://developer.paypal.com/api/rest/reference/country-codes/) that identifies the country or region. Note: The country code for Great Britain is GB and not UK as used in the top-level domain names for that country. Use the `C2` country code for China worldwide for comparable uncontrolled price (CUP) method, bank card, and cross-border transactions.<br><br>**Constraints**: *Minimum Length*: `2`, *Maximum Length*: `2`, *Pattern*: `^([A-Z]{2}\|C2)$` |
 | `bic` | `str` | Optional | The business identification code (BIC). In payments systems, a BIC is used to identify a specific business, most commonly a bank.<br><br>**Constraints**: *Minimum Length*: `8`, *Maximum Length*: `11`, *Pattern*: `^[A-Z-a-z0-9]{4}[A-Z-a-z]{2}[A-Z-a-z0-9]{2}([A-Z-a-z0-9]{3})?$` |
 | `iban_last_chars` | `str` | Optional | The last characters of the IBAN used to pay.<br><br>**Constraints**: *Minimum Length*: `4`, *Maximum Length*: `34`, *Pattern*: `[a-zA-Z0-9]{4}` |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
+from paypalserversdk.models.ideal_payment_object import IdealPaymentObject
 
-from paypal.models.ideal_payment_object import IdealPaymentObject
-
-i_deal_payment_object = IdealPaymentObject(
-    name='name8',
-    country_code='country_code8',
-    bic='bic0',
-    iban_last_chars='iban_last_chars6',
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+ideal_payment_object = IdealPaymentObject(
+    name='name2',
+    country_code='country_code2',
+    bic='bic4',
+    iban_last_chars='iban_last_chars0'
 )
 ```
 

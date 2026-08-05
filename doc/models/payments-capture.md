@@ -3,8 +3,6 @@
 
 A captured payment.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `PaymentsCapture`
@@ -28,42 +26,30 @@ A captured payment.
 | `processor_response` | [`ProcessorResponse`](../../doc/models/processor-response.md) | Optional | The processor response information for payment requests, such as direct credit card transactions. |
 | `create_time` | `str` | Optional | The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while fractional seconds are optional. Note: The regular expression provides guidance but does not reject all invalid dates.<br><br>**Constraints**: *Minimum Length*: `20`, *Maximum Length*: `64`, *Pattern*: `^[0-9]{4}-(0[1-9]\|1[0-2])-(0[1-9]\|[1-2][0-9]\|3[0-1])[T,t]([0-1][0-9]\|2[0-3]):[0-5][0-9]:([0-5][0-9]\|60)([.][0-9]+)?([Zz]\|[+-][0-9]{2}:[0-9]{2})$` |
 | `update_time` | `str` | Optional | The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while fractional seconds are optional. Note: The regular expression provides guidance but does not reject all invalid dates.<br><br>**Constraints**: *Minimum Length*: `20`, *Maximum Length*: `64`, *Pattern*: `^[0-9]{4}-(0[1-9]\|1[0-2])-(0[1-9]\|[1-2][0-9]\|3[0-1])[T,t]([0-1][0-9]\|2[0-3]):[0-5][0-9]:([0-5][0-9]\|60)([.][0-9]+)?([Zz]\|[+-][0-9]{2}:[0-9]{2})$` |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.capture_incomplete_reason import CaptureIncompleteReason
-from paypal.models.capture_status import CaptureStatus
-from paypal.models.capture_status_details import CaptureStatusDetails
-from paypal.models.disbursement_mode import DisbursementMode
-from paypal.models.money import Money
-from paypal.models.payments_capture import PaymentsCapture
+from paypalserversdk.models.capture_incomplete_reason import CaptureIncompleteReason
+from paypalserversdk.models.capture_status import CaptureStatus
+from paypalserversdk.models.capture_status_details import CaptureStatusDetails
+from paypalserversdk.models.disbursement_mode import DisbursementMode
+from paypalserversdk.models.money import Money
+from paypalserversdk.models.payments_capture import PaymentsCapture
 
 payments_capture = PaymentsCapture(
     status=CaptureStatus.PARTIALLY_REFUNDED,
     status_details=CaptureStatusDetails(
-        reason=CaptureIncompleteReason.VERIFICATION_REQUIRED,
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+        reason=CaptureIncompleteReason.VERIFICATION_REQUIRED
     ),
     id='id4',
     amount=Money(
         currency_code='currency_code6',
-        value='value0',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+        value='value0'
     ),
     invoice_id='invoice_id4',
     final_capture=False,
-    disbursement_mode=DisbursementMode.INSTANT,
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+    disbursement_mode=DisbursementMode.INSTANT
 )
 ```
 

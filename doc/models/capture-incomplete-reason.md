@@ -3,8 +3,6 @@
 
 The reason why the captured payment status is `PENDING` or `DENIED`.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `CaptureIncompleteReason`
@@ -29,7 +27,7 @@ The reason why the captured payment status is `PENDING` or `DENIED`.
 ## Example
 
 ```python
-from paypal.models.capture_incomplete_reason import CaptureIncompleteReason
+from paypalserversdk.models.capture_incomplete_reason import CaptureIncompleteReason
 
 capture_incomplete_reason = CaptureIncompleteReason.VERIFICATION_REQUIRED
 ```

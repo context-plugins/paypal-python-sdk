@@ -19,7 +19,7 @@ The interval at which the subscription is charged or billed.
 ## Example
 
 ```python
-from paypal.models.interval_unit import IntervalUnit
+from paypalserversdk.models.interval_unit import IntervalUnit
 
 interval_unit = IntervalUnit.DAY
 ```

@@ -3,8 +3,6 @@
 
 The payment card to use to fund a payment. Can be a credit or debit card.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `SubscriptionCardRequest`
@@ -21,25 +19,19 @@ The payment card to use to fund a payment. Can be a credit or debit card.
 | `brand` | [`SubscriptionsCardBrand`](../../doc/models/subscriptions-card-brand.md) | Optional | The card network or brand. Applies to credit, debit, gift, and payment cards.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[A-Z_]+$` |
 | `billing_address` | [`Address`](../../doc/models/address.md) | Optional | The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute). |
 | `attributes` | [`SubscriptionsCardAttributes`](../../doc/models/subscriptions-card-attributes.md) | Optional | Additional attributes associated with the use of this card. |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.card_type import CardType
-from paypal.models.subscription_card_request import SubscriptionCardRequest
+from paypalserversdk.models.card_type import CardType
+from paypalserversdk.models.subscription_card_request import SubscriptionCardRequest
 
 subscription_card_request = SubscriptionCardRequest(
     name='name2',
     number='number0',
     expiry='expiry0',
     security_code='security_code4',
-    mtype=CardType.STORE,
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+    mtype=CardType.STORE
 )
 ```
 

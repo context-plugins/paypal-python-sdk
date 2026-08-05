@@ -3,8 +3,6 @@
 
 The status of the refund.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `RefundStatus`
@@ -21,7 +19,7 @@ The status of the refund.
 ## Example
 
 ```python
-from paypal.models.refund_status import RefundStatus
+from paypalserversdk.models.refund_status import RefundStatus
 
 refund_status = RefundStatus.CANCELLED
 ```

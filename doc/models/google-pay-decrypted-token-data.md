@@ -3,8 +3,6 @@
 
 Details shared by Google for the merchant to be shared with PayPal. This is required to process the transaction using the Google Pay payment method.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `GooglePayDecryptedTokenData`
@@ -20,18 +18,15 @@ Details shared by Google for the merchant to be shared with PayPal. This is requ
 | `authentication_method` | [`GooglePayAuthenticationMethod`](../../doc/models/google-pay-authentication-method.md) | Required | Authentication Method which is used for the card transaction.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `50` |
 | `cryptogram` | `str` | Optional | Base-64 cryptographic identifier used by card schemes to validate the token verification result. This is a conditionally required field if authentication_method is CRYPTOGRAM_3DS.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `2000` |
 | `eci_indicator` | `str` | Optional | Electronic Commerce Indicator may not always be present. It is only returned for tokens on the Visa card network. This value is passed through in the payment authorization request.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `256`, *Pattern*: `^.*$` |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.card_type import CardType
-from paypal.models.google_pay_authentication_method import GooglePayAuthenticationMethod
-from paypal.models.google_pay_card import GooglePayCard
-from paypal.models.google_pay_decrypted_token_data import GooglePayDecryptedTokenData
-from paypal.models.google_pay_payment_method import GooglePayPaymentMethod
+from paypalserversdk.models.card_type import CardType
+from paypalserversdk.models.google_pay_authentication_method import GooglePayAuthenticationMethod
+from paypalserversdk.models.google_pay_card import GooglePayCard
+from paypalserversdk.models.google_pay_decrypted_token_data import GooglePayDecryptedTokenData
+from paypalserversdk.models.google_pay_payment_method import GooglePayPaymentMethod
 
 google_pay_decrypted_token_data = GooglePayDecryptedTokenData(
     payment_method=GooglePayPaymentMethod.CARD,
@@ -40,19 +35,13 @@ google_pay_decrypted_token_data = GooglePayDecryptedTokenData(
         number='number6',
         expiry='expiry4',
         last_digits='last_digits0',
-        mtype=CardType.UNKNOWN,
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+        mtype=CardType.UNKNOWN
     ),
     authentication_method=GooglePayAuthenticationMethod.PAN_ONLY,
     message_id='message_id2',
     message_expiration='message_expiration0',
     cryptogram='cryptogram8',
-    eci_indicator='eci_indicator2',
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+    eci_indicator='eci_indicator2'
 )
 ```
 

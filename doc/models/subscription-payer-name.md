@@ -3,8 +3,6 @@
 
 The name of the party.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `SubscriptionPayerName`
@@ -19,24 +17,18 @@ The name of the party.
 | `middle_name` | `str` | Optional | When the party is a person, the party's middle name. Use also to store multiple middle names including the patronymic, or father's, middle name.<br><br>**Constraints**: *Maximum Length*: `140` |
 | `suffix` | `str` | Optional | The suffix for the party's name.<br><br>**Constraints**: *Maximum Length*: `140` |
 | `full_name` | `str` | Optional | When the party is a person, the party's full name.<br><br>**Constraints**: *Maximum Length*: `300` |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.subscription_payer_name import SubscriptionPayerName
+from paypalserversdk.models.subscription_payer_name import SubscriptionPayerName
 
 subscription_payer_name = SubscriptionPayerName(
     prefix='prefix4',
     given_name='given_name8',
     surname='surname2',
     middle_name='middle_name6',
-    suffix='suffix6',
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+    suffix='suffix6'
 )
 ```
 

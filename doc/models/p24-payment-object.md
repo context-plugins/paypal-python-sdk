@@ -3,8 +3,6 @@
 
 Information used to pay using P24(Przelewy24).
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `P24PaymentObject`
@@ -19,24 +17,18 @@ Information used to pay using P24(Przelewy24).
 | `payment_descriptor` | `str` | Optional | P24 generated payment description.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `2000` |
 | `method_id` | `str` | Optional | Numeric identifier of the payment scheme or bank used for the payment.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `300` |
 | `method_description` | `str` | Optional | Friendly name of the payment scheme or bank used for the payment.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `2000` |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.p_24_payment_object import P24PaymentObject
+from paypalserversdk.models.p_24_payment_object import P24PaymentObject
 
 p_24_payment_object = P24PaymentObject(
     name='name0',
     email='email6',
     country_code='country_code0',
     payment_descriptor='payment_descriptor4',
-    method_id='method_id4',
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+    method_id='method_id4'
 )
 ```
 

@@ -1,8 +1,6 @@
 
 # Shipping with Tracking Details
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `ShippingWithTrackingDetails`
@@ -18,22 +16,19 @@
 | `mtype` | [`FulfillmentType`](../../doc/models/fulfillment-type.md) | Optional | A classification for the method of purchase fulfillment (e.g shipping, in-store pickup, etc). Either `type` or `options` may be present, but not both.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[0-9A-Z_]+$` |
 | `options` | [`List[ShippingOption]`](../../doc/models/shipping-option.md) | Optional | An array of shipping options that the payee or merchant offers to the payer to ship or pick up their items.<br><br>**Constraints**: *Minimum Items*: `0`, *Maximum Items*: `10` |
 | `address` | [`Address`](../../doc/models/address.md) | Optional | The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute). |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.fulfillment_type import FulfillmentType
-from paypal.models.link_description import LinkDescription
-from paypal.models.link_http_method import LinkHttpMethod
-from paypal.models.order_tracker_item import OrderTrackerItem
-from paypal.models.order_tracker_response import OrderTrackerResponse
-from paypal.models.order_tracker_status import OrderTrackerStatus
-from paypal.models.phone_number_with_optional_country_code import PhoneNumberWithOptionalCountryCode
-from paypal.models.shipping_name import ShippingName
-from paypal.models.shipping_with_tracking_details import ShippingWithTrackingDetails
+from paypalserversdk.models.fulfillment_type import FulfillmentType
+from paypalserversdk.models.link_description import LinkDescription
+from paypalserversdk.models.link_http_method import LinkHttpMethod
+from paypalserversdk.models.order_tracker_item import OrderTrackerItem
+from paypalserversdk.models.order_tracker_response import OrderTrackerResponse
+from paypalserversdk.models.order_tracker_status import OrderTrackerStatus
+from paypalserversdk.models.phone_number_with_optional_country_code import PhoneNumberWithOptionalCountryCode
+from paypalserversdk.models.shipping_name import ShippingName
+from paypalserversdk.models.shipping_with_tracking_details import ShippingWithTrackingDetails
 
 shipping_with_tracking_details = ShippingWithTrackingDetails(
     trackers=[
@@ -46,34 +41,22 @@ shipping_with_tracking_details = ShippingWithTrackingDetails(
                     quantity='quantity4',
                     sku='sku6',
                     url='url2',
-                    image_url='image_url4',
-                    additional_properties={
-                        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                    }
+                    image_url='image_url4'
                 )
             ],
             links=[
                 LinkDescription(
                     href='href6',
                     rel='rel0',
-                    method=LinkHttpMethod.HEAD,
-                    additional_properties={
-                        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                    }
+                    method=LinkHttpMethod.HEAD
                 ),
                 LinkDescription(
                     href='href6',
                     rel='rel0',
-                    method=LinkHttpMethod.HEAD,
-                    additional_properties={
-                        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                    }
+                    method=LinkHttpMethod.HEAD
                 )
             ],
-            create_time='create_time8',
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
+            create_time='create_time8'
         ),
         OrderTrackerResponse(
             id='id2',
@@ -84,34 +67,22 @@ shipping_with_tracking_details = ShippingWithTrackingDetails(
                     quantity='quantity4',
                     sku='sku6',
                     url='url2',
-                    image_url='image_url4',
-                    additional_properties={
-                        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                    }
+                    image_url='image_url4'
                 )
             ],
             links=[
                 LinkDescription(
                     href='href6',
                     rel='rel0',
-                    method=LinkHttpMethod.HEAD,
-                    additional_properties={
-                        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                    }
+                    method=LinkHttpMethod.HEAD
                 ),
                 LinkDescription(
                     href='href6',
                     rel='rel0',
-                    method=LinkHttpMethod.HEAD,
-                    additional_properties={
-                        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                    }
+                    method=LinkHttpMethod.HEAD
                 )
             ],
-            create_time='create_time8',
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
+            create_time='create_time8'
         ),
         OrderTrackerResponse(
             id='id2',
@@ -122,54 +93,33 @@ shipping_with_tracking_details = ShippingWithTrackingDetails(
                     quantity='quantity4',
                     sku='sku6',
                     url='url2',
-                    image_url='image_url4',
-                    additional_properties={
-                        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                    }
+                    image_url='image_url4'
                 )
             ],
             links=[
                 LinkDescription(
                     href='href6',
                     rel='rel0',
-                    method=LinkHttpMethod.HEAD,
-                    additional_properties={
-                        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                    }
+                    method=LinkHttpMethod.HEAD
                 ),
                 LinkDescription(
                     href='href6',
                     rel='rel0',
-                    method=LinkHttpMethod.HEAD,
-                    additional_properties={
-                        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                    }
+                    method=LinkHttpMethod.HEAD
                 )
             ],
-            create_time='create_time8',
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
+            create_time='create_time8'
         )
     ],
     name=ShippingName(
-        full_name='full_name6',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+        full_name='full_name6'
     ),
     email_address='email_address8',
     phone_number=PhoneNumberWithOptionalCountryCode(
         national_number='national_number6',
-        country_code='country_code2',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+        country_code='country_code2'
     ),
-    mtype=FulfillmentType.SHIPPING,
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+    mtype=FulfillmentType.SHIPPING
 )
 ```
 

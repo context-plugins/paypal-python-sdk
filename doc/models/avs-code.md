@@ -3,8 +3,6 @@
 
 The address verification code for Visa, Discover, Mastercard, or American Express transactions.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `AvsCode`
@@ -41,7 +39,7 @@ The address verification code for Visa, Discover, Mastercard, or American Expres
 ## Example
 
 ```python
-from paypal.models.avs_code import AvsCode
+from paypalserversdk.models.avs_code import AvsCode
 
 avs_code = AvsCode.AVS_W
 ```

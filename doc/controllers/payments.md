@@ -3,12 +3,12 @@
 Use the `/payments` resource to authorize, capture, void authorizations, and retrieve captures.
 
 ```python
-payments_api = client.payments
+payments_controller = client.payments
 ```
 
 ## Class Name
 
-`PaymentsApi`
+`PaymentsController`
 
 ## Methods
 
@@ -29,9 +29,7 @@ Shows details for an authorized payment, by ID.
 
 ```python
 def get_authorized_payment(self,
-                          authorization_id,
-                          pay_pal_mock_response=None,
-                          pay_pal_auth_assertion=None)
+                          options=dict())
 ```
 
 ## Authentication
@@ -43,8 +41,8 @@ This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `authorization_id` | `str` | Template, Required | The ID of the authorized payment for which to show details. |
-| `pay_pal_mock_response` | `str` | Header, Optional | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant. |
-| `pay_pal_auth_assertion` | `str` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion). Note:For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject. |
+| `paypal_mock_response` | `str` | Header, Optional | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant. |
+| `paypal_auth_assertion` | `str` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion). Note:For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject. |
 
 ## Response Type
 
@@ -55,9 +53,10 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-authorization_id = 'authorization_id8'
-
-result = payments_api.get_authorized_payment(authorization_id)
+collect = {
+    'authorization_id': 'authorization_id8'
+}
+result = payments_controller.get_authorized_payment(collect)
 
 if result.is_success():
     print(result.body)
@@ -82,12 +81,7 @@ Captures an authorized payment, by ID.
 
 ```python
 def capture_authorized_payment(self,
-                              authorization_id,
-                              pay_pal_mock_response=None,
-                              pay_pal_request_id=None,
-                              prefer="return=minimal",
-                              pay_pal_auth_assertion=None,
-                              body=None)
+                              options=dict())
 ```
 
 ## Authentication
@@ -99,10 +93,10 @@ This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `authorization_id` | `str` | Template, Required | The PayPal-generated ID for the authorized payment to capture. |
-| `pay_pal_mock_response` | `str` | Header, Optional | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant. |
-| `pay_pal_request_id` | `str` | Header, Optional | The server stores keys for 45 days. |
+| `paypal_mock_response` | `str` | Header, Optional | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant. |
+| `paypal_request_id` | `str` | Header, Optional | The server stores keys for 45 days. |
 | `prefer` | `str` | Header, Optional | The preferred server response upon successful completion of the request. Value is: return=minimal. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the id, status and HATEOAS links. return=representation. The server returns a complete resource representation, including the current state of the resource.<br><br>**Default**: `"return=minimal"` |
-| `pay_pal_auth_assertion` | `str` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion). Note:For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject. |
+| `paypal_auth_assertion` | `str` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion). Note:For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject. |
 | `body` | [`CaptureRequest`](../../doc/models/capture-request.md) | Body, Optional | - |
 
 ## Response Type
@@ -114,19 +108,14 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-authorization_id = 'authorization_id8'
-
-prefer = 'return=minimal'
-
-body = CaptureRequest(
-    final_capture=False
-)
-
-result = payments_api.capture_authorized_payment(
-    authorization_id,
-    prefer=prefer,
-    body=body
-)
+collect = {
+    'authorization_id': 'authorization_id8',
+    'prefer': 'return=minimal',
+    'body': CaptureRequest(
+        final_capture=False
+    )
+}
+result = payments_controller.capture_authorized_payment(collect)
 
 if result.is_success():
     print(result.body)
@@ -154,11 +143,7 @@ Reauthorizes an authorized PayPal account payment, by ID. To ensure that funds a
 
 ```python
 def reauthorize_payment(self,
-                       authorization_id,
-                       pay_pal_request_id=None,
-                       prefer="return=minimal",
-                       pay_pal_auth_assertion=None,
-                       body=None)
+                       options=dict())
 ```
 
 ## Authentication
@@ -170,9 +155,9 @@ This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `authorization_id` | `str` | Template, Required | The PayPal-generated ID for the authorized payment to reauthorize. |
-| `pay_pal_request_id` | `str` | Header, Optional | The server stores keys for 45 days. |
+| `paypal_request_id` | `str` | Header, Optional | The server stores keys for 45 days. |
 | `prefer` | `str` | Header, Optional | The preferred server response upon successful completion of the request. Value is: return=minimal. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the id, status and HATEOAS links. return=representation. The server returns a complete resource representation, including the current state of the resource.<br><br>**Default**: `"return=minimal"` |
-| `pay_pal_auth_assertion` | `str` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion). Note:For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject. |
+| `paypal_auth_assertion` | `str` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion). Note:For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject. |
 | `body` | [`ReauthorizeRequest`](../../doc/models/reauthorize-request.md) | Body, Optional | - |
 
 ## Response Type
@@ -184,14 +169,11 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-authorization_id = 'authorization_id8'
-
-prefer = 'return=minimal'
-
-result = payments_api.reauthorize_payment(
-    authorization_id,
-    prefer=prefer
-)
+collect = {
+    'authorization_id': 'authorization_id8',
+    'prefer': 'return=minimal'
+}
+result = payments_controller.reauthorize_payment(collect)
 
 if result.is_success():
     print(result.body)
@@ -218,11 +200,7 @@ Voids, or cancels, an authorized payment, by ID. You cannot void an authorized p
 
 ```python
 def void_payment(self,
-                authorization_id,
-                pay_pal_mock_response=None,
-                pay_pal_auth_assertion=None,
-                pay_pal_request_id=None,
-                prefer="return=minimal")
+                options=dict())
 ```
 
 ## Authentication
@@ -234,9 +212,9 @@ This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `authorization_id` | `str` | Template, Required | The PayPal-generated ID for the authorized payment to void. |
-| `pay_pal_mock_response` | `str` | Header, Optional | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant. |
-| `pay_pal_auth_assertion` | `str` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion). Note:For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject. |
-| `pay_pal_request_id` | `str` | Header, Optional | The server stores keys for 45 days. |
+| `paypal_mock_response` | `str` | Header, Optional | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant. |
+| `paypal_auth_assertion` | `str` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion). Note:For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject. |
+| `paypal_request_id` | `str` | Header, Optional | The server stores keys for 45 days. |
 | `prefer` | `str` | Header, Optional | The preferred server response upon successful completion of the request. Value is: return=minimal. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the id, status and HATEOAS links. return=representation. The server returns a complete resource representation, including the current state of the resource.<br><br>**Default**: `"return=minimal"` |
 
 ## Response Type
@@ -248,14 +226,11 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-authorization_id = 'authorization_id8'
-
-prefer = 'return=minimal'
-
-result = payments_api.void_payment(
-    authorization_id,
-    prefer=prefer
-)
+collect = {
+    'authorization_id': 'authorization_id8',
+    'prefer': 'return=minimal'
+}
+result = payments_controller.void_payment(collect)
 
 if result.is_success():
     print(result.body)
@@ -282,8 +257,7 @@ Shows details for a captured payment, by ID.
 
 ```python
 def get_captured_payment(self,
-                        capture_id,
-                        pay_pal_mock_response=None)
+                        options=dict())
 ```
 
 ## Authentication
@@ -295,7 +269,7 @@ This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `capture_id` | `str` | Template, Required | The PayPal-generated ID for the captured payment for which to show details. |
-| `pay_pal_mock_response` | `str` | Header, Optional | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant. |
+| `paypal_mock_response` | `str` | Header, Optional | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant. |
 
 ## Response Type
 
@@ -306,9 +280,10 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-capture_id = 'capture_id2'
-
-result = payments_api.get_captured_payment(capture_id)
+collect = {
+    'capture_id': 'capture_id2'
+}
+result = payments_controller.get_captured_payment(collect)
 
 if result.is_success():
     print(result.body)
@@ -333,12 +308,7 @@ Refunds a captured payment, by ID. For a full refund, include an empty payload i
 
 ```python
 def refund_captured_payment(self,
-                           capture_id,
-                           pay_pal_mock_response=None,
-                           pay_pal_request_id=None,
-                           prefer="return=minimal",
-                           pay_pal_auth_assertion=None,
-                           body=None)
+                           options=dict())
 ```
 
 ## Authentication
@@ -350,10 +320,10 @@ This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `capture_id` | `str` | Template, Required | The PayPal-generated ID for the captured payment to refund. |
-| `pay_pal_mock_response` | `str` | Header, Optional | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant. |
-| `pay_pal_request_id` | `str` | Header, Optional | The server stores keys for 45 days. |
+| `paypal_mock_response` | `str` | Header, Optional | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant. |
+| `paypal_request_id` | `str` | Header, Optional | The server stores keys for 45 days. |
 | `prefer` | `str` | Header, Optional | The preferred server response upon successful completion of the request. Value is: return=minimal. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the id, status and HATEOAS links. return=representation. The server returns a complete resource representation, including the current state of the resource.<br><br>**Default**: `"return=minimal"` |
-| `pay_pal_auth_assertion` | `str` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion). Note:For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject. |
+| `paypal_auth_assertion` | `str` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion). Note:For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject. |
 | `body` | [`RefundRequest`](../../doc/models/refund-request.md) | Body, Optional | - |
 
 ## Response Type
@@ -365,14 +335,11 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-capture_id = 'capture_id2'
-
-prefer = 'return=minimal'
-
-result = payments_api.refund_captured_payment(
-    capture_id,
-    prefer=prefer
-)
+collect = {
+    'capture_id': 'capture_id2',
+    'prefer': 'return=minimal'
+}
+result = payments_controller.refund_captured_payment(collect)
 
 if result.is_success():
     print(result.body)
@@ -400,9 +367,7 @@ Shows details for a refund, by ID.
 
 ```python
 def get_refund(self,
-              refund_id,
-              pay_pal_mock_response=None,
-              pay_pal_auth_assertion=None)
+              options=dict())
 ```
 
 ## Authentication
@@ -414,8 +379,8 @@ This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `refund_id` | `str` | Template, Required | The PayPal-generated ID for the refund for which to show details. |
-| `pay_pal_mock_response` | `str` | Header, Optional | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant. |
-| `pay_pal_auth_assertion` | `str` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion). Note:For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject. |
+| `paypal_mock_response` | `str` | Header, Optional | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant. |
+| `paypal_auth_assertion` | `str` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion). Note:For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject. |
 
 ## Response Type
 
@@ -426,9 +391,10 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-refund_id = 'refund_id4'
-
-result = payments_api.get_refund(refund_id)
+collect = {
+    'refund_id': 'refund_id4'
+}
+result = payments_controller.get_refund(collect)
 
 if result.is_success():
     print(result.body)
@@ -453,12 +419,7 @@ Captures an authorized payment, by ID.
 
 ```python
 def capture_authorized_payment_1(self,
-                                authorization_id,
-                                pay_pal_mock_response=None,
-                                pay_pal_request_id=None,
-                                prefer="return=minimal",
-                                pay_pal_auth_assertion=None,
-                                body=None)
+                                options=dict())
 ```
 
 ## Authentication
@@ -470,10 +431,10 @@ This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `authorization_id` | `str` | Template, Required | The PayPal-generated ID for the authorized payment to capture. |
-| `pay_pal_mock_response` | `str` | Header, Optional | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant. |
-| `pay_pal_request_id` | `str` | Header, Optional | The server stores keys for 45 days. |
+| `paypal_mock_response` | `str` | Header, Optional | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant. |
+| `paypal_request_id` | `str` | Header, Optional | The server stores keys for 45 days. |
 | `prefer` | `str` | Header, Optional | The preferred server response upon successful completion of the request. Value is: return=minimal. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the id, status and HATEOAS links. return=representation. The server returns a complete resource representation, including the current state of the resource.<br><br>**Default**: `"return=minimal"` |
-| `pay_pal_auth_assertion` | `str` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion). Note:For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject. |
+| `paypal_auth_assertion` | `str` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion). Note:For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject. |
 | `body` | [`CaptureRequest`](../../doc/models/capture-request.md) | Body, Optional | - |
 
 ## Response Type
@@ -485,19 +446,14 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-authorization_id = 'authorization_id8'
-
-prefer = 'return=minimal'
-
-body = CaptureRequest(
-    final_capture=False
-)
-
-result = payments_api.capture_authorized_payment_1(
-    authorization_id,
-    prefer=prefer,
-    body=body
-)
+collect = {
+    'authorization_id': 'authorization_id8',
+    'prefer': 'return=minimal',
+    'body': CaptureRequest(
+        final_capture=False
+    )
+}
+result = payments_controller.capture_authorized_payment_1(collect)
 
 if result.is_success():
     print(result.body)
@@ -525,8 +481,7 @@ Shows details for a captured payment, by ID.
 
 ```python
 def get_captured_payment_1(self,
-                          capture_id,
-                          pay_pal_mock_response=None)
+                          options=dict())
 ```
 
 ## Authentication
@@ -538,7 +493,7 @@ This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `capture_id` | `str` | Template, Required | The PayPal-generated ID for the captured payment for which to show details. |
-| `pay_pal_mock_response` | `str` | Header, Optional | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant. |
+| `paypal_mock_response` | `str` | Header, Optional | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant. |
 
 ## Response Type
 
@@ -549,9 +504,10 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-capture_id = 'capture_id2'
-
-result = payments_api.get_captured_payment_1(capture_id)
+collect = {
+    'capture_id': 'capture_id2'
+}
+result = payments_controller.get_captured_payment_1(collect)
 
 if result.is_success():
     print(result.body)

@@ -3,8 +3,6 @@
 
 The intent to either capture payment immediately or authorize a payment for an order after order creation.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `CheckoutPaymentIntent`
@@ -19,7 +17,7 @@ The intent to either capture payment immediately or authorize a payment for an o
 ## Example
 
 ```python
-from paypal.models.checkout_payment_intent import CheckoutPaymentIntent
+from paypalserversdk.models.checkout_payment_intent import CheckoutPaymentIntent
 
 checkout_payment_intent = CheckoutPaymentIntent.CAPTURE
 ```

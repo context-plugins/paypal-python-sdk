@@ -3,8 +3,6 @@
 
 The condition that is covered for the transaction.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `DisputeCategory`
@@ -19,7 +17,7 @@ The condition that is covered for the transaction.
 ## Example
 
 ```python
-from paypal.models.dispute_category import DisputeCategory
+from paypalserversdk.models.dispute_category import DisputeCategory
 
 dispute_category = DisputeCategory.ITEM_NOT_RECEIVED
 ```

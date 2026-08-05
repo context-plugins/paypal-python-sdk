@@ -3,8 +3,6 @@
 
 Information needed to pay using ApplePay.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `ApplePayRequest`
@@ -22,32 +20,26 @@ Information needed to pay using ApplePay.
 | `vault_id` | `str` | Optional | The PayPal-generated ID for the vaulted payment source. This ID should be stored on the merchant's server so the saved payment source can be used for future transactions.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[0-9a-zA-Z_-]+$` |
 | `attributes` | [`ApplePayAttributes`](../../doc/models/apple-pay-attributes.md) | Optional | Additional attributes associated with apple pay. |
 | `experience_context` | [`ApplePayExperienceContext`](../../doc/models/apple-pay-experience-context.md) | Optional | Customizes the payer experience during the approval process for the payment. |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.apple_pay_decrypted_token_data import ApplePayDecryptedTokenData
-from paypal.models.apple_pay_payment_data import ApplePayPaymentData
-from paypal.models.apple_pay_payment_data_type import ApplePayPaymentDataType
-from paypal.models.apple_pay_request import ApplePayRequest
-from paypal.models.apple_pay_tokenized_card import ApplePayTokenizedCard
-from paypal.models.card_brand import CardBrand
-from paypal.models.card_type import CardType
-from paypal.models.money import Money
-from paypal.models.phone_number import PhoneNumber
+from paypalserversdk.models.apple_pay_decrypted_token_data import ApplePayDecryptedTokenData
+from paypalserversdk.models.apple_pay_payment_data import ApplePayPaymentData
+from paypalserversdk.models.apple_pay_payment_data_type import ApplePayPaymentDataType
+from paypalserversdk.models.apple_pay_request import ApplePayRequest
+from paypalserversdk.models.apple_pay_tokenized_card import ApplePayTokenizedCard
+from paypalserversdk.models.card_brand import CardBrand
+from paypalserversdk.models.card_type import CardType
+from paypalserversdk.models.money import Money
+from paypalserversdk.models.phone_number import PhoneNumber
 
 apple_pay_request = ApplePayRequest(
     id='id0',
     name='name0',
     email_address='email_address8',
     phone_number=PhoneNumber(
-        national_number='national_number6',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+        national_number='national_number6'
     ),
     decrypted_token=ApplePayDecryptedTokenData(
         tokenized_card=ApplePayTokenizedCard(
@@ -55,17 +47,11 @@ apple_pay_request = ApplePayRequest(
             number='number2',
             expiry='expiry2',
             card_type=CardBrand.VISA,
-            mtype=CardType.UNKNOWN,
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
+            mtype=CardType.UNKNOWN
         ),
         transaction_amount=Money(
             currency_code='currency_code6',
-            value='value2',
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
+            value='value2'
         ),
         device_manufacturer_id='device_manufacturer_id6',
         payment_data_type=ApplePayPaymentDataType.ENUM_3DSECURE,
@@ -73,18 +59,9 @@ apple_pay_request = ApplePayRequest(
             cryptogram='cryptogram6',
             eci_indicator='eci_indicator0',
             emv_data='emv_data0',
-            pin='pin4',
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
-        ),
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
-    ),
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+            pin='pin4'
+        )
+    )
 )
 ```
 

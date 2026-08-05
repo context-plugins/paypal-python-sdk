@@ -3,8 +3,6 @@
 
 The line items for this purchase. If your merchant account has been configured for Level 3 processing this field will be passed to the processor on your behalf.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `LineItem`
@@ -27,16 +25,13 @@ The line items for this purchase. If your merchant account has been configured f
 | `discount_amount` | [`Money`](../../doc/models/money.md) | Optional | The currency and amount for a financial transaction, such as a balance or payment due. |
 | `total_amount` | [`Money`](../../doc/models/money.md) | Optional | The currency and amount for a financial transaction, such as a balance or payment due. |
 | `unit_of_measure` | `str` | Optional | Unit of measure is a standard used to express the magnitude of a quantity in international trade. Most commonly used (but not limited to) examples are: Acre (ACR), Ampere (AMP), Centigram (CGM), Centimetre (CMT), Cubic inch (INQ), Cubic metre (MTQ), Fluid ounce (OZA), Foot (FOT), Hour (HUR), Item (ITM), Kilogram (KGM), Kilometre (KMT), Kilowatt (KWT), Liquid gallon (GLL), Liter (LTR), Pounds (LBS), Square foot (FTK).<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `12`, *Pattern*: `^[a-zA-Z0-9_'.-]*$` |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.line_item import LineItem
-from paypal.models.universal_product_code import UniversalProductCode
-from paypal.models.upc_type import UpcType
+from paypalserversdk.models.line_item import LineItem
+from paypalserversdk.models.universal_product_code import UniversalProductCode
+from paypalserversdk.models.upc_type import UpcType
 
 line_item = LineItem(
     name='name6',
@@ -47,14 +42,8 @@ line_item = LineItem(
     image_url='image_url2',
     upc=UniversalProductCode(
         mtype=UpcType.UPC_B,
-        code='code0',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
-    ),
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+        code='code0'
+    )
 )
 ```
 

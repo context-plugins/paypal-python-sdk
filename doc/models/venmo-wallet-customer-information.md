@@ -3,8 +3,6 @@
 
 The details about a customer in PayPal's system of record.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `VenmoWalletCustomerInformation`
@@ -17,44 +15,29 @@ The details about a customer in PayPal's system of record.
 | `email_address` | `str` | Optional | The internationalized email address. Note: Up to 64 characters are allowed before and 255 characters are allowed after the @ sign. However, the generally accepted maximum length for an email address is 254 characters. The pattern verifies that an unquoted @ sign exists.<br><br>**Constraints**: *Minimum Length*: `3`, *Maximum Length*: `254`, *Pattern*: ``(?:[a-zA-Z0-9!#$%&'*+/=?^_`{\|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{\|}~-]+)*\|(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]\|\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\|\[(?:(?:(2(5[0-5]\|[0-4][0-9])\|1[0-9][0-9]\|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]\|[0-4][0-9])\|1[0-9][0-9]\|[1-9]?[0-9])\|[a-zA-Z0-9-]*[a-zA-Z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]\|\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])`` |
 | `phone` | [`PhoneWithType`](../../doc/models/phone-with-type.md) | Optional | The phone information. |
 | `name` | [`Name`](../../doc/models/name.md) | Optional | The name of the party. |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.name import Name
-from paypal.models.phone_number import PhoneNumber
-from paypal.models.phone_type import PhoneType
-from paypal.models.phone_with_type import PhoneWithType
-from paypal.models.venmo_wallet_customer_information import VenmoWalletCustomerInformation
+from paypalserversdk.models.name import Name
+from paypalserversdk.models.phone_number import PhoneNumber
+from paypalserversdk.models.phone_type import PhoneType
+from paypalserversdk.models.phone_with_type import PhoneWithType
+from paypalserversdk.models.venmo_wallet_customer_information import VenmoWalletCustomerInformation
 
 venmo_wallet_customer_information = VenmoWalletCustomerInformation(
     id='id4',
     email_address='email_address2',
     phone=PhoneWithType(
         phone_number=PhoneNumber(
-            national_number='national_number6',
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
+            national_number='national_number6'
         ),
-        phone_type=PhoneType.OTHER,
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+        phone_type=PhoneType.OTHER
     ),
     name=Name(
         given_name='given_name2',
-        surname='surname8',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
-    ),
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+        surname='surname8'
+    )
 )
 ```
 

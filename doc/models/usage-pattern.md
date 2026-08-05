@@ -3,8 +3,6 @@
 
 Expected business/pricing model for the billing agreement., Expected business/charge model for the billing agreement., Expected business/charge model for the billing agreement.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `UsagePattern`
@@ -29,7 +27,7 @@ Expected business/pricing model for the billing agreement., Expected business/ch
 ## Example
 
 ```python
-from paypal.models.usage_pattern import UsagePattern
+from paypalserversdk.models.usage_pattern import UsagePattern
 
 usage_pattern = UsagePattern.IMMEDIATE
 ```

@@ -3,8 +3,6 @@
 
 Indicates whether the transaction is eligible for seller protection. For information, see [PayPal Seller Protection for Merchants](https://www.paypal.com/us/webapps/mpp/security/seller-protection).
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `SellerProtectionStatus`
@@ -20,7 +18,7 @@ Indicates whether the transaction is eligible for seller protection. For informa
 ## Example
 
 ```python
-from paypal.models.seller_protection_status import SellerProtectionStatus
+from paypalserversdk.models.seller_protection_status import SellerProtectionStatus
 
 seller_protection_status = SellerProtectionStatus.PARTIALLY_ELIGIBLE
 ```

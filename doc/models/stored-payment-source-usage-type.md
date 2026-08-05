@@ -3,8 +3,6 @@
 
 Indicates if this is a `first` or `subsequent` payment using a stored payment source (also referred to as stored credential or card on file).
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `StoredPaymentSourceUsageType`
@@ -20,7 +18,7 @@ Indicates if this is a `first` or `subsequent` payment using a stored payment so
 ## Example
 
 ```python
-from paypal.models.stored_payment_source_usage_type import StoredPaymentSourceUsageType
+from paypalserversdk.models.stored_payment_source_usage_type import StoredPaymentSourceUsageType
 
 stored_payment_source_usage_type = StoredPaymentSourceUsageType.SUBSEQUENT
 ```

@@ -3,8 +3,6 @@
 
 The reason why the refund has the `PENDING` or `FAILED` status.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `RefundIncompleteReason`
@@ -18,7 +16,7 @@ The reason why the refund has the `PENDING` or `FAILED` status.
 ## Example
 
 ```python
-from paypal.models.refund_incomplete_reason import RefundIncompleteReason
+from paypalserversdk.models.refund_incomplete_reason import RefundIncompleteReason
 
 refund_incomplete_reason = RefundIncompleteReason.ECHECK
 ```

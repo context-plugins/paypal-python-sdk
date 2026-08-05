@@ -3,8 +3,6 @@
 
 Indicates the type of the stored payment_source payment.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `StoredPaymentSourcePaymentType`
@@ -20,7 +18,7 @@ Indicates the type of the stored payment_source payment.
 ## Example
 
 ```python
-from paypal.models.stored_payment_source_payment_type import StoredPaymentSourcePaymentType
+from paypalserversdk.models.stored_payment_source_payment_type import StoredPaymentSourcePaymentType
 
 stored_payment_source_payment_type = StoredPaymentSourcePaymentType.RECURRING
 ```

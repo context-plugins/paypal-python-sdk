@@ -3,8 +3,6 @@
 
 Customizes the payer experience during the approval process for the payment.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `ExperienceContext`
@@ -15,28 +13,22 @@ Customizes the payer experience during the approval process for the payment.
 |  --- | --- | --- | --- |
 | `brand_name` | `str` | Optional | The label that overrides the business name in the PayPal account on the PayPal site. The pattern is defined by an external party and supports Unicode.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `127`, *Pattern*: `^.*$` |
 | `locale` | `str` | Optional | The [language tag](https://tools.ietf.org/html/bcp47#section-2) for the language in which to localize the error-related strings, such as messages, issues, and suggested actions. The tag is made up of the [ISO 639-2 language code](https://www.loc.gov/standards/iso639-2/php/code_list.php), the optional [ISO-15924 script tag](https://www.unicode.org/iso15924/codelists.html), and the [ISO-3166 alpha-2 country code](https://developer.paypal.com/api/rest/reference/country-codes/) or [M49 region code](https://unstats.un.org/unsd/methodology/m49/).<br><br>**Constraints**: *Minimum Length*: `2`, *Maximum Length*: `10`, *Pattern*: `^[a-z]{2}(?:-[A-Z][a-z]{3})?(?:-(?:[A-Z]{2}\|[0-9]{3}))?$` |
-| `shipping_preference` | [`ApplicationContextShippingPreference`](../../doc/models/application-context-shipping-preference.md) | Optional | The location from which the shipping address is derived.<br><br>**Default**: `"GET_FROM_FILE"`<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `24`, *Pattern*: `^[A-Z_]+$` |
+| `shipping_preference` | [`ExperienceContextShippingPreference`](../../doc/models/experience-context-shipping-preference.md) | Optional | The location from which the shipping address is derived.<br><br>**Default**: `"GET_FROM_FILE"`<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `24`, *Pattern*: `^[A-Z_]+$` |
 | `return_url` | `str` | Optional | Describes the URL. |
 | `cancel_url` | `str` | Optional | Describes the URL. |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.application_context_shipping_preference import ApplicationContextShippingPreference
-from paypal.models.experience_context import ExperienceContext
+from paypalserversdk.models.experience_context import ExperienceContext
+from paypalserversdk.models.experience_context_shipping_preference import ExperienceContextShippingPreference
 
 experience_context = ExperienceContext(
     brand_name='brand_name2',
     locale='locale6',
-    shipping_preference=ApplicationContextShippingPreference.GET_FROM_FILE,
+    shipping_preference=ExperienceContextShippingPreference.GET_FROM_FILE,
     return_url='return_url4',
-    cancel_url='cancel_url6',
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+    cancel_url='cancel_url6'
 )
 ```
 

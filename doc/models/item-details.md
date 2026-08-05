@@ -3,8 +3,6 @@
 
 The item details.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `ItemDetails`
@@ -32,24 +30,18 @@ The item details.
 | `total_item_amount` | [`Money`](../../doc/models/money.md) | Optional | The currency and amount for a financial transaction, such as a balance or payment due. |
 | `invoice_number` | `str` | Optional | The invoice number. An alphanumeric string that identifies a billing for a merchant.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `200`, *Pattern*: `^[a-zA-Z0-9_'\-., ":;\!?]*$` |
 | `checkout_options` | [`List[CheckoutOption]`](../../doc/models/checkout-option.md) | Optional | An array of checkout options. Each option has a name and value.<br><br>**Constraints**: *Minimum Items*: `1`, *Maximum Items*: `32767` |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.item_details import ItemDetails
+from paypalserversdk.models.item_details import ItemDetails
 
 item_details = ItemDetails(
     item_code='item_code0',
     item_name='item_name8',
     item_description='item_description4',
     item_options='item_options2',
-    item_quantity='item_quantity2',
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+    item_quantity='item_quantity2'
 )
 ```
 

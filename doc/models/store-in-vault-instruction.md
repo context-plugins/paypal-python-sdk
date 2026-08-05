@@ -16,7 +16,7 @@ Defines how and when the payment source gets vaulted.
 ## Example
 
 ```python
-from paypal.models.store_in_vault_instruction import StoreInVaultInstruction
+from paypalserversdk.models.store_in_vault_instruction import StoreInVaultInstruction
 
 store_in_vault_instruction = StoreInVaultInstruction.ON_SUCCESS
 ```

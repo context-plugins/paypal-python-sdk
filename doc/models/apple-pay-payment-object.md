@@ -3,8 +3,6 @@
 
 Information needed to pay using ApplePay.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `ApplePayPaymentObject`
@@ -21,15 +19,12 @@ Information needed to pay using ApplePay.
 | `card` | [`ApplePayCardResponse`](../../doc/models/apple-pay-card-response.md) | Optional | The Card from Apple Pay Wallet used to fund the payment. |
 | `attributes` | [`ApplePayAttributesResponse`](../../doc/models/apple-pay-attributes-response.md) | Optional | Additional attributes associated with the use of Apple Pay. |
 | `stored_credential` | [`CardStoredCredential`](../../doc/models/card-stored-credential.md) | Optional | Provides additional details to process a payment using a `card` that has been stored or is intended to be stored (also referred to as stored_credential or card-on-file). Parameter compatibility: `payment_type=ONE_TIME` is compatible only with `payment_initiator=CUSTOMER`. `usage=FIRST` is compatible only with `payment_initiator=CUSTOMER`. `previous_transaction_reference` or `previous_network_transaction_reference` is compatible only with `payment_initiator=MERCHANT`. Only one of the parameters - `previous_transaction_reference` and `previous_network_transaction_reference` - can be present in the request. |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.apple_pay_payment_object import ApplePayPaymentObject
-from paypal.models.phone_number import PhoneNumber
+from paypalserversdk.models.apple_pay_payment_object import ApplePayPaymentObject
+from paypalserversdk.models.phone_number import PhoneNumber
 
 apple_pay_payment_object = ApplePayPaymentObject(
     id='id0',
@@ -37,14 +32,8 @@ apple_pay_payment_object = ApplePayPaymentObject(
     name='name0',
     email_address='email_address2',
     phone_number=PhoneNumber(
-        national_number='national_number6',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
-    ),
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+        national_number='national_number6'
+    )
 )
 ```
 

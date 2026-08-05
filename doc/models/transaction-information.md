@@ -3,8 +3,6 @@
 
 The transaction information.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `TransactionInformation`
@@ -16,7 +14,7 @@ The transaction information.
 | `paypal_account_id` | `str` | Optional | The ID of the PayPal account of the counterparty.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `24`, *Pattern*: `^[a-zA-Z0-9]*$` |
 | `transaction_id` | `str` | Optional, Read-only | The PayPal-generated transaction ID.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `24`, *Pattern*: `^[a-zA-Z0-9]*$` |
 | `paypal_reference_id` | `str` | Optional | The PayPal-generated base ID. PayPal exclusive. Cannot be altered. Defined as a related, pre-existing transaction or event.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `24`, *Pattern*: `^[a-zA-Z0-9]*$` |
-| `paypal_reference_id_type` | [`PayPalReferenceIdType`](../../doc/models/pay-pal-reference-id-type.md) | Optional | The PayPal reference ID type.<br><br>**Constraints**: *Minimum Length*: `3`, *Maximum Length*: `3`, *Pattern*: `^[a-zA-Z0-9]*$` |
+| `paypal_reference_id_type` | [`PaypalReferenceIdType`](../../doc/models/paypal-reference-id-type.md) | Optional | The PayPal reference ID type.<br><br>**Constraints**: *Minimum Length*: `3`, *Maximum Length*: `3`, *Pattern*: `^[a-zA-Z0-9]*$` |
 | `transaction_event_code` | `str` | Optional | A five-digit transaction event code that classifies the transaction type based on money movement and debit or credit. For example, T0001. See [Transaction event codes](/docs/integration/direct/transaction-search/transaction-event-codes/).<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `5`, *Pattern*: `^[a-zA-Z0-9]*$` |
 | `transaction_initiation_date` | `str` | Optional | The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while fractional seconds are optional. Note: The regular expression provides guidance but does not reject all invalid dates.<br><br>**Constraints**: *Minimum Length*: `20`, *Maximum Length*: `64`, *Pattern*: `^[0-9]{4}-(0[1-9]\|1[0-2])-(0[1-9]\|[1-2][0-9]\|3[0-1])[T,t]([0-1][0-9]\|2[0-3]):[0-5][0-9]:([0-5][0-9]\|60)([.][0-9]+)?([Zz]\|[+-][0-9]{2}:[0-9]{2})$` |
 | `transaction_updated_date` | `str` | Optional | The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while fractional seconds are optional. Note: The regular expression provides guidance but does not reject all invalid dates.<br><br>**Constraints**: *Minimum Length*: `20`, *Maximum Length*: `64`, *Pattern*: `^[0-9]{4}-(0[1-9]\|1[0-2])-(0[1-9]\|[1-2][0-9]\|3[0-1])[T,t]([0-1][0-9]\|2[0-3]):[0-5][0-9]:([0-5][0-9]\|60)([.][0-9]+)?([Zz]\|[+-][0-9]{2}:[0-9]{2})$` |
@@ -47,25 +45,19 @@ The transaction information.
 | `payment_method_type` | `str` | Optional | The payment method that was used for a transaction. Value is PUI, installment, or mEFT. Note: Appears only for pay upon invoice (PUI), installment, and mEFT transactions. Merchants and partners in the EMEA region can use this attribute to note transactions that attract turn-over tax.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `20`, *Pattern*: `^[a-zA-Z0-9-]*$` |
 | `instrument_type` | `str` | Optional | A high-level classification of the type of financial instrument that was used to fund a payment. The pattern is not provided because the value is defined by an external party. E.g. PAYPAL, CREDIT_CARD, DEBIT_CARD, APPLE_PAY, BANK , VENMO ,Pay Upon Invoice, Pay Later  or Alternative Payment Methods (APM).<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `64` |
 | `instrument_sub_type` | `str` | Optional | A finer-grained classification of the financial instrument that was used to fund a payment. For example, `Visa card` or a `Mastercard` for a credit card, BANKCARD ,DISCOVER etc. The pattern is not provided because the value is defined by an external party.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `64` |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.pay_pal_reference_id_type import PayPalReferenceIdType
-from paypal.models.transaction_information import TransactionInformation
+from paypalserversdk.models.paypal_reference_id_type import PaypalReferenceIdType
+from paypalserversdk.models.transaction_information import TransactionInformation
 
 transaction_information = TransactionInformation(
     paypal_account_id='paypal_account_id0',
     transaction_id='transaction_id6',
     paypal_reference_id='paypal_reference_id8',
-    paypal_reference_id_type=PayPalReferenceIdType.ODR,
-    transaction_event_code='transaction_event_code2',
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+    paypal_reference_id_type=PaypalReferenceIdType.ODR,
+    transaction_event_code='transaction_event_code2'
 )
 ```
 

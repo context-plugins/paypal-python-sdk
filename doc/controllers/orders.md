@@ -3,12 +3,12 @@
 Use the `/orders` resource to create, update, retrieve, authorize, capture and track orders.
 
 ```python
-orders_api = client.orders
+orders_controller = client.orders
 ```
 
 ## Class Name
 
-`OrdersApi`
+`OrdersController`
 
 ## Methods
 
@@ -28,13 +28,7 @@ Creates an order. Merchants and partners can add Level 2 and 3 data to payments 
 
 ```python
 def create_order(self,
-                body,
-                pay_pal_mock_response=None,
-                pay_pal_request_id=None,
-                pay_pal_partner_attribution_id=None,
-                pay_pal_client_metadata_id=None,
-                prefer="return=minimal",
-                pay_pal_auth_assertion=None)
+                options=dict())
 ```
 
 ## Authentication
@@ -46,12 +40,12 @@ This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`OrderRequest`](../../doc/models/order-request.md) | Body, Required | - |
-| `pay_pal_mock_response` | `str` | Header, Optional | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant. |
-| `pay_pal_request_id` | `str` | Header, Optional | The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager. It is mandatory for all single-step create order calls (E.g. Create Order Request with payment source information like Card, PayPal.vault_id, PayPal.billing_agreement_id, etc).<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `108` |
-| `pay_pal_partner_attribution_id` | `str` | Header, Optional | **Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36` |
-| `pay_pal_client_metadata_id` | `str` | Header, Optional | **Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36` |
+| `paypal_mock_response` | `str` | Header, Optional | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant. |
+| `paypal_request_id` | `str` | Header, Optional | The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager. It is mandatory for all single-step create order calls (E.g. Create Order Request with payment source information like Card, PayPal.vault_id, PayPal.billing_agreement_id, etc).<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `108` |
+| `paypal_partner_attribution_id` | `str` | Header, Optional | **Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36` |
+| `paypal_client_metadata_id` | `str` | Header, Optional | **Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36` |
 | `prefer` | `str` | Header, Optional | The preferred server response upon successful completion of the request. Value is: return=minimal. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the id, status and HATEOAS links. return=representation. The server returns a complete resource representation, including the current state of the resource.<br><br>**Default**: `"return=minimal"`<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `25`, *Pattern*: `^[a-zA-Z=,-]*$` |
-| `pay_pal_auth_assertion` | `str` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see PayPal-Auth-Assertion. |
+| `paypal_auth_assertion` | `str` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see PayPal-Auth-Assertion. |
 
 ## Response Type
 
@@ -62,24 +56,21 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-body = OrderRequest(
-    intent=CheckoutPaymentIntent.CAPTURE,
-    purchase_units=[
-        PurchaseUnitRequest(
-            amount=AmountWithBreakdown(
-                currency_code='currency_code6',
-                value='value0'
+collect = {
+    'body': OrderRequest(
+        intent=CheckoutPaymentIntent.CAPTURE,
+        purchase_units=[
+            PurchaseUnitRequest(
+                amount=AmountWithBreakdown(
+                    currency_code='currency_code6',
+                    value='value0'
+                )
             )
-        )
-    ]
-)
-
-prefer = 'return=minimal'
-
-result = orders_api.create_order(
-    body,
-    prefer=prefer
-)
+        ]
+    ),
+    'prefer': 'return=minimal'
+}
+result = orders_controller.create_order(collect)
 
 if result.is_success():
     print(result.body)
@@ -103,10 +94,7 @@ Shows details for an order, by ID. Note: For error handling and troubleshooting,
 
 ```python
 def get_order(self,
-             id,
-             pay_pal_mock_response=None,
-             pay_pal_auth_assertion=None,
-             fields=None)
+             options=dict())
 ```
 
 ## Authentication
@@ -118,8 +106,8 @@ This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `id` | `str` | Template, Required | The ID of the order for which to show details.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36`, *Pattern*: `^[A-Z0-9]+$` |
-| `pay_pal_mock_response` | `str` | Header, Optional | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant. |
-| `pay_pal_auth_assertion` | `str` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see PayPal-Auth-Assertion. |
+| `paypal_mock_response` | `str` | Header, Optional | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant. |
+| `paypal_auth_assertion` | `str` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see PayPal-Auth-Assertion. |
 | `fields` | `str` | Query, Optional | A comma-separated list of fields that should be returned for the order. Valid filter field is `payment_source`.<br><br>**Constraints**: *Pattern*: `^[a-z_]*$` |
 
 ## Response Type
@@ -131,9 +119,10 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-id = 'id0'
-
-result = orders_api.get_order(id)
+collect = {
+    'id': 'id0'
+}
+result = orders_controller.get_order(collect)
 
 if result.is_success():
     print(result.body)
@@ -156,10 +145,7 @@ Updates an order with a `CREATED` or `APPROVED` status. You cannot update an ord
 
 ```python
 def patch_order(self,
-               id,
-               pay_pal_mock_response=None,
-               pay_pal_auth_assertion=None,
-               body=None)
+               options=dict())
 ```
 
 ## Authentication
@@ -171,8 +157,8 @@ This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `id` | `str` | Template, Required | The ID of the order to update.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36`, *Pattern*: `^[A-Z0-9]+$` |
-| `pay_pal_mock_response` | `str` | Header, Optional | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant. |
-| `pay_pal_auth_assertion` | `str` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see PayPal-Auth-Assertion. |
+| `paypal_mock_response` | `str` | Header, Optional | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant. |
+| `paypal_auth_assertion` | `str` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see PayPal-Auth-Assertion. |
 | `body` | [`List[Patch]`](../../doc/models/patch.md) | Body, Optional | **Constraints**: *Minimum Items*: `0`, *Maximum Items*: `32767` |
 
 ## Response Type
@@ -184,18 +170,15 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 ## Example Usage
 
 ```python
-id = 'id0'
-
-body = [
-    Patch(
-        op=PatchOp.ADD
-    )
-]
-
-result = orders_api.patch_order(
-    id,
-    body=body
-)
+collect = {
+    'id': 'id0',
+    'body': [
+        Patch(
+            op=PatchOp.ADD
+        )
+    ]
+}
+result = orders_controller.patch_order(collect)
 
 if result.is_success():
     print(result.body)
@@ -220,11 +203,7 @@ Payer confirms their intent to pay for the the Order with the given payment sour
 
 ```python
 def confirm_order(self,
-                 id,
-                 pay_pal_client_metadata_id=None,
-                 pay_pal_auth_assertion=None,
-                 prefer="return=minimal",
-                 body=None)
+                 options=dict())
 ```
 
 ## Authentication
@@ -236,8 +215,8 @@ This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `id` | `str` | Template, Required | The ID of the order for which the payer confirms their intent to pay.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36`, *Pattern*: `^[A-Z0-9]+$` |
-| `pay_pal_client_metadata_id` | `str` | Header, Optional | **Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36` |
-| `pay_pal_auth_assertion` | `str` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see PayPal-Auth-Assertion. |
+| `paypal_client_metadata_id` | `str` | Header, Optional | **Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36` |
+| `paypal_auth_assertion` | `str` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see PayPal-Auth-Assertion. |
 | `prefer` | `str` | Header, Optional | The preferred server response upon successful completion of the request. Value is: return=minimal. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the id, status and HATEOAS links. return=representation. The server returns a complete resource representation, including the current state of the resource.<br><br>**Default**: `"return=minimal"`<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `25`, *Pattern*: `^[a-zA-Z=]*$` |
 | `body` | [`ConfirmOrderRequest`](../../doc/models/confirm-order-request.md) | Body, Optional | - |
 
@@ -250,14 +229,11 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-id = 'id0'
-
-prefer = 'return=minimal'
-
-result = orders_api.confirm_order(
-    id,
-    prefer=prefer
-)
+collect = {
+    'id': 'id0',
+    'prefer': 'return=minimal'
+}
+result = orders_controller.confirm_order(collect)
 
 if result.is_success():
     print(result.body)
@@ -282,13 +258,7 @@ Authorizes payment for an order. To successfully authorize payment for an order,
 
 ```python
 def authorize_order(self,
-                   id,
-                   pay_pal_mock_response=None,
-                   pay_pal_request_id=None,
-                   prefer="return=minimal",
-                   pay_pal_client_metadata_id=None,
-                   pay_pal_auth_assertion=None,
-                   body=None)
+                   options=dict())
 ```
 
 ## Authentication
@@ -300,11 +270,11 @@ This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `id` | `str` | Template, Required | The ID of the order for which to authorize.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36`, *Pattern*: `^[A-Z0-9]+$` |
-| `pay_pal_mock_response` | `str` | Header, Optional | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant. |
-| `pay_pal_request_id` | `str` | Header, Optional | The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager. It is mandatory for all single-step create order calls (E.g. Create Order Request with payment source information like Card, PayPal.vault_id, PayPal.billing_agreement_id, etc).<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `108` |
+| `paypal_mock_response` | `str` | Header, Optional | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant. |
+| `paypal_request_id` | `str` | Header, Optional | The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager. It is mandatory for all single-step create order calls (E.g. Create Order Request with payment source information like Card, PayPal.vault_id, PayPal.billing_agreement_id, etc).<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `108` |
 | `prefer` | `str` | Header, Optional | The preferred server response upon successful completion of the request. Value is: return=minimal. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the id, status and HATEOAS links. return=representation. The server returns a complete resource representation, including the current state of the resource.<br><br>**Default**: `"return=minimal"`<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `25`, *Pattern*: `^[a-zA-Z=,-]*$` |
-| `pay_pal_client_metadata_id` | `str` | Header, Optional | **Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36` |
-| `pay_pal_auth_assertion` | `str` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see PayPal-Auth-Assertion. |
+| `paypal_client_metadata_id` | `str` | Header, Optional | **Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36` |
+| `paypal_auth_assertion` | `str` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see PayPal-Auth-Assertion. |
 | `body` | [`OrderAuthorizeRequest`](../../doc/models/order-authorize-request.md) | Body, Optional | - |
 
 ## Response Type
@@ -316,14 +286,11 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-id = 'id0'
-
-prefer = 'return=minimal'
-
-result = orders_api.authorize_order(
-    id,
-    prefer=prefer
-)
+collect = {
+    'id': 'id0',
+    'prefer': 'return=minimal'
+}
+result = orders_controller.authorize_order(collect)
 
 if result.is_success():
     print(result.body)
@@ -350,13 +317,7 @@ Captures payment for an order. To successfully capture payment for an order, the
 
 ```python
 def capture_order(self,
-                 id,
-                 pay_pal_mock_response=None,
-                 pay_pal_request_id=None,
-                 prefer="return=minimal",
-                 pay_pal_client_metadata_id=None,
-                 pay_pal_auth_assertion=None,
-                 body=None)
+                 options=dict())
 ```
 
 ## Authentication
@@ -368,11 +329,11 @@ This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `id` | `str` | Template, Required | The ID of the order for which to capture a payment.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36`, *Pattern*: `^[A-Z0-9]+$` |
-| `pay_pal_mock_response` | `str` | Header, Optional | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant. |
-| `pay_pal_request_id` | `str` | Header, Optional | The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager. It is mandatory for all single-step create order calls (E.g. Create Order Request with payment source information like Card, PayPal.vault_id, PayPal.billing_agreement_id, etc).<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `108` |
+| `paypal_mock_response` | `str` | Header, Optional | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant. |
+| `paypal_request_id` | `str` | Header, Optional | The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager. It is mandatory for all single-step create order calls (E.g. Create Order Request with payment source information like Card, PayPal.vault_id, PayPal.billing_agreement_id, etc).<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `108` |
 | `prefer` | `str` | Header, Optional | The preferred server response upon successful completion of the request. Value is: return=minimal. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the id, status and HATEOAS links. return=representation. The server returns a complete resource representation, including the current state of the resource.<br><br>**Default**: `"return=minimal"`<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `25`, *Pattern*: `^[a-zA-Z=,-]*$` |
-| `pay_pal_client_metadata_id` | `str` | Header, Optional | **Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36` |
-| `pay_pal_auth_assertion` | `str` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see PayPal-Auth-Assertion. |
+| `paypal_client_metadata_id` | `str` | Header, Optional | **Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36` |
+| `paypal_auth_assertion` | `str` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see PayPal-Auth-Assertion. |
 | `body` | [`OrderCaptureRequest`](../../doc/models/order-capture-request.md) | Body, Optional | - |
 
 ## Response Type
@@ -384,14 +345,11 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-id = 'id0'
-
-prefer = 'return=minimal'
-
-result = orders_api.capture_order(
-    id,
-    prefer=prefer
-)
+collect = {
+    'id': 'id0',
+    'prefer': 'return=minimal'
+}
+result = orders_controller.capture_order(collect)
 
 if result.is_success():
     print(result.body)
@@ -418,9 +376,7 @@ Adds tracking information for an Order.
 
 ```python
 def create_order_tracking(self,
-                         id,
-                         body,
-                         pay_pal_auth_assertion=None)
+                         options=dict())
 ```
 
 ## Authentication
@@ -433,7 +389,7 @@ This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.
 |  --- | --- | --- | --- |
 | `id` | `str` | Template, Required | The ID of the order that the tracking information is associated with.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36`, *Pattern*: `^[A-Z0-9]+$` |
 | `body` | [`OrderTrackerRequest`](../../doc/models/order-tracker-request.md) | Body, Required | - |
-| `pay_pal_auth_assertion` | `str` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see PayPal-Auth-Assertion. |
+| `paypal_auth_assertion` | `str` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see PayPal-Auth-Assertion. |
 
 ## Response Type
 
@@ -444,17 +400,14 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-id = 'id0'
-
-body = OrderTrackerRequest(
-    capture_id='capture_id8',
-    notify_payer=False
-)
-
-result = orders_api.create_order_tracking(
-    id,
-    body
-)
+collect = {
+    'id': 'id0',
+    'body': OrderTrackerRequest(
+        capture_id='capture_id8',
+        notify_payer=False
+    )
+}
+result = orders_controller.create_order_tracking(collect)
 
 if result.is_success():
     print(result.body)
@@ -480,10 +433,7 @@ Updates or cancels the tracking information for a PayPal order, by ID. Updatable
 
 ```python
 def update_order_tracking(self,
-                         id,
-                         tracker_id,
-                         pay_pal_auth_assertion=None,
-                         body=None)
+                         options=dict())
 ```
 
 ## Authentication
@@ -496,7 +446,7 @@ This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.
 |  --- | --- | --- | --- |
 | `id` | `str` | Template, Required | The ID of the order that the tracking information is associated with.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36`, *Pattern*: `^[A-Z0-9]+$` |
 | `tracker_id` | `str` | Template, Required | The order tracking ID.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36`, *Pattern*: `^[A-Z0-9]+$` |
-| `pay_pal_auth_assertion` | `str` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see PayPal-Auth-Assertion. |
+| `paypal_auth_assertion` | `str` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see PayPal-Auth-Assertion. |
 | `body` | [`List[Patch]`](../../doc/models/patch.md) | Body, Optional | **Constraints**: *Minimum Items*: `0`, *Maximum Items*: `32767` |
 
 ## Response Type
@@ -508,21 +458,16 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 ## Example Usage
 
 ```python
-id = 'id0'
-
-tracker_id = 'tracker_id2'
-
-body = [
-    Patch(
-        op=PatchOp.ADD
-    )
-]
-
-result = orders_api.update_order_tracking(
-    id,
-    tracker_id,
-    body=body
-)
+collect = {
+    'id': 'id0',
+    'tracker_id': 'tracker_id2',
+    'body': [
+        Patch(
+            op=PatchOp.ADD
+        )
+    ]
+}
+result = orders_controller.update_order_tracking(collect)
 
 if result.is_success():
     print(result.body)

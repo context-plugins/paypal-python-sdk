@@ -3,8 +3,6 @@
 
 Venmo wallet response.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `VenmoWalletResponse`
@@ -21,17 +19,14 @@ Venmo wallet response.
 | `address` | [`Address`](../../doc/models/address.md) | Optional | The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute). |
 | `return_flow` | [`ReturnFlow`](../../doc/models/return-flow.md) | Optional, Read-only | Merchant preference on how the buyer can navigate back to merchant website post approving the transaction on the Venmo App.<br><br>**Default**: `"AUTO"`<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `6`, *Pattern*: `^[A-Z_]+$` |
 | `attributes` | [`VenmoWalletAttributesResponse`](../../doc/models/venmo-wallet-attributes-response.md) | Optional | Additional attributes associated with the use of a Venmo Wallet. |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.name import Name
-from paypal.models.phone_number import PhoneNumber
-from paypal.models.return_flow import ReturnFlow
-from paypal.models.venmo_wallet_response import VenmoWalletResponse
+from paypalserversdk.models.name import Name
+from paypalserversdk.models.phone_number import PhoneNumber
+from paypalserversdk.models.return_flow import ReturnFlow
+from paypalserversdk.models.venmo_wallet_response import VenmoWalletResponse
 
 venmo_wallet_response = VenmoWalletResponse(
     email_address='email_address4',
@@ -39,21 +34,12 @@ venmo_wallet_response = VenmoWalletResponse(
     user_name='user_name2',
     name=Name(
         given_name='given_name2',
-        surname='surname8',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+        surname='surname8'
     ),
     phone_number=PhoneNumber(
-        national_number='national_number6',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+        national_number='national_number6'
     ),
-    return_flow=ReturnFlow.AUTO,
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+    return_flow=ReturnFlow.AUTO
 )
 ```
 

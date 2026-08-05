@@ -3,8 +3,6 @@
 
 The item category type.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `ItemCategory`
@@ -20,7 +18,7 @@ The item category type.
 ## Example
 
 ```python
-from paypal.models.item_category import ItemCategory
+from paypalserversdk.models.item_category import ItemCategory
 
 item_category = ItemCategory.PHYSICAL_GOODS
 ```

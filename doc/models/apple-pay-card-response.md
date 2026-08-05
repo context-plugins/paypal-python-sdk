@@ -3,8 +3,6 @@
 
 The Card from Apple Pay Wallet used to fund the payment.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `ApplePayCardResponse`
@@ -26,16 +24,13 @@ The Card from Apple Pay Wallet used to fund the payment.
 | `stored_credential` | [`CardStoredCredential`](../../doc/models/card-stored-credential.md) | Optional | Provides additional details to process a payment using a `card` that has been stored or is intended to be stored (also referred to as stored_credential or card-on-file). Parameter compatibility: `payment_type=ONE_TIME` is compatible only with `payment_initiator=CUSTOMER`. `usage=FIRST` is compatible only with `payment_initiator=CUSTOMER`. `previous_transaction_reference` or `previous_network_transaction_reference` is compatible only with `payment_initiator=MERCHANT`. Only one of the parameters - `previous_transaction_reference` and `previous_network_transaction_reference` - can be present in the request. |
 | `billing_address` | [`Address`](../../doc/models/address.md) | Optional | The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute). |
 | `country_code` | `str` | Optional | The [two-character ISO 3166-1 code](https://developer.paypal.com/api/rest/reference/country-codes/) that identifies the country or region. Note: The country code for Great Britain is GB and not UK as used in the top-level domain names for that country. Use the `C2` country code for China worldwide for comparable uncontrolled price (CUP) method, bank card, and cross-border transactions.<br><br>**Constraints**: *Minimum Length*: `2`, *Maximum Length*: `2`, *Pattern*: `^([A-Z]{2}\|C2)$` |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.apple_pay_card_response import ApplePayCardResponse
-from paypal.models.card_brand import CardBrand
-from paypal.models.card_type import CardType
+from paypalserversdk.models.apple_pay_card_response import ApplePayCardResponse
+from paypalserversdk.models.card_brand import CardBrand
+from paypalserversdk.models.card_type import CardType
 
 apple_pay_card_response = ApplePayCardResponse(
     name='name0',
@@ -46,10 +41,7 @@ apple_pay_card_response = ApplePayCardResponse(
         CardBrand.DINERS,
         CardBrand.CHINA_UNION_PAY
     ],
-    mtype=CardType.CREDIT,
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+    mtype=CardType.CREDIT
 )
 ```
 

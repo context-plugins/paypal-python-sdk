@@ -3,8 +3,6 @@
 
 Information used to pay Bancontact.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `BancontactPaymentObject`
@@ -18,24 +16,18 @@ Information used to pay Bancontact.
 | `bic` | `str` | Optional | The business identification code (BIC). In payments systems, a BIC is used to identify a specific business, most commonly a bank.<br><br>**Constraints**: *Minimum Length*: `8`, *Maximum Length*: `11`, *Pattern*: `^[A-Z-a-z0-9]{4}[A-Z-a-z]{2}[A-Z-a-z0-9]{2}([A-Z-a-z0-9]{3})?$` |
 | `iban_last_chars` | `str` | Optional | The last characters of the IBAN used to pay.<br><br>**Constraints**: *Minimum Length*: `4`, *Maximum Length*: `34`, *Pattern*: `[a-zA-Z0-9]{4}` |
 | `card_last_digits` | `str` | Optional | The last digits of the card used to fund the Bancontact payment.<br><br>**Constraints**: *Minimum Length*: `4`, *Maximum Length*: `4`, *Pattern*: `[0-9]{4}` |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.bancontact_payment_object import BancontactPaymentObject
+from paypalserversdk.models.bancontact_payment_object import BancontactPaymentObject
 
 bancontact_payment_object = BancontactPaymentObject(
     name='name8',
     country_code='country_code8',
     bic='bic0',
     iban_last_chars='iban_last_chars6',
-    card_last_digits='card_last_digits2',
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+    card_last_digits='card_last_digits2'
 )
 ```
 

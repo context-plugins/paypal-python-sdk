@@ -3,12 +3,12 @@
 Use the `/vault` resource to create, retrieve, and delete payment and setup tokens.
 
 ```python
-vault_api = client.vault
+vault_controller = client.vault
 ```
 
 ## Class Name
 
-`VaultApi`
+`VaultController`
 
 ## Methods
 
@@ -26,8 +26,7 @@ Creates a Payment Token from the given payment source and adds it to the Vault o
 
 ```python
 def create_payment_token(self,
-                        body,
-                        pay_pal_request_id=None)
+                        options=dict())
 ```
 
 ## Authentication
@@ -39,7 +38,7 @@ This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`PaymentTokenRequest`](../../doc/models/payment-token-request.md) | Body, Required | Payment Token creation with a financial instrument and an optional customer_id. |
-| `pay_pal_request_id` | `str` | Header, Optional | The server stores keys for 3 hours.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `108`, *Pattern*: `^.*$` |
+| `paypal_request_id` | `str` | Header, Optional | The server stores keys for 3 hours.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `108`, *Pattern*: `^.*$` |
 
 ## Response Type
 
@@ -50,11 +49,12 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-body = PaymentTokenRequest(
-    payment_source=PaymentTokenRequestPaymentSource()
-)
-
-result = vault_api.create_payment_token(body)
+collect = {
+    'body': PaymentTokenRequest(
+        payment_source=PaymentTokenRequestPaymentSource()
+    )
+}
+result = vault_controller.create_payment_token(collect)
 
 if result.is_success():
     print(result.body)
@@ -79,10 +79,7 @@ Returns all payment tokens for a customer.
 
 ```python
 def list_customer_payment_tokens(self,
-                                customer_id,
-                                page_size=5,
-                                page=1,
-                                total_required=False)
+                                options=dict())
 ```
 
 ## Authentication
@@ -107,20 +104,13 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-customer_id = 'customer_id8'
-
-page_size = 5
-
-page = 1
-
-total_required = False
-
-result = vault_api.list_customer_payment_tokens(
-    customer_id,
-    page_size=page_size,
-    page=page,
-    total_required=total_required
-)
+collect = {
+    'customer_id': 'customer_id8',
+    'page_size': 5,
+    'page': 1,
+    'total_required': False
+}
+result = vault_controller.list_customer_payment_tokens(collect)
 
 if result.is_success():
     print(result.body)
@@ -167,7 +157,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = vault_api.get_payment_token(id)
+result = vault_controller.get_payment_token(id)
 
 if result.is_success():
     print(result.body)
@@ -215,7 +205,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 ```python
 id = 'id0'
 
-result = vault_api.delete_payment_token(id)
+result = vault_controller.delete_payment_token(id)
 
 if result.is_success():
     print(result.body)
@@ -238,8 +228,7 @@ Creates a Setup Token from the given payment source and adds it to the Vault of 
 
 ```python
 def create_setup_token(self,
-                      body,
-                      pay_pal_request_id=None)
+                      options=dict())
 ```
 
 ## Authentication
@@ -251,7 +240,7 @@ This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`SetupTokenRequest`](../../doc/models/setup-token-request.md) | Body, Required | Setup Token creation with a instrument type optional financial instrument details and customer_id. |
-| `pay_pal_request_id` | `str` | Header, Optional | The server stores keys for 3 hours.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `108`, *Pattern*: `^.*$` |
+| `paypal_request_id` | `str` | Header, Optional | The server stores keys for 3 hours.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `108`, *Pattern*: `^.*$` |
 
 ## Response Type
 
@@ -262,11 +251,12 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-body = SetupTokenRequest(
-    payment_source=SetupTokenRequestPaymentSource()
-)
-
-result = vault_api.create_setup_token(body)
+collect = {
+    'body': SetupTokenRequest(
+        payment_source=SetupTokenRequestPaymentSource()
+    )
+}
+result = vault_controller.create_setup_token(collect)
 
 if result.is_success():
     print(result.body)
@@ -314,7 +304,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = vault_api.get_setup_token(id)
+result = vault_controller.get_setup_token(id)
 
 if result.is_success():
     print(result.body)

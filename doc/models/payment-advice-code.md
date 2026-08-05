@@ -3,8 +3,6 @@
 
 The declined payment transactions might have payment advice codes. The card networks, like Visa and Mastercard, return payment advice codes.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `PaymentAdviceCode`
@@ -32,7 +30,7 @@ The declined payment transactions might have payment advice codes. The card netw
 ## Example
 
 ```python
-from paypal.models.payment_advice_code import PaymentAdviceCode
+from paypalserversdk.models.payment_advice_code import PaymentAdviceCode
 
 payment_advice_code = PaymentAdviceCode.PAYMENTADVICE_43
 ```

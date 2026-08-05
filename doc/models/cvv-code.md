@@ -3,8 +3,6 @@
 
 The card verification value code for for Visa, Discover, Mastercard, or American Express.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `CvvCode`
@@ -31,7 +29,7 @@ The card verification value code for for Visa, Discover, Mastercard, or American
 ## Example
 
 ```python
-from paypal.models.cvv_code import CvvCode
+from paypalserversdk.models.cvv_code import CvvCode
 
 cvv_code = CvvCode.ENUM_ALL_OTHERS
 ```

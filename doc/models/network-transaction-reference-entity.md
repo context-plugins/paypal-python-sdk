@@ -3,8 +3,6 @@
 
 Previous network transaction reference including id and network.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `NetworkTransactionReferenceEntity`
@@ -17,24 +15,18 @@ Previous network transaction reference including id and network.
 | `date` | `str` | Optional | The date that the transaction was authorized by the scheme. This field may not be returned for all networks. MasterCard refers to this field as "BankNet reference date.<br><br>**Constraints**: *Minimum Length*: `4`, *Maximum Length*: `4`, *Pattern*: `^[0-9]+$` |
 | `network` | [`CardBrand`](../../doc/models/card-brand.md) | Optional | The card network or brand. Applies to credit, debit, gift, and payment cards.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[A-Z_]+$` |
 | `time` | `str` | Optional | The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while fractional seconds are optional. Note: The regular expression provides guidance but does not reject all invalid dates.<br><br>**Constraints**: *Minimum Length*: `20`, *Maximum Length*: `64`, *Pattern*: `^[0-9]{4}-(0[1-9]\|1[0-2])-(0[1-9]\|[1-2][0-9]\|3[0-1])[T,t]([0-1][0-9]\|2[0-3]):[0-5][0-9]:([0-5][0-9]\|60)([.][0-9]+)?([Zz]\|[+-][0-9]{2}:[0-9]{2})$` |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.card_brand import CardBrand
-from paypal.models.network_transaction_reference_entity import NetworkTransactionReferenceEntity
+from paypalserversdk.models.card_brand import CardBrand
+from paypalserversdk.models.network_transaction_reference_entity import NetworkTransactionReferenceEntity
 
 network_transaction_reference_entity = NetworkTransactionReferenceEntity(
     id='id2',
     date='date2',
     network=CardBrand.HIPER,
-    time='time8',
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+    time='time8'
 )
 ```
 

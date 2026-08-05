@@ -3,8 +3,6 @@
 
 The carrier for the shipment. Some carriers have a global version as well as local subsidiaries. The subsidiaries are repeated over many countries and might also have an entry in the global list. Choose the carrier for your country. If the carrier is not available for your country, choose the global version of the carrier. If your carrier name is not in the list, set `carrier` to `OTHER` and set carrier name in `carrier_name_other`. For allowed values, see Carriers.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `ShipmentCarrier`
@@ -1430,7 +1428,7 @@ The carrier for the shipment. Some carriers have a global version as well as loc
 ## Example
 
 ```python
-from paypal.models.shipment_carrier import ShipmentCarrier
+from paypalserversdk.models.shipment_carrier import ShipmentCarrier
 
 shipment_carrier = ShipmentCarrier.GBA
 ```

@@ -17,7 +17,7 @@ The merchant-preferred payment methods.
 ## Example
 
 ```python
-from paypal.models.payee_payment_method_preference import PayeePaymentMethodPreference
+from paypalserversdk.models.payee_payment_method_preference import PayeePaymentMethodPreference
 
 payee_payment_method_preference = PayeePaymentMethodPreference.UNRESTRICTED
 ```

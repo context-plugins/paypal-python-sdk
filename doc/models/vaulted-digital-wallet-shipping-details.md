@@ -3,8 +3,6 @@
 
 The shipping details.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `VaultedDigitalWalletShippingDetails`
@@ -18,33 +16,24 @@ The shipping details.
 | `phone_number` | [`PhoneNumberWithCountryCode`](../../doc/models/phone-number-with-country-code.md) | Optional | The phone number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en). |
 | `mtype` | [`FulfillmentType`](../../doc/models/fulfillment-type.md) | Optional | A classification for the method of purchase fulfillment (e.g shipping, in-store pickup, etc). Either `type` or `options` may be present, but not both.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[0-9A-Z_]+$` |
 | `address` | [`Address`](../../doc/models/address.md) | Optional | The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute). |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.address import Address
-from paypal.models.fulfillment_type import FulfillmentType
-from paypal.models.phone_number_with_country_code import PhoneNumberWithCountryCode
-from paypal.models.shipping_name import ShippingName
-from paypal.models.vaulted_digital_wallet_shipping_details import VaultedDigitalWalletShippingDetails
+from paypalserversdk.models.address import Address
+from paypalserversdk.models.fulfillment_type import FulfillmentType
+from paypalserversdk.models.phone_number_with_country_code import PhoneNumberWithCountryCode
+from paypalserversdk.models.shipping_name import ShippingName
+from paypalserversdk.models.vaulted_digital_wallet_shipping_details import VaultedDigitalWalletShippingDetails
 
 vaulted_digital_wallet_shipping_details = VaultedDigitalWalletShippingDetails(
     name=ShippingName(
-        full_name='full_name6',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+        full_name='full_name6'
     ),
     email_address='email_address0',
     phone_number=PhoneNumberWithCountryCode(
         country_code='country_code2',
-        national_number='national_number6',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+        national_number='national_number6'
     ),
     mtype=FulfillmentType.PICKUP_IN_STORE,
     address=Address(
@@ -53,14 +42,8 @@ vaulted_digital_wallet_shipping_details = VaultedDigitalWalletShippingDetails(
         address_line_2='address_line_26',
         admin_area_2='admin_area_20',
         admin_area_1='admin_area_12',
-        postal_code='postal_code8',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
-    ),
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+        postal_code='postal_code8'
+    )
 )
 ```
 

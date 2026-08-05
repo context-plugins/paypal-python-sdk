@@ -3,8 +3,6 @@
 
 Information needed to pay using BLIK.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `BlikPaymentRequest`
@@ -19,18 +17,15 @@ Information needed to pay using BLIK.
 | `experience_context` | [`BlikExperienceContext`](../../doc/models/blik-experience-context.md) | Optional | Customizes the payer experience during the approval process for the BLIK payment. |
 | `level_0` | [`BlikLevel0PaymentObject`](../../doc/models/blik-level-0-payment-object.md) | Optional | Information used to pay using BLIK level_0 flow. |
 | `one_click` | [`BlikOneClickPaymentRequest`](../../doc/models/blik-one-click-payment-request.md) | Optional | Information used to pay using BLIK one-click flow. |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.application_context_shipping_preference import ApplicationContextShippingPreference
-from paypal.models.blik_experience_context import BlikExperienceContext
-from paypal.models.blik_level_0_payment_object import BlikLevel0PaymentObject
-from paypal.models.blik_one_click_payment_request import BlikOneClickPaymentRequest
-from paypal.models.blik_payment_request import BlikPaymentRequest
+from paypalserversdk.models.blik_experience_context import BlikExperienceContext
+from paypalserversdk.models.blik_level_0_payment_object import BlikLevel0PaymentObject
+from paypalserversdk.models.blik_one_click_payment_request import BlikOneClickPaymentRequest
+from paypalserversdk.models.blik_payment_request import BlikPaymentRequest
+from paypalserversdk.models.experience_context_shipping_preference import ExperienceContextShippingPreference
 
 blik_payment_request = BlikPaymentRequest(
     name='name2',
@@ -39,31 +34,19 @@ blik_payment_request = BlikPaymentRequest(
     experience_context=BlikExperienceContext(
         brand_name='brand_name2',
         locale='locale6',
-        shipping_preference=ApplicationContextShippingPreference.NO_SHIPPING,
+        shipping_preference=ExperienceContextShippingPreference.NO_SHIPPING,
         return_url='return_url4',
-        cancel_url='cancel_url6',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+        cancel_url='cancel_url6'
     ),
     level_0=BlikLevel0PaymentObject(
-        auth_code='auth_code8',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+        auth_code='auth_code8'
     ),
     one_click=BlikOneClickPaymentRequest(
         consumer_reference='consumer_reference2',
         auth_code='auth_code0',
         alias_label='alias_label6',
-        alias_key='alias_key4',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
-    ),
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+        alias_key='alias_key4'
+    )
 )
 ```
 

@@ -3,8 +3,6 @@
 
 Reference values used by the card network to identify a transaction.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `NetworkTransaction`
@@ -17,24 +15,18 @@ Reference values used by the card network to identify a transaction.
 | `date` | `str` | Optional | The date that the transaction was authorized by the scheme. This field may not be returned for all networks. MasterCard refers to this field as "BankNet reference date". For some specific networks, such as MasterCard and Discover, this date field is mandatory when the `previous_network_transaction_reference_id` is passed.<br><br>**Constraints**: *Minimum Length*: `4`, *Maximum Length*: `4`, *Pattern*: `^[0-9]+$` |
 | `network` | [`CardBrand`](../../doc/models/card-brand.md) | Optional | The card network or brand. Applies to credit, debit, gift, and payment cards.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[A-Z_]+$` |
 | `acquirer_reference_number` | `str` | Optional | Reference ID issued for the card transaction. This ID can be used to track the transaction across processors, card brands and issuing banks.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36`, *Pattern*: `^[a-zA-Z0-9]+$` |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.card_brand import CardBrand
-from paypal.models.network_transaction import NetworkTransaction
+from paypalserversdk.models.card_brand import CardBrand
+from paypalserversdk.models.network_transaction import NetworkTransaction
 
 network_transaction = NetworkTransaction(
     id='id6',
     date='date2',
     network=CardBrand.CONFIDIS,
-    acquirer_reference_number='acquirer_reference_number2',
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+    acquirer_reference_number='acquirer_reference_number2'
 )
 ```
 

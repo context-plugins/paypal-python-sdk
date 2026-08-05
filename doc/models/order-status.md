@@ -3,8 +3,6 @@
 
 The order status.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `OrderStatus`
@@ -23,7 +21,7 @@ The order status.
 ## Example
 
 ```python
-from paypal.models.order_status import OrderStatus
+from paypalserversdk.models.order_status import OrderStatus
 
 order_status = OrderStatus.COMPLETED
 ```

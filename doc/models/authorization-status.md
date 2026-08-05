@@ -3,8 +3,6 @@
 
 The status for the authorized payment.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `AuthorizationStatus`
@@ -23,7 +21,7 @@ The status for the authorized payment.
 ## Example
 
 ```python
-from paypal.models.authorization_status import AuthorizationStatus
+from paypalserversdk.models.authorization_status import AuthorizationStatus
 
 authorization_status = AuthorizationStatus.VOIDED
 ```

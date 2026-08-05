@@ -3,8 +3,6 @@
 
 The funds that are held on behalf of the merchant.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `DisbursementMode`
@@ -19,7 +17,7 @@ The funds that are held on behalf of the merchant.
 ## Example
 
 ```python
-from paypal.models.disbursement_mode import DisbursementMode
+from paypalserversdk.models.disbursement_mode import DisbursementMode
 
 disbursement_mode = DisbursementMode.INSTANT
 ```

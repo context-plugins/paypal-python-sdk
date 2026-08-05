@@ -3,8 +3,6 @@
 
 Google Pay Wallet payment data.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `GooglePayWalletResponse`
@@ -17,29 +15,23 @@ Google Pay Wallet payment data.
 | `email_address` | `str` | Optional | The internationalized email address. Note: Up to 64 characters are allowed before and 255 characters are allowed after the @ sign. However, the generally accepted maximum length for an email address is 254 characters. The pattern verifies that an unquoted @ sign exists.<br><br>**Constraints**: *Minimum Length*: `3`, *Maximum Length*: `254`, *Pattern*: ``^(?:[A-Za-z0-9!#$%&'*+/=?^_`{\|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{\|}~-]+)*\|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]\|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\|\[(?:(?:25[0-5]\|2[0-4][0-9]\|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]\|2[0-4][0-9]\|[01]?[0-9][0-9]?\|[A-Za-z0-9-]*[A-Za-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]\|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$`` |
 | `phone_number` | [`PhoneNumberWithCountryCode`](../../doc/models/phone-number-with-country-code.md) | Optional | The phone number in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en). |
 | `card` | [`GooglePayCardResponse`](../../doc/models/google-pay-card-response.md) | Optional | The payment card to use to fund a Google Pay payment response. Can be a credit or debit card. |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.address import Address
-from paypal.models.card_brand import CardBrand
-from paypal.models.card_type import CardType
-from paypal.models.google_pay_card_response import GooglePayCardResponse
-from paypal.models.google_pay_wallet_response import GooglePayWalletResponse
-from paypal.models.phone_number_with_country_code import PhoneNumberWithCountryCode
+from paypalserversdk.models.address import Address
+from paypalserversdk.models.card_brand import CardBrand
+from paypalserversdk.models.card_type import CardType
+from paypalserversdk.models.google_pay_card_response import GooglePayCardResponse
+from paypalserversdk.models.google_pay_wallet_response import GooglePayWalletResponse
+from paypalserversdk.models.phone_number_with_country_code import PhoneNumberWithCountryCode
 
 google_pay_wallet_response = GooglePayWalletResponse(
     name='name6',
     email_address='email_address4',
     phone_number=PhoneNumberWithCountryCode(
         country_code='country_code2',
-        national_number='national_number6',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+        national_number='national_number6'
     ),
     card=GooglePayCardResponse(
         name='name6',
@@ -52,18 +44,9 @@ google_pay_wallet_response = GooglePayWalletResponse(
             address_line_2='address_line_28',
             admin_area_2='admin_area_28',
             admin_area_1='admin_area_14',
-            postal_code='postal_code0',
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
-        ),
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
-    ),
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+            postal_code='postal_code0'
+        )
+    )
 )
 ```
 

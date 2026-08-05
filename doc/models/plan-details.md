@@ -3,8 +3,6 @@
 
 The plan details.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `PlanDetails`
@@ -21,24 +19,21 @@ The plan details.
 | `merchant_preferences` | [`MerchantPreferences`](../../doc/models/merchant-preferences.md) | Optional | The merchant preferences for a subscription. |
 | `taxes` | [`Taxes`](../../doc/models/taxes.md) | Optional | The tax details. |
 | `quantity_supported` | `bool` | Optional | Indicates whether you can subscribe to this plan by providing a quantity for the goods or service.<br><br>**Default**: `False` |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.frequency import Frequency
-from paypal.models.interval_unit import IntervalUnit
-from paypal.models.money import Money
-from paypal.models.payment_preferences import PaymentPreferences
-from paypal.models.plan_details import PlanDetails
-from paypal.models.pricing_tier import PricingTier
-from paypal.models.setup_fee_failure_action import SetupFeeFailureAction
-from paypal.models.subscription_billing_cycle import SubscriptionBillingCycle
-from paypal.models.subscription_pricing_model import SubscriptionPricingModel
-from paypal.models.subscription_pricing_scheme import SubscriptionPricingScheme
-from paypal.models.tenure_type import TenureType
+from paypalserversdk.models.frequency import Frequency
+from paypalserversdk.models.interval_unit import IntervalUnit
+from paypalserversdk.models.money import Money
+from paypalserversdk.models.payment_preferences import PaymentPreferences
+from paypalserversdk.models.plan_details import PlanDetails
+from paypalserversdk.models.pricing_tier import PricingTier
+from paypalserversdk.models.setup_fee_failure_action import SetupFeeFailureAction
+from paypalserversdk.models.subscription_billing_cycle import SubscriptionBillingCycle
+from paypalserversdk.models.subscription_pricing_model import SubscriptionPricingModel
+from paypalserversdk.models.subscription_pricing_scheme import SubscriptionPricingScheme
+from paypalserversdk.models.tenure_type import TenureType
 
 plan_details = PlanDetails(
     product_id='product_id6',
@@ -48,10 +43,7 @@ plan_details = PlanDetails(
         SubscriptionBillingCycle(
             frequency=Frequency(
                 interval_unit=IntervalUnit.DAY,
-                interval_count=94,
-                additional_properties={
-                    'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                }
+                interval_count=94
             ),
             tenure_type=TenureType.REGULAR,
             sequence=8,
@@ -59,10 +51,7 @@ plan_details = PlanDetails(
                 version=10,
                 fixed_price=Money(
                     currency_code='currency_code4',
-                    value='value0',
-                    additional_properties={
-                        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                    }
+                    value='value0'
                 ),
                 pricing_model=SubscriptionPricingModel.VOLUME,
                 tiers=[
@@ -70,62 +59,35 @@ plan_details = PlanDetails(
                         starting_quantity='starting_quantity8',
                         amount=Money(
                             currency_code='currency_code6',
-                            value='value0',
-                            additional_properties={
-                                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                            }
+                            value='value0'
                         ),
-                        ending_quantity='ending_quantity6',
-                        additional_properties={
-                            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                        }
+                        ending_quantity='ending_quantity6'
                     ),
                     PricingTier(
                         starting_quantity='starting_quantity8',
                         amount=Money(
                             currency_code='currency_code6',
-                            value='value0',
-                            additional_properties={
-                                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                            }
+                            value='value0'
                         ),
-                        ending_quantity='ending_quantity6',
-                        additional_properties={
-                            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                        }
+                        ending_quantity='ending_quantity6'
                     ),
                     PricingTier(
                         starting_quantity='starting_quantity8',
                         amount=Money(
                             currency_code='currency_code6',
-                            value='value0',
-                            additional_properties={
-                                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                            }
+                            value='value0'
                         ),
-                        ending_quantity='ending_quantity6',
-                        additional_properties={
-                            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                        }
+                        ending_quantity='ending_quantity6'
                     )
                 ],
-                create_time='create_time4',
-                additional_properties={
-                    'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                }
+                create_time='create_time4'
             ),
-            total_cycles=198,
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
+            total_cycles=198
         ),
         SubscriptionBillingCycle(
             frequency=Frequency(
                 interval_unit=IntervalUnit.DAY,
-                interval_count=94,
-                additional_properties={
-                    'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                }
+                interval_count=94
             ),
             tenure_type=TenureType.REGULAR,
             sequence=8,
@@ -133,10 +95,7 @@ plan_details = PlanDetails(
                 version=10,
                 fixed_price=Money(
                     currency_code='currency_code4',
-                    value='value0',
-                    additional_properties={
-                        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                    }
+                    value='value0'
                 ),
                 pricing_model=SubscriptionPricingModel.VOLUME,
                 tiers=[
@@ -144,75 +103,42 @@ plan_details = PlanDetails(
                         starting_quantity='starting_quantity8',
                         amount=Money(
                             currency_code='currency_code6',
-                            value='value0',
-                            additional_properties={
-                                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                            }
+                            value='value0'
                         ),
-                        ending_quantity='ending_quantity6',
-                        additional_properties={
-                            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                        }
+                        ending_quantity='ending_quantity6'
                     ),
                     PricingTier(
                         starting_quantity='starting_quantity8',
                         amount=Money(
                             currency_code='currency_code6',
-                            value='value0',
-                            additional_properties={
-                                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                            }
+                            value='value0'
                         ),
-                        ending_quantity='ending_quantity6',
-                        additional_properties={
-                            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                        }
+                        ending_quantity='ending_quantity6'
                     ),
                     PricingTier(
                         starting_quantity='starting_quantity8',
                         amount=Money(
                             currency_code='currency_code6',
-                            value='value0',
-                            additional_properties={
-                                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                            }
+                            value='value0'
                         ),
-                        ending_quantity='ending_quantity6',
-                        additional_properties={
-                            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                        }
+                        ending_quantity='ending_quantity6'
                     )
                 ],
-                create_time='create_time4',
-                additional_properties={
-                    'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                }
+                create_time='create_time4'
             ),
-            total_cycles=198,
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
+            total_cycles=198
         )
     ],
     payment_preferences=PaymentPreferences(
         auto_bill_outstanding=False,
         setup_fee=Money(
             currency_code='currency_code8',
-            value='value4',
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
+            value='value4'
         ),
         setup_fee_failure_action=SetupFeeFailureAction.CONTINUE,
-        payment_failure_threshold=104,
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+        payment_failure_threshold=104
     ),
-    quantity_supported=False,
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+    quantity_supported=False
 )
 ```
 

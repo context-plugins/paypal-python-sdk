@@ -3,8 +3,6 @@
 
 A Resource representing a request to vault a Card.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `SetupTokenRequestCard`
@@ -21,25 +19,19 @@ A Resource representing a request to vault a Card.
 | `billing_address` | [`Address`](../../doc/models/address.md) | Optional | The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute). |
 | `verification_method` | [`VaultCardVerificationMethod`](../../doc/models/vault-card-verification-method.md) | Optional | The verification method of the card.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[0-9A-Z_]+$` |
 | `experience_context` | [`VaultCardExperienceContext`](../../doc/models/vault-card-experience-context.md) | Optional | A resource representing an experience context of vault a card. |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.card_brand import CardBrand
-from paypal.models.setup_token_request_card import SetupTokenRequestCard
+from paypalserversdk.models.card_brand import CardBrand
+from paypalserversdk.models.setup_token_request_card import SetupTokenRequestCard
 
 setup_token_request_card = SetupTokenRequestCard(
     name='name2',
     number='number0',
     expiry='expiry0',
     security_code='security_code4',
-    brand=CardBrand.STAR,
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+    brand=CardBrand.STAR
 )
 ```
 

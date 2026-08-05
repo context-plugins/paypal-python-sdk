@@ -3,8 +3,6 @@
 
 The reason why the authorized status is `PENDING`.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `AuthorizationIncompleteReason`
@@ -19,7 +17,7 @@ The reason why the authorized status is `PENDING`.
 ## Example
 
 ```python
-from paypal.models.authorization_incomplete_reason import AuthorizationIncompleteReason
+from paypalserversdk.models.authorization_incomplete_reason import AuthorizationIncompleteReason
 
 authorization_incomplete_reason = AuthorizationIncompleteReason.PENDING_REVIEW
 ```

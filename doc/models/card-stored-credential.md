@@ -3,8 +3,6 @@
 
 Provides additional details to process a payment using a `card` that has been stored or is intended to be stored (also referred to as stored_credential or card-on-file). Parameter compatibility: `payment_type=ONE_TIME` is compatible only with `payment_initiator=CUSTOMER`. `usage=FIRST` is compatible only with `payment_initiator=CUSTOMER`. `previous_transaction_reference` or `previous_network_transaction_reference` is compatible only with `payment_initiator=MERCHANT`. Only one of the parameters - `previous_transaction_reference` and `previous_network_transaction_reference` - can be present in the request.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `CardStoredCredential`
@@ -17,19 +15,16 @@ Provides additional details to process a payment using a `card` that has been st
 | `payment_type` | [`StoredPaymentSourcePaymentType`](../../doc/models/stored-payment-source-payment-type.md) | Required | Indicates the type of the stored payment_source payment.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[0-9A-Z_]+$` |
 | `usage` | [`StoredPaymentSourceUsageType`](../../doc/models/stored-payment-source-usage-type.md) | Optional | Indicates if this is a `first` or `subsequent` payment using a stored payment source (also referred to as stored credential or card on file).<br><br>**Default**: `"DERIVED"`<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[0-9A-Z_]+$` |
 | `previous_network_transaction_reference` | [`NetworkTransaction`](../../doc/models/network-transaction.md) | Optional | Reference values used by the card network to identify a transaction. |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.card_brand import CardBrand
-from paypal.models.card_stored_credential import CardStoredCredential
-from paypal.models.network_transaction import NetworkTransaction
-from paypal.models.payment_initiator import PaymentInitiator
-from paypal.models.stored_payment_source_payment_type import StoredPaymentSourcePaymentType
-from paypal.models.stored_payment_source_usage_type import StoredPaymentSourceUsageType
+from paypalserversdk.models.card_brand import CardBrand
+from paypalserversdk.models.card_stored_credential import CardStoredCredential
+from paypalserversdk.models.network_transaction import NetworkTransaction
+from paypalserversdk.models.payment_initiator import PaymentInitiator
+from paypalserversdk.models.stored_payment_source_payment_type import StoredPaymentSourcePaymentType
+from paypalserversdk.models.stored_payment_source_usage_type import StoredPaymentSourceUsageType
 
 card_stored_credential = CardStoredCredential(
     payment_initiator=PaymentInitiator.CUSTOMER,
@@ -39,14 +34,8 @@ card_stored_credential = CardStoredCredential(
         id='id6',
         date='date2',
         network=CardBrand.CONFIDIS,
-        acquirer_reference_number='acquirer_reference_number8',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
-    ),
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+        acquirer_reference_number='acquirer_reference_number8'
+    )
 )
 ```
 

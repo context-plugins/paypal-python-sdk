@@ -3,8 +3,6 @@
 
 The error details.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `SearchErrorException`
@@ -21,7 +19,6 @@ The error details.
 | `links` | [`List[LinkDescription]`](../../doc/models/link-description.md) | Optional, Read-only | An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links). |
 | `total_items` | `int` | Optional | The total number of transactions. Valid only for `RESULTSET_TOO_LARGE`.<br><br>**Constraints**: `>= 0`, `<= 2147483647` |
 | `maximum_items` | `int` | Optional | The maximum number of transactions. Valid only for `RESULTSET_TOO_LARGE`.<br><br>**Constraints**: `>= 0`, `<= 2147483647` |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 

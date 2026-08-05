@@ -3,8 +3,6 @@
 
 Merchant preference on how the buyer can navigate back to merchant website post approving the transaction on the Venmo App.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `ReturnFlow`
@@ -19,7 +17,7 @@ Merchant preference on how the buyer can navigate back to merchant website post 
 ## Example
 
 ```python
-from paypal.models.return_flow import ReturnFlow
+from paypalserversdk.models.return_flow import ReturnFlow
 
 return_flow = ReturnFlow.AUTO
 ```

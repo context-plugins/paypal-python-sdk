@@ -3,8 +3,6 @@
 
 The purchase unit details. Used to capture required information for the payment contract.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `PurchaseUnit`
@@ -27,21 +25,18 @@ The purchase unit details. Used to capture required information for the payment 
 | `supplementary_data` | [`SupplementaryData`](../../doc/models/supplementary-data.md) | Optional | Supplementary data about a payment. This object passes information that can be used to improve risk assessments and processing costs, for example, by providing Level 2 and Level 3 payment data. |
 | `payments` | [`PaymentCollection`](../../doc/models/payment-collection.md) | Optional | The collection of payments, or transactions, for a purchase unit in an order. For example, authorized payments, captured payments, and refunds. |
 | `most_recent_errors` | `List[Any]` | Optional | The error reason code and description that are the reason for the most recent order decline.<br><br>**Constraints**: *Minimum Items*: `1`, *Maximum Items*: `10` |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.amount_breakdown import AmountBreakdown
-from paypal.models.amount_with_breakdown import AmountWithBreakdown
-from paypal.models.disbursement_mode import DisbursementMode
-from paypal.models.money import Money
-from paypal.models.payee_base import PayeeBase
-from paypal.models.payment_instruction import PaymentInstruction
-from paypal.models.platform_fee import PlatformFee
-from paypal.models.purchase_unit import PurchaseUnit
+from paypalserversdk.models.amount_breakdown import AmountBreakdown
+from paypalserversdk.models.amount_with_breakdown import AmountWithBreakdown
+from paypalserversdk.models.disbursement_mode import DisbursementMode
+from paypalserversdk.models.money import Money
+from paypalserversdk.models.payee_base import PayeeBase
+from paypalserversdk.models.payment_instruction import PaymentInstruction
+from paypalserversdk.models.platform_fee import PlatformFee
+from paypalserversdk.models.purchase_unit import PurchaseUnit
 
 purchase_unit = PurchaseUnit(
     reference_id='reference_id8',
@@ -51,125 +46,68 @@ purchase_unit = PurchaseUnit(
         breakdown=AmountBreakdown(
             item_total=Money(
                 currency_code='currency_code0',
-                value='value6',
-                additional_properties={
-                    'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                }
+                value='value6'
             ),
             shipping=Money(
                 currency_code='currency_code0',
-                value='value6',
-                additional_properties={
-                    'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                }
+                value='value6'
             ),
             handling=Money(
                 currency_code='currency_code2',
-                value='value8',
-                additional_properties={
-                    'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                }
+                value='value8'
             ),
             tax_total=Money(
                 currency_code='currency_code4',
-                value='value0',
-                additional_properties={
-                    'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                }
+                value='value0'
             ),
             insurance=Money(
                 currency_code='currency_code2',
-                value='value8',
-                additional_properties={
-                    'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                }
-            ),
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
-        ),
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+                value='value8'
+            )
+        )
     ),
     payee=PayeeBase(
         email_address='email_address4',
-        merchant_id='merchant_id6',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+        merchant_id='merchant_id6'
     ),
     payment_instruction=PaymentInstruction(
         platform_fees=[
             PlatformFee(
                 amount=Money(
                     currency_code='currency_code6',
-                    value='value0',
-                    additional_properties={
-                        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                    }
+                    value='value0'
                 ),
                 payee=PayeeBase(
                     email_address='email_address4',
-                    merchant_id='merchant_id6',
-                    additional_properties={
-                        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                    }
-                ),
-                additional_properties={
-                    'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                }
+                    merchant_id='merchant_id6'
+                )
             ),
             PlatformFee(
                 amount=Money(
                     currency_code='currency_code6',
-                    value='value0',
-                    additional_properties={
-                        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                    }
+                    value='value0'
                 ),
                 payee=PayeeBase(
                     email_address='email_address4',
-                    merchant_id='merchant_id6',
-                    additional_properties={
-                        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                    }
-                ),
-                additional_properties={
-                    'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                }
+                    merchant_id='merchant_id6'
+                )
             ),
             PlatformFee(
                 amount=Money(
                     currency_code='currency_code6',
-                    value='value0',
-                    additional_properties={
-                        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                    }
+                    value='value0'
                 ),
                 payee=PayeeBase(
                     email_address='email_address4',
-                    merchant_id='merchant_id6',
-                    additional_properties={
-                        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                    }
-                ),
-                additional_properties={
-                    'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                }
+                    merchant_id='merchant_id6'
+                )
             )
         ],
         disbursement_mode=DisbursementMode.INSTANT,
         payee_pricing_tier_id='payee_pricing_tier_id2',
-        payee_receivable_fx_rate_id='payee_receivable_fx_rate_id0',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+        payee_receivable_fx_rate_id='payee_receivable_fx_rate_id0'
     ),
-    description='description0',
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+    description='description0'
 )
 ```
 

@@ -3,8 +3,6 @@
 
 The type of capture.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `CaptureType`
@@ -18,7 +16,7 @@ The type of capture.
 ## Example
 
 ```python
-from paypal.models.capture_type import CaptureType
+from paypalserversdk.models.capture_type import CaptureType
 
 capture_type = CaptureType.OUTSTANDING_BALANCE
 ```

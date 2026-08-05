@@ -3,8 +3,6 @@
 
 Processor response code for the non-PayPal payment processor errors.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `ProcessorResponseCode`
@@ -171,7 +169,7 @@ Processor response code for the non-PayPal payment processor errors.
 ## Example
 
 ```python
-from paypal.models.processor_response_code import ProcessorResponseCode
+from paypalserversdk.models.processor_response_code import ProcessorResponseCode
 
 processor_response_code = ProcessorResponseCode.RESPONSE_PPCO
 ```

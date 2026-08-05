@@ -3,8 +3,6 @@
 
 DEPRECATED. Configures a Continue or Pay Now checkout flow.  The fields in `application_context` are now available in the `experience_context` object under the `payment_source` which supports them (eg. `payment_source.paypal.experience_context.user_action`). Please specify this field in the `experience_context` object instead of the `application_context` object.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `OrderApplicationContextUserAction`
@@ -19,7 +17,7 @@ DEPRECATED. Configures a Continue or Pay Now checkout flow.  The fields in `appl
 ## Example
 
 ```python
-from paypal.models.order_application_context_user_action import OrderApplicationContextUserAction
+from paypalserversdk.models.order_application_context_user_action import OrderApplicationContextUserAction
 
 order_application_context_user_action = OrderApplicationContextUserAction.CONTINUE
 ```

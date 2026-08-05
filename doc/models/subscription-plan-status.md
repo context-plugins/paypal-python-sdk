@@ -18,7 +18,7 @@ The plan status.
 ## Example
 
 ```python
-from paypal.models.subscription_plan_status import SubscriptionPlanStatus
+from paypalserversdk.models.subscription_plan_status import SubscriptionPlanStatus
 
 subscription_plan_status = SubscriptionPlanStatus.INACTIVE
 ```

@@ -3,8 +3,6 @@
 
 The Universal Product Code type.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `UpcType`
@@ -24,7 +22,7 @@ The Universal Product Code type.
 ## Example
 
 ```python
-from paypal.models.upc_type import UpcType
+from paypalserversdk.models.upc_type import UpcType
 
 upc_type = UpcType.UPC_E
 ```

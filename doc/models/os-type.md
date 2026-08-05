@@ -3,8 +3,6 @@
 
 Operating System type of the device that the buyer is using.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `OsType`
@@ -20,7 +18,7 @@ Operating System type of the device that the buyer is using.
 ## Example
 
 ```python
-from paypal.models.os_type import OsType
+from paypalserversdk.models.os_type import OsType
 
 os_type = OsType.IOS
 ```

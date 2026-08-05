@@ -3,8 +3,6 @@
 
 The total order amount with an optional breakdown that provides details, such as the total item amount, total tax amount, shipping, handling, insurance, and discounts, if any. If you specify `amount.breakdown`, the amount equals `item_total` plus `tax_total` plus `shipping` plus `handling` plus `insurance` minus `shipping_discount` minus discount. The amount must be a positive number. For listed of supported currencies and decimal precision, see the PayPal REST APIs Currency Codes.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `AmountWithBreakdown`
@@ -16,16 +14,13 @@ The total order amount with an optional breakdown that provides details, such as
 | `currency_code` | `str` | Required | The [three-character ISO-4217 currency code](https://developer.paypal.com/api/rest/reference/currency-codes/) that identifies the currency.<br><br>**Constraints**: *Minimum Length*: `3`, *Maximum Length*: `3` |
 | `value` | `str` | Required | The value, which might be: An integer for currencies like `JPY` that are not typically fractional. A decimal fraction for currencies like `TND` that are subdivided into thousandths. For the required number of decimal places for a currency code, see [Currency Codes](https://developer.paypal.com/api/rest/reference/currency-codes/).<br><br>**Constraints**: *Maximum Length*: `32`, *Pattern*: `^((-?[0-9]+)\|(-?([0-9]+)?[.][0-9]+))$` |
 | `breakdown` | [`AmountBreakdown`](../../doc/models/amount-breakdown.md) | Optional | The breakdown of the amount. Breakdown provides details such as total item amount, total tax amount, shipping, handling, insurance, and discounts, if any. |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.amount_breakdown import AmountBreakdown
-from paypal.models.amount_with_breakdown import AmountWithBreakdown
-from paypal.models.money import Money
+from paypalserversdk.models.amount_breakdown import AmountBreakdown
+from paypalserversdk.models.amount_with_breakdown import AmountWithBreakdown
+from paypalserversdk.models.money import Money
 
 amount_with_breakdown = AmountWithBreakdown(
     currency_code='currency_code0',
@@ -33,46 +28,25 @@ amount_with_breakdown = AmountWithBreakdown(
     breakdown=AmountBreakdown(
         item_total=Money(
             currency_code='currency_code0',
-            value='value6',
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
+            value='value6'
         ),
         shipping=Money(
             currency_code='currency_code0',
-            value='value6',
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
+            value='value6'
         ),
         handling=Money(
             currency_code='currency_code2',
-            value='value8',
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
+            value='value8'
         ),
         tax_total=Money(
             currency_code='currency_code4',
-            value='value0',
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
+            value='value0'
         ),
         insurance=Money(
             currency_code='currency_code2',
-            value='value8',
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
-        ),
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
-    ),
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+            value='value8'
+        )
+    )
 )
 ```
 

@@ -3,8 +3,6 @@
 
 The status of the item shipment.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `OrderTrackerStatus`
@@ -19,7 +17,7 @@ The status of the item shipment.
 ## Example
 
 ```python
-from paypal.models.order_tracker_status import OrderTrackerStatus
+from paypalserversdk.models.order_tracker_status import OrderTrackerStatus
 
 order_tracker_status = OrderTrackerStatus.CANCELLED
 ```

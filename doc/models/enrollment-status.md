@@ -3,8 +3,6 @@
 
 Status of Authentication eligibility.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `EnrollmentStatus`
@@ -21,7 +19,7 @@ Status of Authentication eligibility.
 ## Example
 
 ```python
-from paypal.models.enrollment_status import EnrollmentStatus
+from paypalserversdk.models.enrollment_status import EnrollmentStatus
 
 enrollment_status = EnrollmentStatus.ENROLLED
 ```

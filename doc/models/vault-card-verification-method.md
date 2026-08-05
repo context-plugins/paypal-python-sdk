@@ -3,8 +3,6 @@
 
 The verification method of the card.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `VaultCardVerificationMethod`
@@ -19,7 +17,7 @@ The verification method of the card.
 ## Example
 
 ```python
-from paypal.models.vault_card_verification_method import VaultCardVerificationMethod
+from paypalserversdk.models.vault_card_verification_method import VaultCardVerificationMethod
 
 vault_card_verification_method = VaultCardVerificationMethod.SCA_WHEN_REQUIRED
 ```

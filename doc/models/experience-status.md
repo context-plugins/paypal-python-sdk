@@ -3,8 +3,6 @@
 
 This field indicates the status of PayPal's Checkout experience throughout the order lifecycle. The values reflect the current stage of the checkout process.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `ExperienceStatus`
@@ -21,7 +19,7 @@ This field indicates the status of PayPal's Checkout experience throughout the o
 ## Example
 
 ```python
-from paypal.models.experience_status import ExperienceStatus
+from paypalserversdk.models.experience_status import ExperienceStatus
 
 experience_status = ExperienceStatus.CANCELED
 ```

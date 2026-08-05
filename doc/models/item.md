@@ -3,8 +3,6 @@
 
 The details for the items to be purchased.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `Item`
@@ -24,41 +22,29 @@ The details for the items to be purchased.
 | `image_url` | `str` | Optional | The URL of the item's image. File type and size restrictions apply. An image that violates these restrictions will not be honored.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `2048`, *Pattern*: `^(https:)([/\|.\|\w\|\s\|-])*\.(?:jpg\|gif\|png\|jpeg\|JPG\|GIF\|PNG\|JPEG)(\?.*)?$` |
 | `upc` | [`UniversalProductCode`](../../doc/models/universal-product-code.md) | Optional | The Universal Product Code of the item. |
 | `billing_plan` | [`OrderBillingPlan`](../../doc/models/order-billing-plan.md) | Optional | Metadata for merchant-managed recurring billing plans. Valid only during the saved payment method token or billing agreement creation. |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.item import Item
-from paypal.models.item_category import ItemCategory
-from paypal.models.money import Money
+from paypalserversdk.models.item import Item
+from paypalserversdk.models.item_category import ItemCategory
+from paypalserversdk.models.money import Money
 
 item = Item(
     name='name2',
     unit_amount=Money(
         currency_code='currency_code2',
-        value='value8',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+        value='value8'
     ),
     quantity='quantity8',
     tax=Money(
         currency_code='currency_code0',
-        value='value6',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+        value='value6'
     ),
     description='description2',
     sku='sku8',
     url='url6',
-    category=ItemCategory.DONATION,
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+    category=ItemCategory.DONATION
 )
 ```
 

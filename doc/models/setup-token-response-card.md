@@ -1,8 +1,6 @@
 
 # Setup Token Response Card
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `SetupTokenResponseCard`
@@ -22,16 +20,13 @@
 | `authentication_result` | [`CardAuthenticationResponse`](../../doc/models/card-authentication-response.md) | Optional | Results of Authentication such as 3D Secure. |
 | `bin_details` | [`BinDetails`](../../doc/models/bin-details.md) | Optional | Bank Identification Number (BIN) details used to fund a payment. |
 | `mtype` | [`CardType`](../../doc/models/card-type.md) | Optional | Type of card. i.e Credit, Debit and so on.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[A-Z_]+$` |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.card_brand import CardBrand
-from paypal.models.card_response_address import CardResponseAddress
-from paypal.models.setup_token_response_card import SetupTokenResponseCard
+from paypalserversdk.models.card_brand import CardBrand
+from paypalserversdk.models.card_response_address import CardResponseAddress
+from paypalserversdk.models.setup_token_response_card import SetupTokenResponseCard
 
 setup_token_response_card = SetupTokenResponseCard(
     name='name8',
@@ -44,14 +39,8 @@ setup_token_response_card = SetupTokenResponseCard(
         address_line_2='address_line_28',
         admin_area_2='admin_area_28',
         admin_area_1='admin_area_14',
-        postal_code='postal_code0',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
-    ),
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+        postal_code='postal_code0'
+    )
 )
 ```
 

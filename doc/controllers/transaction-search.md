@@ -3,12 +3,12 @@
 Use the `/transactions` resource to list transactions and the `/balances` resource to list balances.
 
 ```python
-transaction_search_api = client.transaction_search
+transaction_search_controller = client.transaction_search
 ```
 
 ## Class Name
 
-`TransactionSearchApi`
+`TransactionSearchController`
 
 ## Methods
 
@@ -22,20 +22,7 @@ Lists transactions. Specify one or more query parameters to filter the transacti
 
 ```python
 def search_transactions(self,
-                       start_date,
-                       end_date,
-                       transaction_id=None,
-                       transaction_type=None,
-                       transaction_status=None,
-                       transaction_amount=None,
-                       transaction_currency=None,
-                       payment_instrument_type=None,
-                       store_id=None,
-                       terminal_id=None,
-                       fields="transaction_info",
-                       balance_affecting_records_only="Y",
-                       page_size=100,
-                       page=1)
+                       options=dict())
 ```
 
 ## Authentication
@@ -70,26 +57,15 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-start_date = 'start_date6'
-
-end_date = 'end_date0'
-
-fields = 'transaction_info'
-
-balance_affecting_records_only = 'Y'
-
-page_size = 100
-
-page = 1
-
-result = transaction_search_api.search_transactions(
-    start_date,
-    end_date,
-    fields=fields,
-    balance_affecting_records_only=balance_affecting_records_only,
-    page_size=page_size,
-    page=page
-)
+collect = {
+    'start_date': 'start_date6',
+    'end_date': 'end_date0',
+    'fields': 'transaction_info',
+    'balance_affecting_records_only': 'Y',
+    'page_size': 100,
+    'page': 1
+}
+result = transaction_search_controller.search_transactions(collect)
 
 if result.is_success():
     print(result.body)
@@ -110,8 +86,7 @@ List all balances. Specify date time to list balances for that time that appear 
 
 ```python
 def search_balances(self,
-                   as_of_time=None,
-                   currency_code=None)
+                   options=dict())
 ```
 
 ## Authentication
@@ -134,7 +109,8 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-result = transaction_search_api.search_balances()
+collect = {}
+result = transaction_search_controller.search_balances(collect)
 
 if result.is_success():
     print(result.body)

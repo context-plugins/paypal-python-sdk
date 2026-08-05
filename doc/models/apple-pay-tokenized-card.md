@@ -3,8 +3,6 @@
 
 The payment card to use to fund a payment. Can be a credit or debit card.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `ApplePayTokenizedCard`
@@ -20,26 +18,20 @@ The payment card to use to fund a payment. Can be a credit or debit card.
 | `mtype` | [`CardType`](../../doc/models/card-type.md) | Optional | Type of card. i.e Credit, Debit and so on.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[A-Z_]+$` |
 | `brand` | [`CardBrand`](../../doc/models/card-brand.md) | Optional | The card network or brand. Applies to credit, debit, gift, and payment cards.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[A-Z_]+$` |
 | `billing_address` | [`Address`](../../doc/models/address.md) | Optional | The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute). |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.apple_pay_tokenized_card import ApplePayTokenizedCard
-from paypal.models.card_brand import CardBrand
-from paypal.models.card_type import CardType
+from paypalserversdk.models.apple_pay_tokenized_card import ApplePayTokenizedCard
+from paypalserversdk.models.card_brand import CardBrand
+from paypalserversdk.models.card_type import CardType
 
 apple_pay_tokenized_card = ApplePayTokenizedCard(
     name='name2',
     number='number0',
     expiry='expiry0',
     card_type=CardBrand.DISCOVER,
-    mtype=CardType.STORE,
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+    mtype=CardType.STORE
 )
 ```
 

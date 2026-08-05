@@ -18,7 +18,7 @@ The initial state of the plan. Allowed input values are CREATED and ACTIVE., The
 ## Example
 
 ```python
-from paypal.models.plan_request_status import PlanRequestStatus
+from paypalserversdk.models.plan_request_status import PlanRequestStatus
 
 plan_request_status = PlanRequestStatus.ACTIVE
 ```

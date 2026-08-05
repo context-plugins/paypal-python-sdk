@@ -21,7 +21,7 @@ The operation.
 ## Example
 
 ```python
-from paypal.models.patch_op import PatchOp
+from paypalserversdk.models.patch_op import PatchOp
 
 patch_op = PatchOp.ADD
 ```

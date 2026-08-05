@@ -3,8 +3,6 @@
 
 The usage type associated with the PayPal payment token.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `UsageType`
@@ -19,7 +17,7 @@ The usage type associated with the PayPal payment token.
 ## Example
 
 ```python
-from paypal.models.usage_type import UsageType
+from paypalserversdk.models.usage_type import UsageType
 
 usage_type = UsageType.MERCHANT
 ```

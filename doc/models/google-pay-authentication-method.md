@@ -3,8 +3,6 @@
 
 Authentication Method which is used for the card transaction.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `GooglePayAuthenticationMethod`
@@ -19,7 +17,7 @@ Authentication Method which is used for the card transaction.
 ## Example
 
 ```python
-from paypal.models.google_pay_authentication_method import GooglePayAuthenticationMethod
+from paypalserversdk.models.google_pay_authentication_method import GooglePayAuthenticationMethod
 
 google_pay_authentication_method = GooglePayAuthenticationMethod.PAN_ONLY
 ```

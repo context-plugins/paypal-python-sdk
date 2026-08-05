@@ -3,8 +3,6 @@
 
 Payment Token Request where the `source` defines the type of instrument to be stored.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `PaymentTokenRequest`
@@ -15,20 +13,17 @@ Payment Token Request where the `source` defines the type of instrument to be st
 |  --- | --- | --- | --- |
 | `customer` | [`Customer`](../../doc/models/customer.md) | Optional | This object defines a customer in your system. Use it to manage customer profiles, save payment methods and contact details. |
 | `payment_source` | [`PaymentTokenRequestPaymentSource`](../../doc/models/payment-token-request-payment-source.md) | Required | The payment method to vault with the instrument details. |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.card_brand import CardBrand
-from paypal.models.customer import Customer
-from paypal.models.payment_token_request import PaymentTokenRequest
-from paypal.models.payment_token_request_card import PaymentTokenRequestCard
-from paypal.models.payment_token_request_payment_source import PaymentTokenRequestPaymentSource
-from paypal.models.vault_token_request import VaultTokenRequest
-from paypal.models.vault_token_request_type import VaultTokenRequestType
+from paypalserversdk.models.card_brand import CardBrand
+from paypalserversdk.models.customer import Customer
+from paypalserversdk.models.payment_token_request import PaymentTokenRequest
+from paypalserversdk.models.payment_token_request_card import PaymentTokenRequestCard
+from paypalserversdk.models.payment_token_request_payment_source import PaymentTokenRequestPaymentSource
+from paypalserversdk.models.vault_token_request import VaultTokenRequest
+from paypalserversdk.models.vault_token_request_type import VaultTokenRequestType
 
 payment_token_request = PaymentTokenRequest(
     payment_source=PaymentTokenRequestPaymentSource(
@@ -37,32 +32,17 @@ payment_token_request = PaymentTokenRequest(
             number='number6',
             expiry='expiry4',
             security_code='security_code8',
-            brand=CardBrand.CB_NATIONALE,
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
+            brand=CardBrand.CB_NATIONALE
         ),
         token=VaultTokenRequest(
             id='id6',
-            mtype=VaultTokenRequestType.SETUP_TOKEN,
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
-        ),
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+            mtype=VaultTokenRequestType.SETUP_TOKEN
+        )
     ),
     customer=Customer(
         id='id0',
-        merchant_customer_id='merchant_customer_id2',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
-    ),
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+        merchant_customer_id='merchant_customer_id2'
+    )
 )
 ```
 

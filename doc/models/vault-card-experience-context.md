@@ -3,8 +3,6 @@
 
 A resource representing an experience context of vault a card.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `VaultCardExperienceContext`
@@ -19,16 +17,13 @@ A resource representing an experience context of vault a card.
 | `cancel_url` | `str` | Optional | The URL where the customer is redirected after customer cancels or leaves the flow. It is a required field for contingency flows like PayPal wallet, 3DS.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `4000` |
 | `vault_instruction` | [`VaultInstructionAction`](../../doc/models/vault-instruction-action.md) | Optional | DEPRECATED. Vault Instruction on action to be performed after a successful payer approval.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[A-Z_]+$` |
 | `user_action` | [`VaultUserAction`](../../doc/models/vault-user-action.md) | Optional | User Action on action to be performed after a successful payer approval.<br><br>**Default**: `"CONTINUE"`<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[A-Z_]+$` |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.vault_card_experience_context import VaultCardExperienceContext
-from paypal.models.vault_instruction_action import VaultInstructionAction
-from paypal.models.vault_user_action import VaultUserAction
+from paypalserversdk.models.vault_card_experience_context import VaultCardExperienceContext
+from paypalserversdk.models.vault_instruction_action import VaultInstructionAction
+from paypalserversdk.models.vault_user_action import VaultUserAction
 
 vault_card_experience_context = VaultCardExperienceContext(
     brand_name='brand_name2',
@@ -36,10 +31,7 @@ vault_card_experience_context = VaultCardExperienceContext(
     return_url='return_url4',
     cancel_url='cancel_url6',
     vault_instruction=VaultInstructionAction.ON_CREATE_PAYMENT_TOKENS,
-    user_action=VaultUserAction.CONTINUE,
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+    user_action=VaultUserAction.CONTINUE
 )
 ```
 

@@ -3,8 +3,6 @@
 
 Merchant preference on how the buyer can navigate back to merchant website post approving the transaction on the PayPal App.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `MobileReturnFlow`
@@ -19,7 +17,7 @@ Merchant preference on how the buyer can navigate back to merchant website post 
 ## Example
 
 ```python
-from paypal.models.mobile_return_flow import MobileReturnFlow
+from paypalserversdk.models.mobile_return_flow import MobileReturnFlow
 
 mobile_return_flow = MobileReturnFlow.AUTO
 ```

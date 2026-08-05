@@ -3,8 +3,6 @@
 
 Card Verification details including the authorization details and 3D SECURE details.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `CardVerificationDetails`
@@ -20,16 +18,13 @@ Card Verification details including the authorization details and 3D SECURE deta
 | `amount` | [`Money`](../../doc/models/money.md) | Optional | The currency and amount for a financial transaction, such as a balance or payment due. |
 | `processor_response` | [`CardVerificationProcessorResponse`](../../doc/models/card-verification-processor-response.md) | Optional | The processor response information for payment requests, such as direct credit card transactions. |
 | `three_d_secure` | `Any` | Optional | DEPRECATED. This field is DEPRECATED. Please find the 3D secure authentication data in the 'three_d_secure' object under the 'authentication_result' object instead of the 'verification' object. |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.card_brand import CardBrand
-from paypal.models.card_verification_details import CardVerificationDetails
-from paypal.models.money import Money
+from paypalserversdk.models.card_brand import CardBrand
+from paypalserversdk.models.card_verification_details import CardVerificationDetails
+from paypalserversdk.models.money import Money
 
 card_verification_details = CardVerificationDetails(
     network_transaction_id='network_transaction_id4',
@@ -38,14 +33,8 @@ card_verification_details = CardVerificationDetails(
     time='time2',
     amount=Money(
         currency_code='currency_code6',
-        value='value0',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
-    ),
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+        value='value0'
+    )
 )
 ```
 

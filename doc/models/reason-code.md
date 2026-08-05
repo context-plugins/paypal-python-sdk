@@ -23,7 +23,7 @@ The reason code for the payment failure.
 ## Example
 
 ```python
-from paypal.models.reason_code import ReasonCode
+from paypalserversdk.models.reason_code import ReasonCode
 
 reason_code = ReasonCode.PAYMENT_DENIED
 ```

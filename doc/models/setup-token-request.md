@@ -3,8 +3,6 @@
 
 Setup Token Request where the `source` defines the type of instrument to be stored.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `SetupTokenRequest`
@@ -15,32 +13,29 @@ Setup Token Request where the `source` defines the type of instrument to be stor
 |  --- | --- | --- | --- |
 | `customer` | [`Customer`](../../doc/models/customer.md) | Optional | This object defines a customer in your system. Use it to manage customer profiles, save payment methods and contact details. |
 | `payment_source` | [`SetupTokenRequestPaymentSource`](../../doc/models/setup-token-request-payment-source.md) | Required | The payment method to vault with the instrument details. |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.address import Address
-from paypal.models.apple_pay_request_card import ApplePayRequestCard
-from paypal.models.card_brand import CardBrand
-from paypal.models.card_type import CardType
-from paypal.models.customer import Customer
-from paypal.models.fulfillment_type import FulfillmentType
-from paypal.models.pay_pal_payment_token_usage_type import PayPalPaymentTokenUsageType
-from paypal.models.phone_number_with_country_code import PhoneNumberWithCountryCode
-from paypal.models.setup_token_request import SetupTokenRequest
-from paypal.models.setup_token_request_card import SetupTokenRequestCard
-from paypal.models.setup_token_request_payment_source import SetupTokenRequestPaymentSource
-from paypal.models.shipping_name import ShippingName
-from paypal.models.usage_pattern import UsagePattern
-from paypal.models.vault_apple_pay_request import VaultApplePayRequest
-from paypal.models.vault_pay_pal_wallet_request import VaultPayPalWalletRequest
-from paypal.models.vault_token_request import VaultTokenRequest
-from paypal.models.vault_token_request_type import VaultTokenRequestType
-from paypal.models.vault_venmo_request import VaultVenmoRequest
-from paypal.models.vaulted_digital_wallet_shipping_details import VaultedDigitalWalletShippingDetails
+from paypalserversdk.models.address import Address
+from paypalserversdk.models.apple_pay_request_card import ApplePayRequestCard
+from paypalserversdk.models.card_brand import CardBrand
+from paypalserversdk.models.card_type import CardType
+from paypalserversdk.models.customer import Customer
+from paypalserversdk.models.fulfillment_type import FulfillmentType
+from paypalserversdk.models.paypal_payment_token_usage_type import PaypalPaymentTokenUsageType
+from paypalserversdk.models.phone_number_with_country_code import PhoneNumberWithCountryCode
+from paypalserversdk.models.setup_token_request import SetupTokenRequest
+from paypalserversdk.models.setup_token_request_card import SetupTokenRequestCard
+from paypalserversdk.models.setup_token_request_payment_source import SetupTokenRequestPaymentSource
+from paypalserversdk.models.shipping_name import ShippingName
+from paypalserversdk.models.usage_pattern import UsagePattern
+from paypalserversdk.models.vault_apple_pay_request import VaultApplePayRequest
+from paypalserversdk.models.vault_paypal_wallet_request import VaultPaypalWalletRequest
+from paypalserversdk.models.vault_token_request import VaultTokenRequest
+from paypalserversdk.models.vault_token_request_type import VaultTokenRequestType
+from paypalserversdk.models.vault_venmo_request import VaultVenmoRequest
+from paypalserversdk.models.vaulted_digital_wallet_shipping_details import VaultedDigitalWalletShippingDetails
 
 setup_token_request = SetupTokenRequest(
     payment_source=SetupTokenRequestPaymentSource(
@@ -49,28 +44,19 @@ setup_token_request = SetupTokenRequest(
             number='number6',
             expiry='expiry4',
             security_code='security_code8',
-            brand=CardBrand.CB_NATIONALE,
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
+            brand=CardBrand.CB_NATIONALE
         ),
-        paypal=VaultPayPalWalletRequest(
+        paypal=VaultPaypalWalletRequest(
             description='description2',
             usage_pattern=UsagePattern.THRESHOLD_PREPAID,
             shipping=VaultedDigitalWalletShippingDetails(
                 name=ShippingName(
-                    full_name='full_name6',
-                    additional_properties={
-                        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                    }
+                    full_name='full_name6'
                 ),
                 email_address='email_address2',
                 phone_number=PhoneNumberWithCountryCode(
                     country_code='country_code2',
-                    national_number='national_number6',
-                    additional_properties={
-                        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                    }
+                    national_number='national_number6'
                 ),
                 mtype=FulfillmentType.SHIPPING,
                 address=Address(
@@ -79,38 +65,23 @@ setup_token_request = SetupTokenRequest(
                     address_line_2='address_line_26',
                     admin_area_2='admin_area_20',
                     admin_area_1='admin_area_12',
-                    postal_code='postal_code8',
-                    additional_properties={
-                        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                    }
-                ),
-                additional_properties={
-                    'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                }
+                    postal_code='postal_code8'
+                )
             ),
             permit_multiple_payment_tokens=False,
-            usage_type=PayPalPaymentTokenUsageType.MERCHANT,
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
+            usage_type=PaypalPaymentTokenUsageType.MERCHANT
         ),
         venmo=VaultVenmoRequest(
             description='description6',
             usage_pattern=UsagePattern.UNSCHEDULED_PREPAID,
             shipping=VaultedDigitalWalletShippingDetails(
                 name=ShippingName(
-                    full_name='full_name6',
-                    additional_properties={
-                        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                    }
+                    full_name='full_name6'
                 ),
                 email_address='email_address2',
                 phone_number=PhoneNumberWithCountryCode(
                     country_code='country_code2',
-                    national_number='national_number6',
-                    additional_properties={
-                        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                    }
+                    national_number='national_number6'
                 ),
                 mtype=FulfillmentType.SHIPPING,
                 address=Address(
@@ -119,20 +90,11 @@ setup_token_request = SetupTokenRequest(
                     address_line_2='address_line_26',
                     admin_area_2='admin_area_20',
                     admin_area_1='admin_area_12',
-                    postal_code='postal_code8',
-                    additional_properties={
-                        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                    }
-                ),
-                additional_properties={
-                    'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                }
+                    postal_code='postal_code8'
+                )
             ),
             permit_multiple_payment_tokens=False,
-            usage_type=PayPalPaymentTokenUsageType.MERCHANT,
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
+            usage_type=PaypalPaymentTokenUsageType.MERCHANT
         ),
         apple_pay=VaultApplePayRequest(
             token='token6',
@@ -145,40 +107,19 @@ setup_token_request = SetupTokenRequest(
                     address_line_2='address_line_28',
                     admin_area_2='admin_area_28',
                     admin_area_1='admin_area_14',
-                    postal_code='postal_code0',
-                    additional_properties={
-                        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                    }
-                ),
-                additional_properties={
-                    'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                }
-            ),
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
+                    postal_code='postal_code0'
+                )
+            )
         ),
         token=VaultTokenRequest(
             id='id6',
-            mtype=VaultTokenRequestType.SETUP_TOKEN,
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
-        ),
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+            mtype=VaultTokenRequestType.SETUP_TOKEN
+        )
     ),
     customer=Customer(
         id='id0',
-        merchant_customer_id='merchant_customer_id2',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
-    ),
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+        merchant_customer_id='merchant_customer_id2'
+    )
 )
 ```
 

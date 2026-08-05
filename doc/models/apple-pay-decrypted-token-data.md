@@ -3,8 +3,6 @@
 
 Information about the Payment data obtained by decrypting Apple Pay token.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `ApplePayDecryptedTokenData`
@@ -18,20 +16,17 @@ Information about the Payment data obtained by decrypting Apple Pay token.
 | `device_manufacturer_id` | `str` | Optional | Apple Pay Hex-encoded device manufacturer identifier. The pattern is defined by an external party and supports Unicode.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `2000`, *Pattern*: `^.*$` |
 | `payment_data_type` | [`ApplePayPaymentDataType`](../../doc/models/apple-pay-payment-data-type.md) | Optional | Indicates the type of payment data passed, in case of Non China the payment data is 3DSECURE and for China it is EMV.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `16`, *Pattern*: `^[0-9A-Z_]+$` |
 | `payment_data` | [`ApplePayPaymentData`](../../doc/models/apple-pay-payment-data.md) | Optional | Information about the decrypted apple pay payment data for the token like cryptogram, eci indicator. |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.apple_pay_decrypted_token_data import ApplePayDecryptedTokenData
-from paypal.models.apple_pay_payment_data import ApplePayPaymentData
-from paypal.models.apple_pay_payment_data_type import ApplePayPaymentDataType
-from paypal.models.apple_pay_tokenized_card import ApplePayTokenizedCard
-from paypal.models.card_brand import CardBrand
-from paypal.models.card_type import CardType
-from paypal.models.money import Money
+from paypalserversdk.models.apple_pay_decrypted_token_data import ApplePayDecryptedTokenData
+from paypalserversdk.models.apple_pay_payment_data import ApplePayPaymentData
+from paypalserversdk.models.apple_pay_payment_data_type import ApplePayPaymentDataType
+from paypalserversdk.models.apple_pay_tokenized_card import ApplePayTokenizedCard
+from paypalserversdk.models.card_brand import CardBrand
+from paypalserversdk.models.card_type import CardType
+from paypalserversdk.models.money import Money
 
 apple_pay_decrypted_token_data = ApplePayDecryptedTokenData(
     tokenized_card=ApplePayTokenizedCard(
@@ -39,17 +34,11 @@ apple_pay_decrypted_token_data = ApplePayDecryptedTokenData(
         number='number2',
         expiry='expiry2',
         card_type=CardBrand.VISA,
-        mtype=CardType.UNKNOWN,
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+        mtype=CardType.UNKNOWN
     ),
     transaction_amount=Money(
         currency_code='currency_code6',
-        value='value2',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+        value='value2'
     ),
     device_manufacturer_id='device_manufacturer_id4',
     payment_data_type=ApplePayPaymentDataType.ENUM_3DSECURE,
@@ -57,14 +46,8 @@ apple_pay_decrypted_token_data = ApplePayDecryptedTokenData(
         cryptogram='cryptogram6',
         eci_indicator='eci_indicator0',
         emv_data='emv_data0',
-        pin='pin4',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
-    ),
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+        pin='pin4'
+    )
 )
 ```
 

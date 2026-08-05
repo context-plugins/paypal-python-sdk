@@ -3,8 +3,6 @@
 
 The response to a request to update the quantity of the product or service in a subscription. You can also use this method to switch the plan and update the `shipping_amount` and `shipping_address` values for the subscription. This type of update requires the buyer's consent.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `ModifySubscriptionResponse`
@@ -20,54 +18,42 @@ The response to a request to update the quantity of the product or service in a 
 | `plan` | [`PlanOverride`](../../doc/models/plan-override.md) | Optional | An inline plan object to customise the subscription. You can override plan level default attributes by providing customised values for the subscription in this object. |
 | `plan_overridden` | `bool` | Optional, Read-only | Indicates whether the subscription has overridden any plan attributes. |
 | `links` | [`List[LinkDescription]`](../../doc/models/link-description.md) | Optional, Read-only | An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links). |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.billing_cycle_override import BillingCycleOverride
-from paypal.models.fulfillment_type import FulfillmentType
-from paypal.models.modify_subscription_response import ModifySubscriptionResponse
-from paypal.models.money import Money
-from paypal.models.payment_preferences_override import PaymentPreferencesOverride
-from paypal.models.phone_number_with_country_code import PhoneNumberWithCountryCode
-from paypal.models.plan_override import PlanOverride
-from paypal.models.pricing_tier import PricingTier
-from paypal.models.setup_fee_failure_action import SetupFeeFailureAction
-from paypal.models.shipping_details import ShippingDetails
-from paypal.models.shipping_name import ShippingName
-from paypal.models.shipping_option import ShippingOption
-from paypal.models.shipping_type import ShippingType
-from paypal.models.subscription_pricing_model import SubscriptionPricingModel
-from paypal.models.subscription_pricing_scheme import SubscriptionPricingScheme
-from paypal.models.taxes_override import TaxesOverride
+from paypalserversdk.models.billing_cycle_override import BillingCycleOverride
+from paypalserversdk.models.fulfillment_type import FulfillmentType
+from paypalserversdk.models.modify_subscription_response import ModifySubscriptionResponse
+from paypalserversdk.models.money import Money
+from paypalserversdk.models.payment_preferences_override import PaymentPreferencesOverride
+from paypalserversdk.models.phone_number_with_country_code import PhoneNumberWithCountryCode
+from paypalserversdk.models.plan_override import PlanOverride
+from paypalserversdk.models.pricing_tier import PricingTier
+from paypalserversdk.models.setup_fee_failure_action import SetupFeeFailureAction
+from paypalserversdk.models.shipping_details import ShippingDetails
+from paypalserversdk.models.shipping_name import ShippingName
+from paypalserversdk.models.shipping_option import ShippingOption
+from paypalserversdk.models.shipping_type import ShippingType
+from paypalserversdk.models.subscription_pricing_model import SubscriptionPricingModel
+from paypalserversdk.models.subscription_pricing_scheme import SubscriptionPricingScheme
+from paypalserversdk.models.taxes_override import TaxesOverride
 
 modify_subscription_response = ModifySubscriptionResponse(
     plan_id='plan_id8',
     quantity='quantity2',
     shipping_amount=Money(
         currency_code='currency_code0',
-        value='value6',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+        value='value6'
     ),
     shipping_address=ShippingDetails(
         name=ShippingName(
-            full_name='full_name6',
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
+            full_name='full_name6'
         ),
         email_address='email_address8',
         phone_number=PhoneNumberWithCountryCode(
             country_code='country_code2',
-            national_number='national_number6',
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
+            national_number='national_number6'
         ),
         mtype=FulfillmentType.PICKUP_IN_STORE,
         options=[
@@ -78,19 +64,10 @@ modify_subscription_response = ModifySubscriptionResponse(
                 mtype=ShippingType.SHIPPING,
                 amount=Money(
                     currency_code='currency_code6',
-                    value='value0',
-                    additional_properties={
-                        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                    }
-                ),
-                additional_properties={
-                    'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                }
+                    value='value0'
+                )
             )
-        ],
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+        ]
     ),
     plan=PlanOverride(
         billing_cycles=[
@@ -100,10 +77,7 @@ modify_subscription_response = ModifySubscriptionResponse(
                     version=10,
                     fixed_price=Money(
                         currency_code='currency_code4',
-                        value='value0',
-                        additional_properties={
-                            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                        }
+                        value='value0'
                     ),
                     pricing_model=SubscriptionPricingModel.VOLUME,
                     tiers=[
@@ -111,54 +85,30 @@ modify_subscription_response = ModifySubscriptionResponse(
                             starting_quantity='starting_quantity8',
                             amount=Money(
                                 currency_code='currency_code6',
-                                value='value0',
-                                additional_properties={
-                                    'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                                }
+                                value='value0'
                             ),
-                            ending_quantity='ending_quantity6',
-                            additional_properties={
-                                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                            }
+                            ending_quantity='ending_quantity6'
                         ),
                         PricingTier(
                             starting_quantity='starting_quantity8',
                             amount=Money(
                                 currency_code='currency_code6',
-                                value='value0',
-                                additional_properties={
-                                    'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                                }
+                                value='value0'
                             ),
-                            ending_quantity='ending_quantity6',
-                            additional_properties={
-                                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                            }
+                            ending_quantity='ending_quantity6'
                         ),
                         PricingTier(
                             starting_quantity='starting_quantity8',
                             amount=Money(
                                 currency_code='currency_code6',
-                                value='value0',
-                                additional_properties={
-                                    'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                                }
+                                value='value0'
                             ),
-                            ending_quantity='ending_quantity6',
-                            additional_properties={
-                                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                            }
+                            ending_quantity='ending_quantity6'
                         )
                     ],
-                    create_time='create_time4',
-                    additional_properties={
-                        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                    }
+                    create_time='create_time4'
                 ),
-                total_cycles=198,
-                additional_properties={
-                    'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                }
+                total_cycles=198
             ),
             BillingCycleOverride(
                 sequence=8,
@@ -166,10 +116,7 @@ modify_subscription_response = ModifySubscriptionResponse(
                     version=10,
                     fixed_price=Money(
                         currency_code='currency_code4',
-                        value='value0',
-                        additional_properties={
-                            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                        }
+                        value='value0'
                     ),
                     pricing_model=SubscriptionPricingModel.VOLUME,
                     tiers=[
@@ -177,85 +124,46 @@ modify_subscription_response = ModifySubscriptionResponse(
                             starting_quantity='starting_quantity8',
                             amount=Money(
                                 currency_code='currency_code6',
-                                value='value0',
-                                additional_properties={
-                                    'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                                }
+                                value='value0'
                             ),
-                            ending_quantity='ending_quantity6',
-                            additional_properties={
-                                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                            }
+                            ending_quantity='ending_quantity6'
                         ),
                         PricingTier(
                             starting_quantity='starting_quantity8',
                             amount=Money(
                                 currency_code='currency_code6',
-                                value='value0',
-                                additional_properties={
-                                    'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                                }
+                                value='value0'
                             ),
-                            ending_quantity='ending_quantity6',
-                            additional_properties={
-                                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                            }
+                            ending_quantity='ending_quantity6'
                         ),
                         PricingTier(
                             starting_quantity='starting_quantity8',
                             amount=Money(
                                 currency_code='currency_code6',
-                                value='value0',
-                                additional_properties={
-                                    'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                                }
+                                value='value0'
                             ),
-                            ending_quantity='ending_quantity6',
-                            additional_properties={
-                                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                            }
+                            ending_quantity='ending_quantity6'
                         )
                     ],
-                    create_time='create_time4',
-                    additional_properties={
-                        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                    }
+                    create_time='create_time4'
                 ),
-                total_cycles=198,
-                additional_properties={
-                    'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                }
+                total_cycles=198
             )
         ],
         payment_preferences=PaymentPreferencesOverride(
             auto_bill_outstanding=False,
             setup_fee=Money(
                 currency_code='currency_code8',
-                value='value4',
-                additional_properties={
-                    'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                }
+                value='value4'
             ),
             setup_fee_failure_action=SetupFeeFailureAction.CONTINUE,
-            payment_failure_threshold=104,
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
+            payment_failure_threshold=104
         ),
         taxes=TaxesOverride(
             percentage='percentage8',
-            inclusive=False,
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
-        ),
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
-    ),
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+            inclusive=False
+        )
+    )
 )
 ```
 

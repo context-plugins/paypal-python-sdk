@@ -17,7 +17,7 @@ The action to take on the subscription if the initial payment for the setup fail
 ## Example
 
 ```python
-from paypal.models.setup_fee_failure_action import SetupFeeFailureAction
+from paypalserversdk.models.setup_fee_failure_action import SetupFeeFailureAction
 
 setup_fee_failure_action = SetupFeeFailureAction.CONTINUE
 ```

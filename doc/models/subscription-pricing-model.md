@@ -17,7 +17,7 @@ The pricing model for tiered plan. The `tiers` parameter is required.
 ## Example
 
 ```python
-from paypal.models.subscription_pricing_model import SubscriptionPricingModel
+from paypalserversdk.models.subscription_pricing_model import SubscriptionPricingModel
 
 subscription_pricing_model = SubscriptionPricingModel.VOLUME
 ```

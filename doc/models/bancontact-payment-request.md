@@ -3,8 +3,6 @@
 
 Information needed to pay using Bancontact.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `BancontactPaymentRequest`
@@ -16,16 +14,13 @@ Information needed to pay using Bancontact.
 | `name` | `str` | Required | The full name representation like Mr J Smith.<br><br>**Constraints**: *Minimum Length*: `3`, *Maximum Length*: `300` |
 | `country_code` | `str` | Required | The [two-character ISO 3166-1 code](https://developer.paypal.com/api/rest/reference/country-codes/) that identifies the country or region. Note: The country code for Great Britain is GB and not UK as used in the top-level domain names for that country. Use the `C2` country code for China worldwide for comparable uncontrolled price (CUP) method, bank card, and cross-border transactions.<br><br>**Constraints**: *Minimum Length*: `2`, *Maximum Length*: `2`, *Pattern*: `^([A-Z]{2}\|C2)$` |
 | `experience_context` | [`ExperienceContext`](../../doc/models/experience-context.md) | Optional | Customizes the payer experience during the approval process for the payment. |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.application_context_shipping_preference import ApplicationContextShippingPreference
-from paypal.models.bancontact_payment_request import BancontactPaymentRequest
-from paypal.models.experience_context import ExperienceContext
+from paypalserversdk.models.bancontact_payment_request import BancontactPaymentRequest
+from paypalserversdk.models.experience_context import ExperienceContext
+from paypalserversdk.models.experience_context_shipping_preference import ExperienceContextShippingPreference
 
 bancontact_payment_request = BancontactPaymentRequest(
     name='name6',
@@ -33,16 +28,10 @@ bancontact_payment_request = BancontactPaymentRequest(
     experience_context=ExperienceContext(
         brand_name='brand_name2',
         locale='locale6',
-        shipping_preference=ApplicationContextShippingPreference.NO_SHIPPING,
+        shipping_preference=ExperienceContextShippingPreference.NO_SHIPPING,
         return_url='return_url4',
-        cancel_url='cancel_url6',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
-    ),
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+        cancel_url='cancel_url6'
+    )
 )
 ```
 

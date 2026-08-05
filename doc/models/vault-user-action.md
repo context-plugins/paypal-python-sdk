@@ -3,8 +3,6 @@
 
 User Action on action to be performed after a successful payer approval.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `VaultUserAction`
@@ -19,7 +17,7 @@ User Action on action to be performed after a successful payer approval.
 ## Example
 
 ```python
-from paypal.models.vault_user_action import VaultUserAction
+from paypalserversdk.models.vault_user_action import VaultUserAction
 
 vault_user_action = VaultUserAction.SETUP_NOW
 ```

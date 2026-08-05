@@ -3,8 +3,6 @@
 
 The usage type associated with the Venmo payment token.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `VenmoPaymentTokenUsageType`
@@ -19,7 +17,7 @@ The usage type associated with the Venmo payment token.
 ## Example
 
 ```python
-from paypal.models.venmo_payment_token_usage_type import VenmoPaymentTokenUsageType
+from paypalserversdk.models.venmo_payment_token_usage_type import VenmoPaymentTokenUsageType
 
 venmo_payment_token_usage_type = VenmoPaymentTokenUsageType.MERCHANT
 ```

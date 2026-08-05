@@ -3,8 +3,6 @@
 
 The card network or brand. Applies to credit, debit, gift, and payment cards.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `CardBrand`
@@ -47,7 +45,7 @@ The card network or brand. Applies to credit, debit, gift, and payment cards.
 ## Example
 
 ```python
-from paypal.models.card_brand import CardBrand
+from paypalserversdk.models.card_brand import CardBrand
 
 card_brand = CardBrand.STAR
 ```

@@ -3,8 +3,6 @@
 
 The payment card to use to fund a payment. Card can be a credit or debit card.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `CardResponse`
@@ -24,16 +22,13 @@ The payment card to use to fund a payment. Card can be a credit or debit card.
 | `expiry` | `str` | Optional | The year and month, in ISO-8601 `YYYY-MM` date format. See [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).<br><br>**Constraints**: *Minimum Length*: `7`, *Maximum Length*: `7`, *Pattern*: `^[0-9]{4}-(0[1-9]\|1[0-2])$` |
 | `bin_details` | [`BinDetails`](../../doc/models/bin-details.md) | Optional | Bank Identification Number (BIN) details used to fund a payment. |
 | `stored_credential` | [`CardStoredCredential`](../../doc/models/card-stored-credential.md) | Optional | Provides additional details to process a payment using a `card` that has been stored or is intended to be stored (also referred to as stored_credential or card-on-file). Parameter compatibility: `payment_type=ONE_TIME` is compatible only with `payment_initiator=CUSTOMER`. `usage=FIRST` is compatible only with `payment_initiator=CUSTOMER`. `previous_transaction_reference` or `previous_network_transaction_reference` is compatible only with `payment_initiator=MERCHANT`. Only one of the parameters - `previous_transaction_reference` and `previous_network_transaction_reference` - can be present in the request. |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.card_brand import CardBrand
-from paypal.models.card_response import CardResponse
-from paypal.models.card_type import CardType
+from paypalserversdk.models.card_brand import CardBrand
+from paypalserversdk.models.card_response import CardResponse
+from paypalserversdk.models.card_type import CardType
 
 card_response = CardResponse(
     name='name6',
@@ -43,10 +38,7 @@ card_response = CardResponse(
         CardBrand.GE,
         CardBrand.RUPAY
     ],
-    mtype=CardType.UNKNOWN,
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+    mtype=CardType.UNKNOWN
 )
 ```
 

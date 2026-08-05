@@ -3,8 +3,6 @@
 
 DEPRECATED. DEPRECATED. The type of landing page to show on the PayPal site for customer checkout.  The fields in `application_context` are now available in the `experience_context` object under the `payment_source` which supports them (eg. `payment_source.paypal.experience_context.landing_page`). Please specify this field in the `experience_context` object instead of the `application_context` object.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `OrderApplicationContextLandingPage`
@@ -20,7 +18,7 @@ DEPRECATED. DEPRECATED. The type of landing page to show on the PayPal site for 
 ## Example
 
 ```python
-from paypal.models.order_application_context_landing_page import OrderApplicationContextLandingPage
+from paypalserversdk.models.order_application_context_landing_page import OrderApplicationContextLandingPage
 
 order_application_context_landing_page = OrderApplicationContextLandingPage.LOGIN
 ```

@@ -3,8 +3,6 @@
 
 The authorized payment transaction.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `PaymentAuthorization`
@@ -27,39 +25,27 @@ The authorized payment transaction.
 | `update_time` | `str` | Optional | The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while fractional seconds are optional. Note: The regular expression provides guidance but does not reject all invalid dates.<br><br>**Constraints**: *Minimum Length*: `20`, *Maximum Length*: `64`, *Pattern*: `^[0-9]{4}-(0[1-9]\|1[0-2])-(0[1-9]\|[1-2][0-9]\|3[0-1])[T,t]([0-1][0-9]\|2[0-3]):[0-5][0-9]:([0-5][0-9]\|60)([.][0-9]+)?([Zz]\|[+-][0-9]{2}:[0-9]{2})$` |
 | `supplementary_data` | [`PaymentSupplementaryData`](../../doc/models/payment-supplementary-data.md) | Optional | The supplementary data. |
 | `payee` | [`PayeeBase`](../../doc/models/payee-base.md) | Optional | The details for the merchant who receives the funds and fulfills the order. The merchant is also known as the payee. |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.authorization_incomplete_reason import AuthorizationIncompleteReason
-from paypal.models.authorization_status import AuthorizationStatus
-from paypal.models.authorization_status_details import AuthorizationStatusDetails
-from paypal.models.money import Money
-from paypal.models.payment_authorization import PaymentAuthorization
+from paypalserversdk.models.authorization_incomplete_reason import AuthorizationIncompleteReason
+from paypalserversdk.models.authorization_status import AuthorizationStatus
+from paypalserversdk.models.authorization_status_details import AuthorizationStatusDetails
+from paypalserversdk.models.money import Money
+from paypalserversdk.models.payment_authorization import PaymentAuthorization
 
 payment_authorization = PaymentAuthorization(
     status=AuthorizationStatus.CREATED,
     status_details=AuthorizationStatusDetails(
-        reason=AuthorizationIncompleteReason.PENDING_REVIEW,
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+        reason=AuthorizationIncompleteReason.PENDING_REVIEW
     ),
     id='id6',
     amount=Money(
         currency_code='currency_code6',
-        value='value0',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+        value='value0'
     ),
-    invoice_id='invoice_id6',
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+    invoice_id='invoice_id6'
 )
 ```
 

@@ -3,8 +3,6 @@
 
 Vault Instruction on action to be performed after a successful payer approval.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `VaultInstructionAction`
@@ -19,7 +17,7 @@ Vault Instruction on action to be performed after a successful payer approval.
 ## Example
 
 ```python
-from paypal.models.vault_instruction_action import VaultInstructionAction
+from paypalserversdk.models.vault_instruction_action import VaultInstructionAction
 
 vault_instruction_action = VaultInstructionAction.ON_CREATE_PAYMENT_TOKENS
 ```

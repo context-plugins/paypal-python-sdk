@@ -3,8 +3,6 @@
 
 The Third Party Network token used to fund a payment.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `NetworkToken`
@@ -18,25 +16,19 @@ The Third Party Network token used to fund a payment.
 | `cryptogram` | `str` | Optional | An Encrypted one-time use value that's sent along with Network Token. This field is not required to be present for recurring transactions.<br><br>**Constraints**: *Minimum Length*: `28`, *Maximum Length*: `32`, *Pattern*: `^.*$` |
 | `eci_flag` | [`EciFlag`](../../doc/models/eci-flag.md) | Optional | Electronic Commerce Indicator (ECI). The ECI value is part of the 2 data elements that indicate the transaction was processed electronically. This should be passed on the authorization transaction to the Gateway/Processor.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[0-9A-Z_]+$` |
 | `token_requestor_id` | `str` | Optional | A TRID, or a Token Requestor ID, is an identifier used by merchants to request network tokens from card networks. A TRID is a precursor to obtaining a network token for a credit card primary account number (PAN), and will aid in enabling secure card on file (COF) payments and reducing fraud.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `11`, *Pattern*: `^[0-9A-Z_]+$` |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.eci_flag import EciFlag
-from paypal.models.network_token import NetworkToken
+from paypalserversdk.models.eci_flag import EciFlag
+from paypalserversdk.models.network_token import NetworkToken
 
 network_token = NetworkToken(
     number='number0',
     expiry='expiry0',
     cryptogram='cryptogram2',
     eci_flag=EciFlag.MASTERCARD_NON_3D_SECURE_TRANSACTION,
-    token_requestor_id='token_requestor_id8',
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+    token_requestor_id='token_requestor_id8'
 )
 ```
 

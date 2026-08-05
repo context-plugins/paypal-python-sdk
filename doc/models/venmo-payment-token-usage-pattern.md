@@ -3,8 +3,6 @@
 
 Expected business/pricing model for the billing agreement.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `VenmoPaymentTokenUsagePattern`
@@ -23,7 +21,7 @@ Expected business/pricing model for the billing agreement.
 ## Example
 
 ```python
-from paypal.models.venmo_payment_token_usage_pattern import VenmoPaymentTokenUsagePattern
+from paypalserversdk.models.venmo_payment_token_usage_pattern import VenmoPaymentTokenUsagePattern
 
 venmo_payment_token_usage_pattern = VenmoPaymentTokenUsagePattern.THRESHOLD_PREPAID
 ```

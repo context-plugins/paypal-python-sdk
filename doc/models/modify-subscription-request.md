@@ -3,8 +3,6 @@
 
 The request to update the quantity of the product or service in a subscription. You can also use this method to switch the plan and update the `shipping_amount` and `shipping_address` values for the subscription. This type of update requires the buyer's consent.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `ModifySubscriptionRequest`
@@ -19,50 +17,38 @@ The request to update the quantity of the product or service in a subscription. 
 | `shipping_address` | [`ShippingDetails`](../../doc/models/shipping-details.md) | Optional | The shipping details. |
 | `application_context` | [`SubscriptionPatchApplicationContext`](../../doc/models/subscription-patch-application-context.md) | Optional | The application context, which customizes the payer experience during the subscription approval process with PayPal. |
 | `plan` | [`PlanOverride`](../../doc/models/plan-override.md) | Optional | An inline plan object to customise the subscription. You can override plan level default attributes by providing customised values for the subscription in this object. |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.application_context_shipping_preference import ApplicationContextShippingPreference
-from paypal.models.fulfillment_type import FulfillmentType
-from paypal.models.modify_subscription_request import ModifySubscriptionRequest
-from paypal.models.money import Money
-from paypal.models.payee_payment_method_preference import PayeePaymentMethodPreference
-from paypal.models.payment_method import PaymentMethod
-from paypal.models.phone_number_with_country_code import PhoneNumberWithCountryCode
-from paypal.models.shipping_details import ShippingDetails
-from paypal.models.shipping_name import ShippingName
-from paypal.models.shipping_option import ShippingOption
-from paypal.models.shipping_type import ShippingType
-from paypal.models.subscription_patch_application_context import SubscriptionPatchApplicationContext
+from paypalserversdk.models.experience_context_shipping_preference import ExperienceContextShippingPreference
+from paypalserversdk.models.fulfillment_type import FulfillmentType
+from paypalserversdk.models.modify_subscription_request import ModifySubscriptionRequest
+from paypalserversdk.models.money import Money
+from paypalserversdk.models.payee_payment_method_preference import PayeePaymentMethodPreference
+from paypalserversdk.models.payment_method import PaymentMethod
+from paypalserversdk.models.phone_number_with_country_code import PhoneNumberWithCountryCode
+from paypalserversdk.models.shipping_details import ShippingDetails
+from paypalserversdk.models.shipping_name import ShippingName
+from paypalserversdk.models.shipping_option import ShippingOption
+from paypalserversdk.models.shipping_type import ShippingType
+from paypalserversdk.models.subscription_patch_application_context import SubscriptionPatchApplicationContext
 
 modify_subscription_request = ModifySubscriptionRequest(
     plan_id='plan_id8',
     quantity='quantity2',
     shipping_amount=Money(
         currency_code='currency_code0',
-        value='value6',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+        value='value6'
     ),
     shipping_address=ShippingDetails(
         name=ShippingName(
-            full_name='full_name6',
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
+            full_name='full_name6'
         ),
         email_address='email_address8',
         phone_number=PhoneNumberWithCountryCode(
             country_code='country_code2',
-            national_number='national_number6',
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
+            national_number='national_number6'
         ),
         mtype=FulfillmentType.PICKUP_IN_STORE,
         options=[
@@ -73,39 +59,21 @@ modify_subscription_request = ModifySubscriptionRequest(
                 mtype=ShippingType.SHIPPING,
                 amount=Money(
                     currency_code='currency_code6',
-                    value='value0',
-                    additional_properties={
-                        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                    }
-                ),
-                additional_properties={
-                    'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                }
+                    value='value0'
+                )
             )
-        ],
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+        ]
     ),
     application_context=SubscriptionPatchApplicationContext(
         return_url='return_url0',
         cancel_url='cancel_url2',
         brand_name='brand_name8',
         locale='locale2',
-        shipping_preference=ApplicationContextShippingPreference.SET_PROVIDED_ADDRESS,
+        shipping_preference=ExperienceContextShippingPreference.SET_PROVIDED_ADDRESS,
         payment_method=PaymentMethod(
-            payee_preferred=PayeePaymentMethodPreference.UNRESTRICTED,
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
-        ),
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
-    ),
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+            payee_preferred=PayeePaymentMethodPreference.UNRESTRICTED
+        )
+    )
 )
 ```
 

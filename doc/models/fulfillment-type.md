@@ -19,7 +19,7 @@ A classification for the method of purchase fulfillment (e.g shipping, in-store 
 ## Example
 
 ```python
-from paypal.models.fulfillment_type import FulfillmentType
+from paypalserversdk.models.fulfillment_type import FulfillmentType
 
 fulfillment_type = FulfillmentType.SHIPPING
 ```

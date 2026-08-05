@@ -3,8 +3,6 @@
 
 The payment card used to fund a Google Pay payment. Can be a credit or debit card.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `GooglePayRequestCard`
@@ -17,17 +15,14 @@ The payment card used to fund a Google Pay payment. Can be a credit or debit car
 | `mtype` | [`CardType`](../../doc/models/card-type.md) | Optional | Type of card. i.e Credit, Debit and so on.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[A-Z_]+$` |
 | `brand` | [`CardBrand`](../../doc/models/card-brand.md) | Optional | The card network or brand. Applies to credit, debit, gift, and payment cards.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[A-Z_]+$` |
 | `billing_address` | [`Address`](../../doc/models/address.md) | Optional | The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute). |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.address import Address
-from paypal.models.card_brand import CardBrand
-from paypal.models.card_type import CardType
-from paypal.models.google_pay_request_card import GooglePayRequestCard
+from paypalserversdk.models.address import Address
+from paypalserversdk.models.card_brand import CardBrand
+from paypalserversdk.models.card_type import CardType
+from paypalserversdk.models.google_pay_request_card import GooglePayRequestCard
 
 google_pay_request_card = GooglePayRequestCard(
     name='name6',
@@ -39,14 +34,8 @@ google_pay_request_card = GooglePayRequestCard(
         address_line_2='address_line_28',
         admin_area_2='admin_area_28',
         admin_area_1='admin_area_14',
-        postal_code='postal_code0',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
-    ),
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+        postal_code='postal_code0'
+    )
 )
 ```
 

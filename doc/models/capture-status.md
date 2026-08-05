@@ -21,7 +21,7 @@ The status of the captured payment.
 ## Example
 
 ```python
-from paypal.models.capture_status import CaptureStatus
+from paypalserversdk.models.capture_status import CaptureStatus
 
 capture_status = CaptureStatus.COMPLETED
 ```

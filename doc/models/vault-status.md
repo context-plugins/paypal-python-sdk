@@ -3,8 +3,6 @@
 
 The vault status.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `VaultStatus`
@@ -20,7 +18,7 @@ The vault status.
 ## Example
 
 ```python
-from paypal.models.vault_status import VaultStatus
+from paypalserversdk.models.vault_status import VaultStatus
 
 vault_status = VaultStatus.APPROVED
 ```

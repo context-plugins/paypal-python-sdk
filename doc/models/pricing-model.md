@@ -3,8 +3,6 @@
 
 The pricing model for the billing cycle.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `PricingModel`
@@ -20,7 +18,7 @@ The pricing model for the billing cycle.
 ## Example
 
 ```python
-from paypal.models.pricing_model import PricingModel
+from paypalserversdk.models.pricing_model import PricingModel
 
 pricing_model = PricingModel.AUTO_RELOAD
 ```

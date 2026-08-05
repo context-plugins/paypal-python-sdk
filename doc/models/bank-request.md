@@ -3,8 +3,6 @@
 
 A Resource representing a request to vault a Bank used for ACH Debit.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `BankRequest`
@@ -15,16 +13,15 @@ A Resource representing a request to vault a Bank used for ACH Debit.
 |  --- | --- | --- | --- |
 | `ach_debit` | `Any` | Optional | A Resource representing a request to vault a ACH Debit. |
 | `sepa_debit` | [`SepaDebitRequest`](../../doc/models/sepa-debit-request.md) | Optional | An API resource denoting a request to securely store a SEPA Debit. |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
 import jsonpickle
 
-from paypal.models.bank_request import BankRequest
-from paypal.models.sepa_debit_experience_context import SepaDebitExperienceContext
-from paypal.models.sepa_debit_request import SepaDebitRequest
+from paypalserversdk.models.bank_request import BankRequest
+from paypalserversdk.models.sepa_debit_experience_context import SepaDebitExperienceContext
+from paypalserversdk.models.sepa_debit_request import SepaDebitRequest
 
 bank_request = BankRequest(
     ach_debit=jsonpickle.decode('{"key1":"val1","key2":"val2"}'),
@@ -32,18 +29,9 @@ bank_request = BankRequest(
         experience_context=SepaDebitExperienceContext(
             return_url='return_url4',
             cancel_url='cancel_url6',
-            locale='locale6',
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
-        ),
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
-    ),
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+            locale='locale6'
+        )
+    )
 )
 ```
 

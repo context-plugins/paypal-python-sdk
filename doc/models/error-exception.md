@@ -3,8 +3,6 @@
 
 The error details.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `ErrorException`
@@ -18,7 +16,6 @@ The error details.
 | `debug_id` | `str` | Required | The PayPal internal ID. Used for correlation purposes. |
 | `details` | [`List[ErrorDetails]`](../../doc/models/error-details.md) | Optional | An array of additional details about the error. |
 | `links` | [`List[LinkDescription]`](../../doc/models/link-description.md) | Optional, Read-only | An array of request-related [HATEOAS links](https://developer.paypal.com/api/rest/responses/#hateoas-links). |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 

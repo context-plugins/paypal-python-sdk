@@ -3,8 +3,6 @@
 
 CallBack event.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `CallbackEvents`
@@ -19,7 +17,7 @@ CallBack event.
 ## Example
 
 ```python
-from paypal.models.callback_events import CallbackEvents
+from paypalserversdk.models.callback_events import CallbackEvents
 
 callback_events = CallbackEvents.SHIPPING_ADDRESS
 ```

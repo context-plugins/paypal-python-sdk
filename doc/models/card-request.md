@@ -3,8 +3,6 @@
 
 The payment card to use to fund a payment. Can be a credit or debit card. Note: Passing card number, cvv and expiry directly via the API requires PCI SAQ D compliance. *PayPal offers a mechanism by which you do not have to take on the PCI SAQ D burden by using hosted fields - refer to this Integration Guide*.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `CardRequest`
@@ -24,15 +22,12 @@ The payment card to use to fund a payment. Can be a credit or debit card. Note: 
 | `stored_credential` | [`CardStoredCredential`](../../doc/models/card-stored-credential.md) | Optional | Provides additional details to process a payment using a `card` that has been stored or is intended to be stored (also referred to as stored_credential or card-on-file). Parameter compatibility: `payment_type=ONE_TIME` is compatible only with `payment_initiator=CUSTOMER`. `usage=FIRST` is compatible only with `payment_initiator=CUSTOMER`. `previous_transaction_reference` or `previous_network_transaction_reference` is compatible only with `payment_initiator=MERCHANT`. Only one of the parameters - `previous_transaction_reference` and `previous_network_transaction_reference` - can be present in the request. |
 | `network_token` | [`NetworkToken`](../../doc/models/network-token.md) | Optional | The Third Party Network token used to fund a payment. |
 | `experience_context` | [`CardExperienceContext`](../../doc/models/card-experience-context.md) | Optional | Customizes the payer experience during the 3DS Approval for payment. |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.address import Address
-from paypal.models.card_request import CardRequest
+from paypalserversdk.models.address import Address
+from paypalserversdk.models.card_request import CardRequest
 
 card_request = CardRequest(
     name='name4',
@@ -45,14 +40,8 @@ card_request = CardRequest(
         address_line_2='address_line_28',
         admin_area_2='admin_area_28',
         admin_area_1='admin_area_14',
-        postal_code='postal_code0',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
-    ),
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+        postal_code='postal_code0'
+    )
 )
 ```
 

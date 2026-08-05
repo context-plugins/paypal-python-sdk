@@ -3,8 +3,6 @@
 
 The instruction to process an order.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `ProcessingInstruction`
@@ -18,7 +16,7 @@ The instruction to process an order.
 ## Example
 
 ```python
-from paypal.models.processing_instruction import ProcessingInstruction
+from paypalserversdk.models.processing_instruction import ProcessingInstruction
 
 processing_instruction = ProcessingInstruction.ORDER_COMPLETE_ON_PAYMENT_APPROVAL
 ```

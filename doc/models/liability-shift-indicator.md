@@ -3,8 +3,6 @@
 
 Liability shift indicator. The outcome of the issuer's authentication.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `LiabilityShiftIndicator`
@@ -20,7 +18,7 @@ Liability shift indicator. The outcome of the issuer's authentication.
 ## Example
 
 ```python
-from paypal.models.liability_shift_indicator import LiabilityShiftIndicator
+from paypalserversdk.models.liability_shift_indicator import LiabilityShiftIndicator
 
 liability_shift_indicator = LiabilityShiftIndicator.POSSIBLE
 ```

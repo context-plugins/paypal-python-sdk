@@ -20,7 +20,7 @@ Type of card. i.e Credit, Debit and so on.
 ## Example
 
 ```python
-from paypal.models.card_type import CardType
+from paypalserversdk.models.card_type import CardType
 
 card_type = CardType.UNKNOWN
 ```

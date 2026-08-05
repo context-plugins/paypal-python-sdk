@@ -3,8 +3,6 @@
 
 A Resource representing a request to vault a Card.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `PaymentTokenRequestCard`
@@ -19,25 +17,19 @@ A Resource representing a request to vault a Card.
 | `security_code` | `str` | Optional | The three- or four-digit security code of the card. Also known as the CVV, CVC, CVN, CVE, or CID. This parameter cannot be present in the request when `payment_initiator=MERCHANT`.<br><br>**Constraints**: *Minimum Length*: `3`, *Maximum Length*: `4`, *Pattern*: `^[0-9]{3,4}$` |
 | `brand` | [`CardBrand`](../../doc/models/card-brand.md) | Optional | The card network or brand. Applies to credit, debit, gift, and payment cards.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[A-Z_]+$` |
 | `billing_address` | [`Address`](../../doc/models/address.md) | Optional | The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute). |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.card_brand import CardBrand
-from paypal.models.payment_token_request_card import PaymentTokenRequestCard
+from paypalserversdk.models.card_brand import CardBrand
+from paypalserversdk.models.payment_token_request_card import PaymentTokenRequestCard
 
 payment_token_request_card = PaymentTokenRequestCard(
     name='name6',
     number='number6',
     expiry='expiry4',
     security_code='security_code8',
-    brand=CardBrand.RUPAY,
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+    brand=CardBrand.RUPAY
 )
 ```
 

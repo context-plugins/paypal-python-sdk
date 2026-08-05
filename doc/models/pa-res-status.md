@@ -3,8 +3,6 @@
 
 Transactions status result identifier. The outcome of the issuer's authentication.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `PaResStatus`
@@ -25,7 +23,7 @@ Transactions status result identifier. The outcome of the issuer's authenticatio
 ## Example
 
 ```python
-from paypal.models.pa_res_status import PaResStatus
+from paypalserversdk.models.pa_res_status import PaResStatus
 
 pa_res_status = PaResStatus.DECOUPLEDAUTHENTICATION
 ```

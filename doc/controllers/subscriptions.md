@@ -3,12 +3,12 @@
 Use the `/subscriptions` resource to create, update, retrieve, and cancel subscriptions and their associated plans.
 
 ```python
-subscriptions_api = client.subscriptions
+subscriptions_controller = client.subscriptions
 ```
 
 ## Class Name
 
-`SubscriptionsApi`
+`SubscriptionsController`
 
 ## Methods
 
@@ -30,7 +30,6 @@ subscriptions_api = client.subscriptions
 * [Capture Subscription](../../doc/controllers/subscriptions.md#capture-subscription)
 * [List Subscription Transactions](../../doc/controllers/subscriptions.md#list-subscription-transactions)
 * [Suspend Subscription 1](../../doc/controllers/subscriptions.md#suspend-subscription-1)
-* [Capture Subscription 1](../../doc/controllers/subscriptions.md#capture-subscription-1)
 
 
 # Create Billing Plan
@@ -39,9 +38,7 @@ Creates a plan that defines pricing and billing cycle details for subscriptions.
 
 ```python
 def create_billing_plan(self,
-                       prefer="return=minimal",
-                       pay_pal_request_id=None,
-                       body=None)
+                       options=dict())
 ```
 
 ## Authentication
@@ -53,7 +50,7 @@ This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `prefer` | `str` | Header, Optional | The preferred server response upon successful completion of the request. Value is: return=minimal. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the id, status and HATEOAS links. return=representation. The server returns a complete resource representation, including the current state of the resource.<br><br>**Default**: `"return=minimal"` |
-| `pay_pal_request_id` | `str` | Header, Optional | The server stores keys for 72 hours. |
+| `paypal_request_id` | `str` | Header, Optional | The server stores keys for 72 hours. |
 | `body` | [`PlanRequest`](../../doc/models/plan-request.md) | Body, Optional | - |
 
 ## Response Type
@@ -65,35 +62,32 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-prefer = 'return=minimal'
-
-body = PlanRequest(
-    product_id='product_id2',
-    name='name6',
-    billing_cycles=[
-        SubscriptionBillingCycle(
-            frequency=Frequency(
-                interval_unit=IntervalUnit.DAY,
-                interval_count=1
-            ),
-            tenure_type=TenureType.REGULAR,
-            sequence=8,
-            total_cycles=1
-        )
-    ],
-    payment_preferences=PaymentPreferences(
-        auto_bill_outstanding=True,
-        setup_fee_failure_action=SetupFeeFailureAction.CANCEL,
-        payment_failure_threshold=0
-    ),
-    status=PlanRequestStatus.ACTIVE,
-    quantity_supported=False
-)
-
-result = subscriptions_api.create_billing_plan(
-    prefer=prefer,
-    body=body
-)
+collect = {
+    'prefer': 'return=minimal',
+    'body': PlanRequest(
+        product_id='product_id2',
+        name='name6',
+        billing_cycles=[
+            SubscriptionBillingCycle(
+                frequency=Frequency(
+                    interval_unit=IntervalUnit.DAY,
+                    interval_count=1
+                ),
+                tenure_type=TenureType.REGULAR,
+                sequence=8,
+                total_cycles=1
+            )
+        ],
+        payment_preferences=PaymentPreferences(
+            auto_bill_outstanding=True,
+            setup_fee_failure_action=SetupFeeFailureAction.CANCEL,
+            payment_failure_threshold=0
+        ),
+        status=PlanRequestStatus.ACTIVE,
+        quantity_supported=False
+    )
+}
+result = subscriptions_controller.create_billing_plan(collect)
 
 if result.is_success():
     print(result.body)
@@ -119,11 +113,7 @@ Lists billing plans.
 
 ```python
 def list_billing_plans(self,
-                      prefer="return=minimal",
-                      product_id=None,
-                      page_size=10,
-                      page=1,
-                      total_required=False)
+                      options=dict())
 ```
 
 ## Authentication
@@ -149,20 +139,13 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-prefer = 'return=minimal'
-
-page_size = 10
-
-page = 1
-
-total_required = False
-
-result = subscriptions_api.list_billing_plans(
-    prefer=prefer,
-    page_size=page_size,
-    page=page,
-    total_required=total_required
-)
+collect = {
+    'prefer': 'return=minimal',
+    'page_size': 10,
+    'page': 1,
+    'total_required': False
+}
+result = subscriptions_controller.list_billing_plans(collect)
 
 if result.is_success():
     print(result.body)
@@ -212,7 +195,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = subscriptions_api.get_billing_plan(id)
+result = subscriptions_controller.get_billing_plan(id)
 
 if result.is_success():
     print(result.body)
@@ -237,8 +220,7 @@ Updates a plan with the `CREATED` or `ACTIVE` status. For an `INACTIVE` plan, yo
 
 ```python
 def patch_billing_plan(self,
-                      id,
-                      body=None)
+                      options=dict())
 ```
 
 ## Authentication
@@ -261,18 +243,15 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 ## Example Usage
 
 ```python
-id = 'id0'
-
-body = [
-    Patch(
-        op=PatchOp.ADD
-    )
-]
-
-result = subscriptions_api.patch_billing_plan(
-    id,
-    body=body
-)
+collect = {
+    'id': 'id0',
+    'body': [
+        Patch(
+            op=PatchOp.ADD
+        )
+    ]
+}
+result = subscriptions_controller.patch_billing_plan(collect)
 
 if result.is_success():
     print(result.body)
@@ -323,7 +302,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 ```python
 id = 'id0'
 
-result = subscriptions_api.activate_billing_plan(id)
+result = subscriptions_controller.activate_billing_plan(id)
 
 if result.is_success():
     print(result.body)
@@ -373,7 +352,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 ```python
 id = 'id0'
 
-result = subscriptions_api.deactivate_billing_plan(id)
+result = subscriptions_controller.deactivate_billing_plan(id)
 
 if result.is_success():
     print(result.body)
@@ -399,8 +378,7 @@ Updates pricing for a plan. For example, you can update a regular billing cycle 
 
 ```python
 def update_billing_plan_pricing_schemes(self,
-                                       id,
-                                       body=None)
+                                       options=dict())
 ```
 
 ## Authentication
@@ -423,21 +401,18 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 ## Example Usage
 
 ```python
-id = 'id0'
-
-body = UpdatePricingSchemesRequest(
-    pricing_schemes=[
-        UpdatePricingScheme(
-            billing_cycle_sequence=34,
-            pricing_scheme=SubscriptionPricingScheme()
-        )
-    ]
-)
-
-result = subscriptions_api.update_billing_plan_pricing_schemes(
-    id,
-    body=body
-)
+collect = {
+    'id': 'id0',
+    'body': UpdatePricingSchemesRequest(
+        pricing_schemes=[
+            UpdatePricingScheme(
+                billing_cycle_sequence=34,
+                pricing_scheme=SubscriptionPricingScheme()
+            )
+        ]
+    )
+}
+result = subscriptions_controller.update_billing_plan_pricing_schemes(collect)
 
 if result.is_success():
     print(result.body)
@@ -464,10 +439,7 @@ Creates a subscription.
 
 ```python
 def create_subscription(self,
-                       prefer="return=minimal",
-                       pay_pal_request_id=None,
-                       pay_pal_client_metadata_id=None,
-                       body=None)
+                       options=dict())
 ```
 
 ## Authentication
@@ -479,8 +451,8 @@ This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `prefer` | `str` | Header, Optional | The preferred server response upon successful completion of the request. Value is: return=minimal. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the id, status and HATEOAS links. return=representation. The server returns a complete resource representation, including the current state of the resource.<br><br>**Default**: `"return=minimal"` |
-| `pay_pal_request_id` | `str` | Header, Optional | The server stores keys for 72 hours. |
-| `pay_pal_client_metadata_id` | `str` | Header, Optional | The PayPal Client Metadata Id(CMID) is used to provide device-specific information to PayPal's risk engine. This is crucial for transactions that require device-specific risk assessments. Merchants typically use the Paypal SDK that automatically submits the CMID or they use tools like Fraudnet JS for web or Magnes JS for mobile to generate the CMID on the frontend and then pass it to the API as part of the request headers.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36` |
+| `paypal_request_id` | `str` | Header, Optional | The server stores keys for 72 hours. |
+| `paypal_client_metadata_id` | `str` | Header, Optional | The PayPal Client Metadata Id(CMID) is used to provide device-specific information to PayPal's risk engine. This is crucial for transactions that require device-specific risk assessments. Merchants typically use the Paypal SDK that automatically submits the CMID or they use tools like Fraudnet JS for web or Magnes JS for mobile to generate the CMID on the frontend and then pass it to the API as part of the request headers.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36` |
 | `body` | [`CreateSubscriptionRequest`](../../doc/models/create-subscription-request.md) | Body, Optional | - |
 
 ## Response Type
@@ -492,17 +464,14 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-prefer = 'return=minimal'
-
-body = CreateSubscriptionRequest(
-    plan_id='plan_id8',
-    auto_renewal=False
-)
-
-result = subscriptions_api.create_subscription(
-    prefer=prefer,
-    body=body
-)
+collect = {
+    'prefer': 'return=minimal',
+    'body': CreateSubscriptionRequest(
+        plan_id='plan_id8',
+        auto_renewal=False
+    )
+}
+result = subscriptions_controller.create_subscription(collect)
 
 if result.is_success():
     print(result.body)
@@ -528,16 +497,7 @@ List all subscriptions for merchant account.
 
 ```python
 def list_subscriptions(self,
-                      plan_ids=None,
-                      statuses=None,
-                      created_after=None,
-                      created_before=None,
-                      status_updated_before=None,
-                      status_updated_after=None,
-                      filter=None,
-                      page_size=10,
-                      page=1,
-                      customer_ids=None)
+                      options=dict())
 ```
 
 ## Authentication
@@ -568,14 +528,11 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-page_size = 10
-
-page = 1
-
-result = subscriptions_api.list_subscriptions(
-    page_size=page_size,
-    page=page
-)
+collect = {
+    'page_size': 10,
+    'page': 1
+}
+result = subscriptions_controller.list_subscriptions(collect)
 
 if result.is_success():
     print(result.body)
@@ -600,8 +557,7 @@ Shows details for a subscription, by ID.
 
 ```python
 def get_subscription(self,
-                    id,
-                    fields=None)
+                    options=dict())
 ```
 
 ## Authentication
@@ -624,9 +580,10 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-id = 'id0'
-
-result = subscriptions_api.get_subscription(id)
+collect = {
+    'id': 'id0'
+}
+result = subscriptions_controller.get_subscription(collect)
 
 if result.is_success():
     print(result.body)
@@ -651,8 +608,7 @@ Updates a subscription which could be in ACTIVE or SUSPENDED status. You can ove
 
 ```python
 def patch_subscription(self,
-                      id,
-                      body=None)
+                      options=dict())
 ```
 
 ## Authentication
@@ -675,18 +631,15 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 ## Example Usage
 
 ```python
-id = 'id0'
-
-body = [
-    Patch(
-        op=PatchOp.ADD
-    )
-]
-
-result = subscriptions_api.patch_subscription(
-    id,
-    body=body
-)
+collect = {
+    'id': 'id0',
+    'body': [
+        Patch(
+            op=PatchOp.ADD
+        )
+    ]
+}
+result = subscriptions_controller.patch_subscription(collect)
 
 if result.is_success():
     print(result.body)
@@ -713,8 +666,7 @@ Updates the quantity of the product or service in a subscription. You can also u
 
 ```python
 def revise_subscription(self,
-                       id,
-                       body=None)
+                       options=dict())
 ```
 
 ## Authentication
@@ -737,9 +689,10 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-id = 'id0'
-
-result = subscriptions_api.revise_subscription(id)
+collect = {
+    'id': 'id0'
+}
+result = subscriptions_controller.revise_subscription(collect)
 
 if result.is_success():
     print(result.body)
@@ -766,8 +719,7 @@ Suspends the subscription.
 
 ```python
 def suspend_subscription(self,
-                        id,
-                        body=None)
+                        options=dict())
 ```
 
 ## Authentication
@@ -790,9 +742,10 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 ## Example Usage
 
 ```python
-id = 'id0'
-
-result = subscriptions_api.suspend_subscription(id)
+collect = {
+    'id': 'id0'
+}
+result = subscriptions_controller.suspend_subscription(collect)
 
 if result.is_success():
     print(result.body)
@@ -819,8 +772,7 @@ Cancels the subscription.
 
 ```python
 def cancel_subscription(self,
-                       id,
-                       body=None)
+                       options=dict())
 ```
 
 ## Authentication
@@ -843,9 +795,10 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 ## Example Usage
 
 ```python
-id = 'id0'
-
-result = subscriptions_api.cancel_subscription(id)
+collect = {
+    'id': 'id0'
+}
+result = subscriptions_controller.cancel_subscription(collect)
 
 if result.is_success():
     print(result.body)
@@ -872,8 +825,7 @@ Activates the subscription.
 
 ```python
 def activate_subscription(self,
-                         id,
-                         body=None)
+                         options=dict())
 ```
 
 ## Authentication
@@ -896,9 +848,10 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 ## Example Usage
 
 ```python
-id = 'id0'
-
-result = subscriptions_api.activate_subscription(id)
+collect = {
+    'id': 'id0'
+}
+result = subscriptions_controller.activate_subscription(collect)
 
 if result.is_success():
     print(result.body)
@@ -925,9 +878,7 @@ Captures an authorized payment from the subscriber on the subscription.
 
 ```python
 def capture_subscription(self,
-                        id,
-                        pay_pal_request_id=None,
-                        body=None)
+                        options=dict())
 ```
 
 ## Authentication
@@ -939,7 +890,7 @@ This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `id` | `str` | Template, Required | The ID of the subscription. |
-| `pay_pal_request_id` | `str` | Header, Optional | The server stores keys for 72 hours. |
+| `paypal_request_id` | `str` | Header, Optional | The server stores keys for 72 hours. |
 | `body` | [`CaptureSubscriptionRequest`](../../doc/models/capture-subscription-request.md) | Body, Optional | - |
 
 ## Response Type
@@ -951,20 +902,10 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-id = 'id0'
-
-body = CaptureSubscriptionRequest(
-    note='note8',
-    amount=Money(
-        currency_code='currency_code6',
-        value='value0'
-    )
-)
-
-result = subscriptions_api.capture_subscription(
-    id,
-    body=body
-)
+collect = {
+    'id': 'id0'
+}
+result = subscriptions_controller.capture_subscription(collect)
 
 if result.is_success():
     print(result.body)
@@ -991,9 +932,7 @@ Lists transactions for a subscription.
 
 ```python
 def list_subscription_transactions(self,
-                                  id,
-                                  start_time,
-                                  end_time)
+                                  options=dict())
 ```
 
 ## Authentication
@@ -1017,17 +956,12 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-id = 'id0'
-
-start_time = 'start_time6'
-
-end_time = 'end_time2'
-
-result = subscriptions_api.list_subscription_transactions(
-    id,
-    start_time,
-    end_time
-)
+collect = {
+    'id': 'id0',
+    'start_time': 'start_time6',
+    'end_time': 'end_time2'
+}
+result = subscriptions_controller.list_subscription_transactions(collect)
 
 if result.is_success():
     print(result.body)
@@ -1053,8 +987,7 @@ Suspends the subscription.
 
 ```python
 def suspend_subscription_1(self,
-                          id,
-                          body=None)
+                          options=dict())
 ```
 
 ## Authentication
@@ -1077,64 +1010,10 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 ## Example Usage
 
 ```python
-id = 'id0'
-
-result = subscriptions_api.suspend_subscription_1(id)
-
-if result.is_success():
-    print(result.body)
-elif result.is_error():
-    print(result.errors)
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Bad Request. Request is not well-formed, syntactically incorrect, or violates schema. | [`SubscriptionErrorException`](../../doc/models/subscription-error-exception.md) |
-| 401 | Authentication failed due to missing authorization header, or invalid authentication credentials. | [`SubscriptionErrorException`](../../doc/models/subscription-error-exception.md) |
-| 403 | Authorization failed due to insufficient permissions. | [`SubscriptionErrorException`](../../doc/models/subscription-error-exception.md) |
-| 404 | The specified resource does not exist. | [`SubscriptionErrorException`](../../doc/models/subscription-error-exception.md) |
-| 422 | The requested action could not be performed, semantically incorrect, or failed business validation. | [`SubscriptionErrorException`](../../doc/models/subscription-error-exception.md) |
-| 500 | An internal server error has occurred. | [`SubscriptionErrorException`](../../doc/models/subscription-error-exception.md) |
-| Default | The error response. | [`SubscriptionErrorException`](../../doc/models/subscription-error-exception.md) |
-
-
-# Capture Subscription 1
-
-Captures an authorized payment from the subscriber on the subscription.
-
-```python
-def capture_subscription_1(self,
-                          id,
-                          pay_pal_request_id=None,
-                          body=None)
-```
-
-## Authentication
-
-This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.md)
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `id` | `str` | Template, Required | The ID of the subscription. |
-| `pay_pal_request_id` | `str` | Header, Optional | The server stores keys for 72 hours. |
-| `body` | [`CaptureSubscriptionRequest1`](../../doc/models/capture-subscription-request-1.md) | Body, Optional | - |
-
-## Response Type
-
-**200**: A successful request returns the HTTP `200 OK` status code and a JSON response body that shows subscription details.
-
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`SubscriptionTransactionDetails`](../../doc/models/subscription-transaction-details.md).
-
-## Example Usage
-
-```python
-id = 'id0'
-
-result = subscriptions_api.capture_subscription_1(id)
+collect = {
+    'id': 'id0'
+}
+result = subscriptions_controller.suspend_subscription_1(collect)
 
 if result.is_success():
     print(result.body)

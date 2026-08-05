@@ -3,8 +3,6 @@
 
 Resource consolidating common request and response attirbutes for vaulting Venmo Wallet.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `VenmoWalletVaultAttributes`
@@ -19,18 +17,15 @@ Resource consolidating common request and response attirbutes for vaulting Venmo
 | `usage_type` | [`VenmoPaymentTokenUsageType`](../../doc/models/venmo-payment-token-usage-type.md) | Required | The usage type associated with the Venmo payment token.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[0-9A-Z_]+$` |
 | `customer_type` | [`VenmoPaymentTokenCustomerType`](../../doc/models/venmo-payment-token-customer-type.md) | Optional | The customer type associated with the Venmo payment token. This is to indicate whether the customer acting on the merchant / platform is either a business or a consumer.<br><br>**Default**: `"CONSUMER"`<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[0-9A-Z_]+$` |
 | `permit_multiple_payment_tokens` | `bool` | Optional | Create multiple payment tokens for the same payer, merchant/platform combination. Use this when the customer has not logged in at merchant/platform. The payment token thus generated, can then also be used to create the customer account at merchant/platform. Use this also when multiple payment tokens are required for the same payer, different customer at merchant/platform. This helps to identify customers distinctly even though they may share the same Venmo account.<br><br>**Default**: `False` |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.store_in_vault_instruction import StoreInVaultInstruction
-from paypal.models.venmo_payment_token_customer_type import VenmoPaymentTokenCustomerType
-from paypal.models.venmo_payment_token_usage_pattern import VenmoPaymentTokenUsagePattern
-from paypal.models.venmo_payment_token_usage_type import VenmoPaymentTokenUsageType
-from paypal.models.venmo_wallet_vault_attributes import VenmoWalletVaultAttributes
+from paypalserversdk.models.store_in_vault_instruction import StoreInVaultInstruction
+from paypalserversdk.models.venmo_payment_token_customer_type import VenmoPaymentTokenCustomerType
+from paypalserversdk.models.venmo_payment_token_usage_pattern import VenmoPaymentTokenUsagePattern
+from paypalserversdk.models.venmo_payment_token_usage_type import VenmoPaymentTokenUsageType
+from paypalserversdk.models.venmo_wallet_vault_attributes import VenmoWalletVaultAttributes
 
 venmo_wallet_vault_attributes = VenmoWalletVaultAttributes(
     store_in_vault=StoreInVaultInstruction.ON_SUCCESS,
@@ -38,10 +33,7 @@ venmo_wallet_vault_attributes = VenmoWalletVaultAttributes(
     description='description2',
     usage_pattern=VenmoPaymentTokenUsagePattern.THRESHOLD_PREPAID,
     customer_type=VenmoPaymentTokenCustomerType.CONSUMER,
-    permit_multiple_payment_tokens=False,
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+    permit_multiple_payment_tokens=False
 )
 ```
 

@@ -3,8 +3,6 @@
 
 Configures a Continue or Pay Now checkout flow.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `VenmoWalletExperienceContextUserAction`
@@ -19,7 +17,7 @@ Configures a Continue or Pay Now checkout flow.
 ## Example
 
 ```python
-from paypal.models.venmo_wallet_experience_context_user_action import VenmoWalletExperienceContextUserAction
+from paypalserversdk.models.venmo_wallet_experience_context_user_action import VenmoWalletExperienceContextUserAction
 
 venmo_wallet_experience_context_user_action = VenmoWalletExperienceContextUserAction.CONTINUE
 ```

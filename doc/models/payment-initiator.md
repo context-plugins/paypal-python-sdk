@@ -3,8 +3,6 @@
 
 The person or party who initiated or triggered the payment.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `PaymentInitiator`
@@ -19,7 +17,7 @@ The person or party who initiated or triggered the payment.
 ## Example
 
 ```python
-from paypal.models.payment_initiator import PaymentInitiator
+from paypalserversdk.models.payment_initiator import PaymentInitiator
 
 payment_initiator = PaymentInitiator.CUSTOMER
 ```

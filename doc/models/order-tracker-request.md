@@ -3,8 +3,6 @@
 
 The tracking details of an order.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `OrderTrackerRequest`
@@ -19,16 +17,13 @@ The tracking details of an order.
 | `capture_id` | `str` | Required | The PayPal capture ID.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `50`, *Pattern*: `^[a-zA-Z0-9]*$` |
 | `notify_payer` | `bool` | Optional | If true, PayPal will send an email notification to the payer of the PayPal transaction. The email contains the tracking details provided through the Orders tracking API request. Independent of any value passed for `notify_payer`, the payer may receive tracking notifications within the PayPal app, based on the user's notification preferences.<br><br>**Default**: `False` |
 | `items` | [`List[OrderTrackerItem]`](../../doc/models/order-tracker-item.md) | Optional | An array of details of items in the shipment. |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.order_tracker_item import OrderTrackerItem
-from paypal.models.order_tracker_request import OrderTrackerRequest
-from paypal.models.shipment_carrier import ShipmentCarrier
+from paypalserversdk.models.order_tracker_item import OrderTrackerItem
+from paypalserversdk.models.order_tracker_request import OrderTrackerRequest
+from paypalserversdk.models.shipment_carrier import ShipmentCarrier
 
 order_tracker_request = OrderTrackerRequest(
     capture_id='capture_id8',
@@ -42,15 +37,9 @@ order_tracker_request = OrderTrackerRequest(
             quantity='quantity4',
             sku='sku6',
             url='url2',
-            image_url='image_url4',
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
+            image_url='image_url4'
         )
-    ],
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+    ]
 )
 ```
 

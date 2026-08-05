@@ -3,8 +3,6 @@
 
 The subscription details.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `Subscription`
@@ -26,15 +24,12 @@ The subscription details.
 | `plan_overridden` | `bool` | Optional, Read-only | Indicates whether the subscription has overridden any plan attributes. |
 | `plan` | [`PlanDetails`](../../doc/models/plan-details.md) | Optional | The plan details. |
 | `links` | [`List[LinkDescription]`](../../doc/models/link-description.md) | Optional, Read-only | An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links). |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.money import Money
-from paypal.models.subscription import Subscription
+from paypalserversdk.models.money import Money
+from paypalserversdk.models.subscription import Subscription
 
 subscription = Subscription(
     id='id4',
@@ -43,14 +38,8 @@ subscription = Subscription(
     quantity='quantity0',
     shipping_amount=Money(
         currency_code='currency_code0',
-        value='value6',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
-    ),
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+        value='value6'
+    )
 )
 ```
 

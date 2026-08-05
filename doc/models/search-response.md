@@ -3,8 +3,6 @@
 
 The search response information.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `SearchResponse`
@@ -22,24 +20,21 @@ The search response information.
 | `total_items` | `int` | Optional | The total number of transactions as an integer beginning with the specified `page` in the full result and not just in this response.<br><br>**Constraints**: `>= 0`, `<= 2147483647` |
 | `total_pages` | `int` | Optional | The total number of pages, as an `integer`, when the `total_items` is divided into pages of the specified `page_size`.<br><br>**Constraints**: `>= 0`, `<= 2147483647` |
 | `links` | [`List[LinkDescription]`](../../doc/models/link-description.md) | Optional, Read-only | An array of request-related [HATEOAS links](https://developer.paypal.com/api/rest/responses/#hateoas-links).<br><br>**Constraints**: *Minimum Items*: `1`, *Maximum Items*: `32767` |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.cart_information import CartInformation
-from paypal.models.item_details import ItemDetails
-from paypal.models.pay_pal_reference_id_type import PayPalReferenceIdType
-from paypal.models.payer_information import PayerInformation
-from paypal.models.phone import Phone
-from paypal.models.search_response import SearchResponse
-from paypal.models.shipping_information import ShippingInformation
-from paypal.models.simple_postal_address_coarse_grained import SimplePostalAddressCoarseGrained
-from paypal.models.store_information import StoreInformation
-from paypal.models.transaction_details import TransactionDetails
-from paypal.models.transaction_information import TransactionInformation
+from paypalserversdk.models.cart_information import CartInformation
+from paypalserversdk.models.item_details import ItemDetails
+from paypalserversdk.models.payer_information import PayerInformation
+from paypalserversdk.models.paypal_reference_id_type import PaypalReferenceIdType
+from paypalserversdk.models.phone import Phone
+from paypalserversdk.models.search_response import SearchResponse
+from paypalserversdk.models.shipping_information import ShippingInformation
+from paypalserversdk.models.simple_postal_address_coarse_grained import SimplePostalAddressCoarseGrained
+from paypalserversdk.models.store_information import StoreInformation
+from paypalserversdk.models.transaction_details import TransactionDetails
+from paypalserversdk.models.transaction_information import TransactionInformation
 
 search_response = SearchResponse(
     transaction_details=[
@@ -48,11 +43,8 @@ search_response = SearchResponse(
                 paypal_account_id='paypal_account_id4',
                 transaction_id='transaction_id0',
                 paypal_reference_id='paypal_reference_id2',
-                paypal_reference_id_type=PayPalReferenceIdType.ODR,
-                transaction_event_code='transaction_event_code6',
-                additional_properties={
-                    'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                }
+                paypal_reference_id_type=PaypalReferenceIdType.ODR,
+                transaction_event_code='transaction_event_code6'
             ),
             payer_info=PayerInformation(
                 account_id='account_id2',
@@ -60,16 +52,10 @@ search_response = SearchResponse(
                 phone_number=Phone(
                     country_code='country_code2',
                     national_number='national_number6',
-                    extension_number='extension_number8',
-                    additional_properties={
-                        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                    }
+                    extension_number='extension_number8'
                 ),
                 address_status='address_status2',
-                payer_status='payer_status2',
-                additional_properties={
-                    'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                }
+                payer_status='payer_status2'
             ),
             shipping_info=ShippingInformation(
                 name='name0',
@@ -80,10 +66,7 @@ search_response = SearchResponse(
                     country_code='country_code6',
                     line_2='line20',
                     state='state2',
-                    postal_code='postal_code8',
-                    additional_properties={
-                        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                    }
+                    postal_code='postal_code8'
                 ),
                 secondary_shipping_address=SimplePostalAddressCoarseGrained(
                     line_1='line16',
@@ -91,14 +74,8 @@ search_response = SearchResponse(
                     country_code='country_code4',
                     line_2='line28',
                     state='state0',
-                    postal_code='postal_code6',
-                    additional_properties={
-                        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                    }
-                ),
-                additional_properties={
-                    'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                }
+                    postal_code='postal_code6'
+                )
             ),
             cart_info=CartInformation(
                 item_details=[
@@ -107,47 +84,29 @@ search_response = SearchResponse(
                         item_name='item_name8',
                         item_description='item_description4',
                         item_options='item_options2',
-                        item_quantity='item_quantity2',
-                        additional_properties={
-                            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                        }
+                        item_quantity='item_quantity2'
                     ),
                     ItemDetails(
                         item_code='item_code0',
                         item_name='item_name8',
                         item_description='item_description4',
                         item_options='item_options2',
-                        item_quantity='item_quantity2',
-                        additional_properties={
-                            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                        }
+                        item_quantity='item_quantity2'
                     )
                 ],
                 tax_inclusive=False,
-                paypal_invoice_id='paypal_invoice_id6',
-                additional_properties={
-                    'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                }
+                paypal_invoice_id='paypal_invoice_id6'
             ),
             store_info=StoreInformation(
                 store_id='store_id2',
-                terminal_id='terminal_id6',
-                additional_properties={
-                    'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                }
-            ),
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
+                terminal_id='terminal_id6'
+            )
         )
     ],
     account_number='account_number8',
     start_date='start_date4',
     end_date='end_date8',
-    last_refreshed_datetime='last_refreshed_datetime2',
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+    last_refreshed_datetime='last_refreshed_datetime2'
 )
 ```
 

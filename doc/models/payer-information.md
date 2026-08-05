@@ -3,8 +3,6 @@
 
 The payer information.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `PayerInformation`
@@ -21,15 +19,12 @@ The payer information.
 | `payer_name` | [`PayerName`](../../doc/models/payer-name.md) | Optional | The name of the party. |
 | `country_code` | `str` | Optional | The [two-character ISO 3166-1 code](/docs/integration/direct/rest/country-codes/) that identifies the country or region. Note: The country code for Great Britain is GB and not UK as used in the top-level domain names for that country. Use the `C2` country code for China worldwide for comparable uncontrolled price (CUP) method, bank card, and cross-border transactions.<br><br>**Constraints**: *Minimum Length*: `2`, *Maximum Length*: `2`, *Pattern*: `^([A-Z]{2}\|C2)$` |
 | `address` | [`SimplePostalAddressCoarseGrained`](../../doc/models/simple-postal-address-coarse-grained.md) | Optional | A simple postal address with coarse-grained fields. Do not use for an international address. Use for backward compatibility only. Does not contain phone. |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.payer_information import PayerInformation
-from paypal.models.phone import Phone
+from paypalserversdk.models.payer_information import PayerInformation
+from paypalserversdk.models.phone import Phone
 
 payer_information = PayerInformation(
     account_id='account_id2',
@@ -37,16 +32,10 @@ payer_information = PayerInformation(
     phone_number=Phone(
         country_code='country_code2',
         national_number='national_number6',
-        extension_number='extension_number8',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+        extension_number='extension_number8'
     ),
     address_status='address_status8',
-    payer_status='payer_status2',
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+    payer_status='payer_status2'
 )
 ```
 

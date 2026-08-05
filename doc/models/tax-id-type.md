@@ -3,8 +3,6 @@
 
 The customer's tax ID type.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `TaxIdType`
@@ -19,7 +17,7 @@ The customer's tax ID type.
 ## Example
 
 ```python
-from paypal.models.tax_id_type import TaxIdType
+from paypalserversdk.models.tax_id_type import TaxIdType
 
 tax_id_type = TaxIdType.BR_CPF
 ```

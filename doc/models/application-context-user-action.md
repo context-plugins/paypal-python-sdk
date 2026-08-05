@@ -17,7 +17,7 @@ Configures the label name to `Continue` or `Subscribe Now` for subscription cons
 ## Example
 
 ```python
-from paypal.models.application_context_user_action import ApplicationContextUserAction
+from paypalserversdk.models.application_context_user_action import ApplicationContextUserAction
 
 application_context_user_action = ApplicationContextUserAction.CONTINUE
 ```

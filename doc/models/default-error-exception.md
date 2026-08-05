@@ -3,8 +3,6 @@
 
 The error details.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `DefaultErrorException`
@@ -19,7 +17,6 @@ The error details.
 | `information_link` | `str` | Optional, Read-only | The information link, or URI, that shows detailed information about this error for the developer. |
 | `details` | [`List[TransactionSearchErrorDetails]`](../../doc/models/transaction-search-error-details.md) | Optional | An array of additional details about the error. |
 | `links` | [`List[LinkDescription]`](../../doc/models/link-description.md) | Optional, Read-only | An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links). |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 

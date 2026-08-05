@@ -3,8 +3,6 @@
 
 The details about a customer in PayPal's system of record.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `CardCustomerInformation`
@@ -18,45 +16,30 @@ The details about a customer in PayPal's system of record.
 | `phone` | [`PhoneWithType`](../../doc/models/phone-with-type.md) | Optional | The phone information. |
 | `name` | [`Name`](../../doc/models/name.md) | Optional | The name of the party. |
 | `merchant_customer_id` | `str` | Optional | Merchants and partners may already have a data-store where their customer information is persisted. Use merchant_customer_id to associate the PayPal-generated customer.id to your representation of a customer.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `64`, *Pattern*: `^[0-9a-zA-Z-_.^*$@#]+$` |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.card_customer_information import CardCustomerInformation
-from paypal.models.name import Name
-from paypal.models.phone_number import PhoneNumber
-from paypal.models.phone_type import PhoneType
-from paypal.models.phone_with_type import PhoneWithType
+from paypalserversdk.models.card_customer_information import CardCustomerInformation
+from paypalserversdk.models.name import Name
+from paypalserversdk.models.phone_number import PhoneNumber
+from paypalserversdk.models.phone_type import PhoneType
+from paypalserversdk.models.phone_with_type import PhoneWithType
 
 card_customer_information = CardCustomerInformation(
     id='id6',
     email_address='email_address6',
     phone=PhoneWithType(
         phone_number=PhoneNumber(
-            national_number='national_number6',
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
+            national_number='national_number6'
         ),
-        phone_type=PhoneType.OTHER,
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+        phone_type=PhoneType.OTHER
     ),
     name=Name(
         given_name='given_name2',
-        surname='surname8',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+        surname='surname8'
     ),
-    merchant_customer_id='merchant_customer_id8',
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+    merchant_customer_id='merchant_customer_id8'
 )
 ```
 

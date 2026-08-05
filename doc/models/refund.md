@@ -3,8 +3,6 @@
 
 The refund information.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `Refund`
@@ -26,39 +24,27 @@ The refund information.
 | `links` | [`List[LinkDescription]`](../../doc/models/link-description.md) | Optional, Read-only | An array of related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links). |
 | `create_time` | `str` | Optional | The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while fractional seconds are optional. Note: The regular expression provides guidance but does not reject all invalid dates.<br><br>**Constraints**: *Minimum Length*: `20`, *Maximum Length*: `64`, *Pattern*: `^[0-9]{4}-(0[1-9]\|1[0-2])-(0[1-9]\|[1-2][0-9]\|3[0-1])[T,t]([0-1][0-9]\|2[0-3]):[0-5][0-9]:([0-5][0-9]\|60)([.][0-9]+)?([Zz]\|[+-][0-9]{2}:[0-9]{2})$` |
 | `update_time` | `str` | Optional | The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while fractional seconds are optional. Note: The regular expression provides guidance but does not reject all invalid dates.<br><br>**Constraints**: *Minimum Length*: `20`, *Maximum Length*: `64`, *Pattern*: `^[0-9]{4}-(0[1-9]\|1[0-2])-(0[1-9]\|[1-2][0-9]\|3[0-1])[T,t]([0-1][0-9]\|2[0-3]):[0-5][0-9]:([0-5][0-9]\|60)([.][0-9]+)?([Zz]\|[+-][0-9]{2}:[0-9]{2})$` |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.money import Money
-from paypal.models.refund import Refund
-from paypal.models.refund_incomplete_reason import RefundIncompleteReason
-from paypal.models.refund_status import RefundStatus
-from paypal.models.refund_status_details import RefundStatusDetails
+from paypalserversdk.models.money import Money
+from paypalserversdk.models.refund import Refund
+from paypalserversdk.models.refund_incomplete_reason import RefundIncompleteReason
+from paypalserversdk.models.refund_status import RefundStatus
+from paypalserversdk.models.refund_status_details import RefundStatusDetails
 
 refund = Refund(
     status=RefundStatus.PENDING,
     status_details=RefundStatusDetails(
-        reason=RefundIncompleteReason.ECHECK,
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+        reason=RefundIncompleteReason.ECHECK
     ),
     id='id8',
     amount=Money(
         currency_code='currency_code6',
-        value='value0',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+        value='value0'
     ),
-    invoice_id='invoice_id8',
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+    invoice_id='invoice_id8'
 )
 ```
 

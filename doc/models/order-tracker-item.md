@@ -3,8 +3,6 @@
 
 The details of the items in the shipment.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `OrderTrackerItem`
@@ -19,24 +17,18 @@ The details of the items in the shipment.
 | `url` | `str` | Optional | The URL to the item being purchased. Visible to buyer and used in buyer experiences.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `2048` |
 | `image_url` | `str` | Optional | The URL of the item's image. File type and size restrictions apply. An image that violates these restrictions will not be honored.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `2048`, *Pattern*: `^(https:)([/\|.\|\w\|\s\|-])*\.(?:jpg\|gif\|png\|jpeg\|JPG\|GIF\|PNG\|JPEG)` |
 | `upc` | [`UniversalProductCode`](../../doc/models/universal-product-code.md) | Optional | The Universal Product Code of the item. |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.order_tracker_item import OrderTrackerItem
+from paypalserversdk.models.order_tracker_item import OrderTrackerItem
 
 order_tracker_item = OrderTrackerItem(
     name='name2',
     quantity='quantity8',
     sku='sku8',
     url='url6',
-    image_url='image_url8',
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+    image_url='image_url8'
 )
 ```
 

@@ -3,8 +3,6 @@
 
 The create subscription request details.
 
-*This model accepts additional fields of type Any.*
-
 ## Structure
 
 `CreateSubscriptionRequest`
@@ -22,26 +20,23 @@ The create subscription request details.
 | `application_context` | [`SubscriptionApplicationContext`](../../doc/models/subscription-application-context.md) | Optional | DEPRECATED. The application context, which customizes the payer experience during the subscription approval process with PayPal. |
 | `custom_id` | `str` | Optional | The custom id for the subscription. Can be invoice id.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `127`, *Pattern*: `^[\x20-\x7E]+` |
 | `plan` | [`PlanOverride`](../../doc/models/plan-override.md) | Optional | An inline plan object to customise the subscription. You can override plan level default attributes by providing customised values for the subscription in this object. |
-| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example
 
 ```python
-import jsonpickle
-
-from paypal.models.card_type import CardType
-from paypal.models.create_subscription_request import CreateSubscriptionRequest
-from paypal.models.fulfillment_type import FulfillmentType
-from paypal.models.money import Money
-from paypal.models.name import Name
-from paypal.models.phone_number_with_country_code import PhoneNumberWithCountryCode
-from paypal.models.shipping_details import ShippingDetails
-from paypal.models.shipping_name import ShippingName
-from paypal.models.shipping_option import ShippingOption
-from paypal.models.shipping_type import ShippingType
-from paypal.models.subscriber_request import SubscriberRequest
-from paypal.models.subscription_card_request import SubscriptionCardRequest
-from paypal.models.subscription_payment_source import SubscriptionPaymentSource
+from paypalserversdk.models.card_type import CardType
+from paypalserversdk.models.create_subscription_request import CreateSubscriptionRequest
+from paypalserversdk.models.fulfillment_type import FulfillmentType
+from paypalserversdk.models.money import Money
+from paypalserversdk.models.name import Name
+from paypalserversdk.models.phone_number_with_country_code import PhoneNumberWithCountryCode
+from paypalserversdk.models.shipping_details import ShippingDetails
+from paypalserversdk.models.shipping_name import ShippingName
+from paypalserversdk.models.shipping_option import ShippingOption
+from paypalserversdk.models.shipping_type import ShippingType
+from paypalserversdk.models.subscriber_request import SubscriberRequest
+from paypalserversdk.models.subscription_card_request import SubscriptionCardRequest
+from paypalserversdk.models.subscription_payment_source import SubscriptionPaymentSource
 
 create_subscription_request = CreateSubscriptionRequest(
     plan_id='plan_id6',
@@ -49,35 +44,23 @@ create_subscription_request = CreateSubscriptionRequest(
     quantity='quantity0',
     shipping_amount=Money(
         currency_code='currency_code0',
-        value='value6',
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+        value='value6'
     ),
     subscriber=SubscriberRequest(
         email_address='email_address8',
         payer_id='payer_id8',
         name=Name(
             given_name='given_name2',
-            surname='surname8',
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
+            surname='surname8'
         ),
         shipping_address=ShippingDetails(
             name=ShippingName(
-                full_name='full_name6',
-                additional_properties={
-                    'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                }
+                full_name='full_name6'
             ),
             email_address='email_address8',
             phone_number=PhoneNumberWithCountryCode(
                 country_code='country_code2',
-                national_number='national_number6',
-                additional_properties={
-                    'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                }
+                national_number='national_number6'
             ),
             mtype=FulfillmentType.PICKUP_IN_STORE,
             options=[
@@ -88,19 +71,10 @@ create_subscription_request = CreateSubscriptionRequest(
                     mtype=ShippingType.SHIPPING,
                     amount=Money(
                         currency_code='currency_code6',
-                        value='value0',
-                        additional_properties={
-                            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                        }
-                    ),
-                    additional_properties={
-                        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                    }
+                        value='value0'
+                    )
                 )
-            ],
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
+            ]
         ),
         payment_source=SubscriptionPaymentSource(
             card=SubscriptionCardRequest(
@@ -108,23 +82,11 @@ create_subscription_request = CreateSubscriptionRequest(
                 number='number6',
                 expiry='expiry4',
                 security_code='security_code8',
-                mtype=CardType.UNKNOWN,
-                additional_properties={
-                    'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-                }
-            ),
-            additional_properties={
-                'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-            }
-        ),
-        additional_properties={
-            'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-        }
+                mtype=CardType.UNKNOWN
+            )
+        )
     ),
-    auto_renewal=False,
-    additional_properties={
-        'exampleAdditionalProperty': jsonpickle.decode('{"key1":"val1","key2":"val2"}')
-    }
+    auto_renewal=False
 )
 ```
 

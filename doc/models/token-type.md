@@ -3,8 +3,6 @@
 
 The tokenization method that generated the ID.
 
-*This model accepts additional fields of type Any.*
-
 ## Enumeration
 
 `TokenType`
@@ -18,7 +16,7 @@ The tokenization method that generated the ID.
 ## Example
 
 ```python
-from paypal.models.token_type import TokenType
+from paypalserversdk.models.token_type import TokenType
 
 token_type = TokenType.BILLING_AGREEMENT
 ```
