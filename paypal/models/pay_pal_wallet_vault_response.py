@@ -27,5 +27,5 @@ class PayPalWalletVaultResponse(SdkBaseModel):
 class PayPalWalletVaultResponseDict(TypedDict):
     id: NotRequired[str]
     status: NotRequired[PayPalWalletVaultStatusOrStr]
-    links: NotRequired[list[LinkDescription | LinkDescriptionDict]]
-    customer: NotRequired[PayPalWalletCustomer | PayPalWalletCustomerDict]
+    links: NotRequired[list[LinkDescriptionDict]]
+    customer: NotRequired[PayPalWalletCustomerDict]

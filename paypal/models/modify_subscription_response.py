@@ -40,8 +40,8 @@ class ModifySubscriptionResponse(SdkBaseModel):
 class ModifySubscriptionResponseDict(TypedDict):
     plan_id: NotRequired[str]
     quantity: NotRequired[str]
-    shipping_amount: NotRequired[Money | MoneyDict]
-    shipping_address: NotRequired[ShippingDetails | ShippingDetailsDict]
-    plan: NotRequired[PlanOverride | PlanOverrideDict]
+    shipping_amount: NotRequired[MoneyDict]
+    shipping_address: NotRequired[ShippingDetailsDict]
+    plan: NotRequired[PlanOverrideDict]
     plan_overridden: NotRequired[bool]
-    links: NotRequired[list[LinkDescription | LinkDescriptionDict]]
+    links: NotRequired[list[LinkDescriptionDict]]

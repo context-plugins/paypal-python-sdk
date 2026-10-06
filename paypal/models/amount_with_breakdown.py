@@ -14,13 +14,13 @@ class AmountWithBreakdown(SdkBaseModel):
     the PayPal REST APIs Currency Codes."""
 
     currency_code: str
-    """The `three-character ISO-4217 currency code <https://developer.paypal.com/api/rest/reference/currency-codes/>`__
-    that identifies the currency."""
+    """The `three-character ISO-4217 currency code </api/rest/reference/currency-codes/>`__ that identifies the
+    currency."""
 
     value: str
     """The value, which might be: An integer for currencies like ``JPY`` that are not typically fractional. A decimal
     fraction for currencies like ``TND`` that are subdivided into thousandths. For the required number of decimal places
-    for a currency code, see `Currency Codes <https://developer.paypal.com/api/rest/reference/currency-codes/>`__."""
+    for a currency code, see `Currency Codes </api/rest/reference/currency-codes/>`__."""
 
     breakdown: Optional[AmountBreakdown] = UNSET
     """The breakdown of the amount. Breakdown provides details such as total item amount, total tax amount, shipping,
@@ -30,4 +30,4 @@ class AmountWithBreakdown(SdkBaseModel):
 class AmountWithBreakdownDict(TypedDict):
     currency_code: str
     value: str
-    breakdown: NotRequired[AmountBreakdown | AmountBreakdownDict]
+    breakdown: NotRequired[AmountBreakdownDict]

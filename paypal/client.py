@@ -19,9 +19,10 @@ from .core import (
     ClientCredentialsOrDict,
     ClientCredentialsTokenSource,
     HttpClient,
-    HttpxClient,
+    Httpx2Client,
     OAuth2Scheme,
     RawClient,
+    RetryOptionsOrDict,
     TokenSource,
     client_secret_basic,
     no_auth,
@@ -35,13 +36,15 @@ class PaypalClient(BasePaypalClient[RawClient]):
         *,
         base_url: str | None = None,
         timeout: float = DEFAULT_TIMEOUT,
+        retry_options: int | RetryOptionsOrDict | None = None,
         custom_http_client: HttpClient | None = None,
         oauth2: ClientCredentialsOrDict | None = None,
         oauth2_token_source: TokenSource[ClientCredentials] | None = None,
     ) -> None:
-        super().__init__(base_url=base_url, timeout=timeout)
+        super().__init__(base_url=base_url, timeout=timeout, retry_options=retry_options)
         self._raw_client = RawClient(
-            http_client=custom_http_client if custom_http_client is not None else HttpxClient(timeout=timeout),
+            http_client=custom_http_client if custom_http_client is not None else Httpx2Client(timeout=timeout),
+            retry_options=self._retry_options,
             global_headers=[
                 param[str]("User-Agent", "PaypalClient/2.29 Python"),
                 param[str]("X-APIMatic-Lang", "Python"),

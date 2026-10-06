@@ -14,4 +14,4 @@ class RiskSupplementaryData(SdkBaseModel):
 
 
 class RiskSupplementaryDataDict(TypedDict):
-    customer: NotRequired[ParticipantMetadata | ParticipantMetadataDict]
+    customer: NotRequired[ParticipantMetadataDict]

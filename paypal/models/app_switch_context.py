@@ -19,5 +19,5 @@ class AppSwitchContext(SdkBaseModel):
 
 
 class AppSwitchContextDict(TypedDict):
-    native_app: NotRequired[NativeAppContext | NativeAppContextDict]
-    mobile_web: NotRequired[MobileWebContext | MobileWebContextDict]
+    native_app: NotRequired[NativeAppContextDict]
+    mobile_web: NotRequired[MobileWebContextDict]

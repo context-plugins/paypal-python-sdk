@@ -3,9 +3,12 @@ from __future__ import annotations
 from typing_extensions import NotRequired, TypedDict
 
 from ..core import UNSET, Optional, SdkBaseModel
-from .enums.experience_context_shipping_preference import ExperienceContextShippingPreferenceOrStr
+from .enums.experience_context_shipping_preference import (
+    ExperienceContextShippingPreference,
+    ExperienceContextShippingPreferenceOrStr,
+)
 from .enums.vault_instruction_action import VaultInstructionActionOrStr
-from .enums.vault_user_action import VaultUserActionOrStr
+from .enums.vault_user_action import VaultUserAction, VaultUserActionOrStr
 
 
 class VenmoExperienceContext(SdkBaseModel):
@@ -15,13 +18,13 @@ class VenmoExperienceContext(SdkBaseModel):
     """The label that overrides the business name in the PayPal account on the PayPal site. The pattern is defined by an
     external party and supports Unicode."""
 
-    shipping_preference: Optional[ExperienceContextShippingPreferenceOrStr] = UNSET
+    shipping_preference: ExperienceContextShippingPreferenceOrStr = ExperienceContextShippingPreference.GET_FROM_FILE
     """The shipping preference. This only applies to PayPal payment source."""
 
     vault_instruction: Optional[VaultInstructionActionOrStr] = UNSET
     """DEPRECATED. Vault Instruction on action to be performed after a successful payer approval."""
 
-    user_action: Optional[VaultUserActionOrStr] = UNSET
+    user_action: VaultUserActionOrStr = VaultUserAction.CONTINUE
     """User Action on action to be performed after a successful payer approval."""
 
 

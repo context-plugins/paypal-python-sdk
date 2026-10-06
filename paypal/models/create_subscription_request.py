@@ -29,7 +29,7 @@ class CreateSubscriptionRequest(SdkBaseModel):
     subscriber: Optional[SubscriberRequest] = UNSET
     """The subscriber request information ."""
 
-    auto_renewal: Optional[bool] = UNSET
+    auto_renewal: bool = False
     """DEPRECATED. Indicates whether the subscription auto-renews after the billing cycles complete."""
 
     application_context: Optional[SubscriptionApplicationContext] = UNSET
@@ -48,9 +48,9 @@ class CreateSubscriptionRequestDict(TypedDict):
     plan_id: str
     start_time: NotRequired[str]
     quantity: NotRequired[str]
-    shipping_amount: NotRequired[Money | MoneyDict]
-    subscriber: NotRequired[SubscriberRequest | SubscriberRequestDict]
+    shipping_amount: NotRequired[MoneyDict]
+    subscriber: NotRequired[SubscriberRequestDict]
     auto_renewal: NotRequired[bool]
-    application_context: NotRequired[SubscriptionApplicationContext | SubscriptionApplicationContextDict]
+    application_context: NotRequired[SubscriptionApplicationContextDict]
     custom_id: NotRequired[str]
-    plan: NotRequired[PlanOverride | PlanOverrideDict]
+    plan: NotRequired[PlanOverrideDict]

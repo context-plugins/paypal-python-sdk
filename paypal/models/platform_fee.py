@@ -21,5 +21,5 @@ class PlatformFee(SdkBaseModel):
 
 
 class PlatformFeeDict(TypedDict):
-    amount: Money | MoneyDict
-    payee: NotRequired[PayeeBase | PayeeBaseDict]
+    amount: MoneyDict
+    payee: NotRequired[PayeeBaseDict]

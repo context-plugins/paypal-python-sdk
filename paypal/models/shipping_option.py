@@ -37,5 +37,5 @@ class ShippingOptionDict(TypedDict):
     id: str
     label: str
     type_: NotRequired[ShippingTypeOrStr]
-    amount: NotRequired[Money | MoneyDict]
+    amount: NotRequired[MoneyDict]
     selected: bool

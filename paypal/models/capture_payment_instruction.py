@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing_extensions import NotRequired, TypedDict
 
 from ..core import UNSET, Optional, SdkBaseModel
-from .enums.disbursement_mode import DisbursementModeOrStr
+from .enums.disbursement_mode import DisbursementMode, DisbursementModeOrStr
 from .platform_fee import PlatformFee, PlatformFeeDict
 
 
@@ -15,7 +15,7 @@ class CapturePaymentInstruction(SdkBaseModel):
     """An array of platform or partner fees, commissions, or brokerage fees that associated with the captured
     payment."""
 
-    disbursement_mode: Optional[DisbursementModeOrStr] = UNSET
+    disbursement_mode: DisbursementModeOrStr = DisbursementMode.INSTANT
     """The funds that are held on behalf of the merchant."""
 
     payee_receivable_fx_rate_id: Optional[str] = UNSET
@@ -24,6 +24,6 @@ class CapturePaymentInstruction(SdkBaseModel):
 
 
 class CapturePaymentInstructionDict(TypedDict):
-    platform_fees: NotRequired[list[PlatformFee | PlatformFeeDict]]
+    platform_fees: NotRequired[list[PlatformFeeDict]]
     disbursement_mode: NotRequired[DisbursementModeOrStr]
     payee_receivable_fx_rate_id: NotRequired[str]

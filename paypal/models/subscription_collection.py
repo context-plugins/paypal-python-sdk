@@ -18,5 +18,5 @@ class SubscriptionCollection(SdkBaseModel):
 
 
 class SubscriptionCollectionDict(TypedDict):
-    subscriptions: NotRequired[list[Subscription | SubscriptionDict]]
-    links: NotRequired[list[LinkDescription | LinkDescriptionDict]]
+    subscriptions: NotRequired[list[SubscriptionDict]]
+    links: NotRequired[list[LinkDescriptionDict]]

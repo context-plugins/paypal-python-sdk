@@ -17,4 +17,4 @@ class CardAuthenticationResponse(SdkBaseModel):
 
 
 class CardAuthenticationResponseDict(TypedDict):
-    three_d_secure: NotRequired[ThreeDSecureCardAuthenticationResponse | ThreeDSecureCardAuthenticationResponseDict]
+    three_d_secure: NotRequired[ThreeDSecureCardAuthenticationResponseDict]

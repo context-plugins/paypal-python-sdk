@@ -17,8 +17,7 @@ class OrderConfirmApplicationContext(SdkBaseModel):
     error-related strings, such as messages, issues, and suggested actions. The tag is made up of the `ISO 639-2
     language code <https://www.loc.gov/standards/iso639-2/php/code_list.php>`__, the optional `ISO-15924 script tag
     <https://www.unicode.org/iso15924/codelists.html>`__, and the `ISO-3166 alpha-2 country code
-    <https://developer.paypal.com/api/rest/reference/country-codes/>`__ or `M49 region code
-    <https://unstats.un.org/unsd/methodology/m49/>`__."""
+    </api/rest/reference/country-codes/>`__ or `M49 region code <https://unstats.un.org/unsd/methodology/m49/>`__."""
 
     return_url: Optional[str] = UNSET
     """The URL where the customer is redirected after the customer approves the payment."""
@@ -41,4 +40,4 @@ class OrderConfirmApplicationContextDict(TypedDict):
     locale: NotRequired[str]
     return_url: NotRequired[str]
     cancel_url: NotRequired[str]
-    stored_payment_source: NotRequired[StoredPaymentSource | StoredPaymentSourceDict]
+    stored_payment_source: NotRequired[StoredPaymentSourceDict]

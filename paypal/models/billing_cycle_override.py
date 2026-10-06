@@ -25,6 +25,6 @@ class BillingCycleOverride(SdkBaseModel):
 
 
 class BillingCycleOverrideDict(TypedDict):
-    pricing_scheme: NotRequired[SubscriptionPricingScheme | SubscriptionPricingSchemeDict]
+    pricing_scheme: NotRequired[SubscriptionPricingSchemeDict]
     sequence: int
     total_cycles: NotRequired[int]

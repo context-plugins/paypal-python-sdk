@@ -46,8 +46,8 @@ class Payer(SdkBaseModel):
 class PayerDict(TypedDict):
     email_address: NotRequired[str]
     payer_id: NotRequired[str]
-    name: NotRequired[Name | NameDict]
-    phone: NotRequired[PhoneWithType | PhoneWithTypeDict]
+    name: NotRequired[NameDict]
+    phone: NotRequired[PhoneWithTypeDict]
     birth_date: NotRequired[str]
-    tax_info: NotRequired[TaxInfo | TaxInfoDict]
-    address: NotRequired[Address | AddressDict]
+    tax_info: NotRequired[TaxInfoDict]
+    address: NotRequired[AddressDict]

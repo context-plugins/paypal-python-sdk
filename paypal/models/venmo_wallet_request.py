@@ -31,5 +31,5 @@ class VenmoWalletRequest(SdkBaseModel):
 class VenmoWalletRequestDict(TypedDict):
     vault_id: NotRequired[str]
     email_address: NotRequired[str]
-    experience_context: NotRequired[VenmoWalletExperienceContext | VenmoWalletExperienceContextDict]
-    attributes: NotRequired[VenmoWalletAdditionalAttributes | VenmoWalletAdditionalAttributesDict]
+    experience_context: NotRequired[VenmoWalletExperienceContextDict]
+    attributes: NotRequired[VenmoWalletAdditionalAttributesDict]

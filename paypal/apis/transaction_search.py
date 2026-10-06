@@ -8,6 +8,7 @@ from ..core import (
     RawError,
     RequestOptionsOrDict,
     SecuredRawResponse,
+    async_json_decoder,
     json_decoder,
     param,
     raw_error_response,
@@ -37,9 +38,9 @@ class TransactionSearch:
             as_of_time: List balances in the response at the date time provided, will return the last refreshed balance
                 in the system when not provided.
             currency_code: Filters the transactions in the response by a `three-character ISO-4217 currency code
-                <https://developer.paypal.com/api/rest/reference/currency-codes/>`__ for the PayPal transaction
-                currency.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+                </api/rest/reference/currency-codes/>`__ for the PayPal transaction currency.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             A successful request returns the HTTP ``200 OK`` status code and a JSON response body that lists balances .
@@ -101,8 +102,7 @@ class TransactionSearch:
                 example, to search for transactions from $5.00 to $10.05, specify ``[500 TO 1005]``. Note:The values
                 must be URL encoded.
             transaction_currency: Filters the transactions in the response by a `three-character ISO-4217 currency code
-                <https://developer.paypal.com/api/rest/reference/currency-codes/>`__ for the PayPal transaction
-                currency.
+                </api/rest/reference/currency-codes/>`__ for the PayPal transaction currency.
             payment_instrument_type: Filters the transactions in the response by a payment instrument type. Value is
                 either: CREDITCARD. Returns a direct credit card transaction with a corresponding value. DEBITCARD.
                 Returns a debit card transaction with a corresponding value. If you omit this parameter, the API does
@@ -136,7 +136,8 @@ class TransactionSearch:
                 the next 20 items.
             page: The zero-relative start index of the entire list of items that are returned in the response. So, the
                 combination of ``page=1`` and ``page_size=20`` returns the first 20 items.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             A successful request returns the HTTP ``200 OK`` status code and a JSON response body that lists
@@ -186,9 +187,9 @@ class AsyncTransactionSearch:
             as_of_time: List balances in the response at the date time provided, will return the last refreshed balance
                 in the system when not provided.
             currency_code: Filters the transactions in the response by a `three-character ISO-4217 currency code
-                <https://developer.paypal.com/api/rest/reference/currency-codes/>`__ for the PayPal transaction
-                currency.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+                </api/rest/reference/currency-codes/>`__ for the PayPal transaction currency.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             A successful request returns the HTTP ``200 OK`` status code and a JSON response body that lists balances .
@@ -252,8 +253,7 @@ class AsyncTransactionSearch:
                 example, to search for transactions from $5.00 to $10.05, specify ``[500 TO 1005]``. Note:The values
                 must be URL encoded.
             transaction_currency: Filters the transactions in the response by a `three-character ISO-4217 currency code
-                <https://developer.paypal.com/api/rest/reference/currency-codes/>`__ for the PayPal transaction
-                currency.
+                </api/rest/reference/currency-codes/>`__ for the PayPal transaction currency.
             payment_instrument_type: Filters the transactions in the response by a payment instrument type. Value is
                 either: CREDITCARD. Returns a direct credit card transaction with a corresponding value. DEBITCARD.
                 Returns a debit card transaction with a corresponding value. If you omit this parameter, the API does
@@ -287,7 +287,8 @@ class AsyncTransactionSearch:
                 the next 20 items.
             page: The zero-relative start index of the entire list of items that are returned in the response. So, the
                 combination of ``page=1`` and ``page_size=20`` returns the first 20 items.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             A successful request returns the HTTP ``200 OK`` status code and a JSON response body that lists
@@ -336,9 +337,9 @@ class TransactionSearchWithRawResponse(SecuredRawResponse[RawClient, Server, Aut
             as_of_time: List balances in the response at the date time provided, will return the last refreshed balance
                 in the system when not provided.
             currency_code: Filters the transactions in the response by a `three-character ISO-4217 currency code
-                <https://developer.paypal.com/api/rest/reference/currency-codes/>`__ for the PayPal transaction
-                currency.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+                </api/rest/reference/currency-codes/>`__ for the PayPal transaction currency.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -403,8 +404,7 @@ class TransactionSearchWithRawResponse(SecuredRawResponse[RawClient, Server, Aut
                 example, to search for transactions from $5.00 to $10.05, specify ``[500 TO 1005]``. Note:The values
                 must be URL encoded.
             transaction_currency: Filters the transactions in the response by a `three-character ISO-4217 currency code
-                <https://developer.paypal.com/api/rest/reference/currency-codes/>`__ for the PayPal transaction
-                currency.
+                </api/rest/reference/currency-codes/>`__ for the PayPal transaction currency.
             payment_instrument_type: Filters the transactions in the response by a payment instrument type. Value is
                 either: CREDITCARD. Returns a direct credit card transaction with a corresponding value. DEBITCARD.
                 Returns a debit card transaction with a corresponding value. If you omit this parameter, the API does
@@ -438,7 +438,8 @@ class TransactionSearchWithRawResponse(SecuredRawResponse[RawClient, Server, Aut
                 the next 20 items.
             page: The zero-relative start index of the entire list of items that are returned in the response. So, the
                 combination of ``page=1`` and ``page_size=20`` returns the first 20 items.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -484,9 +485,9 @@ class AsyncTransactionSearchWithRawResponse(SecuredRawResponse[AsyncRawClient, S
             as_of_time: List balances in the response at the date time provided, will return the last refreshed balance
                 in the system when not provided.
             currency_code: Filters the transactions in the response by a `three-character ISO-4217 currency code
-                <https://developer.paypal.com/api/rest/reference/currency-codes/>`__ for the PayPal transaction
-                currency.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+                </api/rest/reference/currency-codes/>`__ for the PayPal transaction currency.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -497,7 +498,7 @@ class AsyncTransactionSearchWithRawResponse(SecuredRawResponse[AsyncRawClient, S
                 param[str | None]("as_of_time", as_of_time), param[str | None]("currency_code", currency_code)
             ],
             auth_scheme=self._auth.oauth2,
-            decoder=json_decoder[BalancesResponse],
+            decoder=async_json_decoder[BalancesResponse],
             error_mapper=search_balances_error_mapper,
             request_options=request_options,
         )
@@ -551,8 +552,7 @@ class AsyncTransactionSearchWithRawResponse(SecuredRawResponse[AsyncRawClient, S
                 example, to search for transactions from $5.00 to $10.05, specify ``[500 TO 1005]``. Note:The values
                 must be URL encoded.
             transaction_currency: Filters the transactions in the response by a `three-character ISO-4217 currency code
-                <https://developer.paypal.com/api/rest/reference/currency-codes/>`__ for the PayPal transaction
-                currency.
+                </api/rest/reference/currency-codes/>`__ for the PayPal transaction currency.
             payment_instrument_type: Filters the transactions in the response by a payment instrument type. Value is
                 either: CREDITCARD. Returns a direct credit card transaction with a corresponding value. DEBITCARD.
                 Returns a debit card transaction with a corresponding value. If you omit this parameter, the API does
@@ -586,7 +586,8 @@ class AsyncTransactionSearchWithRawResponse(SecuredRawResponse[AsyncRawClient, S
                 the next 20 items.
             page: The zero-relative start index of the entire list of items that are returned in the response. So, the
                 combination of ``page=1`` and ``page_size=20`` returns the first 20 items.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -610,7 +611,7 @@ class AsyncTransactionSearchWithRawResponse(SecuredRawResponse[AsyncRawClient, S
                 param[int | None]("page", page),
             ],
             auth_scheme=self._auth.oauth2,
-            decoder=json_decoder[SearchResponse],
+            decoder=async_json_decoder[SearchResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )

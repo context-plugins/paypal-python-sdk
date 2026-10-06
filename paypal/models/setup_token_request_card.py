@@ -48,6 +48,6 @@ class SetupTokenRequestCardDict(TypedDict):
     expiry: NotRequired[str]
     security_code: NotRequired[str]
     brand: NotRequired[CardBrandOrStr]
-    billing_address: NotRequired[Address | AddressDict]
+    billing_address: NotRequired[AddressDict]
     verification_method: NotRequired[VaultCardVerificationMethodOrStr]
-    experience_context: NotRequired[VaultCardExperienceContext | VaultCardExperienceContextDict]
+    experience_context: NotRequired[VaultCardExperienceContextDict]

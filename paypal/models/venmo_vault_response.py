@@ -28,5 +28,5 @@ class VenmoVaultResponse(SdkBaseModel):
 class VenmoVaultResponseDict(TypedDict):
     id: NotRequired[str]
     status: NotRequired[VenmoVaultResponseStatusOrStr]
-    links: NotRequired[list[LinkDescription | LinkDescriptionDict]]
-    customer: NotRequired[CustomerInformation | CustomerInformationDict]
+    links: NotRequired[list[LinkDescriptionDict]]
+    customer: NotRequired[CustomerInformationDict]

@@ -20,4 +20,4 @@ class BankRequest(SdkBaseModel):
 
 class BankRequestDict(TypedDict):
     ach_debit: NotRequired[Any]
-    sepa_debit: NotRequired[SepaDebitRequest | SepaDebitRequestDict]
+    sepa_debit: NotRequired[SepaDebitRequestDict]

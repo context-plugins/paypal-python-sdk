@@ -15,10 +15,10 @@ class BlikPaymentRequest(SdkBaseModel):
     """The full name representation like Mr J Smith."""
 
     country_code: str
-    """The `two-character ISO 3166-1 code <https://developer.paypal.com/api/rest/reference/country-codes/>`__ that
-    identifies the country or region. Note: The country code for Great Britain is GB and not UK as used in the top-level
-    domain names for that country. Use the ``C2`` country code for China worldwide for comparable uncontrolled price
-    (CUP) method, bank card, and cross-border transactions."""
+    """The `two-character ISO 3166-1 code </api/rest/reference/country-codes/>`__ that identifies the country or region.
+    Note: The country code for Great Britain is GB and not UK as used in the top-level domain names for that country.
+    Use the ``C2`` country code for China worldwide for comparable uncontrolled price (CUP) method, bank card, and
+    cross-border transactions."""
 
     email: Optional[str] = UNSET
     """The internationalized email address. Note: Up to 64 characters are allowed before and 255 characters are allowed
@@ -39,6 +39,6 @@ class BlikPaymentRequestDict(TypedDict):
     name: str
     country_code: str
     email: NotRequired[str]
-    experience_context: NotRequired[BlikExperienceContext | BlikExperienceContextDict]
-    level_0: NotRequired[BlikLevel0PaymentObject | BlikLevel0PaymentObjectDict]
-    one_click: NotRequired[BlikOneClickPaymentRequest | BlikOneClickPaymentRequestDict]
+    experience_context: NotRequired[BlikExperienceContextDict]
+    level_0: NotRequired[BlikLevel0PaymentObjectDict]
+    one_click: NotRequired[BlikOneClickPaymentRequestDict]

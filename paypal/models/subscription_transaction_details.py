@@ -37,7 +37,7 @@ class SubscriptionTransactionDetails(SdkBaseModel):
 class SubscriptionTransactionDetailsDict(TypedDict):
     status: NotRequired[CaptureStatusOrStr]
     id: str
-    amount_with_breakdown: SubscriptionAmountWithBreakdown | SubscriptionAmountWithBreakdownDict
-    payer_name: NotRequired[SubscriptionPayerName | SubscriptionPayerNameDict]
+    amount_with_breakdown: SubscriptionAmountWithBreakdownDict
+    payer_name: NotRequired[SubscriptionPayerNameDict]
     payer_email: NotRequired[str]
     time: str

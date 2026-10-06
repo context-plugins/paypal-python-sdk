@@ -9,6 +9,7 @@ from ..core import (
     RawClient,
     RequestOptionsOrDict,
     SecuredRawResponse,
+    async_json_decoder,
     json_body,
     json_decoder,
     param,
@@ -65,7 +66,8 @@ class Payments:
                 the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token
                 with target_subject.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             A successful request returns the HTTP 200 OK status code and a JSON response body that shows captured
@@ -108,7 +110,8 @@ class Payments:
                 Note:For three party transactions in which a partner is managing the API calls on behalf of a merchant,
                 the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token
                 with target_subject.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             A successful request returns the HTTP 200 OK status code and a JSON response body that shows authorization
@@ -140,7 +143,8 @@ class Payments:
             pay_pal_mock_response: PayPal's REST API uses a request header to invoke negative testing in the sandbox.
                 This header configures the sandbox into a negative testing state for transactions that include the
                 merchant.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             A successful request returns the HTTP 200 OK status code and a JSON response body that shows captured
@@ -175,7 +179,8 @@ class Payments:
                 Note:For three party transactions in which a partner is managing the API calls on behalf of a merchant,
                 the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token
                 with target_subject.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             A successful request returns the HTTP 200 OK status code and a JSON response body that shows refund details.
@@ -224,7 +229,8 @@ class Payments:
                 the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token
                 with target_subject.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             A successful request returns the HTTP 200 OK status code and a JSON response body that shows the
@@ -276,7 +282,8 @@ class Payments:
                 the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token
                 with target_subject.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             A successful request returns the HTTP 200 OK status code and a JSON response body that shows refund details.
@@ -326,7 +333,8 @@ class Payments:
                 The server returns a minimal response to optimize communication between the API caller and the server. A
                 minimal response includes the id, status and HATEOAS links. return=representation. The server returns a
                 complete resource representation, including the current state of the resource.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             A successful request returns the HTTP 200 OK status code and a JSON response body that shows authorization
@@ -385,7 +393,8 @@ class AsyncPayments:
                 the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token
                 with target_subject.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             A successful request returns the HTTP 200 OK status code and a JSON response body that shows captured
@@ -430,7 +439,8 @@ class AsyncPayments:
                 Note:For three party transactions in which a partner is managing the API calls on behalf of a merchant,
                 the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token
                 with target_subject.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             A successful request returns the HTTP 200 OK status code and a JSON response body that shows authorization
@@ -464,7 +474,8 @@ class AsyncPayments:
             pay_pal_mock_response: PayPal's REST API uses a request header to invoke negative testing in the sandbox.
                 This header configures the sandbox into a negative testing state for transactions that include the
                 merchant.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             A successful request returns the HTTP 200 OK status code and a JSON response body that shows captured
@@ -501,7 +512,8 @@ class AsyncPayments:
                 Note:For three party transactions in which a partner is managing the API calls on behalf of a merchant,
                 the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token
                 with target_subject.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             A successful request returns the HTTP 200 OK status code and a JSON response body that shows refund details.
@@ -552,7 +564,8 @@ class AsyncPayments:
                 the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token
                 with target_subject.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             A successful request returns the HTTP 200 OK status code and a JSON response body that shows the
@@ -606,7 +619,8 @@ class AsyncPayments:
                 the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token
                 with target_subject.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             A successful request returns the HTTP 200 OK status code and a JSON response body that shows refund details.
@@ -658,7 +672,8 @@ class AsyncPayments:
                 The server returns a minimal response to optimize communication between the API caller and the server. A
                 minimal response includes the id, status and HATEOAS links. return=representation. The server returns a
                 complete resource representation, including the current state of the resource.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             A successful request returns the HTTP 200 OK status code and a JSON response body that shows authorization
@@ -716,7 +731,8 @@ class PaymentsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]
                 the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token
                 with target_subject.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -758,7 +774,8 @@ class PaymentsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]
                 Note:For three party transactions in which a partner is managing the API calls on behalf of a merchant,
                 the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token
                 with target_subject.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -790,7 +807,8 @@ class PaymentsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]
             pay_pal_mock_response: PayPal's REST API uses a request header to invoke negative testing in the sandbox.
                 This header configures the sandbox into a negative testing state for transactions that include the
                 merchant.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -825,7 +843,8 @@ class PaymentsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]
                 Note:For three party transactions in which a partner is managing the API calls on behalf of a merchant,
                 the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token
                 with target_subject.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -875,7 +894,8 @@ class PaymentsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]
                 the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token
                 with target_subject.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -926,7 +946,8 @@ class PaymentsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]
                 the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token
                 with target_subject.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -976,7 +997,8 @@ class PaymentsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]
                 The server returns a minimal response to optimize communication between the API caller and the server. A
                 minimal response includes the id, status and HATEOAS links. return=representation. The server returns a
                 complete resource representation, including the current state of the resource.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1028,7 +1050,8 @@ class AsyncPaymentsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
                 the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token
                 with target_subject.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1045,7 +1068,7 @@ class AsyncPaymentsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
             ],
             body=json_body[CaptureRequest | CaptureRequestDict | None](body),
             auth_scheme=self._auth.oauth2,
-            decoder=json_decoder[CapturedPayment],
+            decoder=async_json_decoder[CapturedPayment],
             error_mapper=capture_authorized_payment_error_mapper,
             request_options=request_options,
         )
@@ -1070,7 +1093,8 @@ class AsyncPaymentsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
                 Note:For three party transactions in which a partner is managing the API calls on behalf of a merchant,
                 the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token
                 with target_subject.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1083,7 +1107,7 @@ class AsyncPaymentsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
                 param[str | None]("PayPal-Auth-Assertion", pay_pal_auth_assertion),
             ],
             auth_scheme=self._auth.oauth2,
-            decoder=json_decoder[PaymentAuthorization],
+            decoder=async_json_decoder[PaymentAuthorization],
             error_mapper=get_authorized_payment_error_mapper,
             request_options=request_options,
         )
@@ -1102,7 +1126,8 @@ class AsyncPaymentsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
             pay_pal_mock_response: PayPal's REST API uses a request header to invoke negative testing in the sandbox.
                 This header configures the sandbox into a negative testing state for transactions that include the
                 merchant.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1112,7 +1137,7 @@ class AsyncPaymentsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
             path_params=[param[str]("capture_id", capture_id)],
             headers=[param[str | None]("PayPal-Mock-Response", pay_pal_mock_response)],
             auth_scheme=self._auth.oauth2,
-            decoder=json_decoder[CapturedPayment],
+            decoder=async_json_decoder[CapturedPayment],
             error_mapper=get_captured_payment_error_mapper,
             request_options=request_options,
         )
@@ -1137,7 +1162,8 @@ class AsyncPaymentsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
                 Note:For three party transactions in which a partner is managing the API calls on behalf of a merchant,
                 the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token
                 with target_subject.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1150,7 +1176,7 @@ class AsyncPaymentsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
                 param[str | None]("PayPal-Auth-Assertion", pay_pal_auth_assertion),
             ],
             auth_scheme=self._auth.oauth2,
-            decoder=json_decoder[Refund],
+            decoder=async_json_decoder[Refund],
             error_mapper=get_refund_error_mapper,
             request_options=request_options,
         )
@@ -1187,7 +1213,8 @@ class AsyncPaymentsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
                 the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token
                 with target_subject.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1203,7 +1230,7 @@ class AsyncPaymentsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
             ],
             body=json_body[ReauthorizeRequest | ReauthorizeRequestDict | None](body),
             auth_scheme=self._auth.oauth2,
-            decoder=json_decoder[PaymentAuthorization],
+            decoder=async_json_decoder[PaymentAuthorization],
             error_mapper=reauthorize_payment_error_mapper,
             request_options=request_options,
         )
@@ -1238,7 +1265,8 @@ class AsyncPaymentsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
                 the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token
                 with target_subject.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1255,7 +1283,7 @@ class AsyncPaymentsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
             ],
             body=json_body[RefundRequest | RefundRequestDict | None](body),
             auth_scheme=self._auth.oauth2,
-            decoder=json_decoder[Refund],
+            decoder=async_json_decoder[Refund],
             error_mapper=refund_captured_payment_error_mapper,
             request_options=request_options,
         )
@@ -1288,7 +1316,8 @@ class AsyncPaymentsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
                 The server returns a minimal response to optimize communication between the API caller and the server. A
                 minimal response includes the id, status and HATEOAS links. return=representation. The server returns a
                 complete resource representation, including the current state of the resource.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1304,7 +1333,7 @@ class AsyncPaymentsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
                 param[UUID]("Idempotency-Key", uuid4()),
             ],
             auth_scheme=self._auth.oauth2,
-            decoder=json_decoder[PaymentAuthorization],
+            decoder=async_json_decoder[PaymentAuthorization],
             error_mapper=void_payment_error_mapper,
             request_options=request_options,
         )

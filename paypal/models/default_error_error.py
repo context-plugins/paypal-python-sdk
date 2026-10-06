@@ -34,5 +34,5 @@ class DefaultErrorErrorDict(TypedDict):
     message: str
     debug_id: str
     information_link: NotRequired[str]
-    details: NotRequired[list[TransactionSearchErrorDetails | TransactionSearchErrorDetailsDict]]
-    links: NotRequired[list[LinkDescription | LinkDescriptionDict]]
+    details: NotRequired[list[TransactionSearchErrorDetailsDict]]
+    links: NotRequired[list[LinkDescriptionDict]]

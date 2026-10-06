@@ -34,8 +34,8 @@ class RefundRequest(SdkBaseModel):
 
 
 class RefundRequestDict(TypedDict):
-    amount: NotRequired[Money | MoneyDict]
+    amount: NotRequired[MoneyDict]
     custom_id: NotRequired[str]
     invoice_id: NotRequired[str]
     note_to_payer: NotRequired[str]
-    payment_instruction: NotRequired[RefundPaymentInstruction | RefundPaymentInstructionDict]
+    payment_instruction: NotRequired[RefundPaymentInstructionDict]

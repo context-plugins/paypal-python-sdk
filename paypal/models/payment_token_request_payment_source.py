@@ -18,5 +18,5 @@ class PaymentTokenRequestPaymentSource(SdkBaseModel):
 
 
 class PaymentTokenRequestPaymentSourceDict(TypedDict):
-    card: NotRequired[PaymentTokenRequestCard | PaymentTokenRequestCardDict]
-    token: NotRequired[VaultTokenRequest | VaultTokenRequestDict]
+    card: NotRequired[PaymentTokenRequestCardDict]
+    token: NotRequired[VaultTokenRequestDict]

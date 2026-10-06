@@ -24,7 +24,7 @@ class TransactionsList(SdkBaseModel):
 
 
 class TransactionsListDict(TypedDict):
-    transactions: NotRequired[list[SubscriptionTransactionDetails | SubscriptionTransactionDetailsDict]]
+    transactions: NotRequired[list[SubscriptionTransactionDetailsDict]]
     total_items: NotRequired[int]
     total_pages: NotRequired[int]
-    links: NotRequired[list[LinkDescription | LinkDescriptionDict]]
+    links: NotRequired[list[LinkDescriptionDict]]

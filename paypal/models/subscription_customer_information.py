@@ -24,4 +24,4 @@ class SubscriptionCustomerInformation(SdkBaseModel):
 class SubscriptionCustomerInformationDict(TypedDict):
     id: NotRequired[str]
     email_address: NotRequired[str]
-    phone: NotRequired[PhoneWithType | PhoneWithTypeDict]
+    phone: NotRequired[PhoneWithTypeDict]

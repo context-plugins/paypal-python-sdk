@@ -27,6 +27,6 @@ class PaymentPreferencesOverride(SdkBaseModel):
 
 class PaymentPreferencesOverrideDict(TypedDict):
     auto_bill_outstanding: NotRequired[bool]
-    setup_fee: NotRequired[Money | MoneyDict]
+    setup_fee: NotRequired[MoneyDict]
     setup_fee_failure_action: NotRequired[SetupFeeFailureActionOrStr]
     payment_failure_threshold: NotRequired[int]

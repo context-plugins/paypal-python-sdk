@@ -38,10 +38,10 @@ class TransactionDetails(SdkBaseModel):
 
 
 class TransactionDetailsDict(TypedDict):
-    transaction_info: NotRequired[TransactionInformation | TransactionInformationDict]
-    payer_info: NotRequired[PayerInformation | PayerInformationDict]
-    shipping_info: NotRequired[ShippingInformation | ShippingInformationDict]
-    cart_info: NotRequired[CartInformation | CartInformationDict]
-    store_info: NotRequired[StoreInformation | StoreInformationDict]
-    auction_info: NotRequired[AuctionInformation | AuctionInformationDict]
-    incentive_info: NotRequired[IncentiveInformation | IncentiveInformationDict]
+    transaction_info: NotRequired[TransactionInformationDict]
+    payer_info: NotRequired[PayerInformationDict]
+    shipping_info: NotRequired[ShippingInformationDict]
+    cart_info: NotRequired[CartInformationDict]
+    store_info: NotRequired[StoreInformationDict]
+    auction_info: NotRequired[AuctionInformationDict]
+    incentive_info: NotRequired[IncentiveInformationDict]

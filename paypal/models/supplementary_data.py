@@ -20,5 +20,5 @@ class SupplementaryData(SdkBaseModel):
 
 
 class SupplementaryDataDict(TypedDict):
-    card: NotRequired[CardSupplementaryData | CardSupplementaryDataDict]
-    risk: NotRequired[RiskSupplementaryData | RiskSupplementaryDataDict]
+    card: NotRequired[CardSupplementaryDataDict]
+    risk: NotRequired[RiskSupplementaryDataDict]

@@ -16,4 +16,4 @@ class RefundPlatformFee(SdkBaseModel):
 
 
 class RefundPlatformFeeDict(TypedDict):
-    amount: Money | MoneyDict
+    amount: MoneyDict

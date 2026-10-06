@@ -20,6 +20,6 @@ class SetupTokenResponsePaymentSource(SdkBaseModel):
 
 
 class SetupTokenResponsePaymentSourceDict(TypedDict):
-    card: NotRequired[SetupTokenResponseCard | SetupTokenResponseCardDict]
-    paypal: NotRequired[PayPalPaymentToken | PayPalPaymentTokenDict]
-    venmo: NotRequired[VenmoPaymentToken | VenmoPaymentTokenDict]
+    card: NotRequired[SetupTokenResponseCardDict]
+    paypal: NotRequired[PayPalPaymentTokenDict]
+    venmo: NotRequired[VenmoPaymentTokenDict]

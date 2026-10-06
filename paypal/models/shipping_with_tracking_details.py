@@ -46,10 +46,10 @@ class ShippingWithTrackingDetails(SdkBaseModel):
 
 
 class ShippingWithTrackingDetailsDict(TypedDict):
-    trackers: NotRequired[list[OrderTrackerResponse | OrderTrackerResponseDict]]
-    name: NotRequired[ShippingName | ShippingNameDict]
+    trackers: NotRequired[list[OrderTrackerResponseDict]]
+    name: NotRequired[ShippingNameDict]
     email_address: NotRequired[str]
-    phone_number: NotRequired[PhoneNumberWithOptionalCountryCode | PhoneNumberWithOptionalCountryCodeDict]
+    phone_number: NotRequired[PhoneNumberWithOptionalCountryCodeDict]
     type_: NotRequired[FulfillmentTypeOrStr]
-    options: NotRequired[list[ShippingOption | ShippingOptionDict]]
-    address: NotRequired[Address | AddressDict]
+    options: NotRequired[list[ShippingOptionDict]]
+    address: NotRequired[AddressDict]

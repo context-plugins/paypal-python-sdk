@@ -37,8 +37,8 @@ class SubscriptionPricingScheme(SdkBaseModel):
 
 class SubscriptionPricingSchemeDict(TypedDict):
     version: NotRequired[int]
-    fixed_price: NotRequired[Money | MoneyDict]
+    fixed_price: NotRequired[MoneyDict]
     pricing_model: NotRequired[SubscriptionPricingModelOrStr]
-    tiers: NotRequired[list[PricingTier | PricingTierDict]]
+    tiers: NotRequired[list[PricingTierDict]]
     create_time: NotRequired[str]
     update_time: NotRequired[str]

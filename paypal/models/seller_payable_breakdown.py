@@ -38,11 +38,11 @@ class SellerPayableBreakdown(SdkBaseModel):
 
 
 class SellerPayableBreakdownDict(TypedDict):
-    gross_amount: NotRequired[Money | MoneyDict]
-    paypal_fee: NotRequired[Money | MoneyDict]
-    paypal_fee_in_receivable_currency: NotRequired[Money | MoneyDict]
-    net_amount: NotRequired[Money | MoneyDict]
-    net_amount_in_receivable_currency: NotRequired[Money | MoneyDict]
-    platform_fees: NotRequired[list[PlatformFee | PlatformFeeDict]]
-    net_amount_breakdown: NotRequired[list[NetAmountBreakdownItem | NetAmountBreakdownItemDict]]
-    total_refunded_amount: NotRequired[Money | MoneyDict]
+    gross_amount: NotRequired[MoneyDict]
+    paypal_fee: NotRequired[MoneyDict]
+    paypal_fee_in_receivable_currency: NotRequired[MoneyDict]
+    net_amount: NotRequired[MoneyDict]
+    net_amount_in_receivable_currency: NotRequired[MoneyDict]
+    platform_fees: NotRequired[list[PlatformFeeDict]]
+    net_amount_breakdown: NotRequired[list[NetAmountBreakdownItemDict]]
+    total_refunded_amount: NotRequired[MoneyDict]

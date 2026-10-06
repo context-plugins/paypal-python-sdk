@@ -22,6 +22,6 @@ class Plan(SdkBaseModel):
 
 
 class PlanDict(TypedDict):
-    billing_cycles: list[BillingCycle | BillingCycleDict]
-    one_time_charges: OneTimeCharge | OneTimeChargeDict
+    billing_cycles: list[BillingCycleDict]
+    one_time_charges: OneTimeChargeDict
     name: NotRequired[str]

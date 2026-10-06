@@ -28,5 +28,5 @@ class VaultResponse(SdkBaseModel):
 class VaultResponseDict(TypedDict):
     id: NotRequired[str]
     status: NotRequired[VaultStatusOrStr]
-    customer: NotRequired[VaultCustomer | VaultCustomerDict]
-    links: NotRequired[list[LinkDescription | LinkDescriptionDict]]
+    customer: NotRequired[VaultCustomerDict]
+    links: NotRequired[list[LinkDescriptionDict]]

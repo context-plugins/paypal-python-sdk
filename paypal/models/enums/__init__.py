@@ -69,7 +69,6 @@ from .payment_token_status import PaymentTokenStatus, PaymentTokenStatusOrStr
 from .phone_type import PhoneType, PhoneTypeOrStr
 from .plan_request_status import PlanRequestStatus, PlanRequestStatusOrStr
 from .pricing_model import PricingModel, PricingModelOrStr
-from .processing_instruction import ProcessingInstruction, ProcessingInstructionOrStr
 from .processor_response_code import ProcessorResponseCode, ProcessorResponseCodeOrStr
 from .reason_code import ReasonCode, ReasonCodeOrStr
 from .refund_incomplete_reason import RefundIncompleteReason, RefundIncompleteReasonOrStr
@@ -91,7 +90,6 @@ from .tenure_type import TenureType, TenureTypeOrStr
 from .token_type import TokenType, TokenTypeOrStr
 from .upc_type import UpcType, UpcTypeOrStr
 from .usage_pattern import UsagePattern, UsagePatternOrStr
-from .usage_type import UsageType, UsageTypeOrStr
 from .vault_card_verification_method import VaultCardVerificationMethod, VaultCardVerificationMethodOrStr
 from .vault_instruction_action import VaultInstructionAction, VaultInstructionActionOrStr
 from .vault_status import VaultStatus, VaultStatusOrStr
@@ -217,8 +215,6 @@ __all__ = [
     "PlanRequestStatusOrStr",
     "PricingModel",
     "PricingModelOrStr",
-    "ProcessingInstruction",
-    "ProcessingInstructionOrStr",
     "ProcessorResponseCode",
     "ProcessorResponseCodeOrStr",
     "ReasonCode",
@@ -261,8 +257,6 @@ __all__ = [
     "UpcTypeOrStr",
     "UsagePattern",
     "UsagePatternOrStr",
-    "UsageType",
-    "UsageTypeOrStr",
     "VaultCardVerificationMethod",
     "VaultCardVerificationMethodOrStr",
     "VaultInstructionAction",

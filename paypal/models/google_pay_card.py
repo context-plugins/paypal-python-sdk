@@ -45,4 +45,4 @@ class GooglePayCardDict(TypedDict):
     last_digits: NotRequired[str]
     type_: NotRequired[CardTypeOrStr]
     brand: NotRequired[CardBrandOrStr]
-    billing_address: NotRequired[Address | AddressDict]
+    billing_address: NotRequired[AddressDict]

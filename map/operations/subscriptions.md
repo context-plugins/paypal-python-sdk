@@ -10,9 +10,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /v1/billing/plans/{id}/activate`
 - **Auth**: `oauth2`
-- **Signature**: `def activate_billing_plan(id: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `id`
-- **Params**: `id` — path
+- **Signature**: `def activate_billing_plan(id_: str, *, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `id_`
+- **Params**: `id_` — path `id`
 - **Returns (parsed)**: `None`
 - **Returns (raw)**: `ApiResult[None, ActivateBillingPlanErrorBody]`
 - **Error**: `ActivateBillingPlanErrorBody` — **Case A (typed)**
@@ -27,9 +27,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /v1/billing/subscriptions/{id}/activate`
 - **Auth**: `oauth2`
-- **Signature**: `def activate_subscription(id: str, *, body: ActivateSubscriptionRequest | ActivateSubscriptionRequestDict | None = None, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `id`
-- **Params**: `id` — path · `body` — JSON body
+- **Signature**: `def activate_subscription(id_: str, *, body: ActivateSubscriptionRequest | ActivateSubscriptionRequestDict | None = None, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `id_`
+- **Params**: `id_` — path `id` · `body` — JSON body
 - **Returns (parsed)**: `None`
 - **Returns (raw)**: `ApiResult[None, ActivateSubscriptionErrorBody]`
 - **Error**: `ActivateSubscriptionErrorBody` — **Case A (typed)**
@@ -46,9 +46,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /v1/billing/subscriptions/{id}/cancel`
 - **Auth**: `oauth2`
-- **Signature**: `def cancel_subscription(id: str, *, body: CancelSubscriptionRequest | CancelSubscriptionRequestDict | None = None, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `id`
-- **Params**: `id` — path · `body` — JSON body
+- **Signature**: `def cancel_subscription(id_: str, *, body: CancelSubscriptionRequest | CancelSubscriptionRequestDict | None = None, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `id_`
+- **Params**: `id_` — path `id` · `body` — JSON body
 - **Returns (parsed)**: `None`
 - **Returns (raw)**: `ApiResult[None, CancelSubscriptionErrorBody]`
 - **Error**: `CancelSubscriptionErrorBody` — **Case A (typed)**
@@ -65,9 +65,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /v1/billing/subscriptions/{id}/capture`
 - **Auth**: `oauth2`
-- **Signature**: `def capture_subscription(id: str, *, pay_pal_request_id: str | None = None, body: CaptureSubscriptionRequest | CaptureSubscriptionRequestDict | None = None, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `id`
-- **Params**: `id` — path · `pay_pal_request_id` — header `PayPal-Request-Id` · `body` — JSON body
+- **Signature**: `def capture_subscription(id_: str, *, pay_pal_request_id: str | None = None, body: CaptureSubscriptionRequest | CaptureSubscriptionRequestDict | None = None, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `id_`
+- **Params**: `id_` — path `id` · `pay_pal_request_id` — header `PayPal-Request-Id` · `body` — JSON body
 - **Returns (parsed)**: `SubscriptionTransactionDetails`
 - **Returns (raw)**: `ApiResult[SubscriptionTransactionDetails, CaptureSubscriptionErrorBody]`
 - **Error**: `CaptureSubscriptionErrorBody` — **Case A (typed)**
@@ -123,9 +123,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /v1/billing/plans/{id}/deactivate`
 - **Auth**: `oauth2`
-- **Signature**: `def deactivate_billing_plan(id: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `id`
-- **Params**: `id` — path
+- **Signature**: `def deactivate_billing_plan(id_: str, *, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `id_`
+- **Params**: `id_` — path `id`
 - **Returns (parsed)**: `None`
 - **Returns (raw)**: `ApiResult[None, DeactivateBillingPlanErrorBody]`
 - **Error**: `DeactivateBillingPlanErrorBody` — **Case A (typed)**
@@ -140,9 +140,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v1/billing/plans/{id}`
 - **Auth**: `oauth2`
-- **Signature**: `def get_billing_plan(id: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `id`
-- **Params**: `id` — path
+- **Signature**: `def get_billing_plan(id_: str, *, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `id_`
+- **Params**: `id_` — path `id`
 - **Returns (parsed)**: `BillingPlan`
 - **Returns (raw)**: `ApiResult[BillingPlan, GetBillingPlanErrorBody]`
 - **Error**: `GetBillingPlanErrorBody` — **Case A (typed)**
@@ -158,9 +158,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v1/billing/subscriptions/{id}`
 - **Auth**: `oauth2`
-- **Signature**: `def get_subscription(id: str, *, fields: str | None = None, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `id`
-- **Params**: `id` — path · `fields` — query
+- **Signature**: `def get_subscription(id_: str, *, fields: str | None = None, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `id_`
+- **Params**: `id_` — path `id` · `fields` — query
 - **Returns (parsed)**: `Subscription`
 - **Returns (raw)**: `ApiResult[Subscription, GetSubscriptionErrorBody]`
 - **Error**: `GetSubscriptionErrorBody` — **Case A (typed)**
@@ -193,9 +193,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v1/billing/subscriptions/{id}/transactions`
 - **Auth**: `oauth2`
-- **Signature**: `def list_subscription_transactions(id: str, start_time: str, end_time: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `id`, `start_time`, `end_time`
-- **Params**: `id` — path · `start_time` — query · `end_time` — query
+- **Signature**: `def list_subscription_transactions(id_: str, start_time: str, end_time: str, *, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `id_`, `start_time`, `end_time`
+- **Params**: `id_` — path `id` · `start_time` — query · `end_time` — query
 - **Returns (parsed)**: `TransactionsList`
 - **Returns (raw)**: `ApiResult[TransactionsList, ListSubscriptionTransactionsErrorBody]`
 - **Error**: `ListSubscriptionTransactionsErrorBody` — **Case A (typed)**
@@ -211,8 +211,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v1/billing/subscriptions`
 - **Auth**: `oauth2`
-- **Signature**: `def list_subscriptions(*, plan_ids: str | None = None, statuses: str | None = None, created_after: str | None = None, created_before: str | None = None, status_updated_before: str | None = None, status_updated_after: str | None = None, filter: str | None = None, page_size: int | None = 10, page: int | None = 1, customer_ids: list[str] | None = None, request_options: RequestOptionsOrDict | None = None)`
-- **Params**: `plan_ids` — query · `statuses` — query · `created_after` — query · `created_before` — query · `status_updated_before` — query · `status_updated_after` — query · `filter` — query · `page_size` — query · `page` — query · `customer_ids` — query
+- **Signature**: `def list_subscriptions(*, plan_ids: str | None = None, statuses: str | None = None, created_after: str | None = None, created_before: str | None = None, status_updated_before: str | None = None, status_updated_after: str | None = None, filter_: str | None = None, page_size: int | None = 10, page: int | None = 1, customer_ids: list[str] | None = None, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `plan_ids` — query · `statuses` — query · `created_after` — query · `created_before` — query · `status_updated_before` — query · `status_updated_after` — query · `filter_` — query `filter` · `page_size` — query · `page` — query · `customer_ids` — query
 - **Returns (parsed)**: `SubscriptionCollection`
 - **Returns (raw)**: `ApiResult[SubscriptionCollection, ListSubscriptionsErrorBody]`
 - **Error**: `ListSubscriptionsErrorBody` — **Case A (typed)**
@@ -228,9 +228,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `PATCH /v1/billing/plans/{id}`
 - **Auth**: `oauth2`
-- **Signature**: `def patch_billing_plan(id: str, *, body: list[Patch | PatchDict] | None = None, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `id`
-- **Params**: `id` — path · `body` — JSON body
+- **Signature**: `def patch_billing_plan(id_: str, *, body: list[Patch | PatchDict] | None = None, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `id_`
+- **Params**: `id_` — path `id` · `body` — JSON body
 - **Returns (parsed)**: `None`
 - **Returns (raw)**: `ApiResult[None, PatchBillingPlanErrorBody]`
 - **Error**: `PatchBillingPlanErrorBody` — **Case A (typed)**
@@ -247,9 +247,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `PATCH /v1/billing/subscriptions/{id}`
 - **Auth**: `oauth2`
-- **Signature**: `def patch_subscription(id: str, *, body: list[Patch | PatchDict] | None = None, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `id`
-- **Params**: `id` — path · `body` — JSON body
+- **Signature**: `def patch_subscription(id_: str, *, body: list[Patch | PatchDict] | None = None, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `id_`
+- **Params**: `id_` — path `id` · `body` — JSON body
 - **Returns (parsed)**: `None`
 - **Returns (raw)**: `ApiResult[None, PatchSubscriptionErrorBody]`
 - **Error**: `PatchSubscriptionErrorBody` — **Case A (typed)**
@@ -266,9 +266,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /v1/billing/subscriptions/{id}/revise`
 - **Auth**: `oauth2`
-- **Signature**: `def revise_subscription(id: str, *, body: ModifySubscriptionRequest | ModifySubscriptionRequestDict | None = None, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `id`
-- **Params**: `id` — path · `body` — JSON body
+- **Signature**: `def revise_subscription(id_: str, *, body: ModifySubscriptionRequest | ModifySubscriptionRequestDict | None = None, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `id_`
+- **Params**: `id_` — path `id` · `body` — JSON body
 - **Returns (parsed)**: `ModifySubscriptionResponse`
 - **Returns (raw)**: `ApiResult[ModifySubscriptionResponse, ReviseSubscriptionErrorBody]`
 - **Error**: `ReviseSubscriptionErrorBody` — **Case A (typed)**
@@ -286,9 +286,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /v1/billing/subscriptions/{id}/suspend`
 - **Auth**: `oauth2`
-- **Signature**: `def suspend_subscription(id: str, *, body: SuspendSubscription | SuspendSubscriptionDict | None = None, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `id`
-- **Params**: `id` — path · `body` — JSON body
+- **Signature**: `def suspend_subscription(id_: str, *, body: SuspendSubscription | SuspendSubscriptionDict | None = None, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `id_`
+- **Params**: `id_` — path `id` · `body` — JSON body
 - **Returns (parsed)**: `None`
 - **Returns (raw)**: `ApiResult[None, SuspendSubscriptionErrorBody]`
 - **Error**: `SuspendSubscriptionErrorBody` — **Case A (typed)**
@@ -305,9 +305,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /v1/billing/plans/{id}/update-pricing-schemes`
 - **Auth**: `oauth2`
-- **Signature**: `def update_billing_plan_pricing_schemes(id: str, *, body: UpdatePricingSchemesRequest | UpdatePricingSchemesRequestDict | None = None, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `id`
-- **Params**: `id` — path · `body` — JSON body
+- **Signature**: `def update_billing_plan_pricing_schemes(id_: str, *, body: UpdatePricingSchemesRequest | UpdatePricingSchemesRequestDict | None = None, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `id_`
+- **Params**: `id_` — path `id` · `body` — JSON body
 - **Returns (parsed)**: `None`
 - **Returns (raw)**: `ApiResult[None, UpdateBillingPlanPricingSchemesErrorBody]`
 - **Error**: `UpdateBillingPlanPricingSchemesErrorBody` — **Case A (typed)**

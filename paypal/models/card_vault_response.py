@@ -27,5 +27,5 @@ class CardVaultResponse(SdkBaseModel):
 class CardVaultResponseDict(TypedDict):
     id: NotRequired[str]
     status: NotRequired[VaultStatusOrStr]
-    links: NotRequired[list[LinkDescription | LinkDescriptionDict]]
-    customer: NotRequired[CardCustomerInformation | CardCustomerInformationDict]
+    links: NotRequired[list[LinkDescriptionDict]]
+    customer: NotRequired[CardCustomerInformationDict]

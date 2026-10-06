@@ -10,9 +10,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /v2/checkout/orders/{id}/authorize`
 - **Auth**: `oauth2`
-- **Signature**: `def authorize_order(id: str, *, pay_pal_mock_response: str | None = None, pay_pal_request_id: str | None = None, prefer: str | None = "return=minimal", pay_pal_client_metadata_id: str | None = None, pay_pal_auth_assertion: str | None = None, body: OrderAuthorizeRequest | OrderAuthorizeRequestDict | None = None, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `id`
-- **Params**: `id` — path · `pay_pal_mock_response` — header `PayPal-Mock-Response` · `pay_pal_request_id` — header `PayPal-Request-Id` · `prefer` — header `Prefer` · `pay_pal_client_metadata_id` — header `PayPal-Client-Metadata-Id` · `pay_pal_auth_assertion` — header `PayPal-Auth-Assertion` · `body` — JSON body
+- **Signature**: `def authorize_order(id_: str, *, pay_pal_mock_response: str | None = None, pay_pal_request_id: str | None = None, prefer: str | None = "return=minimal", pay_pal_client_metadata_id: str | None = None, pay_pal_auth_assertion: str | None = None, body: OrderAuthorizeRequest | OrderAuthorizeRequestDict | None = None, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `id_`
+- **Params**: `id_` — path `id` · `pay_pal_mock_response` — header `PayPal-Mock-Response` · `pay_pal_request_id` — header `PayPal-Request-Id` · `prefer` — header `Prefer` · `pay_pal_client_metadata_id` — header `PayPal-Client-Metadata-Id` · `pay_pal_auth_assertion` — header `PayPal-Auth-Assertion` · `body` — JSON body
 - **Returns (parsed)**: `OrderAuthorizeResponse`
 - **Returns (raw)**: `ApiResult[OrderAuthorizeResponse, AuthorizeOrderErrorBody]`
 - **Error**: `AuthorizeOrderErrorBody` — **Case A (typed)**
@@ -30,9 +30,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /v2/checkout/orders/{id}/capture`
 - **Auth**: `oauth2`
-- **Signature**: `def capture_order(id: str, *, pay_pal_mock_response: str | None = None, pay_pal_request_id: str | None = None, prefer: str | None = "return=minimal", pay_pal_client_metadata_id: str | None = None, pay_pal_auth_assertion: str | None = None, body: OrderCaptureRequest | OrderCaptureRequestDict | None = None, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `id`
-- **Params**: `id` — path · `pay_pal_mock_response` — header `PayPal-Mock-Response` · `pay_pal_request_id` — header `PayPal-Request-Id` · `prefer` — header `Prefer` · `pay_pal_client_metadata_id` — header `PayPal-Client-Metadata-Id` · `pay_pal_auth_assertion` — header `PayPal-Auth-Assertion` · `body` — JSON body
+- **Signature**: `def capture_order(id_: str, *, pay_pal_mock_response: str | None = None, pay_pal_request_id: str | None = None, prefer: str | None = "return=minimal", pay_pal_client_metadata_id: str | None = None, pay_pal_auth_assertion: str | None = None, body: OrderCaptureRequest | OrderCaptureRequestDict | None = None, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `id_`
+- **Params**: `id_` — path `id` · `pay_pal_mock_response` — header `PayPal-Mock-Response` · `pay_pal_request_id` — header `PayPal-Request-Id` · `prefer` — header `Prefer` · `pay_pal_client_metadata_id` — header `PayPal-Client-Metadata-Id` · `pay_pal_auth_assertion` — header `PayPal-Auth-Assertion` · `body` — JSON body
 - **Returns (parsed)**: `Order`
 - **Returns (raw)**: `ApiResult[Order, CaptureOrderErrorBody]`
 - **Error**: `CaptureOrderErrorBody` — **Case A (typed)**
@@ -50,9 +50,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /v2/checkout/orders/{id}/confirm-payment-source`
 - **Auth**: `oauth2`
-- **Signature**: `def confirm_order(id: str, *, pay_pal_client_metadata_id: str | None = None, pay_pal_auth_assertion: str | None = None, prefer: str | None = "return=minimal", body: ConfirmOrderRequest | ConfirmOrderRequestDict | None = None, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `id`
-- **Params**: `id` — path · `pay_pal_client_metadata_id` — header `PayPal-Client-Metadata-Id` · `pay_pal_auth_assertion` — header `PayPal-Auth-Assertion` · `prefer` — header `Prefer` · `body` — JSON body
+- **Signature**: `def confirm_order(id_: str, *, pay_pal_client_metadata_id: str | None = None, pay_pal_auth_assertion: str | None = None, prefer: str | None = "return=minimal", body: ConfirmOrderRequest | ConfirmOrderRequestDict | None = None, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `id_`
+- **Params**: `id_` — path `id` · `pay_pal_client_metadata_id` — header `PayPal-Client-Metadata-Id` · `pay_pal_auth_assertion` — header `PayPal-Auth-Assertion` · `prefer` — header `Prefer` · `body` — JSON body
 - **Returns (parsed)**: `Order`
 - **Returns (raw)**: `ApiResult[Order, ConfirmOrderErrorBody]`
 - **Error**: `ConfirmOrderErrorBody` — **Case A (typed)**
@@ -90,9 +90,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /v2/checkout/orders/{id}/track`
 - **Auth**: `oauth2`
-- **Signature**: `def create_order_tracking(id: str, body: OrderTrackerRequest | OrderTrackerRequestDict, *, pay_pal_auth_assertion: str | None = None, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `id`, `body`
-- **Params**: `id` — path · `pay_pal_auth_assertion` — header `PayPal-Auth-Assertion` · `body` — JSON body
+- **Signature**: `def create_order_tracking(id_: str, body: OrderTrackerRequest | OrderTrackerRequestDict, *, pay_pal_auth_assertion: str | None = None, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `id_`, `body`
+- **Params**: `id_` — path `id` · `pay_pal_auth_assertion` — header `PayPal-Auth-Assertion` · `body` — JSON body
 - **Returns (parsed)**: `Order`
 - **Returns (raw)**: `ApiResult[Order, CreateOrderTrackingErrorBody]`
 - **Error**: `CreateOrderTrackingErrorBody` — **Case A (typed)**
@@ -110,9 +110,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v2/checkout/orders/{id}`
 - **Auth**: `oauth2`
-- **Signature**: `def get_order(id: str, *, fields: str | None = None, pay_pal_mock_response: str | None = None, pay_pal_auth_assertion: str | None = None, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `id`
-- **Params**: `id` — path · `fields` — query · `pay_pal_mock_response` — header `PayPal-Mock-Response` · `pay_pal_auth_assertion` — header `PayPal-Auth-Assertion`
+- **Signature**: `def get_order(id_: str, *, fields: str | None = None, pay_pal_mock_response: str | None = None, pay_pal_auth_assertion: str | None = None, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `id_`
+- **Params**: `id_` — path `id` · `fields` — query · `pay_pal_mock_response` — header `PayPal-Mock-Response` · `pay_pal_auth_assertion` — header `PayPal-Auth-Assertion`
 - **Returns (parsed)**: `Order`
 - **Returns (raw)**: `ApiResult[Order, GetOrderErrorBody]`
 - **Error**: `GetOrderErrorBody` — **Case A (typed)**
@@ -128,9 +128,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `PATCH /v2/checkout/orders/{id}`
 - **Auth**: `oauth2`
-- **Signature**: `def patch_order(id: str, *, pay_pal_mock_response: str | None = None, pay_pal_auth_assertion: str | None = None, body: list[Patch | PatchDict] | None = None, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `id`
-- **Params**: `id` — path · `pay_pal_mock_response` — header `PayPal-Mock-Response` · `pay_pal_auth_assertion` — header `PayPal-Auth-Assertion` · `body` — JSON body
+- **Signature**: `def patch_order(id_: str, *, pay_pal_mock_response: str | None = None, pay_pal_auth_assertion: str | None = None, body: list[Patch | PatchDict] | None = None, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `id_`
+- **Params**: `id_` — path `id` · `pay_pal_mock_response` — header `PayPal-Mock-Response` · `pay_pal_auth_assertion` — header `PayPal-Auth-Assertion` · `body` — JSON body
 - **Returns (parsed)**: `None`
 - **Returns (raw)**: `ApiResult[None, PatchOrderErrorBody]`
 - **Error**: `PatchOrderErrorBody` — **Case A (typed)**
@@ -147,9 +147,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `PATCH /v2/checkout/orders/{id}/trackers/{tracker_id}`
 - **Auth**: `oauth2`
-- **Signature**: `def update_order_tracking(id: str, tracker_id: str, *, pay_pal_auth_assertion: str | None = None, body: list[Patch | PatchDict] | None = None, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `id`, `tracker_id`
-- **Params**: `id` — path · `tracker_id` — path · `pay_pal_auth_assertion` — header `PayPal-Auth-Assertion` · `body` — JSON body
+- **Signature**: `def update_order_tracking(id_: str, tracker_id: str, *, pay_pal_auth_assertion: str | None = None, body: list[Patch | PatchDict] | None = None, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `id_`, `tracker_id`
+- **Params**: `id_` — path `id` · `tracker_id` — path · `pay_pal_auth_assertion` — header `PayPal-Auth-Assertion` · `body` — JSON body
 - **Returns (parsed)**: `None`
 - **Returns (raw)**: `ApiResult[None, UpdateOrderTrackingErrorBody]`
 - **Error**: `UpdateOrderTrackingErrorBody` — **Case A (typed)**

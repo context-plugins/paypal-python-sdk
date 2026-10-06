@@ -50,9 +50,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `DELETE /v3/vault/payment-tokens/{id}`
 - **Auth**: `oauth2`
-- **Signature**: `def delete_payment_token(id: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `id`
-- **Params**: `id` — path
+- **Signature**: `def delete_payment_token(id_: str, *, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `id_`
+- **Params**: `id_` — path `id`
 - **Returns (parsed)**: `None`
 - **Returns (raw)**: `ApiResult[None, DeletePaymentTokenErrorBody]`
 - **Error**: `DeletePaymentTokenErrorBody` — **Case A (typed)**
@@ -67,9 +67,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/vault/payment-tokens/{id}`
 - **Auth**: `oauth2`
-- **Signature**: `def get_payment_token(id: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `id`
-- **Params**: `id` — path
+- **Signature**: `def get_payment_token(id_: str, *, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `id_`
+- **Params**: `id_` — path `id`
 - **Returns (parsed)**: `PaymentTokenResponse`
 - **Returns (raw)**: `ApiResult[PaymentTokenResponse, GetPaymentTokenErrorBody]`
 - **Error**: `GetPaymentTokenErrorBody` — **Case A (typed)**
@@ -85,9 +85,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/vault/setup-tokens/{id}`
 - **Auth**: `oauth2`
-- **Signature**: `def get_setup_token(id: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `id`
-- **Params**: `id` — path
+- **Signature**: `def get_setup_token(id_: str, *, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `id_`
+- **Params**: `id_` — path `id`
 - **Returns (parsed)**: `SetupTokenResponse`
 - **Returns (raw)**: `ApiResult[SetupTokenResponse, GetSetupTokenErrorBody]`
 - **Error**: `GetSetupTokenErrorBody` — **Case A (typed)**

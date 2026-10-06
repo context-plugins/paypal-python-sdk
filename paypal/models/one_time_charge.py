@@ -29,9 +29,9 @@ class OneTimeCharge(SdkBaseModel):
 
 
 class OneTimeChargeDict(TypedDict):
-    setup_fee: NotRequired[Money | MoneyDict]
-    shipping_amount: NotRequired[Money | MoneyDict]
-    taxes: NotRequired[Money | MoneyDict]
-    product_price: NotRequired[Money | MoneyDict]
-    subtotal: NotRequired[Money | MoneyDict]
-    total_amount: Money | MoneyDict
+    setup_fee: NotRequired[MoneyDict]
+    shipping_amount: NotRequired[MoneyDict]
+    taxes: NotRequired[MoneyDict]
+    product_price: NotRequired[MoneyDict]
+    subtotal: NotRequired[MoneyDict]
+    total_amount: MoneyDict

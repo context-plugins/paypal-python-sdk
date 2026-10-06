@@ -14,4 +14,4 @@ class ApplePayAttributesResponse(SdkBaseModel):
 
 
 class ApplePayAttributesResponseDict(TypedDict):
-    vault: NotRequired[VaultResponse | VaultResponseDict]
+    vault: NotRequired[VaultResponseDict]

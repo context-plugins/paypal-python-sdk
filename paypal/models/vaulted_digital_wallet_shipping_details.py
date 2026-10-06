@@ -37,8 +37,8 @@ class VaultedDigitalWalletShippingDetails(SdkBaseModel):
 
 
 class VaultedDigitalWalletShippingDetailsDict(TypedDict):
-    name: NotRequired[ShippingName | ShippingNameDict]
+    name: NotRequired[ShippingNameDict]
     email_address: NotRequired[str]
-    phone_number: NotRequired[PhoneNumberWithCountryCode | PhoneNumberWithCountryCodeDict]
+    phone_number: NotRequired[PhoneNumberWithCountryCodeDict]
     type_: NotRequired[FulfillmentTypeOrStr]
-    address: NotRequired[Address | AddressDict]
+    address: NotRequired[AddressDict]

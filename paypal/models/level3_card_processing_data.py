@@ -37,9 +37,9 @@ class Level3CardProcessingData(SdkBaseModel):
 
 
 class Level3CardProcessingDataDict(TypedDict):
-    shipping_amount: NotRequired[Money | MoneyDict]
-    duty_amount: NotRequired[Money | MoneyDict]
-    discount_amount: NotRequired[Money | MoneyDict]
-    shipping_address: NotRequired[Address | AddressDict]
+    shipping_amount: NotRequired[MoneyDict]
+    duty_amount: NotRequired[MoneyDict]
+    discount_amount: NotRequired[MoneyDict]
+    shipping_address: NotRequired[AddressDict]
     ships_from_postal_code: NotRequired[str]
-    line_items: NotRequired[list[LineItem | LineItemDict]]
+    line_items: NotRequired[list[LineItemDict]]

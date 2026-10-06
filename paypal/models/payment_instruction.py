@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing_extensions import NotRequired, TypedDict
 
 from ..core import UNSET, Optional, SdkBaseModel
-from .enums.disbursement_mode import DisbursementModeOrStr
+from .enums.disbursement_mode import DisbursementMode, DisbursementModeOrStr
 from .platform_fee import PlatformFee, PlatformFeeDict
 
 
@@ -15,7 +15,7 @@ class PaymentInstruction(SdkBaseModel):
     """An array of various fees, commissions, tips, or donations. This field is only applicable to merchants that been
     enabled for PayPal Complete Payments Platform for Marketplaces and Platforms capability."""
 
-    disbursement_mode: Optional[DisbursementModeOrStr] = UNSET
+    disbursement_mode: DisbursementModeOrStr = DisbursementMode.INSTANT
     """The funds that are held on behalf of the merchant."""
 
     payee_pricing_tier_id: Optional[str] = UNSET
@@ -30,7 +30,7 @@ class PaymentInstruction(SdkBaseModel):
 
 
 class PaymentInstructionDict(TypedDict):
-    platform_fees: NotRequired[list[PlatformFee | PlatformFeeDict]]
+    platform_fees: NotRequired[list[PlatformFeeDict]]
     disbursement_mode: NotRequired[DisbursementModeOrStr]
     payee_pricing_tier_id: NotRequired[str]
     payee_receivable_fx_rate_id: NotRequired[str]

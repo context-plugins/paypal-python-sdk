@@ -2,14 +2,14 @@ from __future__ import annotations
 
 from typing_extensions import NotRequired, TypedDict
 
-from ..core import UNSET, Optional, SdkBaseModel
-from .enums.payee_payment_method_preference import PayeePaymentMethodPreferenceOrStr
+from ..core import SdkBaseModel
+from .enums.payee_payment_method_preference import PayeePaymentMethodPreference, PayeePaymentMethodPreferenceOrStr
 
 
 class PaymentMethod(SdkBaseModel):
     """The customer and merchant payment preferences."""
 
-    payee_preferred: Optional[PayeePaymentMethodPreferenceOrStr] = UNSET
+    payee_preferred: PayeePaymentMethodPreferenceOrStr = PayeePaymentMethodPreference.UNRESTRICTED
     """The merchant-preferred payment methods."""
 
 

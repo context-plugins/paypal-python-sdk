@@ -63,10 +63,10 @@ class ApplePayCardResponse(SdkBaseModel):
     <https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute>`__."""
 
     country_code: Optional[str] = UNSET
-    """The `two-character ISO 3166-1 code <https://developer.paypal.com/api/rest/reference/country-codes/>`__ that
-    identifies the country or region. Note: The country code for Great Britain is GB and not UK as used in the top-level
-    domain names for that country. Use the ``C2`` country code for China worldwide for comparable uncontrolled price
-    (CUP) method, bank card, and cross-border transactions."""
+    """The `two-character ISO 3166-1 code </api/rest/reference/country-codes/>`__ that identifies the country or region.
+    Note: The country code for Great Britain is GB and not UK as used in the top-level domain names for that country.
+    Use the ``C2`` country code for China worldwide for comparable uncontrolled price (CUP) method, bank card, and
+    cross-border transactions."""
 
 
 class ApplePayCardResponseDict(TypedDict):
@@ -75,11 +75,11 @@ class ApplePayCardResponseDict(TypedDict):
     brand: NotRequired[CardBrandOrStr]
     available_networks: NotRequired[list[CardBrandOrStr]]
     type_: NotRequired[CardTypeOrStr]
-    authentication_result: NotRequired[AuthenticationResponse | AuthenticationResponseDict]
-    attributes: NotRequired[CardAttributesResponse | CardAttributesResponseDict]
-    from_request: NotRequired[CardFromRequest | CardFromRequestDict]
+    authentication_result: NotRequired[AuthenticationResponseDict]
+    attributes: NotRequired[CardAttributesResponseDict]
+    from_request: NotRequired[CardFromRequestDict]
     expiry: NotRequired[str]
-    bin_details: NotRequired[BinDetails | BinDetailsDict]
-    stored_credential: NotRequired[CardStoredCredential | CardStoredCredentialDict]
-    billing_address: NotRequired[Address | AddressDict]
+    bin_details: NotRequired[BinDetailsDict]
+    stored_credential: NotRequired[CardStoredCredentialDict]
+    billing_address: NotRequired[AddressDict]
     country_code: NotRequired[str]

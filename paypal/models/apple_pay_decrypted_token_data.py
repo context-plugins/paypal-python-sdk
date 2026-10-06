@@ -31,8 +31,8 @@ class ApplePayDecryptedTokenData(SdkBaseModel):
 
 
 class ApplePayDecryptedTokenDataDict(TypedDict):
-    transaction_amount: NotRequired[Money | MoneyDict]
-    tokenized_card: ApplePayTokenizedCard | ApplePayTokenizedCardDict
+    transaction_amount: NotRequired[MoneyDict]
+    tokenized_card: ApplePayTokenizedCardDict
     device_manufacturer_id: NotRequired[str]
     payment_data_type: NotRequired[ApplePayPaymentDataTypeOrStr]
-    payment_data: NotRequired[ApplePayPaymentData | ApplePayPaymentDataDict]
+    payment_data: NotRequired[ApplePayPaymentDataDict]

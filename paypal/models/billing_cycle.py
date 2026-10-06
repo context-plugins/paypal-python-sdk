@@ -19,12 +19,12 @@ class BillingCycle(SdkBaseModel):
     pricing_scheme: Optional[PricingScheme] = UNSET
     """The pricing scheme details."""
 
-    total_cycles: Optional[int] = UNSET
+    total_cycles: int = 1
     """The number of times this billing cycle gets executed. Trial billing cycles can only be executed a finite number
     of times (value between 1 and 999 for total_cycles). Regular billing cycles can be executed infinite times (value of
     0 for total_cycles) or a finite number of times (value between 1 and 999 for total_cycles)."""
 
-    sequence: Optional[int] = UNSET
+    sequence: int = 1
     """The order in which this cycle is to run among other billing cycles. For example, a trial billing cycle has a
     ``sequence`` of ``1`` while a regular billing cycle has a ``sequence`` of ``2``, so that trial cycle runs before the
     regular cycle."""
@@ -38,7 +38,7 @@ class BillingCycle(SdkBaseModel):
 
 class BillingCycleDict(TypedDict):
     tenure_type: TenureTypeOrStr
-    pricing_scheme: NotRequired[PricingScheme | PricingSchemeDict]
+    pricing_scheme: NotRequired[PricingSchemeDict]
     total_cycles: NotRequired[int]
     sequence: NotRequired[int]
     start_date: NotRequired[str]

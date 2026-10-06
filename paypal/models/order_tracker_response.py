@@ -37,7 +37,7 @@ class OrderTrackerResponse(SdkBaseModel):
 class OrderTrackerResponseDict(TypedDict):
     id: NotRequired[str]
     status: NotRequired[OrderTrackerStatusOrStr]
-    items: NotRequired[list[OrderTrackerItem | OrderTrackerItemDict]]
-    links: NotRequired[list[LinkDescription | LinkDescriptionDict]]
+    items: NotRequired[list[OrderTrackerItemDict]]
+    links: NotRequired[list[LinkDescriptionDict]]
     create_time: NotRequired[str]
     update_time: NotRequired[str]

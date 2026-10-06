@@ -9,12 +9,12 @@ class ExchangeRate(SdkBaseModel):
     """The exchange rate that determines the amount to convert from one currency to another currency."""
 
     source_currency: Optional[str] = UNSET
-    """The `three-character ISO-4217 currency code <https://developer.paypal.com/api/rest/reference/currency-codes/>`__
-    that identifies the currency."""
+    """The `three-character ISO-4217 currency code </api/rest/reference/currency-codes/>`__ that identifies the
+    currency."""
 
     target_currency: Optional[str] = UNSET
-    """The `three-character ISO-4217 currency code <https://developer.paypal.com/api/rest/reference/currency-codes/>`__
-    that identifies the currency."""
+    """The `three-character ISO-4217 currency code </api/rest/reference/currency-codes/>`__ that identifies the
+    currency."""
 
     value: Optional[str] = UNSET
     """The target currency amount. Equivalent to one unit of the source currency. Formatted as integer or decimal value

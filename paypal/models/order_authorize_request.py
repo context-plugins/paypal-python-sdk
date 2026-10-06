@@ -17,4 +17,4 @@ class OrderAuthorizeRequest(SdkBaseModel):
 
 
 class OrderAuthorizeRequestDict(TypedDict):
-    payment_source: NotRequired[OrderAuthorizeRequestPaymentSource | OrderAuthorizeRequestPaymentSourceDict]
+    payment_source: NotRequired[OrderAuthorizeRequestPaymentSourceDict]

@@ -41,7 +41,7 @@ class ModifySubscriptionRequest(SdkBaseModel):
 class ModifySubscriptionRequestDict(TypedDict):
     plan_id: NotRequired[str]
     quantity: NotRequired[str]
-    shipping_amount: NotRequired[Money | MoneyDict]
-    shipping_address: NotRequired[ShippingDetails | ShippingDetailsDict]
-    application_context: NotRequired[SubscriptionPatchApplicationContext | SubscriptionPatchApplicationContextDict]
-    plan: NotRequired[PlanOverride | PlanOverrideDict]
+    shipping_amount: NotRequired[MoneyDict]
+    shipping_address: NotRequired[ShippingDetailsDict]
+    application_context: NotRequired[SubscriptionPatchApplicationContextDict]
+    plan: NotRequired[PlanOverrideDict]

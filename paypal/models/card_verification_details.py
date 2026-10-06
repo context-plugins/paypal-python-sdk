@@ -48,6 +48,6 @@ class CardVerificationDetailsDict(TypedDict):
     date: NotRequired[str]
     network: NotRequired[CardBrandOrStr]
     time: NotRequired[str]
-    amount: NotRequired[Money | MoneyDict]
-    processor_response: NotRequired[CardVerificationProcessorResponse | CardVerificationProcessorResponseDict]
+    amount: NotRequired[MoneyDict]
+    processor_response: NotRequired[CardVerificationProcessorResponseDict]
     three_d_secure: NotRequired[Any]

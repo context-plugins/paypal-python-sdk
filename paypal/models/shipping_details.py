@@ -41,9 +41,9 @@ class ShippingDetails(SdkBaseModel):
 
 
 class ShippingDetailsDict(TypedDict):
-    name: NotRequired[ShippingName | ShippingNameDict]
+    name: NotRequired[ShippingNameDict]
     email_address: NotRequired[str]
-    phone_number: NotRequired[PhoneNumberWithCountryCode | PhoneNumberWithCountryCodeDict]
+    phone_number: NotRequired[PhoneNumberWithCountryCodeDict]
     type_: NotRequired[FulfillmentTypeOrStr]
-    options: NotRequired[list[ShippingOption | ShippingOptionDict]]
-    address: NotRequired[Address | AddressDict]
+    options: NotRequired[list[ShippingOptionDict]]
+    address: NotRequired[AddressDict]

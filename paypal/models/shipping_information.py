@@ -27,5 +27,5 @@ class ShippingInformation(SdkBaseModel):
 class ShippingInformationDict(TypedDict):
     name: NotRequired[str]
     method: NotRequired[str]
-    address: NotRequired[SimplePostalAddressCoarseGrained | SimplePostalAddressCoarseGrainedDict]
-    secondary_shipping_address: NotRequired[SimplePostalAddressCoarseGrained | SimplePostalAddressCoarseGrainedDict]
+    address: NotRequired[SimplePostalAddressCoarseGrainedDict]
+    secondary_shipping_address: NotRequired[SimplePostalAddressCoarseGrainedDict]

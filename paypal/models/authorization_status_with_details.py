@@ -19,4 +19,4 @@ class AuthorizationStatusWithDetails(SdkBaseModel):
 
 class AuthorizationStatusWithDetailsDict(TypedDict):
     status: NotRequired[AuthorizationStatusOrStr]
-    status_details: NotRequired[AuthorizationStatusDetails | AuthorizationStatusDetailsDict]
+    status_details: NotRequired[AuthorizationStatusDetailsDict]

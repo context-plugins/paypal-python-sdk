@@ -24,7 +24,7 @@ class PlanCollection(SdkBaseModel):
 
 
 class PlanCollectionDict(TypedDict):
-    plans: NotRequired[list[BillingPlan | BillingPlanDict]]
+    plans: NotRequired[list[BillingPlanDict]]
     total_items: NotRequired[int]
     total_pages: NotRequired[int]
-    links: NotRequired[list[LinkDescription | LinkDescriptionDict]]
+    links: NotRequired[list[LinkDescriptionDict]]

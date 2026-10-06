@@ -23,6 +23,6 @@ class SubscriptionsCardAttributes(SdkBaseModel):
 
 
 class SubscriptionsCardAttributesDict(TypedDict):
-    customer: NotRequired[CardCustomer | CardCustomerDict]
-    vault: NotRequired[VaultInstructionBase | VaultInstructionBaseDict]
-    verification: NotRequired[CardVerification | CardVerificationDict]
+    customer: NotRequired[CardCustomerDict]
+    vault: NotRequired[VaultInstructionBaseDict]
+    verification: NotRequired[CardVerificationDict]

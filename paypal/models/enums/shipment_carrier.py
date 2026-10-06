@@ -4247,9 +4247,6 @@ class ShipmentCarrier(str, Enum):
     TOPTRANS = "TOPTRANS"
     """Toptrans."""
 
-    OTHER = "OTHER"
-    """Other."""
-
     __str__ = str.__str__
 
 

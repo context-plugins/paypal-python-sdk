@@ -40,4 +40,4 @@ class PaymentTokenRequestCardDict(TypedDict):
     expiry: NotRequired[str]
     security_code: NotRequired[str]
     brand: NotRequired[CardBrandOrStr]
-    billing_address: NotRequired[Address | AddressDict]
+    billing_address: NotRequired[AddressDict]

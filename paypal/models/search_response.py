@@ -43,12 +43,11 @@ class SearchResponse(SdkBaseModel):
     ``page_size``."""
 
     links: Optional[list[LinkDescription]] = UNSET
-    """An array of request-related `HATEOAS links
-    <https://developer.paypal.com/api/rest/responses/#hateoas-links>`__."""
+    """An array of request-related `HATEOAS links </api/rest/responses/#hateoas-links>`__."""
 
 
 class SearchResponseDict(TypedDict):
-    transaction_details: NotRequired[list[TransactionDetails | TransactionDetailsDict]]
+    transaction_details: NotRequired[list[TransactionDetailsDict]]
     account_number: NotRequired[str]
     start_date: NotRequired[str]
     end_date: NotRequired[str]
@@ -56,4 +55,4 @@ class SearchResponseDict(TypedDict):
     page: NotRequired[int]
     total_items: NotRequired[int]
     total_pages: NotRequired[int]
-    links: NotRequired[list[LinkDescription | LinkDescriptionDict]]
+    links: NotRequired[list[LinkDescriptionDict]]

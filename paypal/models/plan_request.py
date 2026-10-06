@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing_extensions import NotRequired, TypedDict
 
 from ..core import UNSET, Optional, SdkBaseModel
-from .enums.plan_request_status import PlanRequestStatusOrStr
+from .enums.plan_request_status import PlanRequestStatus, PlanRequestStatusOrStr
 from .merchant_preferences import MerchantPreferences, MerchantPreferencesDict
 from .payment_preferences import PaymentPreferences, PaymentPreferencesDict
 from .subscription_billing_cycle import SubscriptionBillingCycle, SubscriptionBillingCycleDict
@@ -19,7 +19,7 @@ class PlanRequest(SdkBaseModel):
     name: str
     """The plan name."""
 
-    status: Optional[PlanRequestStatusOrStr] = UNSET
+    status: PlanRequestStatusOrStr = PlanRequestStatus.ACTIVE
     """The initial state of the plan. Allowed input values are CREATED and ACTIVE."""
 
     description: Optional[str] = UNSET
@@ -38,7 +38,7 @@ class PlanRequest(SdkBaseModel):
     taxes: Optional[Taxes] = UNSET
     """The tax details."""
 
-    quantity_supported: Optional[bool] = UNSET
+    quantity_supported: bool = False
     """Indicates whether you can subscribe to this plan by providing a quantity for the goods or service."""
 
 
@@ -47,8 +47,8 @@ class PlanRequestDict(TypedDict):
     name: str
     status: NotRequired[PlanRequestStatusOrStr]
     description: NotRequired[str]
-    billing_cycles: list[SubscriptionBillingCycle | SubscriptionBillingCycleDict]
-    payment_preferences: PaymentPreferences | PaymentPreferencesDict
-    merchant_preferences: NotRequired[MerchantPreferences | MerchantPreferencesDict]
-    taxes: NotRequired[Taxes | TaxesDict]
+    billing_cycles: list[SubscriptionBillingCycleDict]
+    payment_preferences: PaymentPreferencesDict
+    merchant_preferences: NotRequired[MerchantPreferencesDict]
+    taxes: NotRequired[TaxesDict]
     quantity_supported: NotRequired[bool]

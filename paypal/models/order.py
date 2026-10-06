@@ -5,7 +5,6 @@ from typing_extensions import NotRequired, TypedDict
 from ..core import UNSET, Optional, SdkBaseModel
 from .enums.checkout_payment_intent import CheckoutPaymentIntentOrStr
 from .enums.order_status import OrderStatusOrStr
-from .enums.processing_instruction import ProcessingInstructionOrStr
 from .link_description import LinkDescription, LinkDescriptionDict
 from .payer import Payer, PayerDict
 from .payment_source_response import PaymentSourceResponse, PaymentSourceResponseDict
@@ -34,9 +33,6 @@ class Order(SdkBaseModel):
     intent: Optional[CheckoutPaymentIntentOrStr] = UNSET
     """The intent to either capture payment immediately or authorize a payment for an order after order creation."""
 
-    processing_instruction: Optional[ProcessingInstructionOrStr] = UNSET
-    """The instruction to process an order."""
-
     payer: Optional[Payer] = UNSET
     """DEPRECATED. The customer is also known as the payer. The Payer object was intended to only be used with the
     ``payment_source.paypal`` object. In order to make this design more clear, the details in the ``payer`` object are
@@ -63,10 +59,9 @@ class OrderDict(TypedDict):
     create_time: NotRequired[str]
     update_time: NotRequired[str]
     id: NotRequired[str]
-    payment_source: NotRequired[PaymentSourceResponse | PaymentSourceResponseDict]
+    payment_source: NotRequired[PaymentSourceResponseDict]
     intent: NotRequired[CheckoutPaymentIntentOrStr]
-    processing_instruction: NotRequired[ProcessingInstructionOrStr]
-    payer: NotRequired[Payer | PayerDict]
-    purchase_units: NotRequired[list[PurchaseUnit | PurchaseUnitDict]]
+    payer: NotRequired[PayerDict]
+    purchase_units: NotRequired[list[PurchaseUnitDict]]
     status: NotRequired[OrderStatusOrStr]
-    links: NotRequired[list[LinkDescription | LinkDescriptionDict]]
+    links: NotRequired[list[LinkDescriptionDict]]

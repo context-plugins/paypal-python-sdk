@@ -29,9 +29,9 @@ class SubscriptionAmountWithBreakdown(SdkBaseModel):
 
 
 class SubscriptionAmountWithBreakdownDict(TypedDict):
-    gross_amount: Money | MoneyDict
-    total_item_amount: NotRequired[Money | MoneyDict]
-    fee_amount: NotRequired[Money | MoneyDict]
-    shipping_amount: NotRequired[Money | MoneyDict]
-    tax_amount: NotRequired[Money | MoneyDict]
-    net_amount: NotRequired[Money | MoneyDict]
+    gross_amount: MoneyDict
+    total_item_amount: NotRequired[MoneyDict]
+    fee_amount: NotRequired[MoneyDict]
+    shipping_amount: NotRequired[MoneyDict]
+    tax_amount: NotRequired[MoneyDict]
+    net_amount: NotRequired[MoneyDict]

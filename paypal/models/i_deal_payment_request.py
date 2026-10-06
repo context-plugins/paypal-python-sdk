@@ -13,10 +13,10 @@ class IDealPaymentRequest(SdkBaseModel):
     """The full name representation like Mr J Smith."""
 
     country_code: str
-    """The `two-character ISO 3166-1 code <https://developer.paypal.com/api/rest/reference/country-codes/>`__ that
-    identifies the country or region. Note: The country code for Great Britain is GB and not UK as used in the top-level
-    domain names for that country. Use the ``C2`` country code for China worldwide for comparable uncontrolled price
-    (CUP) method, bank card, and cross-border transactions."""
+    """The `two-character ISO 3166-1 code </api/rest/reference/country-codes/>`__ that identifies the country or region.
+    Note: The country code for Great Britain is GB and not UK as used in the top-level domain names for that country.
+    Use the ``C2`` country code for China worldwide for comparable uncontrolled price (CUP) method, bank card, and
+    cross-border transactions."""
 
     bic: Optional[str] = UNSET
     """The business identification code (BIC). In payments systems, a BIC is used to identify a specific business, most
@@ -30,4 +30,4 @@ class IDealPaymentRequestDict(TypedDict):
     name: str
     country_code: str
     bic: NotRequired[str]
-    experience_context: NotRequired[ExperienceContext | ExperienceContextDict]
+    experience_context: NotRequired[ExperienceContextDict]

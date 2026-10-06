@@ -19,4 +19,4 @@ class CaptureStatusWithDetails(SdkBaseModel):
 
 class CaptureStatusWithDetailsDict(TypedDict):
     status: NotRequired[CaptureStatusOrStr]
-    status_details: NotRequired[CaptureStatusDetails | CaptureStatusDetailsDict]
+    status_details: NotRequired[CaptureStatusDetailsDict]

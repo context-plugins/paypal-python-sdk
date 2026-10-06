@@ -42,7 +42,7 @@ class BillingPlan(SdkBaseModel):
     taxes: Optional[Taxes] = UNSET
     """The tax details."""
 
-    quantity_supported: Optional[bool] = UNSET
+    quantity_supported: bool = False
     """Indicates whether you can subscribe to this plan by providing a quantity for the goods or service."""
 
     create_time: Optional[str] = UNSET
@@ -65,11 +65,11 @@ class BillingPlanDict(TypedDict):
     name: NotRequired[str]
     status: NotRequired[SubscriptionPlanStatusOrStr]
     description: NotRequired[str]
-    billing_cycles: NotRequired[list[SubscriptionBillingCycle | SubscriptionBillingCycleDict]]
-    payment_preferences: NotRequired[PaymentPreferences | PaymentPreferencesDict]
-    merchant_preferences: NotRequired[MerchantPreferences | MerchantPreferencesDict]
-    taxes: NotRequired[Taxes | TaxesDict]
+    billing_cycles: NotRequired[list[SubscriptionBillingCycleDict]]
+    payment_preferences: NotRequired[PaymentPreferencesDict]
+    merchant_preferences: NotRequired[MerchantPreferencesDict]
+    taxes: NotRequired[TaxesDict]
     quantity_supported: NotRequired[bool]
     create_time: NotRequired[str]
     update_time: NotRequired[str]
-    links: NotRequired[list[LinkDescription | LinkDescriptionDict]]
+    links: NotRequired[list[LinkDescriptionDict]]

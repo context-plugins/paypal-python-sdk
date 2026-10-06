@@ -16,4 +16,4 @@ class SubscriptionPaymentSource(SdkBaseModel):
 
 
 class SubscriptionPaymentSourceDict(TypedDict):
-    card: NotRequired[SubscriptionCardRequest | SubscriptionCardRequestDict]
+    card: NotRequired[SubscriptionCardRequestDict]

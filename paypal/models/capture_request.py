@@ -17,7 +17,7 @@ class CaptureRequest(SdkBaseModel):
     """The API caller-provided external invoice number for this order. Appears in both the payer's transaction history
     and the emails that the payer receives."""
 
-    final_capture: Optional[bool] = UNSET
+    final_capture: bool = False
     """Indicates whether you can make additional captures against the authorized payment. Set to ``true`` if you do not
     intend to capture additional payments against the authorization. Set to ``false`` if you intend to capture
     additional payments against the authorization."""
@@ -35,9 +35,9 @@ class CaptureRequest(SdkBaseModel):
 
 
 class CaptureRequestDict(TypedDict):
-    amount: NotRequired[Money | MoneyDict]
+    amount: NotRequired[MoneyDict]
     invoice_id: NotRequired[str]
     final_capture: NotRequired[bool]
-    payment_instruction: NotRequired[CapturePaymentInstruction | CapturePaymentInstructionDict]
+    payment_instruction: NotRequired[CapturePaymentInstructionDict]
     note_to_payer: NotRequired[str]
     soft_descriptor: NotRequired[str]

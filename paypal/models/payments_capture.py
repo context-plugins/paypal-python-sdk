@@ -5,7 +5,7 @@ from typing_extensions import NotRequired, TypedDict
 from ..core import UNSET, Optional, SdkBaseModel
 from .capture_status_details import CaptureStatusDetails, CaptureStatusDetailsDict
 from .enums.capture_status import CaptureStatusOrStr
-from .enums.disbursement_mode import DisbursementModeOrStr
+from .enums.disbursement_mode import DisbursementMode, DisbursementModeOrStr
 from .link_description import LinkDescription, LinkDescriptionDict
 from .money import Money, MoneyDict
 from .network_transaction import NetworkTransaction, NetworkTransactionDict
@@ -44,7 +44,7 @@ class PaymentsCapture(SdkBaseModel):
     """The level of protection offered as defined by `PayPal Seller Protection for Merchants
     <https://www.paypal.com/us/webapps/mpp/security/seller-protection>`__."""
 
-    final_capture: Optional[bool] = UNSET
+    final_capture: bool = False
     """Indicates whether you can make additional captures against the authorized payment. Set to ``true`` if you do not
     intend to capture additional payments against the authorization. Set to ``false`` if you intend to capture
     additional payments against the authorization."""
@@ -53,7 +53,7 @@ class PaymentsCapture(SdkBaseModel):
     """The detailed breakdown of the capture activity. This is not available for transactions that are in pending
     state."""
 
-    disbursement_mode: Optional[DisbursementModeOrStr] = UNSET
+    disbursement_mode: DisbursementModeOrStr = DisbursementMode.INSTANT
     """The funds that are held on behalf of the merchant."""
 
     links: Optional[list[LinkDescription]] = UNSET
@@ -75,17 +75,17 @@ class PaymentsCapture(SdkBaseModel):
 
 class PaymentsCaptureDict(TypedDict):
     status: NotRequired[CaptureStatusOrStr]
-    status_details: NotRequired[CaptureStatusDetails | CaptureStatusDetailsDict]
+    status_details: NotRequired[CaptureStatusDetailsDict]
     id: NotRequired[str]
-    amount: NotRequired[Money | MoneyDict]
+    amount: NotRequired[MoneyDict]
     invoice_id: NotRequired[str]
     custom_id: NotRequired[str]
-    network_transaction_reference: NotRequired[NetworkTransaction | NetworkTransactionDict]
-    seller_protection: NotRequired[SellerProtection | SellerProtectionDict]
+    network_transaction_reference: NotRequired[NetworkTransactionDict]
+    seller_protection: NotRequired[SellerProtectionDict]
     final_capture: NotRequired[bool]
-    seller_receivable_breakdown: NotRequired[SellerReceivableBreakdown | SellerReceivableBreakdownDict]
+    seller_receivable_breakdown: NotRequired[SellerReceivableBreakdownDict]
     disbursement_mode: NotRequired[DisbursementModeOrStr]
-    links: NotRequired[list[LinkDescription | LinkDescriptionDict]]
-    processor_response: NotRequired[ProcessorResponse | ProcessorResponseDict]
+    links: NotRequired[list[LinkDescriptionDict]]
+    processor_response: NotRequired[ProcessorResponseDict]
     create_time: NotRequired[str]
     update_time: NotRequired[str]

@@ -20,4 +20,4 @@ class PhoneWithType(SdkBaseModel):
 
 class PhoneWithTypeDict(TypedDict):
     phone_type: NotRequired[PhoneTypeOrStr]
-    phone_number: PhoneNumber | PhoneNumberDict
+    phone_number: PhoneNumberDict

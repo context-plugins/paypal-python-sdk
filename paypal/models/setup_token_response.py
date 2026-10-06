@@ -4,7 +4,7 @@ from typing_extensions import NotRequired, TypedDict
 
 from ..core import UNSET, Optional, SdkBaseModel
 from .customer import Customer, CustomerDict
-from .enums.payment_token_status import PaymentTokenStatusOrStr
+from .enums.payment_token_status import PaymentTokenStatus, PaymentTokenStatusOrStr
 from .link_description import LinkDescription, LinkDescriptionDict
 from .setup_token_response_payment_source import SetupTokenResponsePaymentSource, SetupTokenResponsePaymentSourceDict
 
@@ -20,19 +20,19 @@ class SetupTokenResponse(SdkBaseModel):
     """This object defines a customer in your system. Use it to manage customer profiles, save payment methods and
     contact details."""
 
-    status: Optional[PaymentTokenStatusOrStr] = UNSET
+    status: PaymentTokenStatusOrStr = PaymentTokenStatus.CREATED
     """The status of the payment token."""
 
     payment_source: Optional[SetupTokenResponsePaymentSource] = UNSET
     """The setup payment method details."""
 
     links: Optional[list[LinkDescription]] = UNSET
-    """An array of related `HATEOAS links <https://developer.paypal.com/api/rest/responses/#hateoas>`__."""
+    """An array of related `HATEOAS links </api/rest/responses/#hateoas>`__."""
 
 
 class SetupTokenResponseDict(TypedDict):
     id: NotRequired[str]
-    customer: NotRequired[Customer | CustomerDict]
+    customer: NotRequired[CustomerDict]
     status: NotRequired[PaymentTokenStatusOrStr]
-    payment_source: NotRequired[SetupTokenResponsePaymentSource | SetupTokenResponsePaymentSourceDict]
-    links: NotRequired[list[LinkDescription | LinkDescriptionDict]]
+    payment_source: NotRequired[SetupTokenResponsePaymentSourceDict]
+    links: NotRequired[list[LinkDescriptionDict]]

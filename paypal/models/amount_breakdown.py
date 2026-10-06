@@ -34,10 +34,10 @@ class AmountBreakdown(SdkBaseModel):
 
 
 class AmountBreakdownDict(TypedDict):
-    item_total: NotRequired[Money | MoneyDict]
-    shipping: NotRequired[Money | MoneyDict]
-    handling: NotRequired[Money | MoneyDict]
-    tax_total: NotRequired[Money | MoneyDict]
-    insurance: NotRequired[Money | MoneyDict]
-    shipping_discount: NotRequired[Money | MoneyDict]
-    discount: NotRequired[Money | MoneyDict]
+    item_total: NotRequired[MoneyDict]
+    shipping: NotRequired[MoneyDict]
+    handling: NotRequired[MoneyDict]
+    tax_total: NotRequired[MoneyDict]
+    insurance: NotRequired[MoneyDict]
+    shipping_discount: NotRequired[MoneyDict]
+    discount: NotRequired[MoneyDict]

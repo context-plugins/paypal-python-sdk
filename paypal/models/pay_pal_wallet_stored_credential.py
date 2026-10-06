@@ -4,7 +4,7 @@ from typing_extensions import NotRequired, TypedDict
 
 from ..core import UNSET, Optional, SdkBaseModel
 from .enums.payment_initiator import PaymentInitiatorOrStr
-from .enums.stored_payment_source_usage_type import StoredPaymentSourceUsageTypeOrStr
+from .enums.stored_payment_source_usage_type import StoredPaymentSourceUsageType, StoredPaymentSourceUsageTypeOrStr
 from .enums.usage_pattern import UsagePatternOrStr
 
 
@@ -21,7 +21,7 @@ class PayPalWalletStoredCredential(SdkBaseModel):
     usage_pattern: Optional[UsagePatternOrStr] = UNSET
     """Expected business/pricing model for the billing agreement."""
 
-    usage: Optional[StoredPaymentSourceUsageTypeOrStr] = UNSET
+    usage: StoredPaymentSourceUsageTypeOrStr = StoredPaymentSourceUsageType.DERIVED
     """Indicates if this is a ``first`` or ``subsequent`` payment using a stored payment source (also referred to as
     stored credential or card on file)."""
 

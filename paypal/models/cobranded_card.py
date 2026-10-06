@@ -23,5 +23,5 @@ class CobrandedCard(SdkBaseModel):
 
 class CobrandedCardDict(TypedDict):
     labels: NotRequired[list[str]]
-    payee: NotRequired[PayeeBase | PayeeBaseDict]
-    amount: NotRequired[Money | MoneyDict]
+    payee: NotRequired[PayeeBaseDict]
+    amount: NotRequired[MoneyDict]

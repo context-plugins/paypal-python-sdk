@@ -19,4 +19,4 @@ class RefundStatusWithDetails(SdkBaseModel):
 
 class RefundStatusWithDetailsDict(TypedDict):
     status: NotRequired[RefundStatusOrStr]
-    status_details: NotRequired[RefundStatusDetails | RefundStatusDetailsDict]
+    status_details: NotRequired[RefundStatusDetailsDict]

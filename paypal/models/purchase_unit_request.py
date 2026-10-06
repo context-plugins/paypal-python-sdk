@@ -77,13 +77,13 @@ class PurchaseUnitRequest(SdkBaseModel):
 
 class PurchaseUnitRequestDict(TypedDict):
     reference_id: NotRequired[str]
-    amount: AmountWithBreakdown | AmountWithBreakdownDict
-    payee: NotRequired[PayeeBase | PayeeBaseDict]
-    payment_instruction: NotRequired[PaymentInstruction | PaymentInstructionDict]
+    amount: AmountWithBreakdownDict
+    payee: NotRequired[PayeeBaseDict]
+    payment_instruction: NotRequired[PaymentInstructionDict]
     description: NotRequired[str]
     custom_id: NotRequired[str]
     invoice_id: NotRequired[str]
     soft_descriptor: NotRequired[str]
-    items: NotRequired[list[ItemRequest | ItemRequestDict]]
-    shipping: NotRequired[ShippingDetails | ShippingDetailsDict]
-    supplementary_data: NotRequired[SupplementaryData | SupplementaryDataDict]
+    items: NotRequired[list[ItemRequestDict]]
+    shipping: NotRequired[ShippingDetailsDict]
+    supplementary_data: NotRequired[SupplementaryDataDict]

@@ -35,4 +35,4 @@ class OrderTrackerItemDict(TypedDict):
     sku: NotRequired[str]
     url: NotRequired[str]
     image_url: NotRequired[str]
-    upc: NotRequired[UniversalProductCode | UniversalProductCodeDict]
+    upc: NotRequired[UniversalProductCodeDict]

@@ -20,5 +20,5 @@ class ApplePayAttributes(SdkBaseModel):
 
 
 class ApplePayAttributesDict(TypedDict):
-    customer: NotRequired[CustomerInformation | CustomerInformationDict]
-    vault: NotRequired[VaultInstruction | VaultInstructionDict]
+    customer: NotRequired[CustomerInformationDict]
+    vault: NotRequired[VaultInstructionDict]

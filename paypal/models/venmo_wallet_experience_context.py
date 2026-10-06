@@ -5,9 +5,13 @@ from typing_extensions import NotRequired, TypedDict
 from ..core import UNSET, Optional, SdkBaseModel
 from .callback_configuration import CallbackConfiguration, CallbackConfigurationDict
 from .enums.venmo_wallet_experience_context_shipping_preference import (
+    VenmoWalletExperienceContextShippingPreference,
     VenmoWalletExperienceContextShippingPreferenceOrStr,
 )
-from .enums.venmo_wallet_experience_context_user_action import VenmoWalletExperienceContextUserActionOrStr
+from .enums.venmo_wallet_experience_context_user_action import (
+    VenmoWalletExperienceContextUserAction,
+    VenmoWalletExperienceContextUserActionOrStr,
+)
 
 
 class VenmoWalletExperienceContext(SdkBaseModel):
@@ -18,18 +22,20 @@ class VenmoWalletExperienceContext(SdkBaseModel):
     brand_name: Optional[str] = UNSET
     """The business name of the merchant. The pattern is defined by an external party and supports Unicode."""
 
-    shipping_preference: Optional[VenmoWalletExperienceContextShippingPreferenceOrStr] = UNSET
+    shipping_preference: (
+        VenmoWalletExperienceContextShippingPreferenceOrStr
+    ) = VenmoWalletExperienceContextShippingPreference.GET_FROM_FILE
     """The location from which the shipping address is derived."""
 
     order_update_callback_config: Optional[CallbackConfiguration] = UNSET
     """CallBack Configuration that the merchant can provide to PayPal/Venmo."""
 
-    user_action: Optional[VenmoWalletExperienceContextUserActionOrStr] = UNSET
+    user_action: VenmoWalletExperienceContextUserActionOrStr = VenmoWalletExperienceContextUserAction.CONTINUE
     """Configures a Continue or Pay Now checkout flow."""
 
 
 class VenmoWalletExperienceContextDict(TypedDict):
     brand_name: NotRequired[str]
     shipping_preference: NotRequired[VenmoWalletExperienceContextShippingPreferenceOrStr]
-    order_update_callback_config: NotRequired[CallbackConfiguration | CallbackConfigurationDict]
+    order_update_callback_config: NotRequired[CallbackConfigurationDict]
     user_action: NotRequired[VenmoWalletExperienceContextUserActionOrStr]

@@ -14,14 +14,6 @@ from .subscription_payment_source_response import (
 class Subscriber(SdkBaseModel):
     """The subscriber response information."""
 
-    email_address: Optional[str] = UNSET
-    """The internationalized email address. Note: Up to 64 characters are allowed before and 255 characters are allowed
-    after the @ sign. However, the generally accepted maximum length for an email address is 254 characters. The pattern
-    verifies that an unquoted @ sign exists."""
-
-    payer_id: Optional[str] = UNSET
-    """The account identifier for a PayPal account."""
-
     name: Optional[Name] = UNSET
     """The name of the party."""
 
@@ -33,8 +25,6 @@ class Subscriber(SdkBaseModel):
 
 
 class SubscriberDict(TypedDict):
-    email_address: NotRequired[str]
-    payer_id: NotRequired[str]
-    name: NotRequired[Name | NameDict]
-    shipping_address: NotRequired[ShippingDetails | ShippingDetailsDict]
-    payment_source: NotRequired[SubscriptionPaymentSourceResponse | SubscriptionPaymentSourceResponseDict]
+    name: NotRequired[NameDict]
+    shipping_address: NotRequired[ShippingDetailsDict]
+    payment_source: NotRequired[SubscriptionPaymentSourceResponseDict]

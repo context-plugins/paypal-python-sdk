@@ -22,4 +22,4 @@ class Level2CardProcessingData(SdkBaseModel):
 
 class Level2CardProcessingDataDict(TypedDict):
     invoice_id: NotRequired[str]
-    tax_total: NotRequired[Money | MoneyDict]
+    tax_total: NotRequired[MoneyDict]

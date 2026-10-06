@@ -22,6 +22,6 @@ class NetAmountBreakdownItem(SdkBaseModel):
 
 
 class NetAmountBreakdownItemDict(TypedDict):
-    payable_amount: NotRequired[Money | MoneyDict]
-    converted_amount: NotRequired[Money | MoneyDict]
-    exchange_rate: NotRequired[ExchangeRate | ExchangeRateDict]
+    payable_amount: NotRequired[MoneyDict]
+    converted_amount: NotRequired[MoneyDict]
+    exchange_rate: NotRequired[ExchangeRateDict]

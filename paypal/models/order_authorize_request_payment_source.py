@@ -36,9 +36,9 @@ class OrderAuthorizeRequestPaymentSource(SdkBaseModel):
 
 
 class OrderAuthorizeRequestPaymentSourceDict(TypedDict):
-    card: NotRequired[CardRequest | CardRequestDict]
-    token: NotRequired[Token | TokenDict]
-    paypal: NotRequired[PayPalWallet | PayPalWalletDict]
-    apple_pay: NotRequired[ApplePayRequest | ApplePayRequestDict]
-    google_pay: NotRequired[GooglePayRequest | GooglePayRequestDict]
-    venmo: NotRequired[VenmoWalletRequest | VenmoWalletRequestDict]
+    card: NotRequired[CardRequestDict]
+    token: NotRequired[TokenDict]
+    paypal: NotRequired[PayPalWalletDict]
+    apple_pay: NotRequired[ApplePayRequestDict]
+    google_pay: NotRequired[GooglePayRequestDict]
+    venmo: NotRequired[VenmoWalletRequestDict]

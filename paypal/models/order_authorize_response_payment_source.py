@@ -30,8 +30,8 @@ class OrderAuthorizeResponsePaymentSource(SdkBaseModel):
 
 
 class OrderAuthorizeResponsePaymentSourceDict(TypedDict):
-    card: NotRequired[CardResponse | CardResponseDict]
-    paypal: NotRequired[PayPalWalletResponse | PayPalWalletResponseDict]
-    apple_pay: NotRequired[ApplePayPaymentObject | ApplePayPaymentObjectDict]
-    google_pay: NotRequired[GooglePayWalletResponse | GooglePayWalletResponseDict]
-    venmo: NotRequired[VenmoWalletResponse | VenmoWalletResponseDict]
+    card: NotRequired[CardResponseDict]
+    paypal: NotRequired[PayPalWalletResponseDict]
+    apple_pay: NotRequired[ApplePayPaymentObjectDict]
+    google_pay: NotRequired[GooglePayWalletResponseDict]
+    venmo: NotRequired[VenmoWalletResponseDict]

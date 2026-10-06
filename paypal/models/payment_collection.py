@@ -24,6 +24,6 @@ class PaymentCollection(SdkBaseModel):
 
 
 class PaymentCollectionDict(TypedDict):
-    authorizations: NotRequired[list[AuthorizationWithAdditionalData | AuthorizationWithAdditionalDataDict]]
-    captures: NotRequired[list[OrdersCapture | OrdersCaptureDict]]
-    refunds: NotRequired[list[Refund | RefundDict]]
+    authorizations: NotRequired[list[AuthorizationWithAdditionalDataDict]]
+    captures: NotRequired[list[OrdersCaptureDict]]
+    refunds: NotRequired[list[RefundDict]]

@@ -28,7 +28,7 @@ class FailedPaymentDetails(SdkBaseModel):
 
 
 class FailedPaymentDetailsDict(TypedDict):
-    amount: Money | MoneyDict
+    amount: MoneyDict
     time: str
     reason_code: NotRequired[ReasonCodeOrStr]
     next_payment_retry_time: NotRequired[str]

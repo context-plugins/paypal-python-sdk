@@ -14,4 +14,4 @@ class UpdatePricingSchemesRequest(SdkBaseModel):
 
 
 class UpdatePricingSchemesRequestDict(TypedDict):
-    pricing_schemes: list[UpdatePricingScheme | UpdatePricingSchemeDict]
+    pricing_schemes: list[UpdatePricingSchemeDict]

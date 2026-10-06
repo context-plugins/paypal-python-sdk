@@ -21,6 +21,6 @@ class PricingScheme(SdkBaseModel):
 
 
 class PricingSchemeDict(TypedDict):
-    price: NotRequired[Money | MoneyDict]
+    price: NotRequired[MoneyDict]
     pricing_model: PricingModelOrStr
-    reload_threshold_amount: NotRequired[Money | MoneyDict]
+    reload_threshold_amount: NotRequired[MoneyDict]

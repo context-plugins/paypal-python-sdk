@@ -40,10 +40,10 @@ class SubscriptionBillingInformation(SdkBaseModel):
 
 
 class SubscriptionBillingInformationDict(TypedDict):
-    outstanding_balance: Money | MoneyDict
-    cycle_executions: NotRequired[list[CycleExecution | CycleExecutionDict]]
-    last_payment: NotRequired[LastPaymentDetails | LastPaymentDetailsDict]
+    outstanding_balance: MoneyDict
+    cycle_executions: NotRequired[list[CycleExecutionDict]]
+    last_payment: NotRequired[LastPaymentDetailsDict]
     next_billing_time: NotRequired[str]
     final_payment_time: NotRequired[str]
     failed_payments_count: int
-    last_failed_payment: NotRequired[FailedPaymentDetails | FailedPaymentDetailsDict]
+    last_failed_payment: NotRequired[FailedPaymentDetailsDict]

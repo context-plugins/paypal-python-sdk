@@ -22,4 +22,4 @@ class PricingTier(SdkBaseModel):
 class PricingTierDict(TypedDict):
     starting_quantity: str
     ending_quantity: NotRequired[str]
-    amount: Money | MoneyDict
+    amount: MoneyDict

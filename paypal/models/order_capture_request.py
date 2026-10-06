@@ -14,4 +14,4 @@ class OrderCaptureRequest(SdkBaseModel):
 
 
 class OrderCaptureRequestDict(TypedDict):
-    payment_source: NotRequired[OrderCaptureRequestPaymentSource | OrderCaptureRequestPaymentSourceDict]
+    payment_source: NotRequired[OrderCaptureRequestPaymentSourceDict]

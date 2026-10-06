@@ -29,6 +29,6 @@ class BalanceInformation(SdkBaseModel):
 class BalanceInformationDict(TypedDict):
     currency: str
     primary: NotRequired[bool]
-    total_balance: Money | MoneyDict
-    available_balance: NotRequired[Money | MoneyDict]
-    withheld_balance: NotRequired[Money | MoneyDict]
+    total_balance: MoneyDict
+    available_balance: NotRequired[MoneyDict]
+    withheld_balance: NotRequired[MoneyDict]

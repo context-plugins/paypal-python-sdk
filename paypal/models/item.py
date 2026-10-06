@@ -50,13 +50,13 @@ class Item(SdkBaseModel):
 
 class ItemDict(TypedDict):
     name: str
-    unit_amount: Money | MoneyDict
-    tax: NotRequired[Money | MoneyDict]
+    unit_amount: MoneyDict
+    tax: NotRequired[MoneyDict]
     quantity: str
     description: NotRequired[str]
     sku: NotRequired[str]
     url: NotRequired[str]
     category: NotRequired[ItemCategoryOrStr]
     image_url: NotRequired[str]
-    upc: NotRequired[UniversalProductCode | UniversalProductCodeDict]
-    billing_plan: NotRequired[OrderBillingPlan | OrderBillingPlanDict]
+    upc: NotRequired[UniversalProductCodeDict]
+    billing_plan: NotRequired[OrderBillingPlanDict]

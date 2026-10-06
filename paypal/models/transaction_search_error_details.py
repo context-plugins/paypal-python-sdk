@@ -15,7 +15,7 @@ class TransactionSearchErrorDetails(SdkBaseModel):
     value: Optional[str] = UNSET
     """The value of the field that caused the error."""
 
-    location: Optional[str] = UNSET
+    location: str = "body"
     """The location of the field that caused the error. Value is ``body``, ``path``, or ``query``."""
 
     issue: str

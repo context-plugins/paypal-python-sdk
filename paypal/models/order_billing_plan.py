@@ -23,6 +23,6 @@ class OrderBillingPlan(SdkBaseModel):
 
 
 class OrderBillingPlanDict(TypedDict):
-    billing_cycles: list[BillingCycle | BillingCycleDict]
-    setup_fee: NotRequired[Money | MoneyDict]
+    billing_cycles: list[BillingCycleDict]
+    setup_fee: NotRequired[MoneyDict]
     name: NotRequired[str]

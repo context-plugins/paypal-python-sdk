@@ -18,5 +18,5 @@ class VenmoWalletAdditionalAttributes(SdkBaseModel):
 
 
 class VenmoWalletAdditionalAttributesDict(TypedDict):
-    customer: NotRequired[VenmoWalletCustomerInformation | VenmoWalletCustomerInformationDict]
-    vault: NotRequired[VenmoWalletVaultAttributes | VenmoWalletVaultAttributesDict]
+    customer: NotRequired[VenmoWalletCustomerInformationDict]
+    vault: NotRequired[VenmoWalletVaultAttributesDict]

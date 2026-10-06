@@ -46,9 +46,9 @@ class PayerInformation(SdkBaseModel):
 class PayerInformationDict(TypedDict):
     account_id: NotRequired[str]
     email_address: NotRequired[str]
-    phone_number: NotRequired[Phone | PhoneDict]
+    phone_number: NotRequired[PhoneDict]
     address_status: NotRequired[str]
     payer_status: NotRequired[str]
-    payer_name: NotRequired[PayerName | PayerNameDict]
+    payer_name: NotRequired[PayerNameDict]
     country_code: NotRequired[str]
-    address: NotRequired[SimplePostalAddressCoarseGrained | SimplePostalAddressCoarseGrainedDict]
+    address: NotRequired[SimplePostalAddressCoarseGrainedDict]

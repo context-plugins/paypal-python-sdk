@@ -14,4 +14,4 @@ class VenmoWalletAttributesResponse(SdkBaseModel):
 
 
 class VenmoWalletAttributesResponseDict(TypedDict):
-    vault: NotRequired[VenmoVaultResponse | VenmoVaultResponseDict]
+    vault: NotRequired[VenmoVaultResponseDict]

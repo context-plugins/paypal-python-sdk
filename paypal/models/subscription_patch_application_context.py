@@ -3,7 +3,10 @@ from __future__ import annotations
 from typing_extensions import NotRequired, TypedDict
 
 from ..core import UNSET, Optional, SdkBaseModel
-from .enums.experience_context_shipping_preference import ExperienceContextShippingPreferenceOrStr
+from .enums.experience_context_shipping_preference import (
+    ExperienceContextShippingPreference,
+    ExperienceContextShippingPreferenceOrStr,
+)
 from .payment_method import PaymentMethod, PaymentMethodDict
 
 
@@ -19,7 +22,7 @@ class SubscriptionPatchApplicationContext(SdkBaseModel):
     code. For example, ``da-DK``, ``he-IL``, ``id-ID``, ``ja-JP``, ``no-NO``, ``pt-BR``, ``ru-RU``, ``sv-SE``,
     ``th-TH``, ``zh-CN``, ``zh-HK``, or ``zh-TW``."""
 
-    shipping_preference: Optional[ExperienceContextShippingPreferenceOrStr] = UNSET
+    shipping_preference: ExperienceContextShippingPreferenceOrStr = ExperienceContextShippingPreference.GET_FROM_FILE
     """The location from which the shipping address is derived."""
 
     payment_method: Optional[PaymentMethod] = UNSET
@@ -36,6 +39,6 @@ class SubscriptionPatchApplicationContextDict(TypedDict):
     brand_name: NotRequired[str]
     locale: NotRequired[str]
     shipping_preference: NotRequired[ExperienceContextShippingPreferenceOrStr]
-    payment_method: NotRequired[PaymentMethod | PaymentMethodDict]
+    payment_method: NotRequired[PaymentMethodDict]
     return_url: str
     cancel_url: str

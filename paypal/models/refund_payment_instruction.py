@@ -19,4 +19,4 @@ class RefundPaymentInstruction(SdkBaseModel):
 
 
 class RefundPaymentInstructionDict(TypedDict):
-    platform_fees: NotRequired[list[RefundPlatformFee | RefundPlatformFeeDict]]
+    platform_fees: NotRequired[list[RefundPlatformFeeDict]]

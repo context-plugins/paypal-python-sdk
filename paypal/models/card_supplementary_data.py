@@ -23,5 +23,5 @@ class CardSupplementaryData(SdkBaseModel):
 
 
 class CardSupplementaryDataDict(TypedDict):
-    level_2: NotRequired[Level2CardProcessingData | Level2CardProcessingDataDict]
-    level_3: NotRequired[Level3CardProcessingData | Level3CardProcessingDataDict]
+    level_2: NotRequired[Level2CardProcessingDataDict]
+    level_3: NotRequired[Level3CardProcessingDataDict]

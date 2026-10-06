@@ -14,4 +14,4 @@ class CardAttributesResponse(SdkBaseModel):
 
 
 class CardAttributesResponseDict(TypedDict):
-    vault: NotRequired[CardVaultResponse | CardVaultResponseDict]
+    vault: NotRequired[CardVaultResponseDict]

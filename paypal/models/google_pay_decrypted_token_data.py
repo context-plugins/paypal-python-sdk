@@ -41,7 +41,7 @@ class GooglePayDecryptedTokenDataDict(TypedDict):
     message_id: NotRequired[str]
     message_expiration: NotRequired[str]
     payment_method: GooglePayPaymentMethodOrStr
-    card: GooglePayCard | GooglePayCardDict
+    card: GooglePayCardDict
     authentication_method: GooglePayAuthenticationMethodOrStr
     cryptogram: NotRequired[str]
     eci_indicator: NotRequired[str]

@@ -25,5 +25,5 @@ class IncentiveDetails(SdkBaseModel):
 class IncentiveDetailsDict(TypedDict):
     incentive_type: NotRequired[str]
     incentive_code: NotRequired[str]
-    incentive_amount: NotRequired[Money | MoneyDict]
+    incentive_amount: NotRequired[MoneyDict]
     incentive_program_code: NotRequired[str]

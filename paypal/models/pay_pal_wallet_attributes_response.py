@@ -19,5 +19,5 @@ class PayPalWalletAttributesResponse(SdkBaseModel):
 
 
 class PayPalWalletAttributesResponseDict(TypedDict):
-    vault: NotRequired[PayPalWalletVaultResponse | PayPalWalletVaultResponseDict]
-    cobranded_cards: NotRequired[list[CobrandedCard | CobrandedCardDict]]
+    vault: NotRequired[PayPalWalletVaultResponseDict]
+    cobranded_cards: NotRequired[list[CobrandedCardDict]]

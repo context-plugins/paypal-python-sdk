@@ -9,6 +9,8 @@ from ..core import (
     RawClient,
     RequestOptionsOrDict,
     SecuredRawResponse,
+    async_empty_response,
+    async_json_decoder,
     empty_response,
     json_body,
     json_decoder,
@@ -39,7 +41,7 @@ class Orders:
 
     def authorize_order(
         self,
-        id: str,
+        id_: str,
         *,
         pay_pal_mock_response: str | None = None,
         pay_pal_request_id: str | None = None,
@@ -55,7 +57,7 @@ class Orders:
         error handling and troubleshooting, see Orders v2 errors.
 
         Args:
-            id: The ID of the order for which to authorize.
+            id_: The ID of the order for which to authorize.
             pay_pal_mock_response: PayPal's REST API uses a request header to invoke negative testing in the sandbox.
                 This header configures the sandbox into a negative testing state for transactions that include the
                 merchant.
@@ -71,7 +73,8 @@ class Orders:
             pay_pal_auth_assertion: An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant.
                 For details, see PayPal-Auth-Assertion.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             A successful response to an idempotent request returns the HTTP ``200 OK`` status code with a JSON response
@@ -84,7 +87,7 @@ class Orders:
                 be performed, semantically incorrect, or failed business validation. An internal server error has
                 occurred. ``error`` is ``Error | RawError``."""
         return self._with_raw_response.authorize_order(
-            id,
+            id_,
             pay_pal_mock_response=pay_pal_mock_response,
             pay_pal_request_id=pay_pal_request_id,
             prefer=prefer,
@@ -96,7 +99,7 @@ class Orders:
 
     def capture_order(
         self,
-        id: str,
+        id_: str,
         *,
         pay_pal_mock_response: str | None = None,
         pay_pal_request_id: str | None = None,
@@ -112,7 +115,7 @@ class Orders:
         error handling and troubleshooting, see Orders v2 errors.
 
         Args:
-            id: The ID of the order for which to capture a payment.
+            id_: The ID of the order for which to capture a payment.
             pay_pal_mock_response: PayPal's REST API uses a request header to invoke negative testing in the sandbox.
                 This header configures the sandbox into a negative testing state for transactions that include the
                 merchant.
@@ -128,7 +131,8 @@ class Orders:
             pay_pal_auth_assertion: An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant.
                 For details, see PayPal-Auth-Assertion.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             A successful response to an idempotent request returns the HTTP ``200 OK`` status code with a JSON response
@@ -141,7 +145,7 @@ class Orders:
                 be performed, semantically incorrect, or failed business validation. An internal server error has
                 occurred. ``error`` is ``Error | RawError``."""
         return self._with_raw_response.capture_order(
-            id,
+            id_,
             pay_pal_mock_response=pay_pal_mock_response,
             pay_pal_request_id=pay_pal_request_id,
             prefer=prefer,
@@ -153,7 +157,7 @@ class Orders:
 
     def confirm_order(
         self,
-        id: str,
+        id_: str,
         *,
         pay_pal_client_metadata_id: str | None = None,
         pay_pal_auth_assertion: str | None = None,
@@ -164,7 +168,7 @@ class Orders:
         """Payer confirms their intent to pay for the the Order with the given payment source.
 
         Args:
-            id: The ID of the order for which the payer confirms their intent to pay.
+            id_: The ID of the order for which the payer confirms their intent to pay.
             pay_pal_client_metadata_id: Value sent with the request.
             pay_pal_auth_assertion: An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant.
                 For details, see PayPal-Auth-Assertion.
@@ -173,7 +177,8 @@ class Orders:
                 minimal response includes the id, status and HATEOAS links. return=representation. The server returns a
                 complete resource representation, including the current state of the resource.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             A successful request indicates that the payment source was added to the Order. A successful request returns
@@ -184,7 +189,7 @@ class Orders:
                 to insufficient permissions. The requested action could not be performed, semantically incorrect, or
                 failed business validation. An internal server error has occurred. ``error`` is ``Error | RawError``."""
         return self._with_raw_response.confirm_order(
-            id,
+            id_,
             pay_pal_client_metadata_id=pay_pal_client_metadata_id,
             pay_pal_auth_assertion=pay_pal_auth_assertion,
             prefer=prefer,
@@ -225,7 +230,8 @@ class Orders:
                 complete resource representation, including the current state of the resource.
             pay_pal_auth_assertion: An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant.
                 For details, see PayPal-Auth-Assertion.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             A successful response to an idempotent request returns the HTTP ``200 OK`` status code with a JSON response
@@ -249,7 +255,7 @@ class Orders:
 
     def create_order_tracking(
         self,
-        id: str,
+        id_: str,
         body: OrderTrackerRequest | OrderTrackerRequestDict,
         *,
         pay_pal_auth_assertion: str | None = None,
@@ -258,11 +264,12 @@ class Orders:
         """Adds tracking information for an Order.
 
         Args:
-            id: The ID of the order that the tracking information is associated with.
+            id_: The ID of the order that the tracking information is associated with.
             body: The request body.
             pay_pal_auth_assertion: An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant.
                 For details, see PayPal-Auth-Assertion.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             A successful response to an idempotent request returns the HTTP ``200 OK`` status code with a JSON response
@@ -274,12 +281,12 @@ class Orders:
                 performed, semantically incorrect, or failed business validation. An internal server error has occurred.
                 ``error`` is ``Error | RawError``."""
         return self._with_raw_response.create_order_tracking(
-            id, body, pay_pal_auth_assertion=pay_pal_auth_assertion, request_options=request_options
+            id_, body, pay_pal_auth_assertion=pay_pal_auth_assertion, request_options=request_options
         ).unwrap()
 
     def get_order(
         self,
-        id: str,
+        id_: str,
         *,
         fields: str | None = None,
         pay_pal_mock_response: str | None = None,
@@ -289,7 +296,7 @@ class Orders:
         """Shows details for an order, by ID. Note: For error handling and troubleshooting, see Orders v2 errors.
 
         Args:
-            id: The ID of the order for which to show details.
+            id_: The ID of the order for which to show details.
             fields: A comma-separated list of fields that should be returned for the order. Valid filter field is
                 ``payment_source``.
             pay_pal_mock_response: PayPal's REST API uses a request header to invoke negative testing in the sandbox.
@@ -297,7 +304,8 @@ class Orders:
                 merchant.
             pay_pal_auth_assertion: An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant.
                 For details, see PayPal-Auth-Assertion.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             A successful request returns the HTTP ``200 OK`` status code and a JSON response body that shows order
@@ -307,7 +315,7 @@ class Orders:
             ApiError: Authentication failed due to missing authorization header, or invalid authentication credentials.
                 The specified resource does not exist. ``error`` is ``Error | RawError``."""
         return self._with_raw_response.get_order(
-            id,
+            id_,
             fields=fields,
             pay_pal_mock_response=pay_pal_mock_response,
             pay_pal_auth_assertion=pay_pal_auth_assertion,
@@ -316,7 +324,7 @@ class Orders:
 
     def patch_order(
         self,
-        id: str,
+        id_: str,
         *,
         pay_pal_mock_response: str | None = None,
         pay_pal_auth_assertion: str | None = None,
@@ -359,14 +367,15 @@ class Orders:
         add</td><td></td></tr></tbody></table>
 
         Args:
-            id: The ID of the order to update.
+            id_: The ID of the order to update.
             pay_pal_mock_response: PayPal's REST API uses a request header to invoke negative testing in the sandbox.
                 This header configures the sandbox into a negative testing state for transactions that include the
                 merchant.
             pay_pal_auth_assertion: An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant.
                 For details, see PayPal-Auth-Assertion.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             A successful request returns the HTTP ``204 No Content`` status code with an empty object in the JSON
@@ -378,7 +387,7 @@ class Orders:
                 exist. The requested action could not be performed, semantically incorrect, or failed business
                 validation. ``error`` is ``Error | RawError``."""
         return self._with_raw_response.patch_order(
-            id,
+            id_,
             pay_pal_mock_response=pay_pal_mock_response,
             pay_pal_auth_assertion=pay_pal_auth_assertion,
             body=body,
@@ -387,7 +396,7 @@ class Orders:
 
     def update_order_tracking(
         self,
-        id: str,
+        id_: str,
         tracker_id: str,
         *,
         pay_pal_auth_assertion: str | None = None,
@@ -400,12 +409,13 @@ class Orders:
         supported.
 
         Args:
-            id: The ID of the order that the tracking information is associated with.
+            id_: The ID of the order that the tracking information is associated with.
             tracker_id: The order tracking ID.
             pay_pal_auth_assertion: An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant.
                 For details, see PayPal-Auth-Assertion.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             A successful request returns the HTTP ``204 No Content`` status code with an empty object in the JSON
@@ -417,7 +427,7 @@ class Orders:
                 performed, semantically incorrect, or failed business validation. An internal server error has occurred.
                 ``error`` is ``Error | RawError``."""
         return self._with_raw_response.update_order_tracking(
-            id, tracker_id, pay_pal_auth_assertion=pay_pal_auth_assertion, body=body, request_options=request_options
+            id_, tracker_id, pay_pal_auth_assertion=pay_pal_auth_assertion, body=body, request_options=request_options
         ).unwrap()
 
     @property
@@ -431,7 +441,7 @@ class AsyncOrders:
 
     async def authorize_order(
         self,
-        id: str,
+        id_: str,
         *,
         pay_pal_mock_response: str | None = None,
         pay_pal_request_id: str | None = None,
@@ -447,7 +457,7 @@ class AsyncOrders:
         error handling and troubleshooting, see Orders v2 errors.
 
         Args:
-            id: The ID of the order for which to authorize.
+            id_: The ID of the order for which to authorize.
             pay_pal_mock_response: PayPal's REST API uses a request header to invoke negative testing in the sandbox.
                 This header configures the sandbox into a negative testing state for transactions that include the
                 merchant.
@@ -463,7 +473,8 @@ class AsyncOrders:
             pay_pal_auth_assertion: An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant.
                 For details, see PayPal-Auth-Assertion.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             A successful response to an idempotent request returns the HTTP ``200 OK`` status code with a JSON response
@@ -477,7 +488,7 @@ class AsyncOrders:
                 occurred. ``error`` is ``Error | RawError``."""
         return (
             await self._with_raw_response.authorize_order(
-                id,
+                id_,
                 pay_pal_mock_response=pay_pal_mock_response,
                 pay_pal_request_id=pay_pal_request_id,
                 prefer=prefer,
@@ -490,7 +501,7 @@ class AsyncOrders:
 
     async def capture_order(
         self,
-        id: str,
+        id_: str,
         *,
         pay_pal_mock_response: str | None = None,
         pay_pal_request_id: str | None = None,
@@ -506,7 +517,7 @@ class AsyncOrders:
         error handling and troubleshooting, see Orders v2 errors.
 
         Args:
-            id: The ID of the order for which to capture a payment.
+            id_: The ID of the order for which to capture a payment.
             pay_pal_mock_response: PayPal's REST API uses a request header to invoke negative testing in the sandbox.
                 This header configures the sandbox into a negative testing state for transactions that include the
                 merchant.
@@ -522,7 +533,8 @@ class AsyncOrders:
             pay_pal_auth_assertion: An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant.
                 For details, see PayPal-Auth-Assertion.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             A successful response to an idempotent request returns the HTTP ``200 OK`` status code with a JSON response
@@ -536,7 +548,7 @@ class AsyncOrders:
                 occurred. ``error`` is ``Error | RawError``."""
         return (
             await self._with_raw_response.capture_order(
-                id,
+                id_,
                 pay_pal_mock_response=pay_pal_mock_response,
                 pay_pal_request_id=pay_pal_request_id,
                 prefer=prefer,
@@ -549,7 +561,7 @@ class AsyncOrders:
 
     async def confirm_order(
         self,
-        id: str,
+        id_: str,
         *,
         pay_pal_client_metadata_id: str | None = None,
         pay_pal_auth_assertion: str | None = None,
@@ -560,7 +572,7 @@ class AsyncOrders:
         """Payer confirms their intent to pay for the the Order with the given payment source.
 
         Args:
-            id: The ID of the order for which the payer confirms their intent to pay.
+            id_: The ID of the order for which the payer confirms their intent to pay.
             pay_pal_client_metadata_id: Value sent with the request.
             pay_pal_auth_assertion: An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant.
                 For details, see PayPal-Auth-Assertion.
@@ -569,7 +581,8 @@ class AsyncOrders:
                 minimal response includes the id, status and HATEOAS links. return=representation. The server returns a
                 complete resource representation, including the current state of the resource.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             A successful request indicates that the payment source was added to the Order. A successful request returns
@@ -581,7 +594,7 @@ class AsyncOrders:
                 failed business validation. An internal server error has occurred. ``error`` is ``Error | RawError``."""
         return (
             await self._with_raw_response.confirm_order(
-                id,
+                id_,
                 pay_pal_client_metadata_id=pay_pal_client_metadata_id,
                 pay_pal_auth_assertion=pay_pal_auth_assertion,
                 prefer=prefer,
@@ -623,7 +636,8 @@ class AsyncOrders:
                 complete resource representation, including the current state of the resource.
             pay_pal_auth_assertion: An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant.
                 For details, see PayPal-Auth-Assertion.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             A successful response to an idempotent request returns the HTTP ``200 OK`` status code with a JSON response
@@ -649,7 +663,7 @@ class AsyncOrders:
 
     async def create_order_tracking(
         self,
-        id: str,
+        id_: str,
         body: OrderTrackerRequest | OrderTrackerRequestDict,
         *,
         pay_pal_auth_assertion: str | None = None,
@@ -658,11 +672,12 @@ class AsyncOrders:
         """Adds tracking information for an Order.
 
         Args:
-            id: The ID of the order that the tracking information is associated with.
+            id_: The ID of the order that the tracking information is associated with.
             body: The request body.
             pay_pal_auth_assertion: An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant.
                 For details, see PayPal-Auth-Assertion.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             A successful response to an idempotent request returns the HTTP ``200 OK`` status code with a JSON response
@@ -675,13 +690,13 @@ class AsyncOrders:
                 ``error`` is ``Error | RawError``."""
         return (
             await self._with_raw_response.create_order_tracking(
-                id, body, pay_pal_auth_assertion=pay_pal_auth_assertion, request_options=request_options
+                id_, body, pay_pal_auth_assertion=pay_pal_auth_assertion, request_options=request_options
             )
         ).unwrap()
 
     async def get_order(
         self,
-        id: str,
+        id_: str,
         *,
         fields: str | None = None,
         pay_pal_mock_response: str | None = None,
@@ -691,7 +706,7 @@ class AsyncOrders:
         """Shows details for an order, by ID. Note: For error handling and troubleshooting, see Orders v2 errors.
 
         Args:
-            id: The ID of the order for which to show details.
+            id_: The ID of the order for which to show details.
             fields: A comma-separated list of fields that should be returned for the order. Valid filter field is
                 ``payment_source``.
             pay_pal_mock_response: PayPal's REST API uses a request header to invoke negative testing in the sandbox.
@@ -699,7 +714,8 @@ class AsyncOrders:
                 merchant.
             pay_pal_auth_assertion: An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant.
                 For details, see PayPal-Auth-Assertion.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             A successful request returns the HTTP ``200 OK`` status code and a JSON response body that shows order
@@ -710,7 +726,7 @@ class AsyncOrders:
                 The specified resource does not exist. ``error`` is ``Error | RawError``."""
         return (
             await self._with_raw_response.get_order(
-                id,
+                id_,
                 fields=fields,
                 pay_pal_mock_response=pay_pal_mock_response,
                 pay_pal_auth_assertion=pay_pal_auth_assertion,
@@ -720,7 +736,7 @@ class AsyncOrders:
 
     async def patch_order(
         self,
-        id: str,
+        id_: str,
         *,
         pay_pal_mock_response: str | None = None,
         pay_pal_auth_assertion: str | None = None,
@@ -763,14 +779,15 @@ class AsyncOrders:
         add</td><td></td></tr></tbody></table>
 
         Args:
-            id: The ID of the order to update.
+            id_: The ID of the order to update.
             pay_pal_mock_response: PayPal's REST API uses a request header to invoke negative testing in the sandbox.
                 This header configures the sandbox into a negative testing state for transactions that include the
                 merchant.
             pay_pal_auth_assertion: An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant.
                 For details, see PayPal-Auth-Assertion.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             A successful request returns the HTTP ``204 No Content`` status code with an empty object in the JSON
@@ -783,7 +800,7 @@ class AsyncOrders:
                 validation. ``error`` is ``Error | RawError``."""
         return (
             await self._with_raw_response.patch_order(
-                id,
+                id_,
                 pay_pal_mock_response=pay_pal_mock_response,
                 pay_pal_auth_assertion=pay_pal_auth_assertion,
                 body=body,
@@ -793,7 +810,7 @@ class AsyncOrders:
 
     async def update_order_tracking(
         self,
-        id: str,
+        id_: str,
         tracker_id: str,
         *,
         pay_pal_auth_assertion: str | None = None,
@@ -806,12 +823,13 @@ class AsyncOrders:
         supported.
 
         Args:
-            id: The ID of the order that the tracking information is associated with.
+            id_: The ID of the order that the tracking information is associated with.
             tracker_id: The order tracking ID.
             pay_pal_auth_assertion: An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant.
                 For details, see PayPal-Auth-Assertion.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             A successful request returns the HTTP ``204 No Content`` status code with an empty object in the JSON
@@ -824,7 +842,7 @@ class AsyncOrders:
                 ``error`` is ``Error | RawError``."""
         return (
             await self._with_raw_response.update_order_tracking(
-                id,
+                id_,
                 tracker_id,
                 pay_pal_auth_assertion=pay_pal_auth_assertion,
                 body=body,
@@ -840,7 +858,7 @@ class AsyncOrders:
 class OrdersWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
     def authorize_order(
         self,
-        id: str,
+        id_: str,
         *,
         pay_pal_mock_response: str | None = None,
         pay_pal_request_id: str | None = None,
@@ -856,7 +874,7 @@ class OrdersWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
         error handling and troubleshooting, see Orders v2 errors.
 
         Args:
-            id: The ID of the order for which to authorize.
+            id_: The ID of the order for which to authorize.
             pay_pal_mock_response: PayPal's REST API uses a request header to invoke negative testing in the sandbox.
                 This header configures the sandbox into a negative testing state for transactions that include the
                 merchant.
@@ -872,14 +890,15 @@ class OrdersWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
             pay_pal_auth_assertion: An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant.
                 For details, see PayPal-Auth-Assertion.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="POST",
             url_template=self._server.default("/v2/checkout/orders/{id}/authorize"),
-            path_params=[param[str]("id", id)],
+            path_params=[param[str]("id", id_)],
             headers=[
                 param[str | None]("PayPal-Mock-Response", pay_pal_mock_response),
                 param[str | None]("PayPal-Request-Id", pay_pal_request_id),
@@ -897,7 +916,7 @@ class OrdersWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
 
     def capture_order(
         self,
-        id: str,
+        id_: str,
         *,
         pay_pal_mock_response: str | None = None,
         pay_pal_request_id: str | None = None,
@@ -913,7 +932,7 @@ class OrdersWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
         error handling and troubleshooting, see Orders v2 errors.
 
         Args:
-            id: The ID of the order for which to capture a payment.
+            id_: The ID of the order for which to capture a payment.
             pay_pal_mock_response: PayPal's REST API uses a request header to invoke negative testing in the sandbox.
                 This header configures the sandbox into a negative testing state for transactions that include the
                 merchant.
@@ -929,14 +948,15 @@ class OrdersWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
             pay_pal_auth_assertion: An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant.
                 For details, see PayPal-Auth-Assertion.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="POST",
             url_template=self._server.default("/v2/checkout/orders/{id}/capture"),
-            path_params=[param[str]("id", id)],
+            path_params=[param[str]("id", id_)],
             headers=[
                 param[str | None]("PayPal-Mock-Response", pay_pal_mock_response),
                 param[str | None]("PayPal-Request-Id", pay_pal_request_id),
@@ -954,7 +974,7 @@ class OrdersWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
 
     def confirm_order(
         self,
-        id: str,
+        id_: str,
         *,
         pay_pal_client_metadata_id: str | None = None,
         pay_pal_auth_assertion: str | None = None,
@@ -965,7 +985,7 @@ class OrdersWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
         """Payer confirms their intent to pay for the the Order with the given payment source.
 
         Args:
-            id: The ID of the order for which the payer confirms their intent to pay.
+            id_: The ID of the order for which the payer confirms their intent to pay.
             pay_pal_client_metadata_id: Value sent with the request.
             pay_pal_auth_assertion: An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant.
                 For details, see PayPal-Auth-Assertion.
@@ -974,14 +994,15 @@ class OrdersWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
                 minimal response includes the id, status and HATEOAS links. return=representation. The server returns a
                 complete resource representation, including the current state of the resource.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="POST",
             url_template=self._server.default("/v2/checkout/orders/{id}/confirm-payment-source"),
-            path_params=[param[str]("id", id)],
+            path_params=[param[str]("id", id_)],
             headers=[
                 param[str | None]("PayPal-Client-Metadata-Id", pay_pal_client_metadata_id),
                 param[str | None]("PayPal-Auth-Assertion", pay_pal_auth_assertion),
@@ -1028,7 +1049,8 @@ class OrdersWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
                 complete resource representation, including the current state of the resource.
             pay_pal_auth_assertion: An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant.
                 For details, see PayPal-Auth-Assertion.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1053,7 +1075,7 @@ class OrdersWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
 
     def create_order_tracking(
         self,
-        id: str,
+        id_: str,
         body: OrderTrackerRequest | OrderTrackerRequestDict,
         *,
         pay_pal_auth_assertion: str | None = None,
@@ -1062,18 +1084,19 @@ class OrdersWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
         """Adds tracking information for an Order.
 
         Args:
-            id: The ID of the order that the tracking information is associated with.
+            id_: The ID of the order that the tracking information is associated with.
             body: The request body.
             pay_pal_auth_assertion: An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant.
                 For details, see PayPal-Auth-Assertion.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="POST",
             url_template=self._server.default("/v2/checkout/orders/{id}/track"),
-            path_params=[param[str]("id", id)],
+            path_params=[param[str]("id", id_)],
             headers=[
                 param[str | None]("PayPal-Auth-Assertion", pay_pal_auth_assertion),
                 param[UUID]("Idempotency-Key", uuid4()),
@@ -1087,7 +1110,7 @@ class OrdersWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
 
     def get_order(
         self,
-        id: str,
+        id_: str,
         *,
         fields: str | None = None,
         pay_pal_mock_response: str | None = None,
@@ -1097,7 +1120,7 @@ class OrdersWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
         """Shows details for an order, by ID. Note: For error handling and troubleshooting, see Orders v2 errors.
 
         Args:
-            id: The ID of the order for which to show details.
+            id_: The ID of the order for which to show details.
             fields: A comma-separated list of fields that should be returned for the order. Valid filter field is
                 ``payment_source``.
             pay_pal_mock_response: PayPal's REST API uses a request header to invoke negative testing in the sandbox.
@@ -1105,14 +1128,15 @@ class OrdersWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
                 merchant.
             pay_pal_auth_assertion: An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant.
                 For details, see PayPal-Auth-Assertion.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v2/checkout/orders/{id}"),
-            path_params=[param[str]("id", id)],
+            path_params=[param[str]("id", id_)],
             query_params=[param[str | None]("fields", fields)],
             headers=[
                 param[str | None]("PayPal-Mock-Response", pay_pal_mock_response),
@@ -1126,7 +1150,7 @@ class OrdersWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
 
     def patch_order(
         self,
-        id: str,
+        id_: str,
         *,
         pay_pal_mock_response: str | None = None,
         pay_pal_auth_assertion: str | None = None,
@@ -1169,21 +1193,22 @@ class OrdersWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
         add</td><td></td></tr></tbody></table>
 
         Args:
-            id: The ID of the order to update.
+            id_: The ID of the order to update.
             pay_pal_mock_response: PayPal's REST API uses a request header to invoke negative testing in the sandbox.
                 This header configures the sandbox into a negative testing state for transactions that include the
                 merchant.
             pay_pal_auth_assertion: An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant.
                 For details, see PayPal-Auth-Assertion.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="PATCH",
             url_template=self._server.default("/v2/checkout/orders/{id}"),
-            path_params=[param[str]("id", id)],
+            path_params=[param[str]("id", id_)],
             headers=[
                 param[str | None]("PayPal-Mock-Response", pay_pal_mock_response),
                 param[str | None]("PayPal-Auth-Assertion", pay_pal_auth_assertion),
@@ -1198,7 +1223,7 @@ class OrdersWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
 
     def update_order_tracking(
         self,
-        id: str,
+        id_: str,
         tracker_id: str,
         *,
         pay_pal_auth_assertion: str | None = None,
@@ -1211,19 +1236,20 @@ class OrdersWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
         supported.
 
         Args:
-            id: The ID of the order that the tracking information is associated with.
+            id_: The ID of the order that the tracking information is associated with.
             tracker_id: The order tracking ID.
             pay_pal_auth_assertion: An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant.
                 For details, see PayPal-Auth-Assertion.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="PATCH",
             url_template=self._server.default("/v2/checkout/orders/{id}/trackers/{tracker_id}"),
-            path_params=[param[str]("id", id), param[str]("tracker_id", tracker_id)],
+            path_params=[param[str]("id", id_), param[str]("tracker_id", tracker_id)],
             headers=[
                 param[str | None]("PayPal-Auth-Assertion", pay_pal_auth_assertion),
                 param[UUID]("Idempotency-Key", uuid4()),
@@ -1239,7 +1265,7 @@ class OrdersWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
 class AsyncOrdersWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncAuthSchemes]):
     async def authorize_order(
         self,
-        id: str,
+        id_: str,
         *,
         pay_pal_mock_response: str | None = None,
         pay_pal_request_id: str | None = None,
@@ -1255,7 +1281,7 @@ class AsyncOrdersWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
         error handling and troubleshooting, see Orders v2 errors.
 
         Args:
-            id: The ID of the order for which to authorize.
+            id_: The ID of the order for which to authorize.
             pay_pal_mock_response: PayPal's REST API uses a request header to invoke negative testing in the sandbox.
                 This header configures the sandbox into a negative testing state for transactions that include the
                 merchant.
@@ -1271,14 +1297,15 @@ class AsyncOrdersWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
             pay_pal_auth_assertion: An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant.
                 For details, see PayPal-Auth-Assertion.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="POST",
             url_template=self._server.default("/v2/checkout/orders/{id}/authorize"),
-            path_params=[param[str]("id", id)],
+            path_params=[param[str]("id", id_)],
             headers=[
                 param[str | None]("PayPal-Mock-Response", pay_pal_mock_response),
                 param[str | None]("PayPal-Request-Id", pay_pal_request_id),
@@ -1289,14 +1316,14 @@ class AsyncOrdersWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
             ],
             body=json_body[OrderAuthorizeRequest | OrderAuthorizeRequestDict | None](body),
             auth_scheme=self._auth.oauth2,
-            decoder=json_decoder[OrderAuthorizeResponse],
+            decoder=async_json_decoder[OrderAuthorizeResponse],
             error_mapper=authorize_order_error_mapper,
             request_options=request_options,
         )
 
     async def capture_order(
         self,
-        id: str,
+        id_: str,
         *,
         pay_pal_mock_response: str | None = None,
         pay_pal_request_id: str | None = None,
@@ -1312,7 +1339,7 @@ class AsyncOrdersWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
         error handling and troubleshooting, see Orders v2 errors.
 
         Args:
-            id: The ID of the order for which to capture a payment.
+            id_: The ID of the order for which to capture a payment.
             pay_pal_mock_response: PayPal's REST API uses a request header to invoke negative testing in the sandbox.
                 This header configures the sandbox into a negative testing state for transactions that include the
                 merchant.
@@ -1328,14 +1355,15 @@ class AsyncOrdersWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
             pay_pal_auth_assertion: An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant.
                 For details, see PayPal-Auth-Assertion.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="POST",
             url_template=self._server.default("/v2/checkout/orders/{id}/capture"),
-            path_params=[param[str]("id", id)],
+            path_params=[param[str]("id", id_)],
             headers=[
                 param[str | None]("PayPal-Mock-Response", pay_pal_mock_response),
                 param[str | None]("PayPal-Request-Id", pay_pal_request_id),
@@ -1346,14 +1374,14 @@ class AsyncOrdersWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
             ],
             body=json_body[OrderCaptureRequest | OrderCaptureRequestDict | None](body),
             auth_scheme=self._auth.oauth2,
-            decoder=json_decoder[Order],
+            decoder=async_json_decoder[Order],
             error_mapper=capture_order_error_mapper,
             request_options=request_options,
         )
 
     async def confirm_order(
         self,
-        id: str,
+        id_: str,
         *,
         pay_pal_client_metadata_id: str | None = None,
         pay_pal_auth_assertion: str | None = None,
@@ -1364,7 +1392,7 @@ class AsyncOrdersWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
         """Payer confirms their intent to pay for the the Order with the given payment source.
 
         Args:
-            id: The ID of the order for which the payer confirms their intent to pay.
+            id_: The ID of the order for which the payer confirms their intent to pay.
             pay_pal_client_metadata_id: Value sent with the request.
             pay_pal_auth_assertion: An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant.
                 For details, see PayPal-Auth-Assertion.
@@ -1373,14 +1401,15 @@ class AsyncOrdersWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
                 minimal response includes the id, status and HATEOAS links. return=representation. The server returns a
                 complete resource representation, including the current state of the resource.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="POST",
             url_template=self._server.default("/v2/checkout/orders/{id}/confirm-payment-source"),
-            path_params=[param[str]("id", id)],
+            path_params=[param[str]("id", id_)],
             headers=[
                 param[str | None]("PayPal-Client-Metadata-Id", pay_pal_client_metadata_id),
                 param[str | None]("PayPal-Auth-Assertion", pay_pal_auth_assertion),
@@ -1389,7 +1418,7 @@ class AsyncOrdersWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
             ],
             body=json_body[ConfirmOrderRequest | ConfirmOrderRequestDict | None](body),
             auth_scheme=self._auth.oauth2,
-            decoder=json_decoder[Order],
+            decoder=async_json_decoder[Order],
             error_mapper=confirm_order_error_mapper,
             request_options=request_options,
         )
@@ -1427,7 +1456,8 @@ class AsyncOrdersWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
                 complete resource representation, including the current state of the resource.
             pay_pal_auth_assertion: An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant.
                 For details, see PayPal-Auth-Assertion.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1445,14 +1475,14 @@ class AsyncOrdersWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
             ],
             body=json_body[OrderRequest | OrderRequestDict](body),
             auth_scheme=self._auth.oauth2,
-            decoder=json_decoder[Order],
+            decoder=async_json_decoder[Order],
             error_mapper=create_order_error_mapper,
             request_options=request_options,
         )
 
     async def create_order_tracking(
         self,
-        id: str,
+        id_: str,
         body: OrderTrackerRequest | OrderTrackerRequestDict,
         *,
         pay_pal_auth_assertion: str | None = None,
@@ -1461,32 +1491,33 @@ class AsyncOrdersWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
         """Adds tracking information for an Order.
 
         Args:
-            id: The ID of the order that the tracking information is associated with.
+            id_: The ID of the order that the tracking information is associated with.
             body: The request body.
             pay_pal_auth_assertion: An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant.
                 For details, see PayPal-Auth-Assertion.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="POST",
             url_template=self._server.default("/v2/checkout/orders/{id}/track"),
-            path_params=[param[str]("id", id)],
+            path_params=[param[str]("id", id_)],
             headers=[
                 param[str | None]("PayPal-Auth-Assertion", pay_pal_auth_assertion),
                 param[UUID]("Idempotency-Key", uuid4()),
             ],
             body=json_body[OrderTrackerRequest | OrderTrackerRequestDict](body),
             auth_scheme=self._auth.oauth2,
-            decoder=json_decoder[Order],
+            decoder=async_json_decoder[Order],
             error_mapper=create_order_tracking_error_mapper,
             request_options=request_options,
         )
 
     async def get_order(
         self,
-        id: str,
+        id_: str,
         *,
         fields: str | None = None,
         pay_pal_mock_response: str | None = None,
@@ -1496,7 +1527,7 @@ class AsyncOrdersWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
         """Shows details for an order, by ID. Note: For error handling and troubleshooting, see Orders v2 errors.
 
         Args:
-            id: The ID of the order for which to show details.
+            id_: The ID of the order for which to show details.
             fields: A comma-separated list of fields that should be returned for the order. Valid filter field is
                 ``payment_source``.
             pay_pal_mock_response: PayPal's REST API uses a request header to invoke negative testing in the sandbox.
@@ -1504,28 +1535,29 @@ class AsyncOrdersWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
                 merchant.
             pay_pal_auth_assertion: An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant.
                 For details, see PayPal-Auth-Assertion.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v2/checkout/orders/{id}"),
-            path_params=[param[str]("id", id)],
+            path_params=[param[str]("id", id_)],
             query_params=[param[str | None]("fields", fields)],
             headers=[
                 param[str | None]("PayPal-Mock-Response", pay_pal_mock_response),
                 param[str | None]("PayPal-Auth-Assertion", pay_pal_auth_assertion),
             ],
             auth_scheme=self._auth.oauth2,
-            decoder=json_decoder[Order],
+            decoder=async_json_decoder[Order],
             error_mapper=get_order_error_mapper,
             request_options=request_options,
         )
 
     async def patch_order(
         self,
-        id: str,
+        id_: str,
         *,
         pay_pal_mock_response: str | None = None,
         pay_pal_auth_assertion: str | None = None,
@@ -1568,21 +1600,22 @@ class AsyncOrdersWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
         add</td><td></td></tr></tbody></table>
 
         Args:
-            id: The ID of the order to update.
+            id_: The ID of the order to update.
             pay_pal_mock_response: PayPal's REST API uses a request header to invoke negative testing in the sandbox.
                 This header configures the sandbox into a negative testing state for transactions that include the
                 merchant.
             pay_pal_auth_assertion: An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant.
                 For details, see PayPal-Auth-Assertion.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="PATCH",
             url_template=self._server.default("/v2/checkout/orders/{id}"),
-            path_params=[param[str]("id", id)],
+            path_params=[param[str]("id", id_)],
             headers=[
                 param[str | None]("PayPal-Mock-Response", pay_pal_mock_response),
                 param[str | None]("PayPal-Auth-Assertion", pay_pal_auth_assertion),
@@ -1590,14 +1623,14 @@ class AsyncOrdersWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
             ],
             body=json_body[list[Patch | PatchDict] | None](body),
             auth_scheme=self._auth.oauth2,
-            decoder=empty_response,
+            decoder=async_empty_response,
             error_mapper=patch_order_error_mapper,
             request_options=request_options,
         )
 
     async def update_order_tracking(
         self,
-        id: str,
+        id_: str,
         tracker_id: str,
         *,
         pay_pal_auth_assertion: str | None = None,
@@ -1610,26 +1643,27 @@ class AsyncOrdersWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
         supported.
 
         Args:
-            id: The ID of the order that the tracking information is associated with.
+            id_: The ID of the order that the tracking information is associated with.
             tracker_id: The order tracking ID.
             pay_pal_auth_assertion: An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant.
                 For details, see PayPal-Auth-Assertion.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="PATCH",
             url_template=self._server.default("/v2/checkout/orders/{id}/trackers/{tracker_id}"),
-            path_params=[param[str]("id", id), param[str]("tracker_id", tracker_id)],
+            path_params=[param[str]("id", id_), param[str]("tracker_id", tracker_id)],
             headers=[
                 param[str | None]("PayPal-Auth-Assertion", pay_pal_auth_assertion),
                 param[UUID]("Idempotency-Key", uuid4()),
             ],
             body=json_body[list[Patch | PatchDict] | None](body),
             auth_scheme=self._auth.oauth2,
-            decoder=empty_response,
+            decoder=async_empty_response,
             error_mapper=update_order_tracking_error_mapper,
             request_options=request_options,
         )

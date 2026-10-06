@@ -9,7 +9,7 @@
 > Source: [Orders](paypal/apis/orders.py)
 
 <details>
-<summary><code>def authorize_order(id: str, *, pay_pal_mock_response: str | None = None, pay_pal_request_id: str | None = None, prefer: str | None = "return=minimal", pay_pal_client_metadata_id: str | None = None, pay_pal_auth_assertion: str | None = None, body: OrderAuthorizeRequest | OrderAuthorizeRequestDict | None = None, request_options: RequestOptionsOrDict | None = None) -> ApiResult[OrderAuthorizeResponse, AuthorizeOrderErrorBody]</code></summary>
+<summary><code>def authorize_order(id_: str, *, pay_pal_mock_response: str | None = None, pay_pal_request_id: str | None = None, prefer: str | None = "return=minimal", pay_pal_client_metadata_id: str | None = None, pay_pal_auth_assertion: str | None = None, body: OrderAuthorizeRequest | OrderAuthorizeRequestDict | None = None, request_options: RequestOptionsOrDict | None = None) -> ApiResult[OrderAuthorizeResponse, AuthorizeOrderErrorBody]</code></summary>
 
 <dl>
 <dd>
@@ -32,7 +32,7 @@ Authorizes payment for an order. To successfully authorize payment for an order,
 **Sync**
 
 ```python
-result = client.orders.with_raw_response.authorize_order(id)
+result = client.orders.with_raw_response.authorize_order("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type OrderAuthorizeResponse
@@ -43,7 +43,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.orders.with_raw_response.authorize_order(id)
+result = await async_client.orders.with_raw_response.authorize_order("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type OrderAuthorizeResponse
@@ -61,14 +61,14 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>id</code> | <code>str</code> | The ID of the order for which to authorize. |
+| <code>id_</code> | <code>str</code> | The ID of the order for which to authorize. |
 | <code>pay_pal_mock_response</code> | <code>str \| None</code> | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant.<br>**Default**: <code>None</code> |
 | <code>pay_pal_request_id</code> | <code>str \| None</code> | The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager. It is mandatory for all single-step create order calls (E.g. Create Order Request with payment source information like Card, PayPal.vault_id, PayPal.billing_agreement_id, etc).<br>**Default**: <code>None</code> |
 | <code>prefer</code> | <code>str \| None</code> | The preferred server response upon successful completion of the request. Value is: return=minimal. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the id, status and HATEOAS links. return=representation. The server returns a complete resource representation, including the current state of the resource.<br>**Default**: <code>"return=minimal"</code> |
 | <code>pay_pal_client_metadata_id</code> | <code>str \| None</code> | Value sent with the request.<br>**Default**: <code>None</code> |
 | <code>pay_pal_auth_assertion</code> | <code>str \| None</code> | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see PayPal-Auth-Assertion.<br>**Default**: <code>None</code> |
 | <code>body</code> | <code>[OrderAuthorizeRequest](paypal/models/order_authorize_request.py) \| [OrderAuthorizeRequestDict](paypal/models/order_authorize_request.py) \| None</code> | The request body.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -100,7 +100,7 @@ Mapped in first-match order -- an earlier row wins over a later range that also 
 </details>
 
 <details>
-<summary><code>def capture_order(id: str, *, pay_pal_mock_response: str | None = None, pay_pal_request_id: str | None = None, prefer: str | None = "return=minimal", pay_pal_client_metadata_id: str | None = None, pay_pal_auth_assertion: str | None = None, body: OrderCaptureRequest | OrderCaptureRequestDict | None = None, request_options: RequestOptionsOrDict | None = None) -> ApiResult[Order, CaptureOrderErrorBody]</code></summary>
+<summary><code>def capture_order(id_: str, *, pay_pal_mock_response: str | None = None, pay_pal_request_id: str | None = None, prefer: str | None = "return=minimal", pay_pal_client_metadata_id: str | None = None, pay_pal_auth_assertion: str | None = None, body: OrderCaptureRequest | OrderCaptureRequestDict | None = None, request_options: RequestOptionsOrDict | None = None) -> ApiResult[Order, CaptureOrderErrorBody]</code></summary>
 
 <dl>
 <dd>
@@ -123,7 +123,7 @@ Captures payment for an order. To successfully capture payment for an order, the
 **Sync**
 
 ```python
-result = client.orders.with_raw_response.capture_order(id)
+result = client.orders.with_raw_response.capture_order("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Order
@@ -134,7 +134,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.orders.with_raw_response.capture_order(id)
+result = await async_client.orders.with_raw_response.capture_order("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Order
@@ -152,14 +152,14 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>id</code> | <code>str</code> | The ID of the order for which to capture a payment. |
+| <code>id_</code> | <code>str</code> | The ID of the order for which to capture a payment. |
 | <code>pay_pal_mock_response</code> | <code>str \| None</code> | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant.<br>**Default**: <code>None</code> |
 | <code>pay_pal_request_id</code> | <code>str \| None</code> | The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager. It is mandatory for all single-step create order calls (E.g. Create Order Request with payment source information like Card, PayPal.vault_id, PayPal.billing_agreement_id, etc).<br>**Default**: <code>None</code> |
 | <code>prefer</code> | <code>str \| None</code> | The preferred server response upon successful completion of the request. Value is: return=minimal. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the id, status and HATEOAS links. return=representation. The server returns a complete resource representation, including the current state of the resource.<br>**Default**: <code>"return=minimal"</code> |
 | <code>pay_pal_client_metadata_id</code> | <code>str \| None</code> | Value sent with the request.<br>**Default**: <code>None</code> |
 | <code>pay_pal_auth_assertion</code> | <code>str \| None</code> | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see PayPal-Auth-Assertion.<br>**Default**: <code>None</code> |
 | <code>body</code> | <code>[OrderCaptureRequest](paypal/models/order_capture_request.py) \| [OrderCaptureRequestDict](paypal/models/order_capture_request.py) \| None</code> | The request body.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -191,7 +191,7 @@ Mapped in first-match order -- an earlier row wins over a later range that also 
 </details>
 
 <details>
-<summary><code>def confirm_order(id: str, *, pay_pal_client_metadata_id: str | None = None, pay_pal_auth_assertion: str | None = None, prefer: str | None = "return=minimal", body: ConfirmOrderRequest | ConfirmOrderRequestDict | None = None, request_options: RequestOptionsOrDict | None = None) -> ApiResult[Order, ConfirmOrderErrorBody]</code></summary>
+<summary><code>def confirm_order(id_: str, *, pay_pal_client_metadata_id: str | None = None, pay_pal_auth_assertion: str | None = None, prefer: str | None = "return=minimal", body: ConfirmOrderRequest | ConfirmOrderRequestDict | None = None, request_options: RequestOptionsOrDict | None = None) -> ApiResult[Order, ConfirmOrderErrorBody]</code></summary>
 
 <dl>
 <dd>
@@ -214,7 +214,7 @@ Payer confirms their intent to pay for the the Order with the given payment sour
 **Sync**
 
 ```python
-result = client.orders.with_raw_response.confirm_order(id)
+result = client.orders.with_raw_response.confirm_order("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Order
@@ -225,7 +225,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.orders.with_raw_response.confirm_order(id)
+result = await async_client.orders.with_raw_response.confirm_order("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Order
@@ -243,12 +243,12 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>id</code> | <code>str</code> | The ID of the order for which the payer confirms their intent to pay. |
+| <code>id_</code> | <code>str</code> | The ID of the order for which the payer confirms their intent to pay. |
 | <code>pay_pal_client_metadata_id</code> | <code>str \| None</code> | Value sent with the request.<br>**Default**: <code>None</code> |
 | <code>pay_pal_auth_assertion</code> | <code>str \| None</code> | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see PayPal-Auth-Assertion.<br>**Default**: <code>None</code> |
 | <code>prefer</code> | <code>str \| None</code> | The preferred server response upon successful completion of the request. Value is: return=minimal. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the id, status and HATEOAS links. return=representation. The server returns a complete resource representation, including the current state of the resource.<br>**Default**: <code>"return=minimal"</code> |
 | <code>body</code> | <code>[ConfirmOrderRequest](paypal/models/confirm_order_request.py) \| [ConfirmOrderRequestDict](paypal/models/confirm_order_request.py) \| None</code> | The request body.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -303,7 +303,16 @@ Creates an order. Merchants and partners can add Level 2 and 3 data to payments 
 **Sync**
 
 ```python
-result = client.orders.with_raw_response.create_order(body)
+result = client.orders.with_raw_response.create_order(
+    OrderRequest(
+        intent=CheckoutPaymentIntent.CAPTURE,
+        purchase_units=[
+            PurchaseUnitRequest(
+                amount=AmountWithBreakdown(currency_code="some example string", value="some example string")
+            ),
+        ],
+    ),
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Order
@@ -314,7 +323,16 @@ match result:
 **Async**
 
 ```python
-result = await async_client.orders.with_raw_response.create_order(body)
+result = await async_client.orders.with_raw_response.create_order(
+    OrderRequest(
+        intent=CheckoutPaymentIntent.CAPTURE,
+        purchase_units=[
+            PurchaseUnitRequest(
+                amount=AmountWithBreakdown(currency_code="some example string", value="some example string")
+            ),
+        ],
+    ),
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Order
@@ -339,7 +357,7 @@ match result:
 | <code>pay_pal_client_metadata_id</code> | <code>str \| None</code> | Value sent with the request.<br>**Default**: <code>None</code> |
 | <code>prefer</code> | <code>str \| None</code> | The preferred server response upon successful completion of the request. Value is: return=minimal. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the id, status and HATEOAS links. return=representation. The server returns a complete resource representation, including the current state of the resource.<br>**Default**: <code>"return=minimal"</code> |
 | <code>pay_pal_auth_assertion</code> | <code>str \| None</code> | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see PayPal-Auth-Assertion.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -371,7 +389,7 @@ Mapped in first-match order -- an earlier row wins over a later range that also 
 </details>
 
 <details>
-<summary><code>def create_order_tracking(id: str, body: OrderTrackerRequest | OrderTrackerRequestDict, *, pay_pal_auth_assertion: str | None = None, request_options: RequestOptionsOrDict | None = None) -> ApiResult[Order, CreateOrderTrackingErrorBody]</code></summary>
+<summary><code>def create_order_tracking(id_: str, body: OrderTrackerRequest | OrderTrackerRequestDict, *, pay_pal_auth_assertion: str | None = None, request_options: RequestOptionsOrDict | None = None) -> ApiResult[Order, CreateOrderTrackingErrorBody]</code></summary>
 
 <dl>
 <dd>
@@ -394,7 +412,9 @@ Adds tracking information for an Order.
 **Sync**
 
 ```python
-result = client.orders.with_raw_response.create_order_tracking(id, body)
+result = client.orders.with_raw_response.create_order_tracking(
+    "some example string", OrderTrackerRequest(capture_id="some example string")
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Order
@@ -405,7 +425,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.orders.with_raw_response.create_order_tracking(id, body)
+result = await async_client.orders.with_raw_response.create_order_tracking(
+    "some example string", OrderTrackerRequest(capture_id="some example string")
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Order
@@ -423,10 +445,10 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>id</code> | <code>str</code> | The ID of the order that the tracking information is associated with. |
+| <code>id_</code> | <code>str</code> | The ID of the order that the tracking information is associated with. |
 | <code>body</code> | <code>[OrderTrackerRequest](paypal/models/order_tracker_request.py) \| [OrderTrackerRequestDict](paypal/models/order_tracker_request.py)</code> | The request body. |
 | <code>pay_pal_auth_assertion</code> | <code>str \| None</code> | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see PayPal-Auth-Assertion.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -458,7 +480,7 @@ Mapped in first-match order -- an earlier row wins over a later range that also 
 </details>
 
 <details>
-<summary><code>def get_order(id: str, *, fields: str | None = None, pay_pal_mock_response: str | None = None, pay_pal_auth_assertion: str | None = None, request_options: RequestOptionsOrDict | None = None) -> ApiResult[Order, GetOrderErrorBody]</code></summary>
+<summary><code>def get_order(id_: str, *, fields: str | None = None, pay_pal_mock_response: str | None = None, pay_pal_auth_assertion: str | None = None, request_options: RequestOptionsOrDict | None = None) -> ApiResult[Order, GetOrderErrorBody]</code></summary>
 
 <dl>
 <dd>
@@ -481,7 +503,7 @@ Shows details for an order, by ID. Note: For error handling and troubleshooting,
 **Sync**
 
 ```python
-result = client.orders.with_raw_response.get_order(id)
+result = client.orders.with_raw_response.get_order("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Order
@@ -492,7 +514,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.orders.with_raw_response.get_order(id)
+result = await async_client.orders.with_raw_response.get_order("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Order
@@ -510,11 +532,11 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>id</code> | <code>str</code> | The ID of the order for which to show details. |
+| <code>id_</code> | <code>str</code> | The ID of the order for which to show details. |
 | <code>fields</code> | <code>str \| None</code> | A comma-separated list of fields that should be returned for the order. Valid filter field is `payment_source`.<br>**Default**: <code>None</code> |
 | <code>pay_pal_mock_response</code> | <code>str \| None</code> | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant.<br>**Default**: <code>None</code> |
 | <code>pay_pal_auth_assertion</code> | <code>str \| None</code> | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see PayPal-Auth-Assertion.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -546,7 +568,7 @@ Mapped in first-match order -- an earlier row wins over a later range that also 
 </details>
 
 <details>
-<summary><code>def patch_order(id: str, *, pay_pal_mock_response: str | None = None, pay_pal_auth_assertion: str | None = None, body: list[Patch | PatchDict] | None = None, request_options: RequestOptionsOrDict | None = None) -> ApiResult[None, PatchOrderErrorBody]</code></summary>
+<summary><code>def patch_order(id_: str, *, pay_pal_mock_response: str | None = None, pay_pal_auth_assertion: str | None = None, body: list[Patch | PatchDict] | None = None, request_options: RequestOptionsOrDict | None = None) -> ApiResult[None, PatchOrderErrorBody]</code></summary>
 
 <dl>
 <dd>
@@ -569,7 +591,7 @@ Updates an order with a `CREATED` or `APPROVED` status. You cannot update an ord
 **Sync**
 
 ```python
-result = client.orders.with_raw_response.patch_order(id)
+result = client.orders.with_raw_response.patch_order("some example string")
 match result:
     case Success():
         ...  # 2xx, no content
@@ -580,7 +602,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.orders.with_raw_response.patch_order(id)
+result = await async_client.orders.with_raw_response.patch_order("some example string")
 match result:
     case Success():
         ...  # 2xx, no content
@@ -598,11 +620,11 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>id</code> | <code>str</code> | The ID of the order to update. |
+| <code>id_</code> | <code>str</code> | The ID of the order to update. |
 | <code>pay_pal_mock_response</code> | <code>str \| None</code> | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant.<br>**Default**: <code>None</code> |
 | <code>pay_pal_auth_assertion</code> | <code>str \| None</code> | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see PayPal-Auth-Assertion.<br>**Default**: <code>None</code> |
 | <code>body</code> | <code>list&#91;[Patch](paypal/models/patch.py) \| [PatchDict](paypal/models/patch.py)&#93; \| None</code> | The request body.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -634,7 +656,7 @@ Mapped in first-match order -- an earlier row wins over a later range that also 
 </details>
 
 <details>
-<summary><code>def update_order_tracking(id: str, tracker_id: str, *, pay_pal_auth_assertion: str | None = None, body: list[Patch | PatchDict] | None = None, request_options: RequestOptionsOrDict | None = None) -> ApiResult[None, UpdateOrderTrackingErrorBody]</code></summary>
+<summary><code>def update_order_tracking(id_: str, tracker_id: str, *, pay_pal_auth_assertion: str | None = None, body: list[Patch | PatchDict] | None = None, request_options: RequestOptionsOrDict | None = None) -> ApiResult[None, UpdateOrderTrackingErrorBody]</code></summary>
 
 <dl>
 <dd>
@@ -657,7 +679,7 @@ Updates or cancels the tracking information for a PayPal order, by ID. Updatable
 **Sync**
 
 ```python
-result = client.orders.with_raw_response.update_order_tracking(id, tracker_id)
+result = client.orders.with_raw_response.update_order_tracking("some example string", "some example string")
 match result:
     case Success():
         ...  # 2xx, no content
@@ -668,7 +690,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.orders.with_raw_response.update_order_tracking(id, tracker_id)
+result = await async_client.orders.with_raw_response.update_order_tracking("some example string", "some example string")
 match result:
     case Success():
         ...  # 2xx, no content
@@ -686,11 +708,11 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>id</code> | <code>str</code> | The ID of the order that the tracking information is associated with. |
+| <code>id_</code> | <code>str</code> | The ID of the order that the tracking information is associated with. |
 | <code>tracker_id</code> | <code>str</code> | The order tracking ID. |
 | <code>pay_pal_auth_assertion</code> | <code>str \| None</code> | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see PayPal-Auth-Assertion.<br>**Default**: <code>None</code> |
 | <code>body</code> | <code>list&#91;[Patch](paypal/models/patch.py) \| [PatchDict](paypal/models/patch.py)&#93; \| None</code> | The request body.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -749,7 +771,7 @@ Captures an authorized payment, by ID.
 **Sync**
 
 ```python
-result = client.payments.with_raw_response.capture_authorized_payment(authorization_id)
+result = client.payments.with_raw_response.capture_authorized_payment("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CapturedPayment
@@ -760,7 +782,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.payments.with_raw_response.capture_authorized_payment(authorization_id)
+result = await async_client.payments.with_raw_response.capture_authorized_payment("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CapturedPayment
@@ -784,7 +806,7 @@ match result:
 | <code>prefer</code> | <code>str \| None</code> | The preferred server response upon successful completion of the request. Value is: return=minimal. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the id, status and HATEOAS links. return=representation. The server returns a complete resource representation, including the current state of the resource.<br>**Default**: <code>"return=minimal"</code> |
 | <code>pay_pal_auth_assertion</code> | <code>str \| None</code> | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion). Note:For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject.<br>**Default**: <code>None</code> |
 | <code>body</code> | <code>[CaptureRequest](paypal/models/capture_request.py) \| [CaptureRequestDict](paypal/models/capture_request.py) \| None</code> | The request body.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -840,7 +862,7 @@ Shows details for an authorized payment, by ID.
 **Sync**
 
 ```python
-result = client.payments.with_raw_response.get_authorized_payment(authorization_id)
+result = client.payments.with_raw_response.get_authorized_payment("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type PaymentAuthorization
@@ -851,7 +873,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.payments.with_raw_response.get_authorized_payment(authorization_id)
+result = await async_client.payments.with_raw_response.get_authorized_payment("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type PaymentAuthorization
@@ -872,7 +894,7 @@ match result:
 | <code>authorization_id</code> | <code>str</code> | The ID of the authorized payment for which to show details. |
 | <code>pay_pal_mock_response</code> | <code>str \| None</code> | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant.<br>**Default**: <code>None</code> |
 | <code>pay_pal_auth_assertion</code> | <code>str \| None</code> | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion). Note:For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -928,7 +950,7 @@ Shows details for a captured payment, by ID.
 **Sync**
 
 ```python
-result = client.payments.with_raw_response.get_captured_payment(capture_id)
+result = client.payments.with_raw_response.get_captured_payment("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CapturedPayment
@@ -939,7 +961,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.payments.with_raw_response.get_captured_payment(capture_id)
+result = await async_client.payments.with_raw_response.get_captured_payment("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CapturedPayment
@@ -959,7 +981,7 @@ match result:
 | --- | --- | --- |
 | <code>capture_id</code> | <code>str</code> | The PayPal-generated ID for the captured payment for which to show details. |
 | <code>pay_pal_mock_response</code> | <code>str \| None</code> | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1015,7 +1037,7 @@ Shows details for a refund, by ID.
 **Sync**
 
 ```python
-result = client.payments.with_raw_response.get_refund(refund_id)
+result = client.payments.with_raw_response.get_refund("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Refund
@@ -1026,7 +1048,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.payments.with_raw_response.get_refund(refund_id)
+result = await async_client.payments.with_raw_response.get_refund("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Refund
@@ -1047,7 +1069,7 @@ match result:
 | <code>refund_id</code> | <code>str</code> | The PayPal-generated ID for the refund for which to show details. |
 | <code>pay_pal_mock_response</code> | <code>str \| None</code> | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant.<br>**Default**: <code>None</code> |
 | <code>pay_pal_auth_assertion</code> | <code>str \| None</code> | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion). Note:For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1103,7 +1125,7 @@ Reauthorizes an authorized PayPal account payment, by ID. To ensure that funds a
 **Sync**
 
 ```python
-result = client.payments.with_raw_response.reauthorize_payment(authorization_id)
+result = client.payments.with_raw_response.reauthorize_payment("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type PaymentAuthorization
@@ -1114,7 +1136,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.payments.with_raw_response.reauthorize_payment(authorization_id)
+result = await async_client.payments.with_raw_response.reauthorize_payment("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type PaymentAuthorization
@@ -1137,7 +1159,7 @@ match result:
 | <code>prefer</code> | <code>str \| None</code> | The preferred server response upon successful completion of the request. Value is: return=minimal. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the id, status and HATEOAS links. return=representation. The server returns a complete resource representation, including the current state of the resource.<br>**Default**: <code>"return=minimal"</code> |
 | <code>pay_pal_auth_assertion</code> | <code>str \| None</code> | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion). Note:For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject.<br>**Default**: <code>None</code> |
 | <code>body</code> | <code>[ReauthorizeRequest](paypal/models/reauthorize_request.py) \| [ReauthorizeRequestDict](paypal/models/reauthorize_request.py) \| None</code> | The request body.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1193,7 +1215,7 @@ Refunds a captured payment, by ID. For a full refund, include an empty payload i
 **Sync**
 
 ```python
-result = client.payments.with_raw_response.refund_captured_payment(capture_id)
+result = client.payments.with_raw_response.refund_captured_payment("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Refund
@@ -1204,7 +1226,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.payments.with_raw_response.refund_captured_payment(capture_id)
+result = await async_client.payments.with_raw_response.refund_captured_payment("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Refund
@@ -1228,7 +1250,7 @@ match result:
 | <code>prefer</code> | <code>str \| None</code> | The preferred server response upon successful completion of the request. Value is: return=minimal. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the id, status and HATEOAS links. return=representation. The server returns a complete resource representation, including the current state of the resource.<br>**Default**: <code>"return=minimal"</code> |
 | <code>pay_pal_auth_assertion</code> | <code>str \| None</code> | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion). Note:For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject.<br>**Default**: <code>None</code> |
 | <code>body</code> | <code>[RefundRequest](paypal/models/refund_request.py) \| [RefundRequestDict](paypal/models/refund_request.py) \| None</code> | The request body.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1284,7 +1306,7 @@ Voids, or cancels, an authorized payment, by ID. You cannot void an authorized p
 **Sync**
 
 ```python
-result = client.payments.with_raw_response.void_payment(authorization_id)
+result = client.payments.with_raw_response.void_payment("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type PaymentAuthorization
@@ -1295,7 +1317,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.payments.with_raw_response.void_payment(authorization_id)
+result = await async_client.payments.with_raw_response.void_payment("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type PaymentAuthorization
@@ -1318,7 +1340,7 @@ match result:
 | <code>pay_pal_auth_assertion</code> | <code>str \| None</code> | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion). Note:For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject.<br>**Default**: <code>None</code> |
 | <code>pay_pal_request_id</code> | <code>str \| None</code> | The server stores keys for 45 days.<br>**Default**: <code>None</code> |
 | <code>prefer</code> | <code>str \| None</code> | The preferred server response upon successful completion of the request. Value is: return=minimal. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the id, status and HATEOAS links. return=representation. The server returns a complete resource representation, including the current state of the resource.<br>**Default**: <code>"return=minimal"</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1355,7 +1377,7 @@ Mapped in first-match order -- an earlier row wins over a later range that also 
 > Source: [Subscriptions](paypal/apis/subscriptions.py)
 
 <details>
-<summary><code>def activate_billing_plan(id: str, *, request_options: RequestOptionsOrDict | None = None) -> ApiResult[None, ActivateBillingPlanErrorBody]</code></summary>
+<summary><code>def activate_billing_plan(id_: str, *, request_options: RequestOptionsOrDict | None = None) -> ApiResult[None, ActivateBillingPlanErrorBody]</code></summary>
 
 <dl>
 <dd>
@@ -1378,7 +1400,7 @@ Activates a plan, by ID.
 **Sync**
 
 ```python
-result = client.subscriptions.with_raw_response.activate_billing_plan(id)
+result = client.subscriptions.with_raw_response.activate_billing_plan("some example string")
 match result:
     case Success():
         ...  # 2xx, no content
@@ -1389,7 +1411,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.subscriptions.with_raw_response.activate_billing_plan(id)
+result = await async_client.subscriptions.with_raw_response.activate_billing_plan("some example string")
 match result:
     case Success():
         ...  # 2xx, no content
@@ -1407,8 +1429,8 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>id</code> | <code>str</code> | The ID of the plan. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>id_</code> | <code>str</code> | The ID of the plan. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1440,7 +1462,7 @@ Mapped in first-match order -- an earlier row wins over a later range that also 
 </details>
 
 <details>
-<summary><code>def activate_subscription(id: str, *, body: ActivateSubscriptionRequest | ActivateSubscriptionRequestDict | None = None, request_options: RequestOptionsOrDict | None = None) -> ApiResult[None, ActivateSubscriptionErrorBody]</code></summary>
+<summary><code>def activate_subscription(id_: str, *, body: ActivateSubscriptionRequest | ActivateSubscriptionRequestDict | None = None, request_options: RequestOptionsOrDict | None = None) -> ApiResult[None, ActivateSubscriptionErrorBody]</code></summary>
 
 <dl>
 <dd>
@@ -1463,7 +1485,7 @@ Activates the subscription.
 **Sync**
 
 ```python
-result = client.subscriptions.with_raw_response.activate_subscription(id)
+result = client.subscriptions.with_raw_response.activate_subscription("some example string")
 match result:
     case Success():
         ...  # 2xx, no content
@@ -1474,7 +1496,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.subscriptions.with_raw_response.activate_subscription(id)
+result = await async_client.subscriptions.with_raw_response.activate_subscription("some example string")
 match result:
     case Success():
         ...  # 2xx, no content
@@ -1492,9 +1514,9 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>id</code> | <code>str</code> | The ID of the subscription. |
+| <code>id_</code> | <code>str</code> | The ID of the subscription. |
 | <code>body</code> | <code>[ActivateSubscriptionRequest](paypal/models/activate_subscription_request.py) \| [ActivateSubscriptionRequestDict](paypal/models/activate_subscription_request.py) \| None</code> | The request body.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1526,7 +1548,7 @@ Mapped in first-match order -- an earlier row wins over a later range that also 
 </details>
 
 <details>
-<summary><code>def cancel_subscription(id: str, *, body: CancelSubscriptionRequest | CancelSubscriptionRequestDict | None = None, request_options: RequestOptionsOrDict | None = None) -> ApiResult[None, CancelSubscriptionErrorBody]</code></summary>
+<summary><code>def cancel_subscription(id_: str, *, body: CancelSubscriptionRequest | CancelSubscriptionRequestDict | None = None, request_options: RequestOptionsOrDict | None = None) -> ApiResult[None, CancelSubscriptionErrorBody]</code></summary>
 
 <dl>
 <dd>
@@ -1549,7 +1571,7 @@ Cancels the subscription.
 **Sync**
 
 ```python
-result = client.subscriptions.with_raw_response.cancel_subscription(id)
+result = client.subscriptions.with_raw_response.cancel_subscription("some example string")
 match result:
     case Success():
         ...  # 2xx, no content
@@ -1560,7 +1582,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.subscriptions.with_raw_response.cancel_subscription(id)
+result = await async_client.subscriptions.with_raw_response.cancel_subscription("some example string")
 match result:
     case Success():
         ...  # 2xx, no content
@@ -1578,9 +1600,9 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>id</code> | <code>str</code> | The ID of the subscription. |
+| <code>id_</code> | <code>str</code> | The ID of the subscription. |
 | <code>body</code> | <code>[CancelSubscriptionRequest](paypal/models/cancel_subscription_request.py) \| [CancelSubscriptionRequestDict](paypal/models/cancel_subscription_request.py) \| None</code> | The request body.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1612,7 +1634,7 @@ Mapped in first-match order -- an earlier row wins over a later range that also 
 </details>
 
 <details>
-<summary><code>def capture_subscription(id: str, *, pay_pal_request_id: str | None = None, body: CaptureSubscriptionRequest | CaptureSubscriptionRequestDict | None = None, request_options: RequestOptionsOrDict | None = None) -> ApiResult[SubscriptionTransactionDetails, CaptureSubscriptionErrorBody]</code></summary>
+<summary><code>def capture_subscription(id_: str, *, pay_pal_request_id: str | None = None, body: CaptureSubscriptionRequest | CaptureSubscriptionRequestDict | None = None, request_options: RequestOptionsOrDict | None = None) -> ApiResult[SubscriptionTransactionDetails, CaptureSubscriptionErrorBody]</code></summary>
 
 <dl>
 <dd>
@@ -1635,7 +1657,7 @@ Captures an authorized payment from the subscriber on the subscription.
 **Sync**
 
 ```python
-result = client.subscriptions.with_raw_response.capture_subscription(id)
+result = client.subscriptions.with_raw_response.capture_subscription("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type SubscriptionTransactionDetails
@@ -1646,7 +1668,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.subscriptions.with_raw_response.capture_subscription(id)
+result = await async_client.subscriptions.with_raw_response.capture_subscription("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type SubscriptionTransactionDetails
@@ -1664,10 +1686,10 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>id</code> | <code>str</code> | The ID of the subscription. |
+| <code>id_</code> | <code>str</code> | The ID of the subscription. |
 | <code>pay_pal_request_id</code> | <code>str \| None</code> | The server stores keys for 72 hours.<br>**Default**: <code>None</code> |
 | <code>body</code> | <code>[CaptureSubscriptionRequest](paypal/models/capture_subscription_request.py) \| [CaptureSubscriptionRequestDict](paypal/models/capture_subscription_request.py) \| None</code> | The request body.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1754,7 +1776,7 @@ match result:
 | <code>prefer</code> | <code>str \| None</code> | The preferred server response upon successful completion of the request. Value is: return=minimal. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the id, status and HATEOAS links. return=representation. The server returns a complete resource representation, including the current state of the resource.<br>**Default**: <code>"return=minimal"</code> |
 | <code>pay_pal_request_id</code> | <code>str \| None</code> | The server stores keys for 72 hours.<br>**Default**: <code>None</code> |
 | <code>body</code> | <code>[PlanRequest](paypal/models/plan_request.py) \| [PlanRequestDict](paypal/models/plan_request.py) \| None</code> | The request body.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1842,7 +1864,7 @@ match result:
 | <code>pay_pal_request_id</code> | <code>str \| None</code> | The server stores keys for 72 hours.<br>**Default**: <code>None</code> |
 | <code>pay_pal_client_metadata_id</code> | <code>str \| None</code> | The PayPal Client Metadata Id(CMID) is used to provide device-specific information to PayPal's risk engine. This is crucial for transactions that require device-specific risk assessments. Merchants typically use the Paypal SDK that automatically submits the CMID or they use tools like Fraudnet JS for web or Magnes JS for mobile to generate the CMID on the frontend and then pass it to the API as part of the request headers.<br>**Default**: <code>None</code> |
 | <code>body</code> | <code>[CreateSubscriptionRequest](paypal/models/create_subscription_request.py) \| [CreateSubscriptionRequestDict](paypal/models/create_subscription_request.py) \| None</code> | The request body.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1874,7 +1896,7 @@ Mapped in first-match order -- an earlier row wins over a later range that also 
 </details>
 
 <details>
-<summary><code>def deactivate_billing_plan(id: str, *, request_options: RequestOptionsOrDict | None = None) -> ApiResult[None, DeactivateBillingPlanErrorBody]</code></summary>
+<summary><code>def deactivate_billing_plan(id_: str, *, request_options: RequestOptionsOrDict | None = None) -> ApiResult[None, DeactivateBillingPlanErrorBody]</code></summary>
 
 <dl>
 <dd>
@@ -1897,7 +1919,7 @@ Deactivates a plan, by ID.
 **Sync**
 
 ```python
-result = client.subscriptions.with_raw_response.deactivate_billing_plan(id)
+result = client.subscriptions.with_raw_response.deactivate_billing_plan("some example string")
 match result:
     case Success():
         ...  # 2xx, no content
@@ -1908,7 +1930,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.subscriptions.with_raw_response.deactivate_billing_plan(id)
+result = await async_client.subscriptions.with_raw_response.deactivate_billing_plan("some example string")
 match result:
     case Success():
         ...  # 2xx, no content
@@ -1926,8 +1948,8 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>id</code> | <code>str</code> | The ID of the plan. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>id_</code> | <code>str</code> | The ID of the plan. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1959,7 +1981,7 @@ Mapped in first-match order -- an earlier row wins over a later range that also 
 </details>
 
 <details>
-<summary><code>def get_billing_plan(id: str, *, request_options: RequestOptionsOrDict | None = None) -> ApiResult[BillingPlan, GetBillingPlanErrorBody]</code></summary>
+<summary><code>def get_billing_plan(id_: str, *, request_options: RequestOptionsOrDict | None = None) -> ApiResult[BillingPlan, GetBillingPlanErrorBody]</code></summary>
 
 <dl>
 <dd>
@@ -1982,7 +2004,7 @@ Shows details for a plan, by ID.
 **Sync**
 
 ```python
-result = client.subscriptions.with_raw_response.get_billing_plan(id)
+result = client.subscriptions.with_raw_response.get_billing_plan("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type BillingPlan
@@ -1993,7 +2015,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.subscriptions.with_raw_response.get_billing_plan(id)
+result = await async_client.subscriptions.with_raw_response.get_billing_plan("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type BillingPlan
@@ -2011,8 +2033,8 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>id</code> | <code>str</code> | The ID of the plan. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>id_</code> | <code>str</code> | The ID of the plan. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2044,7 +2066,7 @@ Mapped in first-match order -- an earlier row wins over a later range that also 
 </details>
 
 <details>
-<summary><code>def get_subscription(id: str, *, fields: str | None = None, request_options: RequestOptionsOrDict | None = None) -> ApiResult[Subscription, GetSubscriptionErrorBody]</code></summary>
+<summary><code>def get_subscription(id_: str, *, fields: str | None = None, request_options: RequestOptionsOrDict | None = None) -> ApiResult[Subscription, GetSubscriptionErrorBody]</code></summary>
 
 <dl>
 <dd>
@@ -2067,7 +2089,7 @@ Shows details for a subscription, by ID.
 **Sync**
 
 ```python
-result = client.subscriptions.with_raw_response.get_subscription(id)
+result = client.subscriptions.with_raw_response.get_subscription("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Subscription
@@ -2078,7 +2100,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.subscriptions.with_raw_response.get_subscription(id)
+result = await async_client.subscriptions.with_raw_response.get_subscription("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Subscription
@@ -2096,9 +2118,9 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>id</code> | <code>str</code> | The ID of the subscription. |
+| <code>id_</code> | <code>str</code> | The ID of the subscription. |
 | <code>fields</code> | <code>str \| None</code> | List of fields that are to be returned in the response. Possible value for fields are last_failed_payment and plan.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2187,7 +2209,7 @@ match result:
 | <code>page</code> | <code>int \| None</code> | A non-zero integer which is the start index of the entire list of items to return in the response. The combination of `page=1` and `page_size=20` returns the first 20 items. The combination of `page=2` and `page_size=20` returns the next 20 items.<br>**Default**: <code>1</code> |
 | <code>total_required</code> | <code>bool \| None</code> | Indicates whether to show the total count in the response.<br>**Default**: <code>False</code> |
 | <code>prefer</code> | <code>str \| None</code> | The preferred server response upon successful completion of the request. Value is: return=minimal. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the id, name, description and HATEOAS links. return=representation. The server returns a complete resource representation, including the current state of the resource.<br>**Default**: <code>"return=minimal"</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2219,7 +2241,7 @@ Mapped in first-match order -- an earlier row wins over a later range that also 
 </details>
 
 <details>
-<summary><code>def list_subscription_transactions(id: str, start_time: str, end_time: str, *, request_options: RequestOptionsOrDict | None = None) -> ApiResult[TransactionsList, ListSubscriptionTransactionsErrorBody]</code></summary>
+<summary><code>def list_subscription_transactions(id_: str, start_time: str, end_time: str, *, request_options: RequestOptionsOrDict | None = None) -> ApiResult[TransactionsList, ListSubscriptionTransactionsErrorBody]</code></summary>
 
 <dl>
 <dd>
@@ -2242,7 +2264,9 @@ Lists transactions for a subscription.
 **Sync**
 
 ```python
-result = client.subscriptions.with_raw_response.list_subscription_transactions(id, start_time, end_time)
+result = client.subscriptions.with_raw_response.list_subscription_transactions(
+    "some example string", "some example string", "some example string"
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type TransactionsList
@@ -2253,7 +2277,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.subscriptions.with_raw_response.list_subscription_transactions(id, start_time, end_time)
+result = await async_client.subscriptions.with_raw_response.list_subscription_transactions(
+    "some example string", "some example string", "some example string"
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type TransactionsList
@@ -2271,10 +2297,10 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>id</code> | <code>str</code> | The ID of the subscription. |
+| <code>id_</code> | <code>str</code> | The ID of the subscription. |
 | <code>start_time</code> | <code>str</code> | The start time of the range of transactions to list. |
 | <code>end_time</code> | <code>str</code> | The end time of the range of transactions to list. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2306,7 +2332,7 @@ Mapped in first-match order -- an earlier row wins over a later range that also 
 </details>
 
 <details>
-<summary><code>def list_subscriptions(*, plan_ids: str | None = None, statuses: str | None = None, created_after: str | None = None, created_before: str | None = None, status_updated_before: str | None = None, status_updated_after: str | None = None, filter: str | None = None, page_size: int | None = 10, page: int | None = 1, customer_ids: list[str] | None = None, request_options: RequestOptionsOrDict | None = None) -> ApiResult[SubscriptionCollection, ListSubscriptionsErrorBody]</code></summary>
+<summary><code>def list_subscriptions(*, plan_ids: str | None = None, statuses: str | None = None, created_after: str | None = None, created_before: str | None = None, status_updated_before: str | None = None, status_updated_after: str | None = None, filter_: str | None = None, page_size: int | None = 10, page: int | None = 1, customer_ids: list[str] | None = None, request_options: RequestOptionsOrDict | None = None) -> ApiResult[SubscriptionCollection, ListSubscriptionsErrorBody]</code></summary>
 
 <dl>
 <dd>
@@ -2364,11 +2390,11 @@ match result:
 | <code>created_before</code> | <code>str \| None</code> | Filters the response by subscription creation end time for a range of subscriptions.<br>**Default**: <code>None</code> |
 | <code>status_updated_before</code> | <code>str \| None</code> | Filters the response by status update start time for a range of subscriptions.<br>**Default**: <code>None</code> |
 | <code>status_updated_after</code> | <code>str \| None</code> | Filters the response by status update end time for a range of subscriptions.<br>**Default**: <code>None</code> |
-| <code>filter</code> | <code>str \| None</code> | Filter the response using complex expressions that could use comparison operators like ge, gt, le, lt and logical operators such as 'and' and 'or'.<br>**Default**: <code>None</code> |
+| <code>filter_</code> | <code>str \| None</code> | Filter the response using complex expressions that could use comparison operators like ge, gt, le, lt and logical operators such as 'and' and 'or'.<br>**Default**: <code>None</code> |
 | <code>page_size</code> | <code>int \| None</code> | The number of items to return in the response.<br>**Default**: <code>10</code> |
 | <code>page</code> | <code>int \| None</code> | A non-zero integer which is the start index of the entire list of items to return in the response. The combination of `page=1` and `page_size=20` returns the first 20 items. The combination of `page=2` and `page_size=20` returns the next 20 items.<br>**Default**: <code>1</code> |
 | <code>customer_ids</code> | <code>list&#91;str&#93; \| None</code> | Filters the response by comma separated vault customer IDs (FSS subscriptions only).<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2400,7 +2426,7 @@ Mapped in first-match order -- an earlier row wins over a later range that also 
 </details>
 
 <details>
-<summary><code>def patch_billing_plan(id: str, *, body: list[Patch | PatchDict] | None = None, request_options: RequestOptionsOrDict | None = None) -> ApiResult[None, PatchBillingPlanErrorBody]</code></summary>
+<summary><code>def patch_billing_plan(id_: str, *, body: list[Patch | PatchDict] | None = None, request_options: RequestOptionsOrDict | None = None) -> ApiResult[None, PatchBillingPlanErrorBody]</code></summary>
 
 <dl>
 <dd>
@@ -2423,7 +2449,7 @@ Updates a plan with the `CREATED` or `ACTIVE` status. For an `INACTIVE` plan, yo
 **Sync**
 
 ```python
-result = client.subscriptions.with_raw_response.patch_billing_plan(id)
+result = client.subscriptions.with_raw_response.patch_billing_plan("some example string")
 match result:
     case Success():
         ...  # 2xx, no content
@@ -2434,7 +2460,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.subscriptions.with_raw_response.patch_billing_plan(id)
+result = await async_client.subscriptions.with_raw_response.patch_billing_plan("some example string")
 match result:
     case Success():
         ...  # 2xx, no content
@@ -2452,9 +2478,9 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>id</code> | <code>str</code> | The ID of the plan. |
+| <code>id_</code> | <code>str</code> | The ID of the plan. |
 | <code>body</code> | <code>list&#91;[Patch](paypal/models/patch.py) \| [PatchDict](paypal/models/patch.py)&#93; \| None</code> | The request body.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2486,7 +2512,7 @@ Mapped in first-match order -- an earlier row wins over a later range that also 
 </details>
 
 <details>
-<summary><code>def patch_subscription(id: str, *, body: list[Patch | PatchDict] | None = None, request_options: RequestOptionsOrDict | None = None) -> ApiResult[None, PatchSubscriptionErrorBody]</code></summary>
+<summary><code>def patch_subscription(id_: str, *, body: list[Patch | PatchDict] | None = None, request_options: RequestOptionsOrDict | None = None) -> ApiResult[None, PatchSubscriptionErrorBody]</code></summary>
 
 <dl>
 <dd>
@@ -2509,7 +2535,7 @@ Updates a subscription which could be in ACTIVE or SUSPENDED status. You can ove
 **Sync**
 
 ```python
-result = client.subscriptions.with_raw_response.patch_subscription(id)
+result = client.subscriptions.with_raw_response.patch_subscription("some example string")
 match result:
     case Success():
         ...  # 2xx, no content
@@ -2520,7 +2546,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.subscriptions.with_raw_response.patch_subscription(id)
+result = await async_client.subscriptions.with_raw_response.patch_subscription("some example string")
 match result:
     case Success():
         ...  # 2xx, no content
@@ -2538,9 +2564,9 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>id</code> | <code>str</code> | The ID for the subscription. |
+| <code>id_</code> | <code>str</code> | The ID for the subscription. |
 | <code>body</code> | <code>list&#91;[Patch](paypal/models/patch.py) \| [PatchDict](paypal/models/patch.py)&#93; \| None</code> | The request body.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2572,7 +2598,7 @@ Mapped in first-match order -- an earlier row wins over a later range that also 
 </details>
 
 <details>
-<summary><code>def revise_subscription(id: str, *, body: ModifySubscriptionRequest | ModifySubscriptionRequestDict | None = None, request_options: RequestOptionsOrDict | None = None) -> ApiResult[ModifySubscriptionResponse, ReviseSubscriptionErrorBody]</code></summary>
+<summary><code>def revise_subscription(id_: str, *, body: ModifySubscriptionRequest | ModifySubscriptionRequestDict | None = None, request_options: RequestOptionsOrDict | None = None) -> ApiResult[ModifySubscriptionResponse, ReviseSubscriptionErrorBody]</code></summary>
 
 <dl>
 <dd>
@@ -2595,7 +2621,7 @@ Updates the quantity of the product or service in a subscription. You can also u
 **Sync**
 
 ```python
-result = client.subscriptions.with_raw_response.revise_subscription(id)
+result = client.subscriptions.with_raw_response.revise_subscription("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type ModifySubscriptionResponse
@@ -2606,7 +2632,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.subscriptions.with_raw_response.revise_subscription(id)
+result = await async_client.subscriptions.with_raw_response.revise_subscription("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type ModifySubscriptionResponse
@@ -2624,9 +2650,9 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>id</code> | <code>str</code> | The ID of the subscription. |
+| <code>id_</code> | <code>str</code> | The ID of the subscription. |
 | <code>body</code> | <code>[ModifySubscriptionRequest](paypal/models/modify_subscription_request.py) \| [ModifySubscriptionRequestDict](paypal/models/modify_subscription_request.py) \| None</code> | The request body.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2658,7 +2684,7 @@ Mapped in first-match order -- an earlier row wins over a later range that also 
 </details>
 
 <details>
-<summary><code>def suspend_subscription(id: str, *, body: SuspendSubscription | SuspendSubscriptionDict | None = None, request_options: RequestOptionsOrDict | None = None) -> ApiResult[None, SuspendSubscriptionErrorBody]</code></summary>
+<summary><code>def suspend_subscription(id_: str, *, body: SuspendSubscription | SuspendSubscriptionDict | None = None, request_options: RequestOptionsOrDict | None = None) -> ApiResult[None, SuspendSubscriptionErrorBody]</code></summary>
 
 <dl>
 <dd>
@@ -2681,7 +2707,7 @@ Suspends the subscription.
 **Sync**
 
 ```python
-result = client.subscriptions.with_raw_response.suspend_subscription(id)
+result = client.subscriptions.with_raw_response.suspend_subscription("some example string")
 match result:
     case Success():
         ...  # 2xx, no content
@@ -2692,7 +2718,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.subscriptions.with_raw_response.suspend_subscription(id)
+result = await async_client.subscriptions.with_raw_response.suspend_subscription("some example string")
 match result:
     case Success():
         ...  # 2xx, no content
@@ -2710,9 +2736,9 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>id</code> | <code>str</code> | The ID of the subscription. |
+| <code>id_</code> | <code>str</code> | The ID of the subscription. |
 | <code>body</code> | <code>[SuspendSubscription](paypal/models/suspend_subscription.py) \| [SuspendSubscriptionDict](paypal/models/suspend_subscription.py) \| None</code> | The request body.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2744,7 +2770,7 @@ Mapped in first-match order -- an earlier row wins over a later range that also 
 </details>
 
 <details>
-<summary><code>def update_billing_plan_pricing_schemes(id: str, *, body: UpdatePricingSchemesRequest | UpdatePricingSchemesRequestDict | None = None, request_options: RequestOptionsOrDict | None = None) -> ApiResult[None, UpdateBillingPlanPricingSchemesErrorBody]</code></summary>
+<summary><code>def update_billing_plan_pricing_schemes(id_: str, *, body: UpdatePricingSchemesRequest | UpdatePricingSchemesRequestDict | None = None, request_options: RequestOptionsOrDict | None = None) -> ApiResult[None, UpdateBillingPlanPricingSchemesErrorBody]</code></summary>
 
 <dl>
 <dd>
@@ -2767,7 +2793,7 @@ Updates pricing for a plan. For example, you can update a regular billing cycle 
 **Sync**
 
 ```python
-result = client.subscriptions.with_raw_response.update_billing_plan_pricing_schemes(id)
+result = client.subscriptions.with_raw_response.update_billing_plan_pricing_schemes("some example string")
 match result:
     case Success():
         ...  # 2xx, no content
@@ -2778,7 +2804,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.subscriptions.with_raw_response.update_billing_plan_pricing_schemes(id)
+result = await async_client.subscriptions.with_raw_response.update_billing_plan_pricing_schemes("some example string")
 match result:
     case Success():
         ...  # 2xx, no content
@@ -2796,9 +2822,9 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>id</code> | <code>str</code> | The ID for the plan. |
+| <code>id_</code> | <code>str</code> | The ID for the plan. |
 | <code>body</code> | <code>[UpdatePricingSchemesRequest](paypal/models/update_pricing_schemes_request.py) \| [UpdatePricingSchemesRequestDict](paypal/models/update_pricing_schemes_request.py) \| None</code> | The request body.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2887,8 +2913,8 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>as_of_time</code> | <code>str \| None</code> | List balances in the response at the date time provided, will return the last refreshed balance in the system when not provided.<br>**Default**: <code>None</code> |
-| <code>currency_code</code> | <code>str \| None</code> | Filters the transactions in the response by a [three-character ISO-4217 currency code](https://developer.paypal.com/api/rest/reference/currency-codes/) for the PayPal transaction currency.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>currency_code</code> | <code>str \| None</code> | Filters the transactions in the response by a [three-character ISO-4217 currency code](/api/rest/reference/currency-codes/) for the PayPal transaction currency.<br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2943,7 +2969,7 @@ Lists transactions. Specify one or more query parameters to filter the transacti
 **Sync**
 
 ```python
-result = client.transaction_search.with_raw_response.search_transactions(start_date, end_date)
+result = client.transaction_search.with_raw_response.search_transactions("some example string", "some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type SearchResponse
@@ -2954,7 +2980,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.transaction_search.with_raw_response.search_transactions(start_date, end_date)
+result = await async_client.transaction_search.with_raw_response.search_transactions(
+    "some example string", "some example string"
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type SearchResponse
@@ -2978,7 +3006,7 @@ match result:
 | <code>transaction_type</code> | <code>str \| None</code> | Filters the transactions in the response by a PayPal transaction event code. See [Transaction event codes](/docs/integration/direct/transaction-search/transaction-event-codes/).<br>**Default**: <code>None</code> |
 | <code>transaction_status</code> | <code>str \| None</code> | Filters the transactions in the response by a PayPal transaction status code. Value is: Status code Description D PayPal or merchant rules denied the transaction. P The transaction is pending. The transaction was created but waits for another payment process to complete, such as an ACH transaction, before the status changes to S. S The transaction successfully completed without a denial and after any pending statuses. V A successful transaction was reversed and funds were refunded to the original sender.<br>**Default**: <code>None</code> |
 | <code>transaction_amount</code> | <code>str \| None</code> | Filters the transactions in the response by a gross transaction amount range. Specify the range as ` TO `, where ` ` is the lower limit of the gross PayPal transaction amount and ` ` is the upper limit of the gross transaction amount. Specify the amounts in lower denominations. For example, to search for transactions from $5.00 to $10.05, specify `[500 TO 1005]`. Note:The values must be URL encoded.<br>**Default**: <code>None</code> |
-| <code>transaction_currency</code> | <code>str \| None</code> | Filters the transactions in the response by a [three-character ISO-4217 currency code](https://developer.paypal.com/api/rest/reference/currency-codes/) for the PayPal transaction currency.<br>**Default**: <code>None</code> |
+| <code>transaction_currency</code> | <code>str \| None</code> | Filters the transactions in the response by a [three-character ISO-4217 currency code](/api/rest/reference/currency-codes/) for the PayPal transaction currency.<br>**Default**: <code>None</code> |
 | <code>payment_instrument_type</code> | <code>str \| None</code> | Filters the transactions in the response by a payment instrument type. Value is either: CREDITCARD. Returns a direct credit card transaction with a corresponding value. DEBITCARD. Returns a debit card transaction with a corresponding value. If you omit this parameter, the API does not apply this filter.<br>**Default**: <code>None</code> |
 | <code>store_id</code> | <code>str \| None</code> | Filters the transactions in the response by a store ID.<br>**Default**: <code>None</code> |
 | <code>terminal_id</code> | <code>str \| None</code> | Filters the transactions in the response by a terminal ID.<br>**Default**: <code>None</code> |
@@ -2986,7 +3014,7 @@ match result:
 | <code>balance_affecting_records_only</code> | <code>str \| None</code> | Indicates whether the response includes only balance-impacting transactions or all transactions. Value is either: Y. The default. The response includes only balance transactions. N. The response includes all transactions.<br>**Default**: <code>"Y"</code> |
 | <code>page_size</code> | <code>int \| None</code> | The number of items to return in the response. So, the combination of `page=1` and `page_size=20` returns the first 20 items. The combination of `page=2` and `page_size=20` returns the next 20 items.<br>**Default**: <code>100</code> |
 | <code>page</code> | <code>int \| None</code> | The zero-relative start index of the entire list of items that are returned in the response. So, the combination of `page=1` and `page_size=20` returns the first 20 items.<br>**Default**: <code>1</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3038,7 +3066,9 @@ Creates a Payment Token from the given payment source and adds it to the Vault o
 **Sync**
 
 ```python
-result = client.vault.with_raw_response.create_payment_token(body)
+result = client.vault.with_raw_response.create_payment_token(
+    PaymentTokenRequest(payment_source=PaymentTokenRequestPaymentSource())
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type PaymentTokenResponse
@@ -3049,7 +3079,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vault.with_raw_response.create_payment_token(body)
+result = await async_client.vault.with_raw_response.create_payment_token(
+    PaymentTokenRequest(payment_source=PaymentTokenRequestPaymentSource())
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type PaymentTokenResponse
@@ -3069,7 +3101,7 @@ match result:
 | --- | --- | --- |
 | <code>body</code> | <code>[PaymentTokenRequest](paypal/models/payment_token_request.py) \| [PaymentTokenRequestDict](paypal/models/payment_token_request.py)</code> | Payment Token creation with a financial instrument and an optional customer_id. |
 | <code>pay_pal_request_id</code> | <code>str \| None</code> | The server stores keys for 3 hours.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3124,7 +3156,9 @@ Creates a Setup Token from the given payment source and adds it to the Vault of 
 **Sync**
 
 ```python
-result = client.vault.with_raw_response.create_setup_token(body)
+result = client.vault.with_raw_response.create_setup_token(
+    SetupTokenRequest(payment_source=SetupTokenRequestPaymentSource())
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type SetupTokenResponse
@@ -3135,7 +3169,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vault.with_raw_response.create_setup_token(body)
+result = await async_client.vault.with_raw_response.create_setup_token(
+    SetupTokenRequest(payment_source=SetupTokenRequestPaymentSource())
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type SetupTokenResponse
@@ -3155,7 +3191,7 @@ match result:
 | --- | --- | --- |
 | <code>body</code> | <code>[SetupTokenRequest](paypal/models/setup_token_request.py) \| [SetupTokenRequestDict](paypal/models/setup_token_request.py)</code> | Setup Token creation with a instrument type optional financial instrument details and customer_id. |
 | <code>pay_pal_request_id</code> | <code>str \| None</code> | The server stores keys for 3 hours.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3187,7 +3223,7 @@ Mapped in first-match order -- an earlier row wins over a later range that also 
 </details>
 
 <details>
-<summary><code>def delete_payment_token(id: str, *, request_options: RequestOptionsOrDict | None = None) -> ApiResult[None, DeletePaymentTokenErrorBody]</code></summary>
+<summary><code>def delete_payment_token(id_: str, *, request_options: RequestOptionsOrDict | None = None) -> ApiResult[None, DeletePaymentTokenErrorBody]</code></summary>
 
 <dl>
 <dd>
@@ -3210,7 +3246,7 @@ Delete the payment token associated with the payment token id.
 **Sync**
 
 ```python
-result = client.vault.with_raw_response.delete_payment_token(id)
+result = client.vault.with_raw_response.delete_payment_token("some example string")
 match result:
     case Success():
         ...  # 2xx, no content
@@ -3221,7 +3257,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vault.with_raw_response.delete_payment_token(id)
+result = await async_client.vault.with_raw_response.delete_payment_token("some example string")
 match result:
     case Success():
         ...  # 2xx, no content
@@ -3239,8 +3275,8 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>id</code> | <code>str</code> | ID of the payment token. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>id_</code> | <code>str</code> | ID of the payment token. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3272,7 +3308,7 @@ Mapped in first-match order -- an earlier row wins over a later range that also 
 </details>
 
 <details>
-<summary><code>def get_payment_token(id: str, *, request_options: RequestOptionsOrDict | None = None) -> ApiResult[PaymentTokenResponse, GetPaymentTokenErrorBody]</code></summary>
+<summary><code>def get_payment_token(id_: str, *, request_options: RequestOptionsOrDict | None = None) -> ApiResult[PaymentTokenResponse, GetPaymentTokenErrorBody]</code></summary>
 
 <dl>
 <dd>
@@ -3295,7 +3331,7 @@ Returns a readable representation of vaulted payment source associated with the 
 **Sync**
 
 ```python
-result = client.vault.with_raw_response.get_payment_token(id)
+result = client.vault.with_raw_response.get_payment_token("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type PaymentTokenResponse
@@ -3306,7 +3342,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vault.with_raw_response.get_payment_token(id)
+result = await async_client.vault.with_raw_response.get_payment_token("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type PaymentTokenResponse
@@ -3324,8 +3360,8 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>id</code> | <code>str</code> | ID of the payment token. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>id_</code> | <code>str</code> | ID of the payment token. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3357,7 +3393,7 @@ Mapped in first-match order -- an earlier row wins over a later range that also 
 </details>
 
 <details>
-<summary><code>def get_setup_token(id: str, *, request_options: RequestOptionsOrDict | None = None) -> ApiResult[SetupTokenResponse, GetSetupTokenErrorBody]</code></summary>
+<summary><code>def get_setup_token(id_: str, *, request_options: RequestOptionsOrDict | None = None) -> ApiResult[SetupTokenResponse, GetSetupTokenErrorBody]</code></summary>
 
 <dl>
 <dd>
@@ -3380,7 +3416,7 @@ Returns a readable representation of temporarily vaulted payment source associat
 **Sync**
 
 ```python
-result = client.vault.with_raw_response.get_setup_token(id)
+result = client.vault.with_raw_response.get_setup_token("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type SetupTokenResponse
@@ -3391,7 +3427,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vault.with_raw_response.get_setup_token(id)
+result = await async_client.vault.with_raw_response.get_setup_token("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type SetupTokenResponse
@@ -3409,8 +3445,8 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>id</code> | <code>str</code> | ID of the setup token. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>id_</code> | <code>str</code> | ID of the setup token. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3465,7 +3501,7 @@ Returns all payment tokens for a customer.
 **Sync**
 
 ```python
-result = client.vault.with_raw_response.list_customer_payment_tokens(customer_id)
+result = client.vault.with_raw_response.list_customer_payment_tokens("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CustomerVaultPaymentTokensResponse
@@ -3476,7 +3512,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vault.with_raw_response.list_customer_payment_tokens(customer_id)
+result = await async_client.vault.with_raw_response.list_customer_payment_tokens("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CustomerVaultPaymentTokensResponse
@@ -3498,7 +3534,7 @@ match result:
 | <code>page_size</code> | <code>int \| None</code> | A non-negative, non-zero integer indicating the maximum number of results to return at one time.<br>**Default**: <code>5</code> |
 | <code>page</code> | <code>int \| None</code> | A non-negative, non-zero integer representing the page of the results.<br>**Default**: <code>1</code> |
 | <code>total_required</code> | <code>bool \| None</code> | A boolean indicating total number of items (total_items) and pages (total_pages) are expected to be returned in the response.<br>**Default**: <code>False</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](paypal/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>

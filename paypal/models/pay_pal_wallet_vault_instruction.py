@@ -3,15 +3,16 @@ from __future__ import annotations
 from typing_extensions import NotRequired, TypedDict
 
 from ..core import UNSET, Optional, SdkBaseModel
-from .enums.pay_pal_payment_token_customer_type import PayPalPaymentTokenCustomerTypeOrStr
+from .enums.pay_pal_payment_token_customer_type import (
+    PayPalPaymentTokenCustomerType,
+    PayPalPaymentTokenCustomerTypeOrStr,
+)
 from .enums.pay_pal_payment_token_usage_type import PayPalPaymentTokenUsageTypeOrStr
-from .enums.store_in_vault_instruction import StoreInVaultInstructionOrStr
 from .enums.usage_pattern import UsagePatternOrStr
 
 
 class PayPalWalletVaultInstruction(SdkBaseModel):
-    store_in_vault: Optional[StoreInVaultInstructionOrStr] = UNSET
-    """Defines how and when the payment source gets vaulted."""
+    """Resource consolidating common request and response attributes for vaulting PayPal Wallet."""
 
     description: Optional[str] = UNSET
     """The description displayed to PayPal consumer on the approval flow for PayPal, as well as on the PayPal payment
@@ -23,11 +24,11 @@ class PayPalWalletVaultInstruction(SdkBaseModel):
     usage_type: PayPalPaymentTokenUsageTypeOrStr
     """The usage type associated with the PayPal payment token."""
 
-    customer_type: Optional[PayPalPaymentTokenCustomerTypeOrStr] = UNSET
+    customer_type: PayPalPaymentTokenCustomerTypeOrStr = PayPalPaymentTokenCustomerType.CONSUMER
     """The customer type associated with the PayPal payment token. This is to indicate whether the customer acting on
     the merchant / platform is either a business or a consumer."""
 
-    permit_multiple_payment_tokens: Optional[bool] = UNSET
+    permit_multiple_payment_tokens: bool = False
     """Create multiple payment tokens for the same payer, merchant/platform combination. Use this when the customer has
     not logged in at merchant/platform. The payment token thus generated, can then also be used to create the customer
     account at merchant/platform. Use this also when multiple payment tokens are required for the same payer, different
@@ -36,7 +37,6 @@ class PayPalWalletVaultInstruction(SdkBaseModel):
 
 
 class PayPalWalletVaultInstructionDict(TypedDict):
-    store_in_vault: NotRequired[StoreInVaultInstructionOrStr]
     description: NotRequired[str]
     usage_pattern: NotRequired[UsagePatternOrStr]
     usage_type: PayPalPaymentTokenUsageTypeOrStr

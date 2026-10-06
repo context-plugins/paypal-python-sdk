@@ -14,4 +14,4 @@ class PaymentSupplementaryData(SdkBaseModel):
 
 
 class PaymentSupplementaryDataDict(TypedDict):
-    related_ids: NotRequired[RelatedIdentifiers | RelatedIdentifiersDict]
+    related_ids: NotRequired[RelatedIdentifiersDict]

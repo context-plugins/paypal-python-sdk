@@ -4,7 +4,7 @@ from typing_extensions import NotRequired, TypedDict
 
 from ..core import UNSET, Optional, SdkBaseModel
 from .address import Address, AddressDict
-from .enums.return_flow import ReturnFlowOrStr
+from .enums.return_flow import ReturnFlow, ReturnFlowOrStr
 from .name import Name, NameDict
 from .phone_number import PhoneNumber, PhoneNumberDict
 from .venmo_wallet_attributes_response import VenmoWalletAttributesResponse, VenmoWalletAttributesResponseDict
@@ -38,7 +38,7 @@ class VenmoWalletResponse(SdkBaseModel):
     controls: the autocomplete attribute
     <https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute>`__."""
 
-    return_flow: Optional[ReturnFlowOrStr] = UNSET
+    return_flow: ReturnFlowOrStr = ReturnFlow.AUTO
     """Merchant preference on how the buyer can navigate back to merchant website post approving the transaction on the
     Venmo App."""
 
@@ -50,8 +50,8 @@ class VenmoWalletResponseDict(TypedDict):
     email_address: NotRequired[str]
     account_id: NotRequired[str]
     user_name: NotRequired[str]
-    name: NotRequired[Name | NameDict]
-    phone_number: NotRequired[PhoneNumber | PhoneNumberDict]
-    address: NotRequired[Address | AddressDict]
+    name: NotRequired[NameDict]
+    phone_number: NotRequired[PhoneNumberDict]
+    address: NotRequired[AddressDict]
     return_flow: NotRequired[ReturnFlowOrStr]
-    attributes: NotRequired[VenmoWalletAttributesResponse | VenmoWalletAttributesResponseDict]
+    attributes: NotRequired[VenmoWalletAttributesResponseDict]

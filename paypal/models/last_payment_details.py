@@ -17,5 +17,5 @@ class LastPaymentDetails(SdkBaseModel):
 
 
 class LastPaymentDetailsDict(TypedDict):
-    amount: NotRequired[Money | MoneyDict]
+    amount: NotRequired[MoneyDict]
     time: NotRequired[str]

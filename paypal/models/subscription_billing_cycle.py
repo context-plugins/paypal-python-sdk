@@ -26,15 +26,15 @@ class SubscriptionBillingCycle(SdkBaseModel):
     ``sequence`` of ``1`` while a regular billing cycle has a ``sequence`` of ``2``, so that trial cycle runs before the
     regular cycle."""
 
-    total_cycles: Optional[int] = UNSET
+    total_cycles: int = 1
     """The number of times this billing cycle gets executed. Trial billing cycles can only be executed a finite number
     of times (value between 1 and 999 for total_cycles). Regular billing cycles can be executed infinite times (value of
     0 for total_cycles) or a finite number of times (value between 1 and 999 for total_cycles)."""
 
 
 class SubscriptionBillingCycleDict(TypedDict):
-    pricing_scheme: NotRequired[SubscriptionPricingScheme | SubscriptionPricingSchemeDict]
-    frequency: Frequency | FrequencyDict
+    pricing_scheme: NotRequired[SubscriptionPricingSchemeDict]
+    frequency: FrequencyDict
     tenure_type: TenureTypeOrStr
     sequence: int
     total_cycles: NotRequired[int]

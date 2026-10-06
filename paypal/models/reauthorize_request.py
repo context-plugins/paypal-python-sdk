@@ -20,4 +20,4 @@ class ReauthorizeRequest(SdkBaseModel):
 
 
 class ReauthorizeRequestDict(TypedDict):
-    amount: NotRequired[Money | MoneyDict]
+    amount: NotRequired[MoneyDict]

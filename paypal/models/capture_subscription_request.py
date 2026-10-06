@@ -23,4 +23,4 @@ class CaptureSubscriptionRequest(SdkBaseModel):
 class CaptureSubscriptionRequestDict(TypedDict):
     note: str
     capture_type: CaptureTypeOrStr
-    amount: Money | MoneyDict
+    amount: MoneyDict

@@ -5,7 +5,7 @@ from typing_extensions import NotRequired, TypedDict
 from ..core import UNSET, Optional, SdkBaseModel
 from .enums.payment_initiator import PaymentInitiatorOrStr
 from .enums.stored_payment_source_payment_type import StoredPaymentSourcePaymentTypeOrStr
-from .enums.stored_payment_source_usage_type import StoredPaymentSourceUsageTypeOrStr
+from .enums.stored_payment_source_usage_type import StoredPaymentSourceUsageType, StoredPaymentSourceUsageTypeOrStr
 from .network_transaction import NetworkTransaction, NetworkTransactionDict
 
 
@@ -24,7 +24,7 @@ class StoredPaymentSource(SdkBaseModel):
     payment_type: StoredPaymentSourcePaymentTypeOrStr
     """Indicates the type of the stored payment_source payment."""
 
-    usage: Optional[StoredPaymentSourceUsageTypeOrStr] = UNSET
+    usage: StoredPaymentSourceUsageTypeOrStr = StoredPaymentSourceUsageType.DERIVED
     """Indicates if this is a ``first`` or ``subsequent`` payment using a stored payment source (also referred to as
     stored credential or card on file)."""
 
@@ -36,4 +36,4 @@ class StoredPaymentSourceDict(TypedDict):
     payment_initiator: PaymentInitiatorOrStr
     payment_type: StoredPaymentSourcePaymentTypeOrStr
     usage: NotRequired[StoredPaymentSourceUsageTypeOrStr]
-    previous_network_transaction_reference: NotRequired[NetworkTransaction | NetworkTransactionDict]
+    previous_network_transaction_reference: NotRequired[NetworkTransactionDict]

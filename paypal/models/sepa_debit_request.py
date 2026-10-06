@@ -14,4 +14,4 @@ class SepaDebitRequest(SdkBaseModel):
 
 
 class SepaDebitRequestDict(TypedDict):
-    experience_context: NotRequired[SepaDebitExperienceContext | SepaDebitExperienceContextDict]
+    experience_context: NotRequired[SepaDebitExperienceContextDict]

@@ -7,9 +7,7 @@ from .enums.link_http_method import LinkHttpMethodOrStr
 
 
 class LinkDescription(SdkBaseModel):
-    """The request-related `HATEOAS link <https://developer.paypal.com/api/rest/responses/#hateoas-links>`__
-    information., The request-related `HATEOAS link </api/rest/responses/#hateoas-links>`__ information., The
-    request-related `HATEOAS link <https://developer.paypal.com/api/rest/responses/#hateoas-links>`__ information."""
+    """The request-related `HATEOAS link </api/rest/responses/#hateoas-links>`__ information."""
 
     href: str
     """The complete target URL. To make the related call, combine the method with this `URI Template-formatted

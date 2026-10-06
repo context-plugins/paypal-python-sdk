@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing_extensions import NotRequired, TypedDict
 
-from ..core import UNSET, Optional, SdkBaseModel
+from ..core import SdkBaseModel
 
 
 class Taxes(SdkBaseModel):
@@ -12,7 +12,7 @@ class Taxes(SdkBaseModel):
     """The percentage, as a fixed-point, signed decimal number. For example, define a 19.99% interest rate as
     ``19.99``."""
 
-    inclusive: Optional[bool] = UNSET
+    inclusive: bool = True
     """Indicates whether the tax was already included in the billing amount."""
 
 

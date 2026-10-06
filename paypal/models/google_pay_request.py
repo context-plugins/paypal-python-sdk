@@ -42,8 +42,8 @@ class GooglePayRequest(SdkBaseModel):
 class GooglePayRequestDict(TypedDict):
     name: NotRequired[str]
     email_address: NotRequired[str]
-    phone_number: NotRequired[PhoneNumberWithCountryCode | PhoneNumberWithCountryCodeDict]
-    card: NotRequired[GooglePayRequestCard | GooglePayRequestCardDict]
-    decrypted_token: NotRequired[GooglePayDecryptedTokenData | GooglePayDecryptedTokenDataDict]
-    assurance_details: NotRequired[AssuranceDetails | AssuranceDetailsDict]
-    experience_context: NotRequired[GooglePayExperienceContext | GooglePayExperienceContextDict]
+    phone_number: NotRequired[PhoneNumberWithCountryCodeDict]
+    card: NotRequired[GooglePayRequestCardDict]
+    decrypted_token: NotRequired[GooglePayDecryptedTokenDataDict]
+    assurance_details: NotRequired[AssuranceDetailsDict]
+    experience_context: NotRequired[GooglePayExperienceContextDict]

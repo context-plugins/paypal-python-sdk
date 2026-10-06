@@ -14,4 +14,4 @@ class ApplePayPaymentToken(SdkBaseModel):
 
 
 class ApplePayPaymentTokenDict(TypedDict):
-    card: NotRequired[ApplePayCard | ApplePayCardDict]
+    card: NotRequired[ApplePayCardDict]

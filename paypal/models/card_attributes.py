@@ -23,6 +23,6 @@ class CardAttributes(SdkBaseModel):
 
 
 class CardAttributesDict(TypedDict):
-    customer: NotRequired[CardCustomerInformation | CardCustomerInformationDict]
-    vault: NotRequired[VaultInstructionBase | VaultInstructionBaseDict]
-    verification: NotRequired[CardVerification | CardVerificationDict]
+    customer: NotRequired[CardCustomerInformationDict]
+    vault: NotRequired[VaultInstructionBaseDict]
+    verification: NotRequired[CardVerificationDict]

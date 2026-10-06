@@ -14,4 +14,4 @@ class IncentiveInformation(SdkBaseModel):
 
 
 class IncentiveInformationDict(TypedDict):
-    incentive_details: NotRequired[list[IncentiveDetails | IncentiveDetailsDict]]
+    incentive_details: NotRequired[list[IncentiveDetailsDict]]

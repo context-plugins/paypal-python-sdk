@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing_extensions import NotRequired, TypedDict
 
-from ..core import UNSET, Optional, SdkBaseModel
+from ..core import SdkBaseModel
 from .enums.interval_unit import IntervalUnitOrStr
 
 
@@ -12,7 +12,7 @@ class Frequency(SdkBaseModel):
     interval_unit: IntervalUnitOrStr
     """The interval at which the subscription is charged or billed."""
 
-    interval_count: Optional[int] = UNSET
+    interval_count: int = 1
     """The number of intervals after which a subscriber is billed. For example, if the ``interval_unit`` is ``DAY`` with
     an ``interval_count`` of ``2``, the subscription is billed once every two days. The following table lists the
     maximum allowed values for the ``interval_count`` for each ``interval_unit``: Interval unit Maximum interval count

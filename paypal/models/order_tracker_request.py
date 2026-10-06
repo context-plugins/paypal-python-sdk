@@ -27,7 +27,7 @@ class OrderTrackerRequest(SdkBaseModel):
     capture_id: str
     """The PayPal capture ID."""
 
-    notify_payer: Optional[bool] = UNSET
+    notify_payer: bool = False
     """If true, PayPal will send an email notification to the payer of the PayPal transaction. The email contains the
     tracking details provided through the Orders tracking API request. Independent of any value passed for
     ``notify_payer``, the payer may receive tracking notifications within the PayPal app, based on the user's
@@ -43,4 +43,4 @@ class OrderTrackerRequestDict(TypedDict):
     carrier_name_other: NotRequired[str]
     capture_id: str
     notify_payer: NotRequired[bool]
-    items: NotRequired[list[OrderTrackerItem | OrderTrackerItemDict]]
+    items: NotRequired[list[OrderTrackerItemDict]]

@@ -26,7 +26,7 @@ class PaymentTokenResponsePaymentSource(SdkBaseModel):
 
 
 class PaymentTokenResponsePaymentSourceDict(TypedDict):
-    card: NotRequired[CardPaymentTokenEntity | CardPaymentTokenEntityDict]
-    paypal: NotRequired[PayPalPaymentToken | PayPalPaymentTokenDict]
-    venmo: NotRequired[VenmoPaymentToken | VenmoPaymentTokenDict]
-    apple_pay: NotRequired[ApplePayPaymentToken | ApplePayPaymentTokenDict]
+    card: NotRequired[CardPaymentTokenEntityDict]
+    paypal: NotRequired[PayPalPaymentTokenDict]
+    venmo: NotRequired[VenmoPaymentTokenDict]
+    apple_pay: NotRequired[ApplePayPaymentTokenDict]

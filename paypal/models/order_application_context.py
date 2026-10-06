@@ -3,9 +3,18 @@ from __future__ import annotations
 from typing_extensions import NotRequired, TypedDict
 
 from ..core import UNSET, Optional, SdkBaseModel
-from .enums.order_application_context_landing_page import OrderApplicationContextLandingPageOrStr
-from .enums.order_application_context_shipping_preference import OrderApplicationContextShippingPreferenceOrStr
-from .enums.order_application_context_user_action import OrderApplicationContextUserActionOrStr
+from .enums.order_application_context_landing_page import (
+    OrderApplicationContextLandingPage,
+    OrderApplicationContextLandingPageOrStr,
+)
+from .enums.order_application_context_shipping_preference import (
+    OrderApplicationContextShippingPreference,
+    OrderApplicationContextShippingPreferenceOrStr,
+)
+from .enums.order_application_context_user_action import (
+    OrderApplicationContextUserAction,
+    OrderApplicationContextUserActionOrStr,
+)
 from .payment_method_preference import PaymentMethodPreference, PaymentMethodPreferenceDict
 from .stored_payment_source import StoredPaymentSource, StoredPaymentSourceDict
 
@@ -29,13 +38,15 @@ class OrderApplicationContext(SdkBaseModel):
     ``payment_source.paypal.experience_context.locale``). Please specify this field in the ``experience_context`` object
     instead of the ``application_context`` object."""
 
-    landing_page: Optional[OrderApplicationContextLandingPageOrStr] = UNSET
+    landing_page: OrderApplicationContextLandingPageOrStr = OrderApplicationContextLandingPage.NO_PREFERENCE
     """DEPRECATED. DEPRECATED. The type of landing page to show on the PayPal site for customer checkout. The fields in
     ``application_context`` are now available in the ``experience_context`` object under the ``payment_source`` which
     supports them (eg. ``payment_source.paypal.experience_context.landing_page``). Please specify this field in the
     ``experience_context`` object instead of the ``application_context`` object."""
 
-    shipping_preference: Optional[OrderApplicationContextShippingPreferenceOrStr] = UNSET
+    shipping_preference: (
+        OrderApplicationContextShippingPreferenceOrStr
+    ) = OrderApplicationContextShippingPreference.GET_FROM_FILE
     """DEPRECATED. DEPRECATED. The shipping preference: Displays the shipping address to the customer. Enables the
     customer to choose an address on the PayPal site. Restricts the customer from changing the address during the
     payment-approval process. . The fields in ``application_context`` are now available in the ``experience_context``
@@ -43,7 +54,7 @@ class OrderApplicationContext(SdkBaseModel):
     ``payment_source.paypal.experience_context.shipping_preference``). Please specify this field in the
     ``experience_context`` object instead of the ``application_context`` object."""
 
-    user_action: Optional[OrderApplicationContextUserActionOrStr] = UNSET
+    user_action: OrderApplicationContextUserActionOrStr = OrderApplicationContextUserAction.CONTINUE
     """DEPRECATED. Configures a Continue or Pay Now checkout flow. The fields in ``application_context`` are now
     available in the ``experience_context`` object under the ``payment_source`` which supports them (eg.
     ``payment_source.paypal.experience_context.user_action``). Please specify this field in the ``experience_context``
@@ -85,7 +96,7 @@ class OrderApplicationContextDict(TypedDict):
     landing_page: NotRequired[OrderApplicationContextLandingPageOrStr]
     shipping_preference: NotRequired[OrderApplicationContextShippingPreferenceOrStr]
     user_action: NotRequired[OrderApplicationContextUserActionOrStr]
-    payment_method: NotRequired[PaymentMethodPreference | PaymentMethodPreferenceDict]
+    payment_method: NotRequired[PaymentMethodPreferenceDict]
     return_url: NotRequired[str]
     cancel_url: NotRequired[str]
-    stored_payment_source: NotRequired[StoredPaymentSource | StoredPaymentSourceDict]
+    stored_payment_source: NotRequired[StoredPaymentSourceDict]

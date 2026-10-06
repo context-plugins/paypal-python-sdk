@@ -36,10 +36,10 @@ class SellerReceivableBreakdown(SdkBaseModel):
 
 
 class SellerReceivableBreakdownDict(TypedDict):
-    gross_amount: Money | MoneyDict
-    paypal_fee: NotRequired[Money | MoneyDict]
-    paypal_fee_in_receivable_currency: NotRequired[Money | MoneyDict]
-    net_amount: NotRequired[Money | MoneyDict]
-    receivable_amount: NotRequired[Money | MoneyDict]
-    exchange_rate: NotRequired[ExchangeRate | ExchangeRateDict]
-    platform_fees: NotRequired[list[PlatformFee | PlatformFeeDict]]
+    gross_amount: MoneyDict
+    paypal_fee: NotRequired[MoneyDict]
+    paypal_fee_in_receivable_currency: NotRequired[MoneyDict]
+    net_amount: NotRequired[MoneyDict]
+    receivable_amount: NotRequired[MoneyDict]
+    exchange_rate: NotRequired[ExchangeRateDict]
+    platform_fees: NotRequired[list[PlatformFeeDict]]

@@ -24,6 +24,6 @@ class PlanOverride(SdkBaseModel):
 
 
 class PlanOverrideDict(TypedDict):
-    billing_cycles: NotRequired[list[BillingCycleOverride | BillingCycleOverrideDict]]
-    payment_preferences: NotRequired[PaymentPreferencesOverride | PaymentPreferencesOverrideDict]
-    taxes: NotRequired[TaxesOverride | TaxesOverrideDict]
+    billing_cycles: NotRequired[list[BillingCycleOverrideDict]]
+    payment_preferences: NotRequired[PaymentPreferencesOverrideDict]
+    taxes: NotRequired[TaxesOverrideDict]

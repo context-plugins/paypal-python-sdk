@@ -9,6 +9,8 @@ from ..core import (
     RawClient,
     RequestOptionsOrDict,
     SecuredRawResponse,
+    async_empty_response,
+    async_json_decoder,
     empty_response,
     json_body,
     json_decoder,
@@ -47,7 +49,8 @@ class Vault:
         Args:
             body: Payment Token creation with a financial instrument and an optional customer_id.
             pay_pal_request_id: The server stores keys for 3 hours.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Idempotent response for a successful creation of payment token.
@@ -73,7 +76,8 @@ class Vault:
         Args:
             body: Setup Token creation with a instrument type optional financial instrument details and customer_id.
             pay_pal_request_id: The server stores keys for 3 hours.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Idempotent response for a successful creation of setup token.
@@ -86,12 +90,13 @@ class Vault:
             body, pay_pal_request_id=pay_pal_request_id, request_options=request_options
         ).unwrap()
 
-    def delete_payment_token(self, id: str, *, request_options: RequestOptionsOrDict | None = None) -> None:
+    def delete_payment_token(self, id_: str, *, request_options: RequestOptionsOrDict | None = None) -> None:
         """Delete the payment token associated with the payment token id.
 
         Args:
-            id: ID of the payment token.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            id_: ID of the payment token.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             The server has successfully executed the method, but there is no entity body to return.
@@ -100,16 +105,17 @@ class Vault:
             ApiError: Request is not well-formed, syntactically incorrect, or violates schema. Authorization failed due
                 to insufficient permissions. An internal server error has occurred. ``error`` is ``Error |
                 RawError``."""
-        return self._with_raw_response.delete_payment_token(id, request_options=request_options).unwrap()
+        return self._with_raw_response.delete_payment_token(id_, request_options=request_options).unwrap()
 
     def get_payment_token(
-        self, id: str, *, request_options: RequestOptionsOrDict | None = None
+        self, id_: str, *, request_options: RequestOptionsOrDict | None = None
     ) -> PaymentTokenResponse:
         """Returns a readable representation of vaulted payment source associated with the payment token id.
 
         Args:
-            id: ID of the payment token.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            id_: ID of the payment token.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Successful execution.
@@ -118,14 +124,15 @@ class Vault:
             ApiError: Authorization failed due to insufficient permissions. The specified resource does not exist. The
                 requested action could not be performed, semantically incorrect, or failed business validation. An
                 internal server error has occurred. ``error`` is ``Error | RawError``."""
-        return self._with_raw_response.get_payment_token(id, request_options=request_options).unwrap()
+        return self._with_raw_response.get_payment_token(id_, request_options=request_options).unwrap()
 
-    def get_setup_token(self, id: str, *, request_options: RequestOptionsOrDict | None = None) -> SetupTokenResponse:
+    def get_setup_token(self, id_: str, *, request_options: RequestOptionsOrDict | None = None) -> SetupTokenResponse:
         """Returns a readable representation of temporarily vaulted payment source associated with the setup token id.
 
         Args:
-            id: ID of the setup token.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            id_: ID of the setup token.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Found requested setup-token, returned a payment method associated with the token.
@@ -134,7 +141,7 @@ class Vault:
             ApiError: Authorization failed due to insufficient permissions. The specified resource does not exist. The
                 requested action could not be performed, semantically incorrect, or failed business validation. An
                 internal server error has occurred. ``error`` is ``Error | RawError``."""
-        return self._with_raw_response.get_setup_token(id, request_options=request_options).unwrap()
+        return self._with_raw_response.get_setup_token(id_, request_options=request_options).unwrap()
 
     def list_customer_payment_tokens(
         self,
@@ -153,7 +160,8 @@ class Vault:
             page: A non-negative, non-zero integer representing the page of the results.
             total_required: A boolean indicating total number of items (total_items) and pages (total_pages) are
                 expected to be returned in the response.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Successful execution.
@@ -187,7 +195,8 @@ class AsyncVault:
         Args:
             body: Payment Token creation with a financial instrument and an optional customer_id.
             pay_pal_request_id: The server stores keys for 3 hours.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Idempotent response for a successful creation of payment token.
@@ -215,7 +224,8 @@ class AsyncVault:
         Args:
             body: Setup Token creation with a instrument type optional financial instrument details and customer_id.
             pay_pal_request_id: The server stores keys for 3 hours.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Idempotent response for a successful creation of setup token.
@@ -230,12 +240,13 @@ class AsyncVault:
             )
         ).unwrap()
 
-    async def delete_payment_token(self, id: str, *, request_options: RequestOptionsOrDict | None = None) -> None:
+    async def delete_payment_token(self, id_: str, *, request_options: RequestOptionsOrDict | None = None) -> None:
         """Delete the payment token associated with the payment token id.
 
         Args:
-            id: ID of the payment token.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            id_: ID of the payment token.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             The server has successfully executed the method, but there is no entity body to return.
@@ -244,16 +255,17 @@ class AsyncVault:
             ApiError: Request is not well-formed, syntactically incorrect, or violates schema. Authorization failed due
                 to insufficient permissions. An internal server error has occurred. ``error`` is ``Error |
                 RawError``."""
-        return (await self._with_raw_response.delete_payment_token(id, request_options=request_options)).unwrap()
+        return (await self._with_raw_response.delete_payment_token(id_, request_options=request_options)).unwrap()
 
     async def get_payment_token(
-        self, id: str, *, request_options: RequestOptionsOrDict | None = None
+        self, id_: str, *, request_options: RequestOptionsOrDict | None = None
     ) -> PaymentTokenResponse:
         """Returns a readable representation of vaulted payment source associated with the payment token id.
 
         Args:
-            id: ID of the payment token.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            id_: ID of the payment token.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Successful execution.
@@ -262,16 +274,17 @@ class AsyncVault:
             ApiError: Authorization failed due to insufficient permissions. The specified resource does not exist. The
                 requested action could not be performed, semantically incorrect, or failed business validation. An
                 internal server error has occurred. ``error`` is ``Error | RawError``."""
-        return (await self._with_raw_response.get_payment_token(id, request_options=request_options)).unwrap()
+        return (await self._with_raw_response.get_payment_token(id_, request_options=request_options)).unwrap()
 
     async def get_setup_token(
-        self, id: str, *, request_options: RequestOptionsOrDict | None = None
+        self, id_: str, *, request_options: RequestOptionsOrDict | None = None
     ) -> SetupTokenResponse:
         """Returns a readable representation of temporarily vaulted payment source associated with the setup token id.
 
         Args:
-            id: ID of the setup token.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            id_: ID of the setup token.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Found requested setup-token, returned a payment method associated with the token.
@@ -280,7 +293,7 @@ class AsyncVault:
             ApiError: Authorization failed due to insufficient permissions. The specified resource does not exist. The
                 requested action could not be performed, semantically incorrect, or failed business validation. An
                 internal server error has occurred. ``error`` is ``Error | RawError``."""
-        return (await self._with_raw_response.get_setup_token(id, request_options=request_options)).unwrap()
+        return (await self._with_raw_response.get_setup_token(id_, request_options=request_options)).unwrap()
 
     async def list_customer_payment_tokens(
         self,
@@ -299,7 +312,8 @@ class AsyncVault:
             page: A non-negative, non-zero integer representing the page of the results.
             total_required: A boolean indicating total number of items (total_items) and pages (total_pages) are
                 expected to be returned in the response.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Successful execution.
@@ -336,7 +350,8 @@ class VaultWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
         Args:
             body: Payment Token creation with a financial instrument and an optional customer_id.
             pay_pal_request_id: The server stores keys for 3 hours.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -365,7 +380,8 @@ class VaultWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
         Args:
             body: Setup Token creation with a instrument type optional financial instrument details and customer_id.
             pay_pal_request_id: The server stores keys for 3 hours.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -383,20 +399,21 @@ class VaultWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
         )
 
     def delete_payment_token(
-        self, id: str, *, request_options: RequestOptionsOrDict | None = None
+        self, id_: str, *, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[None, DeletePaymentTokenErrorBody]:
         """Delete the payment token associated with the payment token id.
 
         Args:
-            id: ID of the payment token.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            id_: ID of the payment token.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="DELETE",
             url_template=self._server.default("/v3/vault/payment-tokens/{id}"),
-            path_params=[param[str]("id", id)],
+            path_params=[param[str]("id", id_)],
             headers=[param[UUID]("Idempotency-Key", uuid4())],
             auth_scheme=self._auth.oauth2,
             decoder=empty_response,
@@ -405,20 +422,21 @@ class VaultWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
         )
 
     def get_payment_token(
-        self, id: str, *, request_options: RequestOptionsOrDict | None = None
+        self, id_: str, *, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[PaymentTokenResponse, GetPaymentTokenErrorBody]:
         """Returns a readable representation of vaulted payment source associated with the payment token id.
 
         Args:
-            id: ID of the payment token.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            id_: ID of the payment token.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/vault/payment-tokens/{id}"),
-            path_params=[param[str]("id", id)],
+            path_params=[param[str]("id", id_)],
             auth_scheme=self._auth.oauth2,
             decoder=json_decoder[PaymentTokenResponse],
             error_mapper=get_payment_token_error_mapper,
@@ -426,20 +444,21 @@ class VaultWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
         )
 
     def get_setup_token(
-        self, id: str, *, request_options: RequestOptionsOrDict | None = None
+        self, id_: str, *, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[SetupTokenResponse, GetSetupTokenErrorBody]:
         """Returns a readable representation of temporarily vaulted payment source associated with the setup token id.
 
         Args:
-            id: ID of the setup token.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            id_: ID of the setup token.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/vault/setup-tokens/{id}"),
-            path_params=[param[str]("id", id)],
+            path_params=[param[str]("id", id_)],
             auth_scheme=self._auth.oauth2,
             decoder=json_decoder[SetupTokenResponse],
             error_mapper=get_setup_token_error_mapper,
@@ -463,7 +482,8 @@ class VaultWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
             page: A non-negative, non-zero integer representing the page of the results.
             total_required: A boolean indicating total number of items (total_items) and pages (total_pages) are
                 expected to be returned in the response.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -496,7 +516,8 @@ class AsyncVaultWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Async
         Args:
             body: Payment Token creation with a financial instrument and an optional customer_id.
             pay_pal_request_id: The server stores keys for 3 hours.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -508,7 +529,7 @@ class AsyncVaultWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Async
             ],
             body=json_body[PaymentTokenRequest | PaymentTokenRequestDict](body),
             auth_scheme=self._auth.oauth2,
-            decoder=json_decoder[PaymentTokenResponse],
+            decoder=async_json_decoder[PaymentTokenResponse],
             error_mapper=create_payment_token_error_mapper,
             request_options=request_options,
         )
@@ -525,7 +546,8 @@ class AsyncVaultWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Async
         Args:
             body: Setup Token creation with a instrument type optional financial instrument details and customer_id.
             pay_pal_request_id: The server stores keys for 3 hours.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -537,71 +559,74 @@ class AsyncVaultWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Async
             ],
             body=json_body[SetupTokenRequest | SetupTokenRequestDict](body),
             auth_scheme=self._auth.oauth2,
-            decoder=json_decoder[SetupTokenResponse],
+            decoder=async_json_decoder[SetupTokenResponse],
             error_mapper=create_setup_token_error_mapper,
             request_options=request_options,
         )
 
     async def delete_payment_token(
-        self, id: str, *, request_options: RequestOptionsOrDict | None = None
+        self, id_: str, *, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[None, DeletePaymentTokenErrorBody]:
         """Delete the payment token associated with the payment token id.
 
         Args:
-            id: ID of the payment token.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            id_: ID of the payment token.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="DELETE",
             url_template=self._server.default("/v3/vault/payment-tokens/{id}"),
-            path_params=[param[str]("id", id)],
+            path_params=[param[str]("id", id_)],
             headers=[param[UUID]("Idempotency-Key", uuid4())],
             auth_scheme=self._auth.oauth2,
-            decoder=empty_response,
+            decoder=async_empty_response,
             error_mapper=delete_payment_token_error_mapper,
             request_options=request_options,
         )
 
     async def get_payment_token(
-        self, id: str, *, request_options: RequestOptionsOrDict | None = None
+        self, id_: str, *, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[PaymentTokenResponse, GetPaymentTokenErrorBody]:
         """Returns a readable representation of vaulted payment source associated with the payment token id.
 
         Args:
-            id: ID of the payment token.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            id_: ID of the payment token.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/vault/payment-tokens/{id}"),
-            path_params=[param[str]("id", id)],
+            path_params=[param[str]("id", id_)],
             auth_scheme=self._auth.oauth2,
-            decoder=json_decoder[PaymentTokenResponse],
+            decoder=async_json_decoder[PaymentTokenResponse],
             error_mapper=get_payment_token_error_mapper,
             request_options=request_options,
         )
 
     async def get_setup_token(
-        self, id: str, *, request_options: RequestOptionsOrDict | None = None
+        self, id_: str, *, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[SetupTokenResponse, GetSetupTokenErrorBody]:
         """Returns a readable representation of temporarily vaulted payment source associated with the setup token id.
 
         Args:
-            id: ID of the setup token.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            id_: ID of the setup token.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/vault/setup-tokens/{id}"),
-            path_params=[param[str]("id", id)],
+            path_params=[param[str]("id", id_)],
             auth_scheme=self._auth.oauth2,
-            decoder=json_decoder[SetupTokenResponse],
+            decoder=async_json_decoder[SetupTokenResponse],
             error_mapper=get_setup_token_error_mapper,
             request_options=request_options,
         )
@@ -623,7 +648,8 @@ class AsyncVaultWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Async
             page: A non-negative, non-zero integer representing the page of the results.
             total_required: A boolean indicating total number of items (total_items) and pages (total_pages) are
                 expected to be returned in the response.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -637,7 +663,7 @@ class AsyncVaultWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Async
                 param[bool | None]("total_required", total_required),
             ],
             auth_scheme=self._auth.oauth2,
-            decoder=json_decoder[CustomerVaultPaymentTokensResponse],
+            decoder=async_json_decoder[CustomerVaultPaymentTokensResponse],
             error_mapper=list_customer_payment_tokens_error_mapper,
             request_options=request_options,
         )

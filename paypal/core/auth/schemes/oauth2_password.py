@@ -17,7 +17,7 @@ from pydantic import ConfigDict, Field
 from typing_extensions import NotRequired, TypedDict
 
 from ...bodies import form_body
-from ...decoding import json_decoder
+from ...decoding import async_json_decoder, json_decoder
 from ...params import UrlTemplate, param
 from ...raw_client import AsyncRawClient, RawClient
 from ..models import (
@@ -114,7 +114,7 @@ class PasswordTokenSource(Generic[ScopeT]):
             http_method="POST",
             url_template=self.token_url,
             headers=headers,
-            body=form_body((*_token_params(credentials), *client_params)),
+            body=form_body(*_token_params(credentials), *client_params),
             decoder=json_decoder[OAuthToken],
             error_mapper=oauth_error_response,
         ).unwrap()
@@ -135,8 +135,8 @@ class AsyncPasswordTokenSource(Generic[ScopeT]):
                 http_method="POST",
                 url_template=self.token_url,
                 headers=headers,
-                body=form_body((*_token_params(credentials), *client_params)),
-                decoder=json_decoder[OAuthToken],
+                body=form_body(*_token_params(credentials), *client_params),
+                decoder=async_json_decoder[OAuthToken],
                 error_mapper=oauth_error_response,
             )
         ).unwrap()

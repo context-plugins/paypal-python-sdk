@@ -22,4 +22,4 @@ class AuthenticationResponse(SdkBaseModel):
 
 class AuthenticationResponseDict(TypedDict):
     liability_shift: NotRequired[LiabilityShiftIndicatorOrStr]
-    three_d_secure: NotRequired[ThreeDSecureAuthenticationResponse | ThreeDSecureAuthenticationResponseDict]
+    three_d_secure: NotRequired[ThreeDSecureAuthenticationResponseDict]

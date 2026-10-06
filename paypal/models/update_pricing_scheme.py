@@ -18,4 +18,4 @@ class UpdatePricingScheme(SdkBaseModel):
 
 class UpdatePricingSchemeDict(TypedDict):
     billing_cycle_sequence: int
-    pricing_scheme: SubscriptionPricingScheme | SubscriptionPricingSchemeDict
+    pricing_scheme: SubscriptionPricingSchemeDict

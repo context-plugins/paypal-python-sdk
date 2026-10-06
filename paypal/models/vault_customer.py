@@ -19,4 +19,4 @@ class VaultCustomer(SdkBaseModel):
 
 class VaultCustomerDict(TypedDict):
     id: NotRequired[str]
-    name: NotRequired[Name | NameDict]
+    name: NotRequired[NameDict]

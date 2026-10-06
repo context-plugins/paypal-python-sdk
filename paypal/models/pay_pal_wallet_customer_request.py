@@ -30,6 +30,6 @@ class PayPalWalletCustomerRequest(SdkBaseModel):
 class PayPalWalletCustomerRequestDict(TypedDict):
     id: NotRequired[str]
     email_address: NotRequired[str]
-    phone: NotRequired[PhoneWithType | PhoneWithTypeDict]
-    name: NotRequired[Name | NameDict]
+    phone: NotRequired[PhoneWithTypeDict]
+    name: NotRequired[NameDict]
     merchant_customer_id: NotRequired[str]

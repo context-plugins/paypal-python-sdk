@@ -34,9 +34,9 @@ class SetupTokenRequestPaymentSource(SdkBaseModel):
 
 
 class SetupTokenRequestPaymentSourceDict(TypedDict):
-    card: NotRequired[SetupTokenRequestCard | SetupTokenRequestCardDict]
-    paypal: NotRequired[VaultPayPalWalletRequest | VaultPayPalWalletRequestDict]
-    venmo: NotRequired[VaultVenmoRequest | VaultVenmoRequestDict]
-    apple_pay: NotRequired[VaultApplePayRequest | VaultApplePayRequestDict]
-    token: NotRequired[VaultTokenRequest | VaultTokenRequestDict]
-    bank: NotRequired[BankRequest | BankRequestDict]
+    card: NotRequired[SetupTokenRequestCardDict]
+    paypal: NotRequired[VaultPayPalWalletRequestDict]
+    venmo: NotRequired[VaultVenmoRequestDict]
+    apple_pay: NotRequired[VaultApplePayRequestDict]
+    token: NotRequired[VaultTokenRequestDict]
+    bank: NotRequired[BankRequestDict]

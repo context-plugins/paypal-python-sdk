@@ -58,12 +58,10 @@ class SetupTokenResponseCardDict(TypedDict):
     last_digits: NotRequired[str]
     brand: NotRequired[CardBrandOrStr]
     expiry: NotRequired[str]
-    billing_address: NotRequired[CardResponseAddress | CardResponseAddressDict]
+    billing_address: NotRequired[CardResponseAddressDict]
     verification_status: NotRequired[CardVerificationStatusOrStr]
-    verification: NotRequired[CardVerificationDetails | CardVerificationDetailsDict]
-    network_transaction_reference: NotRequired[
-        NetworkTransactionReferenceEntity | NetworkTransactionReferenceEntityDict
-    ]
-    authentication_result: NotRequired[CardAuthenticationResponse | CardAuthenticationResponseDict]
-    bin_details: NotRequired[BinDetails | BinDetailsDict]
+    verification: NotRequired[CardVerificationDetailsDict]
+    network_transaction_reference: NotRequired[NetworkTransactionReferenceEntityDict]
+    authentication_result: NotRequired[CardAuthenticationResponseDict]
+    bin_details: NotRequired[BinDetailsDict]
     type_: NotRequired[CardTypeOrStr]

@@ -4,7 +4,7 @@ from typing_extensions import NotRequired, TypedDict
 
 from ..core import UNSET, Optional, SdkBaseModel
 from .enums.store_in_vault_instruction import StoreInVaultInstructionOrStr
-from .enums.venmo_payment_token_customer_type import VenmoPaymentTokenCustomerTypeOrStr
+from .enums.venmo_payment_token_customer_type import VenmoPaymentTokenCustomerType, VenmoPaymentTokenCustomerTypeOrStr
 from .enums.venmo_payment_token_usage_pattern import VenmoPaymentTokenUsagePatternOrStr
 from .enums.venmo_payment_token_usage_type import VenmoPaymentTokenUsageTypeOrStr
 
@@ -25,11 +25,11 @@ class VenmoWalletVaultAttributes(SdkBaseModel):
     usage_type: VenmoPaymentTokenUsageTypeOrStr
     """The usage type associated with the Venmo payment token."""
 
-    customer_type: Optional[VenmoPaymentTokenCustomerTypeOrStr] = UNSET
+    customer_type: VenmoPaymentTokenCustomerTypeOrStr = VenmoPaymentTokenCustomerType.CONSUMER
     """The customer type associated with the Venmo payment token. This is to indicate whether the customer acting on the
     merchant / platform is either a business or a consumer."""
 
-    permit_multiple_payment_tokens: Optional[bool] = UNSET
+    permit_multiple_payment_tokens: bool = False
     """Create multiple payment tokens for the same payer, merchant/platform combination. Use this when the customer has
     not logged in at merchant/platform. The payment token thus generated, can then also be used to create the customer
     account at merchant/platform. Use this also when multiple payment tokens are required for the same payer, different

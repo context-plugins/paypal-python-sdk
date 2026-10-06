@@ -25,7 +25,7 @@ class VaultedDigitalWallet(SdkBaseModel):
     shipping: Optional[VaultedDigitalWalletShippingDetails] = UNSET
     """The shipping details."""
 
-    permit_multiple_payment_tokens: Optional[bool] = UNSET
+    permit_multiple_payment_tokens: bool = False
     """Create multiple payment tokens for the same payer, merchant/platform combination. Use this when the customer has
     not logged in at merchant/platform. The payment token thus generated, can then also be used to create the customer
     account at merchant/platform. Use this also when multiple payment tokens are required for the same payer, different
@@ -43,7 +43,7 @@ class VaultedDigitalWallet(SdkBaseModel):
 class VaultedDigitalWalletDict(TypedDict):
     description: NotRequired[str]
     usage_pattern: NotRequired[UsagePatternOrStr]
-    shipping: NotRequired[VaultedDigitalWalletShippingDetails | VaultedDigitalWalletShippingDetailsDict]
+    shipping: NotRequired[VaultedDigitalWalletShippingDetailsDict]
     permit_multiple_payment_tokens: NotRequired[bool]
     usage_type: NotRequired[PayPalPaymentTokenUsageTypeOrStr]
     customer_type: NotRequired[PayPalPaymentTokenCustomerTypeOrStr]

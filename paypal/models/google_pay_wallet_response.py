@@ -29,5 +29,5 @@ class GooglePayWalletResponse(SdkBaseModel):
 class GooglePayWalletResponseDict(TypedDict):
     name: NotRequired[str]
     email_address: NotRequired[str]
-    phone_number: NotRequired[PhoneNumberWithCountryCode | PhoneNumberWithCountryCodeDict]
-    card: NotRequired[GooglePayCardResponse | GooglePayCardResponseDict]
+    phone_number: NotRequired[PhoneNumberWithCountryCodeDict]
+    card: NotRequired[GooglePayCardResponseDict]

@@ -14,4 +14,4 @@ class SubscriptionPaymentSourceResponse(SdkBaseModel):
 
 
 class SubscriptionPaymentSourceResponseDict(TypedDict):
-    card: NotRequired[CardResponseWithBillingAddress | CardResponseWithBillingAddressDict]
+    card: NotRequired[CardResponseWithBillingAddressDict]

@@ -19,5 +19,5 @@ class SetupTokenRequest(SdkBaseModel):
 
 
 class SetupTokenRequestDict(TypedDict):
-    customer: NotRequired[Customer | CustomerDict]
-    payment_source: SetupTokenRequestPaymentSource | SetupTokenRequestPaymentSourceDict
+    customer: NotRequired[CustomerDict]
+    payment_source: SetupTokenRequestPaymentSourceDict

@@ -50,5 +50,5 @@ class SubscriptionCardRequestDict(TypedDict):
     security_code: NotRequired[str]
     type_: NotRequired[CardTypeOrStr]
     brand: NotRequired[SubscriptionsCardBrandOrStr]
-    billing_address: NotRequired[Address | AddressDict]
-    attributes: NotRequired[SubscriptionsCardAttributes | SubscriptionsCardAttributesDict]
+    billing_address: NotRequired[AddressDict]
+    attributes: NotRequired[SubscriptionsCardAttributesDict]

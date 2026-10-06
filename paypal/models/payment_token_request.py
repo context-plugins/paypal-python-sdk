@@ -19,5 +19,5 @@ class PaymentTokenRequest(SdkBaseModel):
 
 
 class PaymentTokenRequestDict(TypedDict):
-    customer: NotRequired[Customer | CustomerDict]
-    payment_source: PaymentTokenRequestPaymentSource | PaymentTokenRequestPaymentSourceDict
+    customer: NotRequired[CustomerDict]
+    payment_source: PaymentTokenRequestPaymentSourceDict

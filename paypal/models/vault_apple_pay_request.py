@@ -18,4 +18,4 @@ class VaultApplePayRequest(SdkBaseModel):
 
 class VaultApplePayRequestDict(TypedDict):
     token: NotRequired[str]
-    card: NotRequired[ApplePayRequestCard | ApplePayRequestCardDict]
+    card: NotRequired[ApplePayRequestCardDict]

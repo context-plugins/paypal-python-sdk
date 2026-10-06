@@ -14,4 +14,4 @@ class TaxAmount(SdkBaseModel):
 
 
 class TaxAmountDict(TypedDict):
-    tax_amount: NotRequired[Money | MoneyDict]
+    tax_amount: NotRequired[MoneyDict]

@@ -28,7 +28,7 @@ class BalancesResponse(SdkBaseModel):
 
 
 class BalancesResponseDict(TypedDict):
-    balances: NotRequired[list[BalanceInformation | BalanceInformationDict]]
+    balances: NotRequired[list[BalanceInformationDict]]
     account_id: NotRequired[str]
     as_of_time: NotRequired[str]
     last_refresh_time: NotRequired[str]

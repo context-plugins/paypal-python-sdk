@@ -23,12 +23,12 @@ class CustomerVaultPaymentTokensResponse(SdkBaseModel):
 
     payment_tokens: Optional[list[PaymentTokenResponse]] = UNSET
     links: Optional[list[LinkDescription]] = UNSET
-    """An array of related `HATEOAS links <https://developer.paypal.com/api/rest/responses/#hateoas>`__."""
+    """An array of related `HATEOAS links </api/rest/responses/#hateoas>`__."""
 
 
 class CustomerVaultPaymentTokensResponseDict(TypedDict):
     total_items: NotRequired[int]
     total_pages: NotRequired[int]
-    customer: NotRequired[VaultResponseCustomer | VaultResponseCustomerDict]
-    payment_tokens: NotRequired[list[PaymentTokenResponse | PaymentTokenResponseDict]]
-    links: NotRequired[list[LinkDescription | LinkDescriptionDict]]
+    customer: NotRequired[VaultResponseCustomerDict]
+    payment_tokens: NotRequired[list[PaymentTokenResponseDict]]
+    links: NotRequired[list[LinkDescriptionDict]]

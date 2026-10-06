@@ -3,8 +3,11 @@ from __future__ import annotations
 from typing_extensions import NotRequired, TypedDict
 
 from ..core import UNSET, Optional, SdkBaseModel
-from .enums.application_context_user_action import ApplicationContextUserActionOrStr
-from .enums.experience_context_shipping_preference import ExperienceContextShippingPreferenceOrStr
+from .enums.application_context_user_action import ApplicationContextUserAction, ApplicationContextUserActionOrStr
+from .enums.experience_context_shipping_preference import (
+    ExperienceContextShippingPreference,
+    ExperienceContextShippingPreferenceOrStr,
+)
 from .payment_method import PaymentMethod, PaymentMethodDict
 
 
@@ -20,10 +23,10 @@ class SubscriptionApplicationContext(SdkBaseModel):
     code. For example, ``da-DK``, ``he-IL``, ``id-ID``, ``ja-JP``, ``no-NO``, ``pt-BR``, ``ru-RU``, ``sv-SE``,
     ``th-TH``, ``zh-CN``, ``zh-HK``, or ``zh-TW``."""
 
-    shipping_preference: Optional[ExperienceContextShippingPreferenceOrStr] = UNSET
+    shipping_preference: ExperienceContextShippingPreferenceOrStr = ExperienceContextShippingPreference.GET_FROM_FILE
     """The location from which the shipping address is derived."""
 
-    user_action: Optional[ApplicationContextUserActionOrStr] = UNSET
+    user_action: ApplicationContextUserActionOrStr = ApplicationContextUserAction.SUBSCRIBE_NOW
     """Configures the label name to ``Continue`` or ``Subscribe Now`` for subscription consent experience."""
 
     payment_method: Optional[PaymentMethod] = UNSET
@@ -41,6 +44,6 @@ class SubscriptionApplicationContextDict(TypedDict):
     locale: NotRequired[str]
     shipping_preference: NotRequired[ExperienceContextShippingPreferenceOrStr]
     user_action: NotRequired[ApplicationContextUserActionOrStr]
-    payment_method: NotRequired[PaymentMethod | PaymentMethodDict]
+    payment_method: NotRequired[PaymentMethodDict]
     return_url: str
     cancel_url: str

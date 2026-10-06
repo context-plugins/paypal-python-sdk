@@ -28,5 +28,5 @@ class CardCustomer(SdkBaseModel):
 class CardCustomerDict(TypedDict):
     id: NotRequired[str]
     email_address: NotRequired[str]
-    phone: NotRequired[PhoneWithType | PhoneWithTypeDict]
+    phone: NotRequired[PhoneWithTypeDict]
     merchant_customer_id: NotRequired[str]

@@ -34,7 +34,7 @@ class PlanDetails(SdkBaseModel):
     taxes: Optional[Taxes] = UNSET
     """The tax details."""
 
-    quantity_supported: Optional[bool] = UNSET
+    quantity_supported: bool = False
     """Indicates whether you can subscribe to this plan by providing a quantity for the goods or service."""
 
 
@@ -42,8 +42,8 @@ class PlanDetailsDict(TypedDict):
     product_id: NotRequired[str]
     name: NotRequired[str]
     description: NotRequired[str]
-    billing_cycles: NotRequired[list[SubscriptionBillingCycle | SubscriptionBillingCycleDict]]
-    payment_preferences: NotRequired[PaymentPreferences | PaymentPreferencesDict]
-    merchant_preferences: NotRequired[MerchantPreferences | MerchantPreferencesDict]
-    taxes: NotRequired[Taxes | TaxesDict]
+    billing_cycles: NotRequired[list[SubscriptionBillingCycleDict]]
+    payment_preferences: NotRequired[PaymentPreferencesDict]
+    merchant_preferences: NotRequired[MerchantPreferencesDict]
+    taxes: NotRequired[TaxesDict]
     quantity_supported: NotRequired[bool]
