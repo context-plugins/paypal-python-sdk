@@ -13,6 +13,7 @@ from ..core import (
     json_body,
     json_decoder,
     param,
+    unwrap,
 )
 from ..errors.capture_authorized_payment_error import (
     CaptureAuthorizedPaymentErrorBody,
@@ -80,15 +81,17 @@ class Payments:
                 does not exist. The server has detected a conflict while processing this request. The request failed
                 because it is semantically incorrect or failed business validation. The request failed because an
                 internal server error occurred. ``error`` is ``Error | RawError``."""
-        return self._with_raw_response.capture_authorized_payment(
-            authorization_id,
-            pay_pal_mock_response=pay_pal_mock_response,
-            pay_pal_request_id=pay_pal_request_id,
-            prefer=prefer,
-            pay_pal_auth_assertion=pay_pal_auth_assertion,
-            body=body,
-            request_options=request_options,
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.capture_authorized_payment(
+                authorization_id,
+                pay_pal_mock_response=pay_pal_mock_response,
+                pay_pal_request_id=pay_pal_request_id,
+                prefer=prefer,
+                pay_pal_auth_assertion=pay_pal_auth_assertion,
+                body=body,
+                request_options=request_options,
+            ),
+        )
 
     def get_authorized_payment(
         self,
@@ -122,12 +125,14 @@ class Payments:
                 The request failed because the caller has insufficient permissions. The request failed because the
                 resource does not exist. The request failed because an internal server error occurred. ``error`` is
                 ``Error | RawError``."""
-        return self._with_raw_response.get_authorized_payment(
-            authorization_id,
-            pay_pal_mock_response=pay_pal_mock_response,
-            pay_pal_auth_assertion=pay_pal_auth_assertion,
-            request_options=request_options,
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.get_authorized_payment(
+                authorization_id,
+                pay_pal_mock_response=pay_pal_mock_response,
+                pay_pal_auth_assertion=pay_pal_auth_assertion,
+                request_options=request_options,
+            ),
+        )
 
     def get_captured_payment(
         self,
@@ -155,9 +160,11 @@ class Payments:
                 The request failed because the caller has insufficient permissions. The request failed because the
                 resource does not exist. The request failed because an internal server error occurred. ``error`` is
                 ``Error | RawError``."""
-        return self._with_raw_response.get_captured_payment(
-            capture_id, pay_pal_mock_response=pay_pal_mock_response, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.get_captured_payment(
+                capture_id, pay_pal_mock_response=pay_pal_mock_response, request_options=request_options
+            ),
+        )
 
     def get_refund(
         self,
@@ -190,12 +197,14 @@ class Payments:
                 The request failed because the caller has insufficient permissions. The request failed because the
                 resource does not exist. The request failed because an internal server error occurred. ``error`` is
                 ``Error | RawError``."""
-        return self._with_raw_response.get_refund(
-            refund_id,
-            pay_pal_mock_response=pay_pal_mock_response,
-            pay_pal_auth_assertion=pay_pal_auth_assertion,
-            request_options=request_options,
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.get_refund(
+                refund_id,
+                pay_pal_mock_response=pay_pal_mock_response,
+                pay_pal_auth_assertion=pay_pal_auth_assertion,
+                request_options=request_options,
+            ),
+        )
 
     def reauthorize_payment(
         self,
@@ -243,14 +252,16 @@ class Payments:
                 does not exist. The request failed because it either is semantically incorrect or failed business
                 validation. The request failed because an internal server error occurred. ``error`` is ``Error |
                 RawError``."""
-        return self._with_raw_response.reauthorize_payment(
-            authorization_id,
-            pay_pal_request_id=pay_pal_request_id,
-            prefer=prefer,
-            pay_pal_auth_assertion=pay_pal_auth_assertion,
-            body=body,
-            request_options=request_options,
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.reauthorize_payment(
+                authorization_id,
+                pay_pal_request_id=pay_pal_request_id,
+                prefer=prefer,
+                pay_pal_auth_assertion=pay_pal_auth_assertion,
+                body=body,
+                request_options=request_options,
+            ),
+        )
 
     def refund_captured_payment(
         self,
@@ -295,15 +306,17 @@ class Payments:
                 does not exist. The request failed because a previous call for the given resource is in progress. The
                 request failed because it either is semantically incorrect or failed business validation. The request
                 failed because an internal server error occurred. ``error`` is ``Error | RawError``."""
-        return self._with_raw_response.refund_captured_payment(
-            capture_id,
-            pay_pal_mock_response=pay_pal_mock_response,
-            pay_pal_request_id=pay_pal_request_id,
-            prefer=prefer,
-            pay_pal_auth_assertion=pay_pal_auth_assertion,
-            body=body,
-            request_options=request_options,
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.refund_captured_payment(
+                capture_id,
+                pay_pal_mock_response=pay_pal_mock_response,
+                pay_pal_request_id=pay_pal_request_id,
+                prefer=prefer,
+                pay_pal_auth_assertion=pay_pal_auth_assertion,
+                body=body,
+                request_options=request_options,
+            ),
+        )
 
     def void_payment(
         self,
@@ -346,14 +359,16 @@ class Payments:
                 resource does not exist. The request failed because a previous call for the given resource is in
                 progress. The request failed because it either is semantically incorrect or failed business validation.
                 The request failed because an internal server error occurred. ``error`` is ``Error | RawError``."""
-        return self._with_raw_response.void_payment(
-            authorization_id,
-            pay_pal_mock_response=pay_pal_mock_response,
-            pay_pal_auth_assertion=pay_pal_auth_assertion,
-            pay_pal_request_id=pay_pal_request_id,
-            prefer=prefer,
-            request_options=request_options,
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.void_payment(
+                authorization_id,
+                pay_pal_mock_response=pay_pal_mock_response,
+                pay_pal_auth_assertion=pay_pal_auth_assertion,
+                pay_pal_request_id=pay_pal_request_id,
+                prefer=prefer,
+                request_options=request_options,
+            ),
+        )
 
     @property
     def with_raw_response(self) -> PaymentsWithRawResponse:
@@ -407,7 +422,7 @@ class AsyncPayments:
                 does not exist. The server has detected a conflict while processing this request. The request failed
                 because it is semantically incorrect or failed business validation. The request failed because an
                 internal server error occurred. ``error`` is ``Error | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.capture_authorized_payment(
                 authorization_id,
                 pay_pal_mock_response=pay_pal_mock_response,
@@ -416,8 +431,8 @@ class AsyncPayments:
                 pay_pal_auth_assertion=pay_pal_auth_assertion,
                 body=body,
                 request_options=request_options,
-            )
-        ).unwrap()
+            ),
+        )
 
     async def get_authorized_payment(
         self,
@@ -451,14 +466,14 @@ class AsyncPayments:
                 The request failed because the caller has insufficient permissions. The request failed because the
                 resource does not exist. The request failed because an internal server error occurred. ``error`` is
                 ``Error | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.get_authorized_payment(
                 authorization_id,
                 pay_pal_mock_response=pay_pal_mock_response,
                 pay_pal_auth_assertion=pay_pal_auth_assertion,
                 request_options=request_options,
-            )
-        ).unwrap()
+            ),
+        )
 
     async def get_captured_payment(
         self,
@@ -486,11 +501,11 @@ class AsyncPayments:
                 The request failed because the caller has insufficient permissions. The request failed because the
                 resource does not exist. The request failed because an internal server error occurred. ``error`` is
                 ``Error | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.get_captured_payment(
                 capture_id, pay_pal_mock_response=pay_pal_mock_response, request_options=request_options
-            )
-        ).unwrap()
+            ),
+        )
 
     async def get_refund(
         self,
@@ -523,14 +538,14 @@ class AsyncPayments:
                 The request failed because the caller has insufficient permissions. The request failed because the
                 resource does not exist. The request failed because an internal server error occurred. ``error`` is
                 ``Error | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.get_refund(
                 refund_id,
                 pay_pal_mock_response=pay_pal_mock_response,
                 pay_pal_auth_assertion=pay_pal_auth_assertion,
                 request_options=request_options,
-            )
-        ).unwrap()
+            ),
+        )
 
     async def reauthorize_payment(
         self,
@@ -578,7 +593,7 @@ class AsyncPayments:
                 does not exist. The request failed because it either is semantically incorrect or failed business
                 validation. The request failed because an internal server error occurred. ``error`` is ``Error |
                 RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.reauthorize_payment(
                 authorization_id,
                 pay_pal_request_id=pay_pal_request_id,
@@ -586,8 +601,8 @@ class AsyncPayments:
                 pay_pal_auth_assertion=pay_pal_auth_assertion,
                 body=body,
                 request_options=request_options,
-            )
-        ).unwrap()
+            ),
+        )
 
     async def refund_captured_payment(
         self,
@@ -632,7 +647,7 @@ class AsyncPayments:
                 does not exist. The request failed because a previous call for the given resource is in progress. The
                 request failed because it either is semantically incorrect or failed business validation. The request
                 failed because an internal server error occurred. ``error`` is ``Error | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.refund_captured_payment(
                 capture_id,
                 pay_pal_mock_response=pay_pal_mock_response,
@@ -641,8 +656,8 @@ class AsyncPayments:
                 pay_pal_auth_assertion=pay_pal_auth_assertion,
                 body=body,
                 request_options=request_options,
-            )
-        ).unwrap()
+            ),
+        )
 
     async def void_payment(
         self,
@@ -685,7 +700,7 @@ class AsyncPayments:
                 resource does not exist. The request failed because a previous call for the given resource is in
                 progress. The request failed because it either is semantically incorrect or failed business validation.
                 The request failed because an internal server error occurred. ``error`` is ``Error | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.void_payment(
                 authorization_id,
                 pay_pal_mock_response=pay_pal_mock_response,
@@ -693,8 +708,8 @@ class AsyncPayments:
                 pay_pal_request_id=pay_pal_request_id,
                 prefer=prefer,
                 request_options=request_options,
-            )
-        ).unwrap()
+            ),
+        )
 
     @property
     def with_raw_response(self) -> AsyncPaymentsWithRawResponse:

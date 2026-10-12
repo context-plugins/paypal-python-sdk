@@ -4,6 +4,7 @@ from typing_extensions import NotRequired, TypedDict
 
 from ..core import UNSET, Optional, SdkBaseModel
 from .enums.checkout_payment_intent import CheckoutPaymentIntentOrStr
+from .enums.processing_instruction import ProcessingInstructionOrStr
 from .order_application_context import OrderApplicationContext, OrderApplicationContextDict
 from .payer import Payer, PayerDict
 from .payment_source import PaymentSource, PaymentSourceDict
@@ -15,6 +16,9 @@ class OrderRequest(SdkBaseModel):
 
     intent: CheckoutPaymentIntentOrStr
     """The intent to either capture payment immediately or authorize a payment for an order after order creation."""
+
+    processing_instruction: Optional[ProcessingInstructionOrStr] = UNSET
+    """The instruction to process an order."""
 
     payer: Optional[Payer] = UNSET
     """DEPRECATED. The customer is also known as the payer. The Payer object was intended to only be used with the
@@ -36,6 +40,7 @@ class OrderRequest(SdkBaseModel):
 
 class OrderRequestDict(TypedDict):
     intent: CheckoutPaymentIntentOrStr
+    processing_instruction: NotRequired[ProcessingInstructionOrStr]
     payer: NotRequired[PayerDict]
     purchase_units: list[PurchaseUnitRequestDict]
     payment_source: NotRequired[PaymentSourceDict]

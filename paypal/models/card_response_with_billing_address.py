@@ -23,8 +23,8 @@ class CardResponseWithBillingAddress(SdkBaseModel):
     <https://tools.ietf.org/html/rfc3339#section-5.6>`__."""
 
     currency_code: Optional[str] = UNSET
-    """The `three-character ISO-4217 currency code </api/rest/reference/currency-codes/>`__ that identifies the
-    currency."""
+    """The `three-character ISO-4217 currency code <https://developer.paypal.com/api/rest/reference/currency-codes/>`__
+    that identifies the currency."""
 
 
 class CardResponseWithBillingAddressDict(TypedDict):

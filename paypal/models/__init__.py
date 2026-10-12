@@ -164,6 +164,7 @@ from .pay_pal_wallet_customer_request import PayPalWalletCustomerRequest, PayPal
 from .pay_pal_wallet_experience_context import PayPalWalletExperienceContext, PayPalWalletExperienceContextDict
 from .pay_pal_wallet_response import PayPalWalletResponse, PayPalWalletResponseDict
 from .pay_pal_wallet_stored_credential import PayPalWalletStoredCredential, PayPalWalletStoredCredentialDict
+from .pay_pal_wallet_vault_base import PayPalWalletVaultBase, PayPalWalletVaultBaseDict
 from .pay_pal_wallet_vault_instruction import PayPalWalletVaultInstruction, PayPalWalletVaultInstructionDict
 from .pay_pal_wallet_vault_response import PayPalWalletVaultResponse, PayPalWalletVaultResponseDict
 from .payee_base import PayeeBase, PayeeBaseDict
@@ -258,6 +259,7 @@ from .subscription_patch_application_context import (
     SubscriptionPatchApplicationContext,
     SubscriptionPatchApplicationContextDict,
 )
+from .subscription_payer import SubscriptionPayer, SubscriptionPayerDict
 from .subscription_payer_name import SubscriptionPayerName, SubscriptionPayerNameDict
 from .subscription_payment_source import SubscriptionPaymentSource, SubscriptionPaymentSourceDict
 from .subscription_payment_source_response import (
@@ -620,6 +622,8 @@ __all__ = [
     "PayPalWalletResponseDict",
     "PayPalWalletStoredCredential",
     "PayPalWalletStoredCredentialDict",
+    "PayPalWalletVaultBase",
+    "PayPalWalletVaultBaseDict",
     "PayPalWalletVaultInstruction",
     "PayPalWalletVaultInstructionDict",
     "PayPalWalletVaultResponse",
@@ -790,6 +794,8 @@ __all__ = [
     "SubscriptionErrorErrorDict",
     "SubscriptionPatchApplicationContext",
     "SubscriptionPatchApplicationContextDict",
+    "SubscriptionPayer",
+    "SubscriptionPayerDict",
     "SubscriptionPayerName",
     "SubscriptionPayerNameDict",
     "SubscriptionPaymentSource",

@@ -15,6 +15,7 @@ from ..core import (
     json_body,
     json_decoder,
     param,
+    unwrap,
 )
 from ..errors.create_payment_token_error import CreatePaymentTokenErrorBody, create_payment_token_error_mapper
 from ..errors.create_setup_token_error import CreateSetupTokenErrorBody, create_setup_token_error_mapper
@@ -60,9 +61,11 @@ class Vault:
                 to insufficient permissions. Request contains reference to resources that do not exist. The requested
                 action could not be performed, semantically incorrect, or failed business validation. An internal server
                 error has occurred. ``error`` is ``Error | RawError``."""
-        return self._with_raw_response.create_payment_token(
-            body, pay_pal_request_id=pay_pal_request_id, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.create_payment_token(
+                body, pay_pal_request_id=pay_pal_request_id, request_options=request_options
+            ),
+        )
 
     def create_setup_token(
         self,
@@ -86,9 +89,11 @@ class Vault:
             ApiError: Request is not well-formed, syntactically incorrect, or violates schema. Authorization failed due
                 to insufficient permissions. The requested action could not be performed, semantically incorrect, or
                 failed business validation. An internal server error has occurred. ``error`` is ``Error | RawError``."""
-        return self._with_raw_response.create_setup_token(
-            body, pay_pal_request_id=pay_pal_request_id, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.create_setup_token(
+                body, pay_pal_request_id=pay_pal_request_id, request_options=request_options
+            ),
+        )
 
     def delete_payment_token(self, id_: str, *, request_options: RequestOptionsOrDict | None = None) -> None:
         """Delete the payment token associated with the payment token id.
@@ -105,7 +110,7 @@ class Vault:
             ApiError: Request is not well-formed, syntactically incorrect, or violates schema. Authorization failed due
                 to insufficient permissions. An internal server error has occurred. ``error`` is ``Error |
                 RawError``."""
-        return self._with_raw_response.delete_payment_token(id_, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.delete_payment_token(id_, request_options=request_options))
 
     def get_payment_token(
         self, id_: str, *, request_options: RequestOptionsOrDict | None = None
@@ -124,7 +129,7 @@ class Vault:
             ApiError: Authorization failed due to insufficient permissions. The specified resource does not exist. The
                 requested action could not be performed, semantically incorrect, or failed business validation. An
                 internal server error has occurred. ``error`` is ``Error | RawError``."""
-        return self._with_raw_response.get_payment_token(id_, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.get_payment_token(id_, request_options=request_options))
 
     def get_setup_token(self, id_: str, *, request_options: RequestOptionsOrDict | None = None) -> SetupTokenResponse:
         """Returns a readable representation of temporarily vaulted payment source associated with the setup token id.
@@ -141,7 +146,7 @@ class Vault:
             ApiError: Authorization failed due to insufficient permissions. The specified resource does not exist. The
                 requested action could not be performed, semantically incorrect, or failed business validation. An
                 internal server error has occurred. ``error`` is ``Error | RawError``."""
-        return self._with_raw_response.get_setup_token(id_, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.get_setup_token(id_, request_options=request_options))
 
     def list_customer_payment_tokens(
         self,
@@ -170,9 +175,15 @@ class Vault:
             ApiError: Request is not well-formed, syntactically incorrect, or violates schema. Authorization failed due
                 to insufficient permissions. An internal server error has occurred. ``error`` is ``Error |
                 RawError``."""
-        return self._with_raw_response.list_customer_payment_tokens(
-            customer_id, page_size=page_size, page=page, total_required=total_required, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.list_customer_payment_tokens(
+                customer_id,
+                page_size=page_size,
+                page=page,
+                total_required=total_required,
+                request_options=request_options,
+            ),
+        )
 
     @property
     def with_raw_response(self) -> VaultWithRawResponse:
@@ -206,11 +217,11 @@ class AsyncVault:
                 to insufficient permissions. Request contains reference to resources that do not exist. The requested
                 action could not be performed, semantically incorrect, or failed business validation. An internal server
                 error has occurred. ``error`` is ``Error | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.create_payment_token(
                 body, pay_pal_request_id=pay_pal_request_id, request_options=request_options
-            )
-        ).unwrap()
+            ),
+        )
 
     async def create_setup_token(
         self,
@@ -234,11 +245,11 @@ class AsyncVault:
             ApiError: Request is not well-formed, syntactically incorrect, or violates schema. Authorization failed due
                 to insufficient permissions. The requested action could not be performed, semantically incorrect, or
                 failed business validation. An internal server error has occurred. ``error`` is ``Error | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.create_setup_token(
                 body, pay_pal_request_id=pay_pal_request_id, request_options=request_options
-            )
-        ).unwrap()
+            ),
+        )
 
     async def delete_payment_token(self, id_: str, *, request_options: RequestOptionsOrDict | None = None) -> None:
         """Delete the payment token associated with the payment token id.
@@ -255,7 +266,7 @@ class AsyncVault:
             ApiError: Request is not well-formed, syntactically incorrect, or violates schema. Authorization failed due
                 to insufficient permissions. An internal server error has occurred. ``error`` is ``Error |
                 RawError``."""
-        return (await self._with_raw_response.delete_payment_token(id_, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.delete_payment_token(id_, request_options=request_options))
 
     async def get_payment_token(
         self, id_: str, *, request_options: RequestOptionsOrDict | None = None
@@ -274,7 +285,7 @@ class AsyncVault:
             ApiError: Authorization failed due to insufficient permissions. The specified resource does not exist. The
                 requested action could not be performed, semantically incorrect, or failed business validation. An
                 internal server error has occurred. ``error`` is ``Error | RawError``."""
-        return (await self._with_raw_response.get_payment_token(id_, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.get_payment_token(id_, request_options=request_options))
 
     async def get_setup_token(
         self, id_: str, *, request_options: RequestOptionsOrDict | None = None
@@ -293,7 +304,7 @@ class AsyncVault:
             ApiError: Authorization failed due to insufficient permissions. The specified resource does not exist. The
                 requested action could not be performed, semantically incorrect, or failed business validation. An
                 internal server error has occurred. ``error`` is ``Error | RawError``."""
-        return (await self._with_raw_response.get_setup_token(id_, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.get_setup_token(id_, request_options=request_options))
 
     async def list_customer_payment_tokens(
         self,
@@ -322,15 +333,15 @@ class AsyncVault:
             ApiError: Request is not well-formed, syntactically incorrect, or violates schema. Authorization failed due
                 to insufficient permissions. An internal server error has occurred. ``error`` is ``Error |
                 RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.list_customer_payment_tokens(
                 customer_id,
                 page_size=page_size,
                 page=page,
                 total_required=total_required,
                 request_options=request_options,
-            )
-        ).unwrap()
+            ),
+        )
 
     @property
     def with_raw_response(self) -> AsyncVaultWithRawResponse:

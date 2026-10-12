@@ -12,6 +12,7 @@ from ..core import (
     json_decoder,
     param,
     raw_error_response,
+    unwrap,
 )
 from ..errors.search_balances_error import SearchBalancesErrorBody, search_balances_error_mapper
 from ..models.balances_response import BalancesResponse
@@ -38,7 +39,8 @@ class TransactionSearch:
             as_of_time: List balances in the response at the date time provided, will return the last refreshed balance
                 in the system when not provided.
             currency_code: Filters the transactions in the response by a `three-character ISO-4217 currency code
-                </api/rest/reference/currency-codes/>`__ for the PayPal transaction currency.
+                <https://developer.paypal.com/api/rest/reference/currency-codes/>`__ for the PayPal transaction
+                currency.
             request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
                 count and statuses.
 
@@ -49,9 +51,11 @@ class TransactionSearch:
             ApiError: The request is not well-formed, is syntactically incorrect, or violates schema. Authorization
                 failed due to insufficient permissions. An internal server error occurred. ``error`` is ``DefaultError |
                 RawError``."""
-        return self._with_raw_response.search_balances(
-            as_of_time=as_of_time, currency_code=currency_code, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.search_balances(
+                as_of_time=as_of_time, currency_code=currency_code, request_options=request_options
+            ),
+        )
 
     def search_transactions(
         self,
@@ -102,7 +106,8 @@ class TransactionSearch:
                 example, to search for transactions from $5.00 to $10.05, specify ``[500 TO 1005]``. Note:The values
                 must be URL encoded.
             transaction_currency: Filters the transactions in the response by a `three-character ISO-4217 currency code
-                </api/rest/reference/currency-codes/>`__ for the PayPal transaction currency.
+                <https://developer.paypal.com/api/rest/reference/currency-codes/>`__ for the PayPal transaction
+                currency.
             payment_instrument_type: Filters the transactions in the response by a payment instrument type. Value is
                 either: CREDITCARD. Returns a direct credit card transaction with a corresponding value. DEBITCARD.
                 Returns a debit card transaction with a corresponding value. If you omit this parameter, the API does
@@ -145,23 +150,25 @@ class TransactionSearch:
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.search_transactions(
-            start_date,
-            end_date,
-            transaction_id=transaction_id,
-            transaction_type=transaction_type,
-            transaction_status=transaction_status,
-            transaction_amount=transaction_amount,
-            transaction_currency=transaction_currency,
-            payment_instrument_type=payment_instrument_type,
-            store_id=store_id,
-            terminal_id=terminal_id,
-            fields=fields,
-            balance_affecting_records_only=balance_affecting_records_only,
-            page_size=page_size,
-            page=page,
-            request_options=request_options,
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.search_transactions(
+                start_date,
+                end_date,
+                transaction_id=transaction_id,
+                transaction_type=transaction_type,
+                transaction_status=transaction_status,
+                transaction_amount=transaction_amount,
+                transaction_currency=transaction_currency,
+                payment_instrument_type=payment_instrument_type,
+                store_id=store_id,
+                terminal_id=terminal_id,
+                fields=fields,
+                balance_affecting_records_only=balance_affecting_records_only,
+                page_size=page_size,
+                page=page,
+                request_options=request_options,
+            ),
+        )
 
     @property
     def with_raw_response(self) -> TransactionSearchWithRawResponse:
@@ -187,7 +194,8 @@ class AsyncTransactionSearch:
             as_of_time: List balances in the response at the date time provided, will return the last refreshed balance
                 in the system when not provided.
             currency_code: Filters the transactions in the response by a `three-character ISO-4217 currency code
-                </api/rest/reference/currency-codes/>`__ for the PayPal transaction currency.
+                <https://developer.paypal.com/api/rest/reference/currency-codes/>`__ for the PayPal transaction
+                currency.
             request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
                 count and statuses.
 
@@ -198,11 +206,11 @@ class AsyncTransactionSearch:
             ApiError: The request is not well-formed, is syntactically incorrect, or violates schema. Authorization
                 failed due to insufficient permissions. An internal server error occurred. ``error`` is ``DefaultError |
                 RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.search_balances(
                 as_of_time=as_of_time, currency_code=currency_code, request_options=request_options
-            )
-        ).unwrap()
+            ),
+        )
 
     async def search_transactions(
         self,
@@ -253,7 +261,8 @@ class AsyncTransactionSearch:
                 example, to search for transactions from $5.00 to $10.05, specify ``[500 TO 1005]``. Note:The values
                 must be URL encoded.
             transaction_currency: Filters the transactions in the response by a `three-character ISO-4217 currency code
-                </api/rest/reference/currency-codes/>`__ for the PayPal transaction currency.
+                <https://developer.paypal.com/api/rest/reference/currency-codes/>`__ for the PayPal transaction
+                currency.
             payment_instrument_type: Filters the transactions in the response by a payment instrument type. Value is
                 either: CREDITCARD. Returns a direct credit card transaction with a corresponding value. DEBITCARD.
                 Returns a debit card transaction with a corresponding value. If you omit this parameter, the API does
@@ -296,7 +305,7 @@ class AsyncTransactionSearch:
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.search_transactions(
                 start_date,
                 end_date,
@@ -313,8 +322,8 @@ class AsyncTransactionSearch:
                 page_size=page_size,
                 page=page,
                 request_options=request_options,
-            )
-        ).unwrap()
+            ),
+        )
 
     @property
     def with_raw_response(self) -> AsyncTransactionSearchWithRawResponse:
@@ -337,7 +346,8 @@ class TransactionSearchWithRawResponse(SecuredRawResponse[RawClient, Server, Aut
             as_of_time: List balances in the response at the date time provided, will return the last refreshed balance
                 in the system when not provided.
             currency_code: Filters the transactions in the response by a `three-character ISO-4217 currency code
-                </api/rest/reference/currency-codes/>`__ for the PayPal transaction currency.
+                <https://developer.paypal.com/api/rest/reference/currency-codes/>`__ for the PayPal transaction
+                currency.
             request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
                 count and statuses.
 
@@ -404,7 +414,8 @@ class TransactionSearchWithRawResponse(SecuredRawResponse[RawClient, Server, Aut
                 example, to search for transactions from $5.00 to $10.05, specify ``[500 TO 1005]``. Note:The values
                 must be URL encoded.
             transaction_currency: Filters the transactions in the response by a `three-character ISO-4217 currency code
-                </api/rest/reference/currency-codes/>`__ for the PayPal transaction currency.
+                <https://developer.paypal.com/api/rest/reference/currency-codes/>`__ for the PayPal transaction
+                currency.
             payment_instrument_type: Filters the transactions in the response by a payment instrument type. Value is
                 either: CREDITCARD. Returns a direct credit card transaction with a corresponding value. DEBITCARD.
                 Returns a debit card transaction with a corresponding value. If you omit this parameter, the API does
@@ -485,7 +496,8 @@ class AsyncTransactionSearchWithRawResponse(SecuredRawResponse[AsyncRawClient, S
             as_of_time: List balances in the response at the date time provided, will return the last refreshed balance
                 in the system when not provided.
             currency_code: Filters the transactions in the response by a `three-character ISO-4217 currency code
-                </api/rest/reference/currency-codes/>`__ for the PayPal transaction currency.
+                <https://developer.paypal.com/api/rest/reference/currency-codes/>`__ for the PayPal transaction
+                currency.
             request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
                 count and statuses.
 
@@ -552,7 +564,8 @@ class AsyncTransactionSearchWithRawResponse(SecuredRawResponse[AsyncRawClient, S
                 example, to search for transactions from $5.00 to $10.05, specify ``[500 TO 1005]``. Note:The values
                 must be URL encoded.
             transaction_currency: Filters the transactions in the response by a `three-character ISO-4217 currency code
-                </api/rest/reference/currency-codes/>`__ for the PayPal transaction currency.
+                <https://developer.paypal.com/api/rest/reference/currency-codes/>`__ for the PayPal transaction
+                currency.
             payment_instrument_type: Filters the transactions in the response by a payment instrument type. Value is
                 either: CREDITCARD. Returns a direct credit card transaction with a corresponding value. DEBITCARD.
                 Returns a debit card transaction with a corresponding value. If you omit this parameter, the API does

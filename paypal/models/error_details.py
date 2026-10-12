@@ -23,8 +23,8 @@ class ErrorDetails(SdkBaseModel):
     """The unique, fine-grained application-level error code."""
 
     links: Optional[list[LinkDescription]] = UNSET
-    """An array of request-related `HATEOAS links </api/rest/responses/#hateoas-links>`__ that are either relevant to
-    the issue by providing additional information or offering potential resolutions."""
+    """An array of request-related `HATEOAS links <https://developer.paypal.com/api/rest/responses/#hateoas-links>`__
+    that are either relevant to the issue by providing additional information or offering potential resolutions."""
 
     description: Optional[str] = UNSET
     """The human-readable description for an issue. The description can change over the lifetime of an API, so clients

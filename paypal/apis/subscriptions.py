@@ -15,6 +15,7 @@ from ..core import (
     json_body,
     json_decoder,
     param,
+    unwrap,
 )
 from ..errors.activate_billing_plan_error import ActivateBillingPlanErrorBody, activate_billing_plan_error_mapper
 from ..errors.activate_subscription_error import ActivateSubscriptionErrorBody, activate_subscription_error_mapper
@@ -78,7 +79,7 @@ class Subscriptions:
                 Authorization failed due to insufficient permissions. The specified resource does not exist. The
                 requested action could not be performed, semantically incorrect, or failed business validation. An
                 internal server error has occurred. ``error`` is ``SubscriptionError | RawError``."""
-        return self._with_raw_response.activate_billing_plan(id_, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.activate_billing_plan(id_, request_options=request_options))
 
     def activate_subscription(
         self,
@@ -104,7 +105,7 @@ class Subscriptions:
                 Authorization failed due to insufficient permissions. The specified resource does not exist. The
                 requested action could not be performed, semantically incorrect, or failed business validation. An
                 internal server error has occurred. ``error`` is ``SubscriptionError | RawError``."""
-        return self._with_raw_response.activate_subscription(id_, body=body, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.activate_subscription(id_, body=body, request_options=request_options))
 
     def cancel_subscription(
         self,
@@ -130,7 +131,7 @@ class Subscriptions:
                 Authorization failed due to insufficient permissions. The specified resource does not exist. The
                 requested action could not be performed, semantically incorrect, or failed business validation. An
                 internal server error has occurred. ``error`` is ``SubscriptionError | RawError``."""
-        return self._with_raw_response.cancel_subscription(id_, body=body, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.cancel_subscription(id_, body=body, request_options=request_options))
 
     def capture_subscription(
         self,
@@ -159,9 +160,11 @@ class Subscriptions:
                 Authorization failed due to insufficient permissions. The specified resource does not exist. The
                 requested action could not be performed, semantically incorrect, or failed business validation. An
                 internal server error has occurred. ``error`` is ``SubscriptionError | RawError``."""
-        return self._with_raw_response.capture_subscription(
-            id_, pay_pal_request_id=pay_pal_request_id, body=body, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.capture_subscription(
+                id_, pay_pal_request_id=pay_pal_request_id, body=body, request_options=request_options
+            ),
+        )
 
     def create_billing_plan(
         self,
@@ -193,9 +196,11 @@ class Subscriptions:
                 Authorization failed due to insufficient permissions. The requested action could not be performed,
                 semantically incorrect, or failed business validation. An internal server error has occurred. ``error``
                 is ``SubscriptionError | RawError``."""
-        return self._with_raw_response.create_billing_plan(
-            prefer=prefer, pay_pal_request_id=pay_pal_request_id, body=body, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.create_billing_plan(
+                prefer=prefer, pay_pal_request_id=pay_pal_request_id, body=body, request_options=request_options
+            ),
+        )
 
     def create_subscription(
         self,
@@ -233,13 +238,15 @@ class Subscriptions:
                 Authorization failed due to insufficient permissions. The requested action could not be performed,
                 semantically incorrect, or failed business validation. An internal server error has occurred. ``error``
                 is ``SubscriptionError | RawError``."""
-        return self._with_raw_response.create_subscription(
-            prefer=prefer,
-            pay_pal_request_id=pay_pal_request_id,
-            pay_pal_client_metadata_id=pay_pal_client_metadata_id,
-            body=body,
-            request_options=request_options,
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.create_subscription(
+                prefer=prefer,
+                pay_pal_request_id=pay_pal_request_id,
+                pay_pal_client_metadata_id=pay_pal_client_metadata_id,
+                body=body,
+                request_options=request_options,
+            ),
+        )
 
     def deactivate_billing_plan(self, id_: str, *, request_options: RequestOptionsOrDict | None = None) -> None:
         """Deactivates a plan, by ID.
@@ -257,7 +264,7 @@ class Subscriptions:
                 Authorization failed due to insufficient permissions. The specified resource does not exist. The
                 requested action could not be performed, semantically incorrect, or failed business validation. An
                 internal server error has occurred. ``error`` is ``SubscriptionError | RawError``."""
-        return self._with_raw_response.deactivate_billing_plan(id_, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.deactivate_billing_plan(id_, request_options=request_options))
 
     def get_billing_plan(self, id_: str, *, request_options: RequestOptionsOrDict | None = None) -> BillingPlan:
         """Shows details for a plan, by ID.
@@ -275,7 +282,7 @@ class Subscriptions:
             ApiError: Authentication failed due to missing authorization header, or invalid authentication credentials.
                 Authorization failed due to insufficient permissions. The specified resource does not exist. An internal
                 server error has occurred. ``error`` is ``SubscriptionError | RawError``."""
-        return self._with_raw_response.get_billing_plan(id_, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.get_billing_plan(id_, request_options=request_options))
 
     def get_subscription(
         self, id_: str, *, fields: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -297,7 +304,7 @@ class Subscriptions:
             ApiError: Authentication failed due to missing authorization header, or invalid authentication credentials.
                 Authorization failed due to insufficient permissions. The specified resource does not exist. An internal
                 server error has occurred. ``error`` is ``SubscriptionError | RawError``."""
-        return self._with_raw_response.get_subscription(id_, fields=fields, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.get_subscription(id_, fields=fields, request_options=request_options))
 
     def list_billing_plans(
         self,
@@ -334,14 +341,16 @@ class Subscriptions:
                 to missing authorization header, or invalid authentication credentials. Authorization failed due to
                 insufficient permissions. The specified resource does not exist. An internal server error has occurred.
                 ``error`` is ``SubscriptionError | RawError``."""
-        return self._with_raw_response.list_billing_plans(
-            product_id=product_id,
-            page_size=page_size,
-            page=page,
-            total_required=total_required,
-            prefer=prefer,
-            request_options=request_options,
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.list_billing_plans(
+                product_id=product_id,
+                page_size=page_size,
+                page=page,
+                total_required=total_required,
+                prefer=prefer,
+                request_options=request_options,
+            ),
+        )
 
     def list_subscription_transactions(
         self, id_: str, start_time: str, end_time: str, *, request_options: RequestOptionsOrDict | None = None
@@ -364,9 +373,11 @@ class Subscriptions:
                 Authentication failed due to missing authorization header, or invalid authentication credentials.
                 Authorization failed due to insufficient permissions. The specified resource does not exist. An internal
                 server error has occurred. ``error`` is ``SubscriptionError | RawError``."""
-        return self._with_raw_response.list_subscription_transactions(
-            id_, start_time, end_time, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.list_subscription_transactions(
+                id_, start_time, end_time, request_options=request_options
+            ),
+        )
 
     def list_subscriptions(
         self,
@@ -412,19 +423,21 @@ class Subscriptions:
                 to missing authorization header, or invalid authentication credentials. Authorization failed due to
                 insufficient permissions. An internal server error has occurred. ``error`` is ``SubscriptionError |
                 RawError``."""
-        return self._with_raw_response.list_subscriptions(
-            plan_ids=plan_ids,
-            statuses=statuses,
-            created_after=created_after,
-            created_before=created_before,
-            status_updated_before=status_updated_before,
-            status_updated_after=status_updated_after,
-            filter_=filter_,
-            page_size=page_size,
-            page=page,
-            customer_ids=customer_ids,
-            request_options=request_options,
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.list_subscriptions(
+                plan_ids=plan_ids,
+                statuses=statuses,
+                created_after=created_after,
+                created_before=created_before,
+                status_updated_before=status_updated_before,
+                status_updated_after=status_updated_after,
+                filter_=filter_,
+                page_size=page_size,
+                page=page,
+                customer_ids=customer_ids,
+                request_options=request_options,
+            ),
+        )
 
     def patch_billing_plan(
         self,
@@ -454,7 +467,7 @@ class Subscriptions:
                 insufficient permissions. The specified resource does not exist. The requested action could not be
                 performed, semantically incorrect, or failed business validation. An internal server error has occurred.
                 ``error`` is ``SubscriptionError | RawError``."""
-        return self._with_raw_response.patch_billing_plan(id_, body=body, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.patch_billing_plan(id_, body=body, request_options=request_options))
 
     def patch_subscription(
         self,
@@ -491,7 +504,7 @@ class Subscriptions:
                 insufficient permissions. The specified resource does not exist. The requested action could not be
                 performed, semantically incorrect, or failed business validation. An internal server error has occurred.
                 ``error`` is ``SubscriptionError | RawError``."""
-        return self._with_raw_response.patch_subscription(id_, body=body, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.patch_subscription(id_, body=body, request_options=request_options))
 
     def revise_subscription(
         self,
@@ -520,7 +533,7 @@ class Subscriptions:
                 Authorization failed due to insufficient permissions. The specified resource does not exist. The
                 requested action could not be performed, semantically incorrect, or failed business validation. An
                 internal server error has occurred. ``error`` is ``SubscriptionError | RawError``."""
-        return self._with_raw_response.revise_subscription(id_, body=body, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.revise_subscription(id_, body=body, request_options=request_options))
 
     def suspend_subscription(
         self,
@@ -546,7 +559,7 @@ class Subscriptions:
                 Authorization failed due to insufficient permissions. The specified resource does not exist. The
                 requested action could not be performed, semantically incorrect, or failed business validation. An
                 internal server error has occurred. ``error`` is ``SubscriptionError | RawError``."""
-        return self._with_raw_response.suspend_subscription(id_, body=body, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.suspend_subscription(id_, body=body, request_options=request_options))
 
     def update_billing_plan_pricing_schemes(
         self,
@@ -573,9 +586,9 @@ class Subscriptions:
                 Authorization failed due to insufficient permissions. The specified resource does not exist. The
                 requested action could not be performed, semantically incorrect, or failed business validation. An
                 internal server error has occurred. ``error`` is ``SubscriptionError | RawError``."""
-        return self._with_raw_response.update_billing_plan_pricing_schemes(
-            id_, body=body, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.update_billing_plan_pricing_schemes(id_, body=body, request_options=request_options)
+        )
 
     @property
     def with_raw_response(self) -> SubscriptionsWithRawResponse:
@@ -602,7 +615,7 @@ class AsyncSubscriptions:
                 Authorization failed due to insufficient permissions. The specified resource does not exist. The
                 requested action could not be performed, semantically incorrect, or failed business validation. An
                 internal server error has occurred. ``error`` is ``SubscriptionError | RawError``."""
-        return (await self._with_raw_response.activate_billing_plan(id_, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.activate_billing_plan(id_, request_options=request_options))
 
     async def activate_subscription(
         self,
@@ -628,9 +641,9 @@ class AsyncSubscriptions:
                 Authorization failed due to insufficient permissions. The specified resource does not exist. The
                 requested action could not be performed, semantically incorrect, or failed business validation. An
                 internal server error has occurred. ``error`` is ``SubscriptionError | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.activate_subscription(id_, body=body, request_options=request_options)
-        ).unwrap()
+        )
 
     async def cancel_subscription(
         self,
@@ -656,9 +669,9 @@ class AsyncSubscriptions:
                 Authorization failed due to insufficient permissions. The specified resource does not exist. The
                 requested action could not be performed, semantically incorrect, or failed business validation. An
                 internal server error has occurred. ``error`` is ``SubscriptionError | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.cancel_subscription(id_, body=body, request_options=request_options)
-        ).unwrap()
+        )
 
     async def capture_subscription(
         self,
@@ -687,11 +700,11 @@ class AsyncSubscriptions:
                 Authorization failed due to insufficient permissions. The specified resource does not exist. The
                 requested action could not be performed, semantically incorrect, or failed business validation. An
                 internal server error has occurred. ``error`` is ``SubscriptionError | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.capture_subscription(
                 id_, pay_pal_request_id=pay_pal_request_id, body=body, request_options=request_options
-            )
-        ).unwrap()
+            ),
+        )
 
     async def create_billing_plan(
         self,
@@ -723,11 +736,11 @@ class AsyncSubscriptions:
                 Authorization failed due to insufficient permissions. The requested action could not be performed,
                 semantically incorrect, or failed business validation. An internal server error has occurred. ``error``
                 is ``SubscriptionError | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.create_billing_plan(
                 prefer=prefer, pay_pal_request_id=pay_pal_request_id, body=body, request_options=request_options
-            )
-        ).unwrap()
+            ),
+        )
 
     async def create_subscription(
         self,
@@ -765,15 +778,15 @@ class AsyncSubscriptions:
                 Authorization failed due to insufficient permissions. The requested action could not be performed,
                 semantically incorrect, or failed business validation. An internal server error has occurred. ``error``
                 is ``SubscriptionError | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.create_subscription(
                 prefer=prefer,
                 pay_pal_request_id=pay_pal_request_id,
                 pay_pal_client_metadata_id=pay_pal_client_metadata_id,
                 body=body,
                 request_options=request_options,
-            )
-        ).unwrap()
+            ),
+        )
 
     async def deactivate_billing_plan(self, id_: str, *, request_options: RequestOptionsOrDict | None = None) -> None:
         """Deactivates a plan, by ID.
@@ -791,7 +804,7 @@ class AsyncSubscriptions:
                 Authorization failed due to insufficient permissions. The specified resource does not exist. The
                 requested action could not be performed, semantically incorrect, or failed business validation. An
                 internal server error has occurred. ``error`` is ``SubscriptionError | RawError``."""
-        return (await self._with_raw_response.deactivate_billing_plan(id_, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.deactivate_billing_plan(id_, request_options=request_options))
 
     async def get_billing_plan(self, id_: str, *, request_options: RequestOptionsOrDict | None = None) -> BillingPlan:
         """Shows details for a plan, by ID.
@@ -809,7 +822,7 @@ class AsyncSubscriptions:
             ApiError: Authentication failed due to missing authorization header, or invalid authentication credentials.
                 Authorization failed due to insufficient permissions. The specified resource does not exist. An internal
                 server error has occurred. ``error`` is ``SubscriptionError | RawError``."""
-        return (await self._with_raw_response.get_billing_plan(id_, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.get_billing_plan(id_, request_options=request_options))
 
     async def get_subscription(
         self, id_: str, *, fields: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -831,9 +844,9 @@ class AsyncSubscriptions:
             ApiError: Authentication failed due to missing authorization header, or invalid authentication credentials.
                 Authorization failed due to insufficient permissions. The specified resource does not exist. An internal
                 server error has occurred. ``error`` is ``SubscriptionError | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.get_subscription(id_, fields=fields, request_options=request_options)
-        ).unwrap()
+        )
 
     async def list_billing_plans(
         self,
@@ -870,7 +883,7 @@ class AsyncSubscriptions:
                 to missing authorization header, or invalid authentication credentials. Authorization failed due to
                 insufficient permissions. The specified resource does not exist. An internal server error has occurred.
                 ``error`` is ``SubscriptionError | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.list_billing_plans(
                 product_id=product_id,
                 page_size=page_size,
@@ -878,8 +891,8 @@ class AsyncSubscriptions:
                 total_required=total_required,
                 prefer=prefer,
                 request_options=request_options,
-            )
-        ).unwrap()
+            ),
+        )
 
     async def list_subscription_transactions(
         self, id_: str, start_time: str, end_time: str, *, request_options: RequestOptionsOrDict | None = None
@@ -902,11 +915,11 @@ class AsyncSubscriptions:
                 Authentication failed due to missing authorization header, or invalid authentication credentials.
                 Authorization failed due to insufficient permissions. The specified resource does not exist. An internal
                 server error has occurred. ``error`` is ``SubscriptionError | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.list_subscription_transactions(
                 id_, start_time, end_time, request_options=request_options
-            )
-        ).unwrap()
+            ),
+        )
 
     async def list_subscriptions(
         self,
@@ -952,7 +965,7 @@ class AsyncSubscriptions:
                 to missing authorization header, or invalid authentication credentials. Authorization failed due to
                 insufficient permissions. An internal server error has occurred. ``error`` is ``SubscriptionError |
                 RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.list_subscriptions(
                 plan_ids=plan_ids,
                 statuses=statuses,
@@ -965,8 +978,8 @@ class AsyncSubscriptions:
                 page=page,
                 customer_ids=customer_ids,
                 request_options=request_options,
-            )
-        ).unwrap()
+            ),
+        )
 
     async def patch_billing_plan(
         self,
@@ -996,9 +1009,7 @@ class AsyncSubscriptions:
                 insufficient permissions. The specified resource does not exist. The requested action could not be
                 performed, semantically incorrect, or failed business validation. An internal server error has occurred.
                 ``error`` is ``SubscriptionError | RawError``."""
-        return (
-            await self._with_raw_response.patch_billing_plan(id_, body=body, request_options=request_options)
-        ).unwrap()
+        return unwrap(await self._with_raw_response.patch_billing_plan(id_, body=body, request_options=request_options))
 
     async def patch_subscription(
         self,
@@ -1035,9 +1046,7 @@ class AsyncSubscriptions:
                 insufficient permissions. The specified resource does not exist. The requested action could not be
                 performed, semantically incorrect, or failed business validation. An internal server error has occurred.
                 ``error`` is ``SubscriptionError | RawError``."""
-        return (
-            await self._with_raw_response.patch_subscription(id_, body=body, request_options=request_options)
-        ).unwrap()
+        return unwrap(await self._with_raw_response.patch_subscription(id_, body=body, request_options=request_options))
 
     async def revise_subscription(
         self,
@@ -1066,9 +1075,9 @@ class AsyncSubscriptions:
                 Authorization failed due to insufficient permissions. The specified resource does not exist. The
                 requested action could not be performed, semantically incorrect, or failed business validation. An
                 internal server error has occurred. ``error`` is ``SubscriptionError | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.revise_subscription(id_, body=body, request_options=request_options)
-        ).unwrap()
+        )
 
     async def suspend_subscription(
         self,
@@ -1094,9 +1103,9 @@ class AsyncSubscriptions:
                 Authorization failed due to insufficient permissions. The specified resource does not exist. The
                 requested action could not be performed, semantically incorrect, or failed business validation. An
                 internal server error has occurred. ``error`` is ``SubscriptionError | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.suspend_subscription(id_, body=body, request_options=request_options)
-        ).unwrap()
+        )
 
     async def update_billing_plan_pricing_schemes(
         self,
@@ -1123,11 +1132,11 @@ class AsyncSubscriptions:
                 Authorization failed due to insufficient permissions. The specified resource does not exist. The
                 requested action could not be performed, semantically incorrect, or failed business validation. An
                 internal server error has occurred. ``error`` is ``SubscriptionError | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.update_billing_plan_pricing_schemes(
                 id_, body=body, request_options=request_options
-            )
-        ).unwrap()
+            ),
+        )
 
     @property
     def with_raw_response(self) -> AsyncSubscriptionsWithRawResponse:

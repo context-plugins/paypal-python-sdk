@@ -12,7 +12,6 @@ class PayPalWalletAttributes(SdkBaseModel):
 
     customer: Optional[PayPalWalletCustomerRequest] = UNSET
     vault: Optional[PayPalWalletVaultInstruction] = UNSET
-    """Resource consolidating common request and response attributes for vaulting PayPal Wallet."""
 
 
 class PayPalWalletAttributesDict(TypedDict):

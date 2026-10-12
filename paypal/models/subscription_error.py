@@ -26,7 +26,8 @@ class SubscriptionError(SdkBaseModel):
     """An array of additional details about the error."""
 
     links: Optional[list[LinkDescription]] = UNSET
-    """An array of request-related `HATEOAS links </api/rest/responses/#hateoas-links>`__."""
+    """An array of request-related `HATEOAS links
+    <https://developer.paypal.com/api/rest/responses/#hateoas-links>`__."""
 
 
 class SubscriptionErrorDict(TypedDict):

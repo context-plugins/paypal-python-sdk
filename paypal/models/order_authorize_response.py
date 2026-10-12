@@ -5,6 +5,7 @@ from typing_extensions import NotRequired, TypedDict
 from ..core import UNSET, Optional, SdkBaseModel
 from .enums.checkout_payment_intent import CheckoutPaymentIntentOrStr
 from .enums.order_status import OrderStatusOrStr
+from .enums.processing_instruction import ProcessingInstructionOrStr
 from .link_description import LinkDescription, LinkDescriptionDict
 from .order_authorize_response_payment_source import (
     OrderAuthorizeResponsePaymentSource,
@@ -36,6 +37,9 @@ class OrderAuthorizeResponse(SdkBaseModel):
     intent: Optional[CheckoutPaymentIntentOrStr] = UNSET
     """The intent to either capture payment immediately or authorize a payment for an order after order creation."""
 
+    processing_instruction: Optional[ProcessingInstructionOrStr] = UNSET
+    """The instruction to process an order."""
+
     payer: Optional[Payer] = UNSET
     """The customer who approves and pays for the order. The customer is also known as the payer."""
 
@@ -62,6 +66,7 @@ class OrderAuthorizeResponseDict(TypedDict):
     id: NotRequired[str]
     payment_source: NotRequired[OrderAuthorizeResponsePaymentSourceDict]
     intent: NotRequired[CheckoutPaymentIntentOrStr]
+    processing_instruction: NotRequired[ProcessingInstructionOrStr]
     payer: NotRequired[PayerDict]
     purchase_units: NotRequired[list[PurchaseUnitDict]]
     status: NotRequired[OrderStatusOrStr]

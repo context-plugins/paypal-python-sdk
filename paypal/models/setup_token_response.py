@@ -27,7 +27,7 @@ class SetupTokenResponse(SdkBaseModel):
     """The setup payment method details."""
 
     links: Optional[list[LinkDescription]] = UNSET
-    """An array of related `HATEOAS links </api/rest/responses/#hateoas>`__."""
+    """An array of related `HATEOAS links <https://developer.paypal.com/api/rest/responses/#hateoas>`__."""
 
 
 class SetupTokenResponseDict(TypedDict):

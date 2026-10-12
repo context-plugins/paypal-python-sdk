@@ -15,6 +15,7 @@ from ..core import (
     json_body,
     json_decoder,
     param,
+    unwrap,
 )
 from ..errors.authorize_order_error import AuthorizeOrderErrorBody, authorize_order_error_mapper
 from ..errors.capture_order_error import CaptureOrderErrorBody, capture_order_error_mapper
@@ -86,16 +87,18 @@ class Orders:
                 due to insufficient permissions. The specified resource does not exist. The requested action could not
                 be performed, semantically incorrect, or failed business validation. An internal server error has
                 occurred. ``error`` is ``Error | RawError``."""
-        return self._with_raw_response.authorize_order(
-            id_,
-            pay_pal_mock_response=pay_pal_mock_response,
-            pay_pal_request_id=pay_pal_request_id,
-            prefer=prefer,
-            pay_pal_client_metadata_id=pay_pal_client_metadata_id,
-            pay_pal_auth_assertion=pay_pal_auth_assertion,
-            body=body,
-            request_options=request_options,
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.authorize_order(
+                id_,
+                pay_pal_mock_response=pay_pal_mock_response,
+                pay_pal_request_id=pay_pal_request_id,
+                prefer=prefer,
+                pay_pal_client_metadata_id=pay_pal_client_metadata_id,
+                pay_pal_auth_assertion=pay_pal_auth_assertion,
+                body=body,
+                request_options=request_options,
+            ),
+        )
 
     def capture_order(
         self,
@@ -144,16 +147,18 @@ class Orders:
                 due to insufficient permissions. The specified resource does not exist. The requested action could not
                 be performed, semantically incorrect, or failed business validation. An internal server error has
                 occurred. ``error`` is ``Error | RawError``."""
-        return self._with_raw_response.capture_order(
-            id_,
-            pay_pal_mock_response=pay_pal_mock_response,
-            pay_pal_request_id=pay_pal_request_id,
-            prefer=prefer,
-            pay_pal_client_metadata_id=pay_pal_client_metadata_id,
-            pay_pal_auth_assertion=pay_pal_auth_assertion,
-            body=body,
-            request_options=request_options,
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.capture_order(
+                id_,
+                pay_pal_mock_response=pay_pal_mock_response,
+                pay_pal_request_id=pay_pal_request_id,
+                prefer=prefer,
+                pay_pal_client_metadata_id=pay_pal_client_metadata_id,
+                pay_pal_auth_assertion=pay_pal_auth_assertion,
+                body=body,
+                request_options=request_options,
+            ),
+        )
 
     def confirm_order(
         self,
@@ -188,14 +193,16 @@ class Orders:
             ApiError: Request is not well-formed, syntactically incorrect, or violates schema. Authorization failed due
                 to insufficient permissions. The requested action could not be performed, semantically incorrect, or
                 failed business validation. An internal server error has occurred. ``error`` is ``Error | RawError``."""
-        return self._with_raw_response.confirm_order(
-            id_,
-            pay_pal_client_metadata_id=pay_pal_client_metadata_id,
-            pay_pal_auth_assertion=pay_pal_auth_assertion,
-            prefer=prefer,
-            body=body,
-            request_options=request_options,
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.confirm_order(
+                id_,
+                pay_pal_client_metadata_id=pay_pal_client_metadata_id,
+                pay_pal_auth_assertion=pay_pal_auth_assertion,
+                prefer=prefer,
+                body=body,
+                request_options=request_options,
+            ),
+        )
 
     def create_order(
         self,
@@ -242,16 +249,18 @@ class Orders:
                 to missing authorization header, or invalid authentication credentials. The requested action could not
                 be performed, semantically incorrect, or failed business validation. ``error`` is ``Error |
                 RawError``."""
-        return self._with_raw_response.create_order(
-            body,
-            pay_pal_mock_response=pay_pal_mock_response,
-            pay_pal_request_id=pay_pal_request_id,
-            pay_pal_partner_attribution_id=pay_pal_partner_attribution_id,
-            pay_pal_client_metadata_id=pay_pal_client_metadata_id,
-            prefer=prefer,
-            pay_pal_auth_assertion=pay_pal_auth_assertion,
-            request_options=request_options,
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.create_order(
+                body,
+                pay_pal_mock_response=pay_pal_mock_response,
+                pay_pal_request_id=pay_pal_request_id,
+                pay_pal_partner_attribution_id=pay_pal_partner_attribution_id,
+                pay_pal_client_metadata_id=pay_pal_client_metadata_id,
+                prefer=prefer,
+                pay_pal_auth_assertion=pay_pal_auth_assertion,
+                request_options=request_options,
+            ),
+        )
 
     def create_order_tracking(
         self,
@@ -280,9 +289,11 @@ class Orders:
                 to insufficient permissions. The specified resource does not exist. The requested action could not be
                 performed, semantically incorrect, or failed business validation. An internal server error has occurred.
                 ``error`` is ``Error | RawError``."""
-        return self._with_raw_response.create_order_tracking(
-            id_, body, pay_pal_auth_assertion=pay_pal_auth_assertion, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.create_order_tracking(
+                id_, body, pay_pal_auth_assertion=pay_pal_auth_assertion, request_options=request_options
+            ),
+        )
 
     def get_order(
         self,
@@ -314,13 +325,15 @@ class Orders:
         Raises:
             ApiError: Authentication failed due to missing authorization header, or invalid authentication credentials.
                 The specified resource does not exist. ``error`` is ``Error | RawError``."""
-        return self._with_raw_response.get_order(
-            id_,
-            fields=fields,
-            pay_pal_mock_response=pay_pal_mock_response,
-            pay_pal_auth_assertion=pay_pal_auth_assertion,
-            request_options=request_options,
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.get_order(
+                id_,
+                fields=fields,
+                pay_pal_mock_response=pay_pal_mock_response,
+                pay_pal_auth_assertion=pay_pal_auth_assertion,
+                request_options=request_options,
+            ),
+        )
 
     def patch_order(
         self,
@@ -386,13 +399,15 @@ class Orders:
                 to missing authorization header, or invalid authentication credentials. The specified resource does not
                 exist. The requested action could not be performed, semantically incorrect, or failed business
                 validation. ``error`` is ``Error | RawError``."""
-        return self._with_raw_response.patch_order(
-            id_,
-            pay_pal_mock_response=pay_pal_mock_response,
-            pay_pal_auth_assertion=pay_pal_auth_assertion,
-            body=body,
-            request_options=request_options,
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.patch_order(
+                id_,
+                pay_pal_mock_response=pay_pal_mock_response,
+                pay_pal_auth_assertion=pay_pal_auth_assertion,
+                body=body,
+                request_options=request_options,
+            ),
+        )
 
     def update_order_tracking(
         self,
@@ -426,9 +441,15 @@ class Orders:
                 to insufficient permissions. The specified resource does not exist. The requested action could not be
                 performed, semantically incorrect, or failed business validation. An internal server error has occurred.
                 ``error`` is ``Error | RawError``."""
-        return self._with_raw_response.update_order_tracking(
-            id_, tracker_id, pay_pal_auth_assertion=pay_pal_auth_assertion, body=body, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.update_order_tracking(
+                id_,
+                tracker_id,
+                pay_pal_auth_assertion=pay_pal_auth_assertion,
+                body=body,
+                request_options=request_options,
+            ),
+        )
 
     @property
     def with_raw_response(self) -> OrdersWithRawResponse:
@@ -486,7 +507,7 @@ class AsyncOrders:
                 due to insufficient permissions. The specified resource does not exist. The requested action could not
                 be performed, semantically incorrect, or failed business validation. An internal server error has
                 occurred. ``error`` is ``Error | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.authorize_order(
                 id_,
                 pay_pal_mock_response=pay_pal_mock_response,
@@ -496,8 +517,8 @@ class AsyncOrders:
                 pay_pal_auth_assertion=pay_pal_auth_assertion,
                 body=body,
                 request_options=request_options,
-            )
-        ).unwrap()
+            ),
+        )
 
     async def capture_order(
         self,
@@ -546,7 +567,7 @@ class AsyncOrders:
                 due to insufficient permissions. The specified resource does not exist. The requested action could not
                 be performed, semantically incorrect, or failed business validation. An internal server error has
                 occurred. ``error`` is ``Error | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.capture_order(
                 id_,
                 pay_pal_mock_response=pay_pal_mock_response,
@@ -556,8 +577,8 @@ class AsyncOrders:
                 pay_pal_auth_assertion=pay_pal_auth_assertion,
                 body=body,
                 request_options=request_options,
-            )
-        ).unwrap()
+            ),
+        )
 
     async def confirm_order(
         self,
@@ -592,7 +613,7 @@ class AsyncOrders:
             ApiError: Request is not well-formed, syntactically incorrect, or violates schema. Authorization failed due
                 to insufficient permissions. The requested action could not be performed, semantically incorrect, or
                 failed business validation. An internal server error has occurred. ``error`` is ``Error | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.confirm_order(
                 id_,
                 pay_pal_client_metadata_id=pay_pal_client_metadata_id,
@@ -600,8 +621,8 @@ class AsyncOrders:
                 prefer=prefer,
                 body=body,
                 request_options=request_options,
-            )
-        ).unwrap()
+            ),
+        )
 
     async def create_order(
         self,
@@ -648,7 +669,7 @@ class AsyncOrders:
                 to missing authorization header, or invalid authentication credentials. The requested action could not
                 be performed, semantically incorrect, or failed business validation. ``error`` is ``Error |
                 RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.create_order(
                 body,
                 pay_pal_mock_response=pay_pal_mock_response,
@@ -658,8 +679,8 @@ class AsyncOrders:
                 prefer=prefer,
                 pay_pal_auth_assertion=pay_pal_auth_assertion,
                 request_options=request_options,
-            )
-        ).unwrap()
+            ),
+        )
 
     async def create_order_tracking(
         self,
@@ -688,11 +709,11 @@ class AsyncOrders:
                 to insufficient permissions. The specified resource does not exist. The requested action could not be
                 performed, semantically incorrect, or failed business validation. An internal server error has occurred.
                 ``error`` is ``Error | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.create_order_tracking(
                 id_, body, pay_pal_auth_assertion=pay_pal_auth_assertion, request_options=request_options
-            )
-        ).unwrap()
+            ),
+        )
 
     async def get_order(
         self,
@@ -724,15 +745,15 @@ class AsyncOrders:
         Raises:
             ApiError: Authentication failed due to missing authorization header, or invalid authentication credentials.
                 The specified resource does not exist. ``error`` is ``Error | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.get_order(
                 id_,
                 fields=fields,
                 pay_pal_mock_response=pay_pal_mock_response,
                 pay_pal_auth_assertion=pay_pal_auth_assertion,
                 request_options=request_options,
-            )
-        ).unwrap()
+            ),
+        )
 
     async def patch_order(
         self,
@@ -798,15 +819,15 @@ class AsyncOrders:
                 to missing authorization header, or invalid authentication credentials. The specified resource does not
                 exist. The requested action could not be performed, semantically incorrect, or failed business
                 validation. ``error`` is ``Error | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.patch_order(
                 id_,
                 pay_pal_mock_response=pay_pal_mock_response,
                 pay_pal_auth_assertion=pay_pal_auth_assertion,
                 body=body,
                 request_options=request_options,
-            )
-        ).unwrap()
+            ),
+        )
 
     async def update_order_tracking(
         self,
@@ -840,15 +861,15 @@ class AsyncOrders:
                 to insufficient permissions. The specified resource does not exist. The requested action could not be
                 performed, semantically incorrect, or failed business validation. An internal server error has occurred.
                 ``error`` is ``Error | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.update_order_tracking(
                 id_,
                 tracker_id,
                 pay_pal_auth_assertion=pay_pal_auth_assertion,
                 body=body,
                 request_options=request_options,
-            )
-        ).unwrap()
+            ),
+        )
 
     @property
     def with_raw_response(self) -> AsyncOrdersWithRawResponse:

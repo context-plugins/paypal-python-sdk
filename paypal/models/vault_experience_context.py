@@ -24,7 +24,8 @@ class VaultExperienceContext(SdkBaseModel):
     error-related strings, such as messages, issues, and suggested actions. The tag is made up of the `ISO 639-2
     language code <https://www.loc.gov/standards/iso639-2/php/code_list.php>`__, the optional `ISO-15924 script tag
     <https://www.unicode.org/iso15924/codelists.html>`__, and the `ISO-3166 alpha-2 country code
-    </api/rest/reference/country-codes/>`__ or `M49 region code <https://unstats.un.org/unsd/methodology/m49/>`__."""
+    <https://developer.paypal.com/api/rest/reference/country-codes/>`__ or `M49 region code
+    <https://unstats.un.org/unsd/methodology/m49/>`__."""
 
     return_url: Optional[str] = UNSET
     """The URL where the customer is redirected after customer approves leaves the flow. It is a required field for
